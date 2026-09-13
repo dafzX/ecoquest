@@ -101,6 +101,22 @@ const router = createRouter({
       meta: {
         title: 'Profile - EcoQuest'
       }
+    },
+    {
+      path: '/eco-action',
+      name: 'EcoAction',
+      component: () => import('@/views/eco-action/EcoActionView.vue'),
+      meta: {
+        title: 'Eco Action - EcoQuest'
+      }
+    },
+    {
+      path: '/achievements',
+      name: 'Achievements',
+      component: () => import('@/views/achievements/AchievementsView.vue'),
+      meta: {
+        title: 'Achievements - EcoQuest'
+      }
     }
   ]
 })

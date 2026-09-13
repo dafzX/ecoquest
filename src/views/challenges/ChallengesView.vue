@@ -296,72 +296,44 @@
 
       <!-- Desktop -->
       <main class="hidden md:block">
-        <div class="mx-auto max-w-[1400px] px-6 pb-10">
+        <div class="mx-auto max-w-[1080px] px-6 pb-10">
 
           <!-- Header -->
           <section class="mb-7 flex items-end justify-between">
-
             <div>
-              <p class="mb-1 text-sm font-medium text-[#22C55E]">
-                Tantangan Komunitas
-              </p>
-
-              <h1 class="text-[28px] font-bold text-[#17211B]">
+              <h1 class="text-[24px] font-bold text-[#17211B]">
                 Challenges
               </h1>
-
               <p class="mt-1 text-sm text-[#66736A]">
-                Ikuti tantangan bersama dan buat dampak lebih besar.
+                Bersama kita bisa lebih berdampak!
               </p>
             </div>
-
-            <!-- Community Stats -->
-            <div
-              class="flex items-center gap-3 rounded-xl border border-[#DCEBE0] bg-white px-4 py-3"
-            >
-              <div
-                class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#E8F8ED]"
-              >
-                <Users class="h-4 w-4 text-[#22C55E]" />
-              </div>
-
-              <div>
-                <p class="text-[9px] text-[#98A39C]">
-                  Community
-                </p>
-
-                <p class="mt-0.5 text-xs font-bold text-[#17211B]">
-                  {{ totalParticipants }} peserta
-                </p>
-              </div>
-            </div>
-
+            
+            <button class="flex items-center gap-2 rounded-lg border border-[#E8EDE9] px-4 py-1.5 text-sm font-medium text-[#66736A] transition hover:bg-[#F8FAF8]">
+              All
+              <ChevronDown class="h-4 w-4" />
+            </button>
           </section>
 
           <!-- Tabs -->
-          <div
-            class="mb-6 flex w-fit rounded-xl border border-[#E8EDE9] bg-white p-1"
-          >
+          <div class="mb-6 flex gap-4 border-b border-[#E8EDE9]">
             <button
-              type="button"
-              class="h-9 rounded-lg px-6 text-xs font-medium transition"
+              class="border-b-2 pb-3 text-sm font-semibold transition"
               :class="
                 activeTab === 'community'
-                  ? 'bg-[#22C55E] text-white'
-                  : 'text-[#66736A] hover:bg-[#F4FBF7]'
+                  ? 'border-[#22C55E] text-[#17211B]'
+                  : 'border-transparent text-[#98A39C] hover:text-[#17211B]'
               "
               @click="activeTab = 'community'"
             >
               Community Quest
             </button>
-
             <button
-              type="button"
-              class="h-9 rounded-lg px-6 text-xs font-medium transition"
+              class="border-b-2 pb-3 text-sm font-semibold transition"
               :class="
                 activeTab === 'mine'
-                  ? 'bg-[#22C55E] text-white'
-                  : 'text-[#66736A] hover:bg-[#F4FBF7]'
+                  ? 'border-[#22C55E] text-[#17211B]'
+                  : 'border-transparent text-[#98A39C] hover:text-[#17211B]'
               "
               @click="activeTab = 'mine'"
             >
@@ -369,255 +341,90 @@
             </button>
           </div>
 
-          <!-- Featured -->
-          <section
-            v-if="featuredChallenge"
-            class="mb-7 overflow-hidden rounded-2xl border border-[#DCEBE0] bg-white"
-          >
+          <!-- Desktop Grid -->
+          <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 
-            <div class="grid grid-cols-[1.3fr_1fr]">
-
-              <!-- Featured Info -->
-              <div
-                class="relative min-h-[220px] overflow-hidden bg-[#DCFCE7] p-7"
-              >
-
-                <div
-                  class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#BBF7D0]"
-                ></div>
-
-                <div
-                  class="absolute -bottom-12 left-20 h-28 w-28 rounded-full bg-[#86EFAC]/50"
-                ></div>
-
-                <span
-                  class="relative inline-flex rounded-full bg-white px-3 py-1 text-[9px] font-bold text-[#15803D]"
-                >
-                  COMMUNITY QUEST
-                </span>
-
-                <h2
-                  class="relative mt-6 text-xl font-bold text-[#17211B]"
-                >
+            <!-- Featured Challenge -->
+            <article
+              v-if="featuredChallenge"
+              class="col-span-1 lg:col-span-2 overflow-hidden rounded-2xl bg-[#E8F8ED] p-8 flex flex-col justify-between relative"
+            >
+              <div class="absolute -right-8 -top-8 h-64 w-64 rounded-full bg-[#DCFCE7] mix-blend-multiply opacity-50"></div>
+              <div class="relative z-10 w-full lg:w-2/3">
+                <h2 class="text-xl font-bold text-[#15803D]">
                   {{ featuredChallenge.title }}
                 </h2>
-
-                <p
-                  class="relative mt-2 max-w-md text-xs leading-5 text-[#66736A]"
-                >
+                <p class="mt-2 text-sm text-[#15803D]/80">
                   {{ featuredChallenge.description }}
                 </p>
 
-                <div class="relative mt-6 flex items-center gap-8">
-
+                <div class="mt-6 flex items-center gap-6">
                   <div>
-                    <p class="text-[9px] text-[#98A39C]">
-                      Peserta
-                    </p>
-
-                    <p
-                      class="mt-1 text-sm font-bold text-[#17211B]"
-                    >
-                      {{ featuredChallenge.participants }}
-                    </p>
+                    <span class="text-2xl font-bold text-[#15803D]">{{ featuredChallenge.progress }}%</span>
+                    <span class="ml-1 text-xs text-[#15803D]/70">completed</span>
                   </div>
-
                   <div>
-                    <p class="text-[9px] text-[#98A39C]">
-                      Sisa waktu
-                    </p>
-
-                    <p
-                      class="mt-1 text-sm font-bold text-[#17211B]"
-                    >
-                      {{ featuredChallenge.daysLeft }} hari
-                    </p>
+                    <div class="flex items-center gap-1.5 text-[#15803D]">
+                      <Users class="h-4 w-4" />
+                      <span class="text-sm font-bold">{{ featuredChallenge.participants }}</span>
+                    </div>
+                    <span class="text-xs text-[#15803D]/70">participants</span>
                   </div>
-
                 </div>
-
               </div>
-
-              <!-- Featured Progress -->
-              <div
-                class="flex min-h-[220px] flex-col justify-center p-7"
-              >
-
-                <div class="flex items-center justify-between">
-                  <span class="text-xs text-[#718078]">
-                    Progress Komunitas
-                  </span>
-
-                  <span
-                    class="text-xs font-bold text-[#22C55E]"
-                  >
-                    {{ featuredChallenge.progress }}%
-                  </span>
+              
+              <!-- Decorative illustration placement -->
+              <div class="absolute right-12 bottom-0 h-40 w-48 opacity-90 hidden lg:block">
+                <!-- A placeholder for the globe illustration -->
+                <div class="flex h-full w-full items-center justify-center text-[#22C55E]">
+                  <Globe2 class="h-32 w-32" />
                 </div>
-
-                <div
-                  class="mt-2 h-2 w-full overflow-hidden rounded-full bg-[#E5EFE8]"
-                >
-                  <div
-                    class="h-full rounded-full bg-[#22C55E]"
-                    :style="{
-                      width: `${featuredChallenge.progress}%`
-                    }"
-                  ></div>
-                </div>
-
-                <div
-                  class="mt-4 flex items-center gap-2 text-[10px] text-[#718078]"
-                >
-                  <Clock class="h-3.5 w-3.5 text-[#98A39C]" />
-
-                  <span>
-                    {{ featuredChallenge.daysLeft }} hari lagi
-                  </span>
-                </div>
-
-                <RouterLink
-                  :to="`/challenges/${featuredChallenge.id}`"
-                  class="mt-6 flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#22C55E] text-xs font-semibold text-white transition hover:bg-[#15803D]"
-                >
-                  Lihat Challenge
-                  <ArrowRight class="h-4 w-4" />
-                </RouterLink>
-
               </div>
+            </article>
 
-            </div>
-          </section>
-
-          <!-- Other Challenges -->
-          <section>
-
-            <div class="mb-4 flex items-center justify-between">
-
-              <div>
-                <h2 class="text-base font-bold text-[#17211B]">
-                  {{
-                    activeTab === 'community'
-                      ? 'Challenge Lainnya'
-                      : 'Challenge Saya'
-                  }}
-                </h2>
-
-                <p class="mt-1 text-xs text-[#718078]">
-                  {{
-                    activeTab === 'community'
-                      ? 'Temukan tantangan yang bisa kamu ikuti.'
-                      : 'Tantangan yang sedang kamu ikuti.'
-                  }}
-                </p>
-              </div>
-
-              <span
-                class="rounded-full bg-[#E8F8ED] px-3 py-1.5 text-[10px] font-semibold text-[#15803D]"
-              >
-                {{ visibleChallenges.length }} challenge
-              </span>
-
-            </div>
-
-            <!-- Desktop Grid -->
-            <div
-              class="grid grid-cols-3 items-stretch gap-4"
+            <!-- Other Challenges -->
+            <article
+              v-for="challenge in visibleChallenges"
+              :key="challenge.id"
+              class="flex flex-col justify-between rounded-2xl border border-[#E8EDE9] bg-white p-6 transition hover:border-[#DCEBE0]"
             >
-
-              <article
-                v-for="challenge in visibleChallenges"
-                :key="challenge.id"
-                class="flex h-full min-h-[255px] flex-col rounded-2xl border border-[#E8EDE9] bg-white p-5 transition hover:-translate-y-0.5 hover:border-[#D5E8DA]"
-              >
-
-                <!-- Top -->
-                <div class="flex items-start justify-between">
-
-                  <div
-                    class="flex h-11 w-11 items-center justify-center rounded-xl"
-                    :class="getChallengeStyle(challenge.category)"
-                  >
-                    <component
-                      :is="getChallengeIcon(challenge.category)"
-                      class="h-5 w-5"
-                    />
-                  </div>
-
-                  <span
-                    class="rounded-full bg-[#E8F8ED] px-2.5 py-1 text-[9px] font-semibold text-[#15803D]"
-                  >
-                    {{ challenge.daysLeft }} hari
-                  </span>
-
-                </div>
-
-                <!-- Title -->
-                <h3
-                  class="mt-4 min-h-[20px] text-sm font-bold text-[#17211B]"
-                >
+              <div>
+                <h3 class="text-base font-bold text-[#17211B]">
                   {{ challenge.title }}
                 </h3>
-
-                <!-- Description -->
-                <p
-                  class="mt-1 min-h-[40px] text-xs leading-5 text-[#66736A]"
-                >
+                <p class="mt-1 text-sm text-[#66736A]">
                   {{ challenge.description }}
                 </p>
+              </div>
 
-                <!-- Progress -->
-                <div class="mt-5">
-
-                  <div class="mb-1.5 flex items-center justify-between">
-                    <span class="text-[10px] text-[#98A39C]">
-                      Progress
-                    </span>
-
-                    <span
-                      class="text-[10px] font-semibold text-[#22C55E]"
-                    >
-                      {{ challenge.progress }}%
-                    </span>
+              <div class="mt-6 flex items-end justify-between">
+                <div class="w-1/2">
+                  <div class="mb-2 flex items-center justify-between text-xs">
+                    <span class="font-bold text-[#17211B]">{{ challenge.progress }}%</span>
+                    <span class="text-[#66736A]">{{ challenge.participants }} participants</span>
                   </div>
-
-                  <div
-                    class="h-1.5 w-full overflow-hidden rounded-full bg-[#E5EFE8]"
-                  >
+                  <div class="h-1.5 w-full overflow-hidden rounded-full bg-[#E5EFE8]">
                     <div
                       class="h-full rounded-full bg-[#22C55E]"
-                      :style="{
-                        width: `${challenge.progress}%`
-                      }"
+                      :style="{ width: `${challenge.progress}%` }"
                     ></div>
                   </div>
-
                 </div>
 
-                <!-- Bottom -->
-                <div
-                  class="mt-auto flex items-center justify-between pt-5"
+                <button
+                  class="rounded-lg px-6 py-2 text-sm font-semibold transition"
+                  :class="
+                    challenge.joined
+                      ? 'bg-[#E8F8ED] text-[#15803D] hover:bg-[#DCFCE7]'
+                      : 'bg-[#22C55E] text-white hover:bg-[#15803D]'
+                  "
                 >
+                  {{ challenge.joined ? 'Start' : 'Join' }}
+                </button>
+              </div>
+            </article>
 
-                  <span class="text-[10px] text-[#98A39C]">
-                    {{ challenge.participants }} peserta
-                  </span>
-
-                  <RouterLink
-                    :to="`/challenges/${challenge.id}`"
-                    class="flex items-center gap-1 text-[10px] font-semibold text-[#22C55E] transition hover:text-[#15803D]"
-                  >
-                    Detail
-                    <ArrowRight class="h-3 w-3" />
-                  </RouterLink>
-
-                </div>
-
-              </article>
-
-            </div>
-
-          </section>
+          </div>
 
         </div>
       </main>
@@ -639,7 +446,8 @@ import {
   Recycle,
   Bike,
   Droplets,
-  TreePine
+  TreePine,
+  ChevronDown
 } from 'lucide-vue-next'
 
 import AppLayout from '@/layouts/AppLayout.vue'

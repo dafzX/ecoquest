@@ -319,477 +319,132 @@
       <!-- Desktop -->
       <main class="hidden md:block">
 
-        <div class="mx-auto max-w-[1400px] px-6 pb-10">
+        <div class="mx-auto max-w-[1080px] px-6 pb-10">
 
           <!-- Header -->
           <section class="mb-7 flex items-end justify-between">
-
             <div>
-
-              <p class="mb-1 text-sm font-medium text-[#22C55E]">
-                Perjalanan Eco-mu
-              </p>
-
-              <h1 class="text-[28px] font-bold text-[#17211B]">
-                Quest & Misi
+              <h1 class="text-[24px] font-bold text-[#17211B]">
+                Quest
               </h1>
-
               <p class="mt-1 text-sm text-[#66736A]">
-                Selesaikan quest dan bangun kebiasaan ramah lingkungan.
+                Tantangan kecil, perubahan besar.
               </p>
-
             </div>
-
-            <div class="flex gap-3">
-
-              <div
-                class="rounded-xl border border-[#E8EDE9] bg-white px-4 py-3"
-              >
-                <p class="text-[10px] text-[#98A39C]">
-                  Total XP
-                </p>
-
-                <p class="mt-1 text-sm font-bold text-[#17211B]">
-                  {{ currentUser.xp?.toLocaleString('id-ID') || 1240 }} XP
-                </p>
-              </div>
-
-              <div
-                class="rounded-xl border border-[#E8EDE9] bg-white px-4 py-3"
-              >
-                <p class="text-[10px] text-[#98A39C]">
-                  Streak
-                </p>
-
-                <p class="mt-1 text-sm font-bold text-[#17211B]">
-                  🔥 {{ currentUser.streak || 7 }} hari
-                </p>
-              </div>
-
-            </div>
-
           </section>
 
           <!-- Desktop Filters -->
-          <section class="mb-5 flex items-center justify-between">
-
-            <div
-              class="flex rounded-xl border border-[#E8EDE9] bg-white p-1"
-            >
-
-              <button
-                v-for="tab in tabs"
-                :key="tab.value"
-                type="button"
-                class="rounded-lg px-5 py-2 text-xs font-medium transition"
-                :class="
-                  activeTab === tab.value
-                    ? 'bg-[#22C55E] text-white'
-                    : 'text-[#66736A] hover:text-[#17211B]'
-                "
-                @click="activeTab = tab.value"
-              >
-                {{ tab.label }}
-
-                <span
-                  v-if="tab.count !== undefined"
-                  class="ml-1"
-                >
-                  {{ tab.count }}
-                </span>
+          <section class="mb-6 flex items-center justify-between">
+            <div class="flex gap-4">
+              <button class="rounded-full bg-[#22C55E] px-4 py-1.5 text-sm font-semibold text-white">
+                Active
               </button>
-
+              <button class="rounded-full px-4 py-1.5 text-sm font-medium text-[#66736A] transition hover:bg-[#E8EDE9]">
+                Recommended
+              </button>
+              <button class="rounded-full px-4 py-1.5 text-sm font-medium text-[#66736A] transition hover:bg-[#E8EDE9]">
+                Completed
+              </button>
             </div>
 
-            <div class="relative w-[250px]">
-
-              <Search
-                class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#98A39C]"
-              />
-
-              <input
-                v-model="searchQuery"
-                type="text"
-                placeholder="Cari quest..."
-                class="h-10 w-full rounded-xl border border-[#E8EDE9] bg-white pl-9 pr-3 text-xs outline-none focus:border-[#86EFAC]"
-              />
-
-            </div>
-
+            <button class="flex items-center gap-2 rounded-lg border border-[#E8EDE9] px-4 py-1.5 text-sm font-medium text-[#66736A] transition hover:bg-[#F8FAF8]">
+              Filter
+              <ChevronDown class="h-4 w-4" />
+            </button>
           </section>
 
           <!-- Desktop List -->
           <section>
-
-            <div class="mb-4">
-
-              <h2 class="text-base font-bold text-[#17211B]">
-                {{ sectionTitle }}
-              </h2>
-
-              <p class="mt-1 text-xs text-[#98A39C]">
-                {{ filteredMissions.length }} quest tersedia
-              </p>
-
-            </div>
-
-            <div class="grid grid-cols-2 gap-4 xl:grid-cols-3">
+            <div class="space-y-4">
 
               <article
                 v-for="mission in filteredMissions"
                 :key="mission.id"
-                class="rounded-2xl border border-[#E8EDE9] bg-white p-5 transition hover:border-[#BBF7D0] hover:shadow-sm"
+                class="flex items-center justify-between rounded-2xl border border-[#E8EDE9] bg-white p-6 transition hover:border-[#BBF7D0]"
               >
-
-                <div class="flex items-start justify-between">
-
+                <div class="flex flex-1 items-start gap-6">
+                  <!-- Icon -->
                   <div
-                    class="flex h-11 w-11 items-center justify-center rounded-xl"
+                    class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
                     :class="getCategoryStyle(mission.category)"
                   >
                     <component
                       :is="getCategoryIcon(mission.category)"
-                      class="h-5 w-5"
+                      class="h-7 w-7"
                     />
                   </div>
 
-                  <span
-                    v-if="mission.completed"
-                    class="rounded-full bg-[#DCFCE7] px-2 py-1 text-[9px] font-semibold text-[#15803D]"
-                  >
-                    Selesai
-                  </span>
+                  <!-- Content -->
+                  <div class="flex-1">
+                    <div class="flex items-center gap-3">
+                      <h3 class="text-base font-bold text-[#17211B]">
+                        {{ mission.title || 'Quest Title' }}
+                      </h3>
+                      <span
+                        v-if="mission.completed"
+                        class="rounded-full bg-[#F1F5F2] px-2.5 py-0.5 text-[10px] font-semibold text-[#66736A]"
+                      >
+                        Completed
+                      </span>
+                      <span
+                        v-else-if="mission.progress"
+                        class="rounded-full bg-[#EAF8EE] px-2.5 py-0.5 text-[10px] font-semibold text-[#15803D]"
+                      >
+                        Active
+                      </span>
+                      <span
+                        v-else
+                        class="rounded-full bg-[#F0FDF4] px-2.5 py-0.5 text-[10px] font-semibold text-[#16A34A] border border-[#DCFCE7]"
+                      >
+                        Recommended
+                      </span>
+                    </div>
 
-                  <span
-                    v-else-if="mission.progress"
-                    class="rounded-full bg-[#FEF3C7] px-2 py-1 text-[9px] font-semibold text-[#A16207]"
-                  >
-                    Berjalan
-                  </span>
+                    <p class="mt-1 text-sm text-[#66736A]">
+                      {{ mission.description || 'Description' }}
+                    </p>
 
-                  <span
-                    v-else
-                    class="rounded-full bg-[#F1F5F2] px-2 py-1 text-[9px] font-semibold text-[#66736A]"
-                  >
-                    Baru
-                  </span>
-
-                </div>
-
-                <p
-                  class="mt-4 text-[10px] font-semibold uppercase text-[#22C55E]"
-                >
-                  {{ mission.category || 'Eco Life' }}
-                </p>
-
-                <h3 class="mt-1.5 text-sm font-bold text-[#17211B]">
-                  {{ mission.title || 'Eco Quest' }}
-                </h3>
-
-                <p class="mt-1 text-xs leading-5 text-[#66736A]">
-                  {{
-                    mission.description ||
-                    'Selesaikan quest untuk mendapatkan XP.'
-                  }}
-                </p>
-
-                <!-- Progress -->
-                <div
-                  v-if="mission.progress && !mission.completed"
-                  class="mt-5"
-                >
-
-                  <div class="mb-1.5 flex justify-between">
-
-                    <span class="text-[10px] text-[#98A39C]">
-                      Progress
-                    </span>
-
-                    <span class="text-[10px] font-semibold text-[#22C55E]">
-                      {{ mission.progress }}%
-                    </span>
-
+                    <!-- Progress -->
+                    <div v-if="mission.progress !== undefined && !mission.completed" class="mt-4 flex w-3/4 items-center gap-4">
+                      <span class="w-20 text-xs text-[#66736A]">{{ mission.step || 'Day 2 of 3' }}</span>
+                      <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-[#E5EFE8]">
+                        <div
+                          class="h-full rounded-full bg-[#22C55E]"
+                          :style="{ width: `${mission.progress}%` }"
+                        ></div>
+                      </div>
+                      <span class="w-10 text-right text-xs font-bold text-[#22C55E]">{{ mission.progress }}%</span>
+                    </div>
                   </div>
-
-                  <div class="h-1.5 rounded-full bg-[#E5EFE8]">
-
-                    <div
-                      class="h-full rounded-full bg-[#22C55E]"
-                      :style="{
-                        width: `${mission.progress}%`
-                      }"
-                    ></div>
-
-                  </div>
-
                 </div>
 
                 <!-- Action -->
-                <div
-                  class="mt-5 flex items-center justify-between border-t border-[#EEF2EF] pt-4"
-                >
-
-                  <div class="flex items-center gap-1.5">
-
-                    <Zap class="h-4 w-4 text-[#CA8A04]" />
-
-                    <span class="text-xs font-semibold text-[#17211B]">
-                      +{{ mission.xp || 50 }} XP
-                    </span>
-
-                  </div>
-
+                <div class="ml-6 flex flex-col items-end justify-center gap-4 border-l border-[#E8EDE9] pl-6">
+                  <span class="text-sm font-bold text-[#22C55E]">+{{ mission.xp || 50 }} XP</span>
                   <RouterLink
                     :to="getMissionLink(mission)"
-                    class="flex h-8 items-center gap-1 rounded-lg px-3 text-[10px] font-semibold"
+                    class="flex h-10 w-28 items-center justify-center rounded-xl text-sm font-semibold transition"
                     :class="
                       mission.completed
                         ? 'bg-[#F1F5F2] text-[#66736A]'
-                        : 'bg-[#22C55E] text-white'
+                        : 'bg-[#22C55E] text-white hover:bg-[#15803D]'
                     "
                   >
                     {{
                       mission.completed
                         ? 'Detail'
                         : mission.progress
-                          ? 'Lanjutkan'
-                          : 'Mulai'
+                          ? 'Continue'
+                          : 'Start'
                     }}
-
-                    <ArrowRight class="h-3 w-3" />
                   </RouterLink>
-
                 </div>
-
               </article>
 
             </div>
-
-          </section>
-
-          <!-- Desktop Community Challenges -->
-          <section class="mt-8">
-
-            <div class="mb-4 flex items-end justify-between">
-
-              <div>
-
-                <h2 class="text-base font-bold text-[#17211B]">
-                  Community Challenges
-                </h2>
-
-                <p class="mt-1 text-xs text-[#98A39C]">
-                  Ikuti tantangan bersama EcoQuest Explorer lainnya.
-                </p>
-
-              </div>
-
-              <RouterLink
-                to="/challenges"
-                class="flex items-center gap-1.5 text-xs font-semibold text-[#15803D]"
-              >
-                Lihat Semua
-                <ArrowRight class="h-3.5 w-3.5" />
-              </RouterLink>
-
-            </div>
-
-            <div class="grid gap-4 lg:grid-cols-2">
-
-              <!-- Challenge 1 -->
-              <article
-                class="overflow-hidden rounded-2xl border border-[#DCEBE0] bg-white"
-              >
-
-                <div
-                  class="flex items-center justify-between bg-[#15803D] px-5 py-4"
-                >
-
-                  <div class="flex items-center gap-3">
-
-                    <div
-                      class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15"
-                    >
-                      <Trophy class="h-5 w-5 text-white" />
-                    </div>
-
-                    <div>
-
-                      <p class="text-[9px] font-semibold text-white/70">
-                        COMMUNITY CHALLENGE
-                      </p>
-
-                      <h3 class="mt-0.5 text-sm font-bold text-white">
-                        Plastic Reduction Week
-                      </h3>
-
-                    </div>
-
-                  </div>
-
-                  <span
-                    class="rounded-full bg-white/15 px-2.5 py-1 text-[9px] font-semibold text-white"
-                  >
-                    7 hari
-                  </span>
-
-                </div>
-
-                <div class="p-5">
-
-                  <p class="text-xs leading-5 text-[#66736A]">
-                    Kurangi penggunaan plastik sekali pakai dan ajak
-                    komunitasmu melakukan aksi nyata.
-                  </p>
-
-                  <div class="mt-4 flex items-center justify-between">
-
-                    <div>
-
-                      <p class="text-[10px] text-[#98A39C]">
-                        Peserta
-                      </p>
-
-                      <p class="mt-1 text-sm font-bold text-[#17211B]">
-                        320 Explorer
-                      </p>
-
-                    </div>
-
-                    <div class="text-right">
-
-                      <p class="text-[10px] text-[#98A39C]">
-                        Progress
-                      </p>
-
-                      <p class="mt-1 text-sm font-bold text-[#22C55E]">
-                        68%
-                      </p>
-
-                    </div>
-
-                  </div>
-
-                  <div
-                    class="mt-3 h-1.5 overflow-hidden rounded-full bg-[#E5EFE8]"
-                  >
-                    <div
-                      class="h-full w-[68%] rounded-full bg-[#22C55E]"
-                    ></div>
-                  </div>
-
-                  <RouterLink
-                    to="/challenges"
-                    class="mt-4 flex h-9 items-center justify-center gap-1.5 rounded-lg bg-[#22C55E] text-[10px] font-semibold text-white transition hover:bg-[#15803D]"
-                  >
-                    Lihat Challenge
-                    <ArrowRight class="h-3.5 w-3.5" />
-                  </RouterLink>
-
-                </div>
-
-              </article>
-
-              <!-- Challenge 2 -->
-              <article
-                class="overflow-hidden rounded-2xl border border-[#DCEBE0] bg-white"
-              >
-
-                <div
-                  class="flex items-center justify-between bg-[#1D4ED8] px-5 py-4"
-                >
-
-                  <div class="flex items-center gap-3">
-
-                    <div
-                      class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15"
-                    >
-                      <Bike class="h-5 w-5 text-white" />
-                    </div>
-
-                    <div>
-
-                      <p class="text-[9px] font-semibold text-white/70">
-                        COMMUNITY CHALLENGE
-                      </p>
-
-                      <h3 class="mt-0.5 text-sm font-bold text-white">
-                        Green Transport Challenge
-                      </h3>
-
-                    </div>
-
-                  </div>
-
-                  <span
-                    class="rounded-full bg-white/15 px-2.5 py-1 text-[9px] font-semibold text-white"
-                  >
-                    12 hari
-                  </span>
-
-                </div>
-
-                <div class="p-5">
-
-                  <p class="text-xs leading-5 text-[#66736A]">
-                    Gunakan sepeda atau transportasi umum untuk
-                    perjalanan sehari-hari.
-                  </p>
-
-                  <div class="mt-4 flex items-center justify-between">
-
-                    <div>
-
-                      <p class="text-[10px] text-[#98A39C]">
-                        Peserta
-                      </p>
-
-                      <p class="mt-1 text-sm font-bold text-[#17211B]">
-                        154 Explorer
-                      </p>
-
-                    </div>
-
-                    <div class="text-right">
-
-                      <p class="text-[10px] text-[#98A39C]">
-                        Progress
-                      </p>
-
-                      <p class="mt-1 text-sm font-bold text-[#3B82F6]">
-                        45%
-                      </p>
-
-                    </div>
-
-                  </div>
-
-                  <div
-                    class="mt-3 h-1.5 overflow-hidden rounded-full bg-[#E8F0FF]"
-                  >
-                    <div
-                      class="h-full w-[45%] rounded-full bg-[#3B82F6]"
-                    ></div>
-                  </div>
-
-                  <RouterLink
-                    to="/challenges"
-                    class="mt-4 flex h-9 items-center justify-center gap-1.5 rounded-lg bg-[#22C55E] text-[10px] font-semibold text-white transition hover:bg-[#15803D]"
-                  >
-                    Lihat Challenge
-                    <ArrowRight class="h-3.5 w-3.5" />
-                  </RouterLink>
-
-                </div>
-
-              </article>
-
-            </div>
-
           </section>
 
         </div>
-
       </main>
 
     </div>
@@ -810,7 +465,8 @@ import {
   Droplets,
   TreePine,
   Lightbulb,
-  Trophy
+  Trophy,
+  ChevronDown
 } from 'lucide-vue-next'
 
 import AppLayout from '@/layouts/AppLayout.vue'

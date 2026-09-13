@@ -138,9 +138,14 @@ const mainMenu = [
     icon: LayoutDashboard
   },
   {
-    name: 'Missions',
+    name: 'Quest',
     to: '/missions',
     icon: ListChecks
+  },
+  {
+    name: 'Eco Action',
+    to: '/eco-action',
+    icon: Leaf
   },
   {
     name: 'Challenges',
@@ -161,6 +166,11 @@ const mainMenu = [
     name: 'Rewards',
     to: '/rewards',
     icon: Gift
+  },
+  {
+    name: 'Achievements',
+    to: '/achievements',
+    icon: Medal // Can use Award or similar
   },
   {
     name: 'Community',

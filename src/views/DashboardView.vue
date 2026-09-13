@@ -368,31 +368,21 @@
       <!-- Desktop -->
       <main class="hidden md:block">
 
-        <div class="mx-auto max-w-[1400px] px-6 pb-8">
+        <div class="mx-auto max-w-[1080px] px-6 pb-8">
 
           <!-- Desktop Header -->
           <section
-            class="mb-7 flex items-end justify-between"
+            class="mb-8 flex items-end justify-between"
           >
-
             <div>
-
-              <p
-                class="mb-1 text-sm font-medium text-[#22C55E]"
-              >
-                {{ formattedDate }}
-              </p>
-
               <h1
-                class="text-[28px] font-bold text-[#17211B]"
+                class="text-[24px] font-bold text-[#17211B]"
               >
-                Selamat pagi, {{ currentUser.name }}! 👋
+                Good morning, {{ currentUser.name }}! 👋
               </h1>
-
               <p class="mt-1 text-sm text-[#66736A]">
-                Siap membuat dampak positif hari ini?
+                Setiap aksi kecil berarti. Yuk lanjutkan perjalananmu!
               </p>
-
             </div>
 
             <RouterLink
@@ -400,69 +390,153 @@
               class="flex h-10 items-center gap-2 rounded-xl bg-[#22C55E] px-4 text-sm font-semibold text-white transition hover:bg-[#15803D]"
             >
               <Plus class="h-4 w-4" />
-              Catat Aksi Eco
+              Record Eco Action
             </RouterLink>
-
           </section>
 
-          <!-- Desktop Stats -->
-          <div class="grid grid-cols-3 gap-5">
+          <!-- Desktop Grid -->
+          <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            
+            <!-- Left Column (Level & Next Quest) -->
+            <div class="lg:col-span-2 space-y-6">
+              
+              <!-- Level Card with Impact -->
+              <div class="flex flex-col md:flex-row gap-6 rounded-2xl border border-[#E8EDE9] bg-white p-6">
+                <!-- Level Info -->
+                <div class="flex-1 border-r border-[#E8EDE9] pr-6">
+                  <div class="flex items-center gap-4">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#E8F8ED]">
+                      <Leaf class="h-6 w-6 text-[#22C55E]" />
+                    </div>
+                    <div>
+                      <p class="text-sm font-bold text-[#17211B]">
+                        Level {{ currentUser.level }}
+                      </p>
+                      <p class="text-xs text-[#66736A]">
+                        {{ currentUser.levelName || 'Eco Explorer' }}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div class="mt-6 flex items-center justify-between">
+                    <span class="text-xs font-medium text-[#66736A]">
+                      {{ currentUser.xp ?? 1240 }} / {{ currentUser.nextLevelXp ?? 1600 }} XP
+                    </span>
+                  </div>
+                  <div class="mt-2 h-2 overflow-hidden rounded-full bg-[#E5EFE8]">
+                    <div class="h-full rounded-full bg-[#22C55E]" :style="{ width: `${levelProgress}%` }"></div>
+                  </div>
+                </div>
 
-            <!-- Level -->
-            <div
-              class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
-            >
+                <!-- Impact Info -->
+                <div class="flex-1 pl-2">
+                  <p class="mb-4 text-xs font-semibold text-[#17211B]">Your Impact</p>
+                  <div class="flex items-center justify-between gap-2 text-center">
+                    <div>
+                      <div class="mx-auto flex h-10 w-10 flex-col items-center justify-center rounded-full border border-[#E8EDE9] bg-[#F8FAF8]">
+                        <Flame class="h-4 w-4 text-[#F97316]" />
+                      </div>
+                      <p class="mt-2 text-[10px] font-bold text-[#17211B]">{{ currentUser.streak ?? 7 }} Days</p>
+                    </div>
+                    <div>
+                      <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-[#E8EDE9] bg-[#F8FAF8]">
+                        <Cloud class="h-4 w-4 text-[#22C55E]" />
+                      </div>
+                      <p class="mt-2 text-[10px] font-bold text-[#17211B]">{{ impact.co2Saved ?? 18 }} kg</p>
+                      <p class="text-[9px] text-[#66736A]">Plants avoided</p>
+                    </div>
+                    <div>
+                      <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-[#E8EDE9] bg-[#F8FAF8]">
+                        <Leaf class="h-4 w-4 text-[#22C55E]" />
+                      </div>
+                      <p class="mt-2 text-[10px] font-bold text-[#17211B]">{{ ecoActions }}</p>
+                      <p class="text-[9px] text-[#66736A]">Eco actions</p>
+                    </div>
+                    <div>
+                      <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-[#E8EDE9] bg-[#F8FAF8]">
+                        <Bike class="h-4 w-4 text-[#22C55E]" />
+                      </div>
+                      <p class="mt-2 text-[10px] font-bold text-[#17211B]">{{ lowCarbonDistance }} km</p>
+                      <p class="text-[9px] text-[#66736A]">Low-carbon travel</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-              <Sparkles class="h-5 w-5 text-[#9333EA]" />
-
-              <p class="mt-4 text-xs text-[#66736A]">
-                Level Saat Ini
-              </p>
-
-              <p
-                class="mt-1 text-2xl font-bold text-[#17211B]"
-              >
-                {{ currentUser.level }}
-              </p>
+              <!-- Your Next Quest -->
+              <div>
+                <h2 class="mb-4 text-base font-bold text-[#17211B]">Your Next Quest</h2>
+                <div v-if="nextQuest" class="rounded-2xl border border-[#E8EDE9] bg-white p-6">
+                  <div class="flex items-start justify-between">
+                    <div class="flex gap-4">
+                      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#E8F8ED]">
+                        <Recycle class="h-6 w-6 text-[#22C55E]" />
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-bold text-[#17211B]">{{ nextQuest.title || 'Reduce Plastic' }}</h3>
+                        <p class="mt-1 text-xs text-[#66736A]">{{ nextQuest.description || 'Use a reusable bottle for 3 days.' }}</p>
+                        
+                        <div class="mt-4 flex items-center justify-between w-64">
+                          <span class="text-[10px] font-medium text-[#66736A]">{{ nextQuest.step || 'Day 2 of 3' }}</span>
+                          <span class="text-[10px] font-bold text-[#22C55E]">{{ questProgress }}%</span>
+                        </div>
+                        <div class="mt-1.5 h-1.5 w-64 overflow-hidden rounded-full bg-[#E5EFE8]">
+                          <div class="h-full rounded-full bg-[#22C55E]" :style="{ width: `${questProgress}%` }"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <span class="inline-block rounded-full bg-[#EAF8EE] px-3 py-1 text-xs font-bold text-[#15803D]">+{{ nextQuest.xp ?? 75 }} XP</span>
+                      <RouterLink
+                        :to="nextQuest.link || '/missions'"
+                        class="mt-4 block rounded-lg bg-[#22C55E] px-4 py-2 text-center text-xs font-semibold text-white transition hover:bg-[#15803D]"
+                      >
+                        View Quest
+                      </RouterLink>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
             </div>
 
-            <!-- XP -->
-            <div
-              class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
-            >
+            <!-- Right Column (Habit Progress) -->
+            <div>
+              <h2 class="mb-4 text-base font-bold text-[#17211B]">Habit Progress</h2>
+              <div class="rounded-2xl border border-[#E8EDE9] bg-white p-6">
+                <div class="flex items-start justify-between">
+                  <div>
+                    <h3 class="text-sm font-bold text-[#17211B]">Reduce Plastic</h3>
+                    <p class="mt-1 text-xs text-[#66736A]">Keep up the good work!</p>
+                  </div>
+                  <span class="text-lg font-bold text-[#22C55E]">{{ questProgress }}%</span>
+                </div>
+                
+                <div class="mt-4 h-2 overflow-hidden rounded-full bg-[#E5EFE8]">
+                  <div class="h-full rounded-full bg-[#22C55E]" :style="{ width: `${questProgress}%` }"></div>
+                </div>
 
-              <Zap class="h-5 w-5 text-[#CA8A04]" />
-
-              <p class="mt-4 text-xs text-[#66736A]">
-                Total XP
-              </p>
-
-              <p
-                class="mt-1 text-2xl font-bold text-[#17211B]"
-              >
-                {{ currentUser.xp ?? 1240 }}
-              </p>
-
-            </div>
-
-            <!-- Streak -->
-            <div
-              class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
-            >
-
-              <Flame class="h-5 w-5 text-[#EA580C]" />
-
-              <p class="mt-4 text-xs text-[#66736A]">
-                Streak Saat Ini
-              </p>
-
-              <p
-                class="mt-1 text-2xl font-bold text-[#17211B]"
-              >
-                {{ currentUser.streak ?? 7 }} hari
-              </p>
-
+                <div class="mt-6 space-y-4 border-t border-[#E8EDE9] pt-6">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-8 w-8 items-center justify-center rounded-full bg-[#FFF7ED]">
+                      <Flame class="h-4 w-4 text-[#F97316]" />
+                    </div>
+                    <div>
+                      <p class="text-xs font-bold text-[#17211B]">7-day streak</p>
+                      <p class="text-[10px] text-[#66736A]">Active streak</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-8 w-8 items-center justify-center rounded-full bg-[#F0F9FF]">
+                      <Trophy class="h-4 w-4 text-[#0EA5E9]" />
+                    </div>
+                    <div>
+                      <p class="text-xs font-bold text-[#17211B]">Next milestone</p>
+                      <p class="text-[10px] text-[#66736A]">Use reusable bottle for 14 days</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
