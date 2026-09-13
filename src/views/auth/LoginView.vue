@@ -363,6 +363,8 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { login } from '@/services/auth'
 import {
   Leaf,
   Mail,
@@ -374,6 +376,8 @@ import {
   Trophy
 } from 'lucide-vue-next'
 
+const router = useRouter()
+const route = useRoute()
 const showPassword = ref(false)
 
 const form = ref({
@@ -383,6 +387,14 @@ const form = ref({
 })
 
 function handleLogin() {
-  console.log(form.value)
+  const result = login(form.value.email, form.value.password)
+
+  if (!result.success) {
+    alert(result.message)
+    return
+  }
+
+  const redirectTo = route.query.redirect || '/dashboard'
+  router.push(redirectTo)
 }
 </script>

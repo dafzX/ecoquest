@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { isLoggedIn } from '@/services/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,7 +41,8 @@ const router = createRouter({
       name: 'Dashboard',
       component: () => import('@/views/DashboardView.vue'),
       meta: {
-        title: 'Dashboard - EcoQuest'
+        title: 'Dashboard - EcoQuest',
+        requireAuth: true
       }
     },
 
@@ -50,7 +52,8 @@ const router = createRouter({
       name: 'Missions',
       component: () => import('@/views/missions/MissionsView.vue'),
       meta: {
-        title: 'Missions - EcoQuest'
+        title: 'Missions - EcoQuest',
+        requireAuth: true
       }
     },
 
@@ -60,7 +63,8 @@ const router = createRouter({
       component: () => import('@/views/missions/MissionDetailView.vue'),
       meta: {
         title: 'Mission Detail - EcoQuest',
-        hideBottomNav: true
+        hideBottomNav: true,
+        requireAuth: true
       }
     },
 
@@ -71,7 +75,8 @@ const router = createRouter({
       component: () => import('@/views/challenges/ChallengesView.vue'),
       meta: {
         title: 'Challenges - EcoQuest',
-        hideBottomNav: true
+        hideBottomNav: true,
+        requireAuth: true
       }
     },
 
@@ -81,7 +86,8 @@ const router = createRouter({
       name: 'Leaderboard',
       component: () => import('@/views/leaderboard/LeaderboardView.vue'),
       meta: {
-        title: 'Leaderboard - EcoQuest'
+        title: 'Leaderboard - EcoQuest',
+        requireAuth: true
       }
     },
 
@@ -91,7 +97,8 @@ const router = createRouter({
       name: 'Impact',
       component: () => import('@/views/impact/ImpactView.vue'),
       meta: {
-        title: 'Impact - EcoQuest'
+        title: 'Impact - EcoQuest',
+        requireAuth: true
       }
     },
 
@@ -101,7 +108,8 @@ const router = createRouter({
       name: 'Rewards',
       component: () => import('@/views/reward/RewardsView.vue'),
       meta: {
-        title: 'Rewards - EcoQuest'
+        title: 'Rewards - EcoQuest',
+        requireAuth: true
       }
     },
 
@@ -111,7 +119,8 @@ const router = createRouter({
       name: 'Community',
       component: () => import('@/views/community/CommunityView.vue'),
       meta: {
-        title: 'Community - EcoQuest'
+        title: 'Community - EcoQuest',
+        requireAuth: true
       }
     },
 
@@ -121,7 +130,8 @@ const router = createRouter({
       name: 'Profile',
       component: () => import('@/views/profile/ProfileView.vue'),
       meta: {
-        title: 'Profile - EcoQuest'
+        title: 'Profile - EcoQuest',
+        requireAuth: true
       }
     },
 
@@ -132,7 +142,8 @@ const router = createRouter({
       component: () => import('@/views/profile/EditProfileView.vue'),
       meta: {
         title: 'Edit Profil - EcoQuest',
-        hideBottomNav: true
+        hideBottomNav: true,
+        requireAuth: true
       }
     },
 
@@ -143,7 +154,8 @@ const router = createRouter({
       component: () => import('@/views/profile/AchievementsView.vue'),
       meta: {
         title: 'Achievements - EcoQuest',
-        hideBottomNav: true
+        hideBottomNav: true,
+        requireAuth: true
       }
     },
 
@@ -154,7 +166,8 @@ const router = createRouter({
       component: () => import('@/views/profile/SettingsView.vue'),
       meta: {
         title: 'Settings - EcoQuest',
-        hideBottomNav: true
+        hideBottomNav: true,
+        requireAuth: true
       }
     },
 
@@ -165,7 +178,8 @@ const router = createRouter({
       component: () => import('@/views/profile/HelpSupportView.vue'),
       meta: {
         title: 'Help & Support - EcoQuest',
-        hideBottomNav: true
+        hideBottomNav: true,
+        requireAuth: true
       }
     },
 
@@ -176,7 +190,8 @@ const router = createRouter({
       component: () => import('@/views/profile/PrivacyView.vue'),
       meta: {
         title: 'Privacy - EcoQuest',
-        hideBottomNav: true
+        hideBottomNav: true,
+        requireAuth: true
       }
     },
 
@@ -187,14 +202,36 @@ const router = createRouter({
       component: () => import('@/views/profile/SecurityView.vue'),
       meta: {
         title: 'Security - EcoQuest',
-        hideBottomNav: true
+        hideBottomNav: true,
+        requireAuth: true
       }
     }
   ]
 })
 
+// Navigation Guard
 router.beforeEach((to) => {
   document.title = to.meta.title || 'EcoQuest'
+
+  // Halaman yang membutuhkan login
+  if (to.meta.requireAuth && !isLoggedIn()) {
+    return {
+      name: 'Login',
+      query: {
+        redirect: to.fullPath
+      }
+    }
+  }
+
+  // Jika sudah login, tidak boleh kembali ke Login/Register
+  if (
+    (to.name === 'Login' || to.name === 'Register') &&
+    isLoggedIn()
+  ) {
+    return {
+      name: 'Dashboard'
+    }
+  }
 })
 
 export default router
