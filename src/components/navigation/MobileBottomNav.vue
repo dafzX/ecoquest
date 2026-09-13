@@ -49,8 +49,8 @@ import { useRoute } from 'vue-router'
 import {
   Home,
   ListChecks,
-  Trophy,
-  Leaf,
+  Users,
+  Gift,
   UserCircle
 } from 'lucide-vue-next'
 
@@ -63,19 +63,19 @@ const menu = [
     icon: Home
   },
   {
-    name: 'Missions',
+    name: 'Quest',
     to: '/missions',
     icon: ListChecks
   },
   {
-    name: 'Challenges',
-    to: '/challenges',
-    icon: Trophy
+    name: 'Community',
+    to: '/community',
+    icon: Users
   },
   {
-    name: 'Impact',
-    to: '/impact',
-    icon: Leaf
+    name: 'Rewards',
+    to: '/rewards',
+    icon: Gift
   },
   {
     name: 'Profile',

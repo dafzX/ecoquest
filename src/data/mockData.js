@@ -1,7 +1,7 @@
 export const user = {
   name: 'Dafa',
   level: 5,
-  levelName: 'Eco Explorer',
+  levelName: 'Penjelajah Eco',
   xp: 1240,
   nextLevelXp: 1600,
   streak: 7,
@@ -12,33 +12,36 @@ export const user = {
 export const missions = [
   {
     id: 1,
-    title: 'Recycle 5 Plastic Bottles',
-    description: 'Collect and recycle at least 5 plastic bottles today.',
-    category: 'Recycling',
+    title: 'Daur Ulang 5 Botol Plastik',
+    description: 'Kumpulkan dan daur ulang setidaknya 5 botol plastik hari ini.',
+    category: 'Daur Ulang',
     xp: 50,
     icon: 'recycle',
     completed: false
   },
+
   {
     id: 2,
-    title: 'Walk or Bike Today',
-    description: 'Choose walking or cycling instead of using a vehicle.',
-    category: 'Transport',
+    title: 'Jalan Kaki atau Bersepeda Hari Ini',
+    description: 'Pilih berjalan kaki atau bersepeda daripada menggunakan kendaraan.',
+    category: 'Transportasi',
     xp: 75,
     icon: 'bike',
     completed: false
   },
+
   {
     id: 3,
-    title: 'Save Energy at Home',
-    description: 'Turn off unused lights and electronic devices.',
-    category: 'Energy',
+    title: 'Hemat Energi di Rumah',
+    description: 'Matikan lampu dan perangkat elektronik yang sedang tidak digunakan.',
+    category: 'Energi',
     xp: 40,
     icon: 'energy',
     completed: true
   }
 ]
 
+// Impact
 export const impact = {
   co2Saved: 24.5,
   wasteRecycled: 18,
@@ -46,34 +49,37 @@ export const impact = {
   treesEquivalent: 3
 }
 
+// Achievements
 export const achievements = [
   {
     id: 1,
-    title: 'First Step',
-    description: 'Complete your first eco mission.',
+    title: 'Langkah Pertama',
+    description: 'Selesaikan misi eco pertamamu.',
     unlocked: true
   },
+
   {
     id: 2,
-    title: 'Eco Starter',
-    description: 'Reach 1,000 XP.',
+    title: 'Eco Pemula',
+    description: 'Capai 1.000 XP.',
     unlocked: true
   },
+
   {
     id: 3,
-    title: '7 Day Streak',
-    description: 'Maintain a 7 day streak.',
+    title: 'Streak 7 Hari',
+    description: 'Pertahankan streak selama 7 hari.',
     unlocked: true
   }
 ]
 
-// Challanges
+// Challenges
 export const challenges = [
   {
     id: 1,
-    title: 'Green Week',
-    description: 'Complete eco-friendly actions for 7 days.',
-    category: 'Daily Habit',
+    title: 'Minggu Hijau',
+    description: 'Lakukan aksi ramah lingkungan selama 7 hari.',
+    category: 'Kebiasaan Harian',
     progress: 5,
     target: 7,
     xp: 250,
@@ -81,11 +87,12 @@ export const challenges = [
     icon: 'leaf',
     active: true
   },
+
   {
     id: 2,
-    title: 'Car-Free Challenge',
-    description: 'Use walking, cycling, or public transport for 5 trips.',
-    category: 'Transport',
+    title: 'Tantangan Bebas Mobil',
+    description: 'Gunakan jalan kaki, sepeda, atau transportasi umum untuk 5 perjalanan.',
+    category: 'Transportasi',
     progress: 3,
     target: 5,
     xp: 300,
@@ -93,11 +100,12 @@ export const challenges = [
     icon: 'bike',
     active: true
   },
+
   {
     id: 3,
-    title: 'Zero Waste',
-    description: 'Reduce your daily waste through sustainable actions.',
-    category: 'Waste',
+    title: 'Nol Sampah',
+    description: 'Kurangi sampah harian melalui berbagai aksi berkelanjutan.',
+    category: 'Sampah',
     progress: 12,
     target: 20,
     xp: 200,
@@ -117,6 +125,7 @@ export const leaderboard = [
     avatar: 'S',
     change: 1
   },
+
   {
     rank: 2,
     name: 'Andi',
@@ -125,6 +134,7 @@ export const leaderboard = [
     avatar: 'A',
     change: 2
   },
+
   {
     rank: 3,
     name: 'Budi',
@@ -133,6 +143,7 @@ export const leaderboard = [
     avatar: 'B',
     change: -1
   },
+
   {
     rank: 4,
     name: 'Rina',
@@ -141,6 +152,7 @@ export const leaderboard = [
     avatar: 'R',
     change: 3
   },
+
   {
     rank: 5,
     name: 'Fajar',
@@ -149,6 +161,7 @@ export const leaderboard = [
     avatar: 'F',
     change: 1
   },
+
   {
     rank: 6,
     name: 'Nadia',
@@ -157,6 +170,7 @@ export const leaderboard = [
     avatar: 'N',
     change: -2
   },
+
   {
     rank: 7,
     name: 'Rizky',
@@ -165,6 +179,7 @@ export const leaderboard = [
     avatar: 'R',
     change: 1
   },
+
   {
     rank: 8,
     name: 'Alya',
@@ -173,6 +188,7 @@ export const leaderboard = [
     avatar: 'A',
     change: 0
   },
+
   {
     rank: 9,
     name: 'Dimas',
@@ -181,6 +197,7 @@ export const leaderboard = [
     avatar: 'D',
     change: -1
   },
+
   {
     rank: 10,
     name: 'Nanda',
@@ -189,6 +206,7 @@ export const leaderboard = [
     avatar: 'N',
     change: 2
   },
+
   {
     rank: 11,
     name: 'Rafi',
@@ -197,6 +215,7 @@ export const leaderboard = [
     avatar: 'R',
     change: 1
   },
+
   {
     rank: 12,
     name: 'Dafa',
@@ -208,7 +227,7 @@ export const leaderboard = [
   }
 ]
 
-// Impact
+// Impact History
 export const impactHistory = [
   {
     month: 'Apr',
@@ -216,30 +235,35 @@ export const impactHistory = [
     waste: 8,
     water: 45
   },
+
   {
-    month: 'May',
+    month: 'Mei',
     co2: 15.8,
     waste: 11,
     water: 68
   },
+
   {
     month: 'Jun',
     co2: 18.2,
     waste: 13,
     water: 82
   },
+
   {
     month: 'Jul',
     co2: 20.1,
     waste: 15,
     water: 96
   },
+
   {
-    month: 'Aug',
+    month: 'Agu',
     co2: 22.8,
     waste: 17,
     water: 108
   },
+
   {
     month: 'Sep',
     co2: 24.5,
@@ -248,38 +272,42 @@ export const impactHistory = [
   }
 ]
 
+// Eco Actions
 export const ecoActions = [
   {
     id: 1,
-    title: 'Recycled plastic bottles',
-    category: 'Recycling',
-    value: '5 bottles',
-    impact: '1.2 kg CO₂ saved',
-    date: 'Today'
+    title: 'Mendaur ulang botol plastik',
+    category: 'Daur Ulang',
+    value: '5 botol',
+    impact: '1,2 kg CO₂ tersimpan',
+    date: 'Hari ini'
   },
+
   {
     id: 2,
-    title: 'Walked instead of driving',
-    category: 'Transport',
-    value: '3.2 km',
-    impact: '0.8 kg CO₂ saved',
-    date: 'Yesterday'
+    title: 'Berjalan kaki daripada berkendara',
+    category: 'Transportasi',
+    value: '3,2 km',
+    impact: '0,8 kg CO₂ tersimpan',
+    date: 'Kemarin'
   },
+
   {
     id: 3,
-    title: 'Turned off unused devices',
-    category: 'Energy',
-    value: '2 hours',
-    impact: '0.5 kg CO₂ saved',
-    date: 'Yesterday'
+    title: 'Mematikan perangkat yang tidak digunakan',
+    category: 'Energi',
+    value: '2 jam',
+    impact: '0,5 kg CO₂ tersimpan',
+    date: 'Kemarin'
   },
+
   {
     id: 4,
-    title: 'Used reusable bottle',
-    category: 'Waste',
-    value: '1 bottle',
-    impact: '0.3 kg CO₂ saved',
-    date: '2 days ago'
+    title: 'Menggunakan botol minum reusable',
+    category: 'Sampah',
+    value: '1 botol',
+    impact: '0,3 kg CO₂ tersimpan',
+    date: '2 hari lalu'
   }
 ]
 
@@ -287,58 +315,63 @@ export const ecoActions = [
 export const rewards = [
   {
     id: 1,
-    title: 'Eco Starter Badge',
-    description: 'A special badge for your first sustainable milestones.',
+    title: 'Lencana Eco Pemula',
+    description: 'Lencana khusus untuk pencapaian ramah lingkungan pertamamu.',
     category: 'Digital',
     cost: 300,
     icon: 'badge',
     available: true,
     owned: false
   },
+
   {
     id: 2,
-    title: 'Plant a Tree',
-    description: 'Use your XP to support planting one real tree.',
-    category: 'Impact',
+    title: 'Tanam Satu Pohon',
+    description: 'Gunakan XP-mu untuk mendukung penanaman satu pohon nyata.',
+    category: 'Dampak',
     cost: 500,
     icon: 'tree',
     available: true,
     owned: false
   },
+
   {
     id: 3,
-    title: 'Reusable Bottle',
-    description: 'Redeem this reward for a reusable EcoQuest bottle.',
+    title: 'Botol Minum Reusable',
+    description: 'Tukarkan reward ini dengan botol minum reusable EcoQuest.',
     category: 'Merchandise',
     cost: 1000,
     icon: 'bottle',
     available: true,
     owned: false
   },
+
   {
     id: 4,
-    title: 'EcoQuest Tote Bag',
-    description: 'A reusable tote bag for your everyday activities.',
+    title: 'Tas EcoQuest',
+    description: 'Tas reusable untuk menemani aktivitas sehari-harimu.',
     category: 'Merchandise',
     cost: 1500,
     icon: 'bag',
     available: true,
     owned: false
   },
+
   {
     id: 5,
-    title: 'Green Explorer Badge',
-    description: 'Exclusive badge for active environmental explorers.',
+    title: 'Lencana Penjelajah Hijau',
+    description: 'Lencana eksklusif untuk para penjelajah lingkungan yang aktif.',
     category: 'Digital',
     cost: 800,
     icon: 'leaf',
     available: true,
     owned: false
   },
+
   {
     id: 6,
     title: 'Eco Champion',
-    description: 'A special reward for reaching advanced milestones.',
+    description: 'Reward khusus untuk pengguna yang mencapai pencapaian tingkat lanjut.',
     category: 'Digital',
     cost: 2000,
     icon: 'trophy',
@@ -347,11 +380,12 @@ export const rewards = [
   }
 ]
 
+// Redeemed Rewards
 export const redeemedRewards = [
   {
     id: 101,
-    title: 'First Eco Badge',
-    date: 'Aug 28, 2026',
+    title: 'Lencana Eco Pertama',
+    date: '28 Agu 2026',
     cost: 250,
     icon: 'badge'
   }
@@ -363,53 +397,60 @@ export const communityPosts = [
     id: 1,
     name: 'Sinta',
     avatar: 'S',
-    time: '12 min ago',
-    category: 'Recycling',
-    title: 'Recycled my plastic bottles today ♻️',
-    content: 'Managed to collect and recycle 8 plastic bottles today. Small action, but it feels good to keep them out of the landfill!',
+    time: '12 menit lalu',
+    category: 'Daur Ulang',
+    title: 'Hari ini aku mendaur ulang botol plastik ♻️',
+    content:
+      'Berhasil mengumpulkan dan mendaur ulang 8 botol plastik hari ini. Aksi kecil, tapi rasanya menyenangkan karena botol-botol tersebut tidak berakhir di tempat pembuangan sampah!',
     likes: 24,
     comments: 6,
     liked: false,
-    impact: '1.8 kg CO₂ saved'
+    impact: '1,8 kg CO₂ tersimpan'
   },
+
   {
     id: 2,
     name: 'Andi',
     avatar: 'A',
-    time: '1 hour ago',
-    category: 'Transport',
-    title: 'Bike ride instead of driving 🚲',
-    content: 'Took my bike to work today. The weather was great and I got some exercise along the way.',
+    time: '1 jam lalu',
+    category: 'Transportasi',
+    title: 'Bersepeda daripada berkendara 🚲',
+    content:
+      'Hari ini aku menggunakan sepeda untuk pergi bekerja. Cuacanya bagus dan sekalian bisa berolahraga.',
     likes: 18,
     comments: 4,
     liked: false,
-    impact: '2.4 kg CO₂ saved'
+    impact: '2,4 kg CO₂ tersimpan'
   },
+
   {
     id: 3,
     name: 'Rina',
     avatar: 'R',
-    time: '3 hours ago',
-    category: 'Energy',
-    title: 'Saving energy at home 💡',
-    content: 'Turned off unnecessary lights and unplugged devices before leaving home. Trying to make this a daily habit!',
+    time: '3 jam lalu',
+    category: 'Energi',
+    title: 'Menghemat energi di rumah 💡',
+    content:
+      'Mematikan lampu yang tidak diperlukan dan mencabut perangkat sebelum meninggalkan rumah. Aku sedang mencoba menjadikannya kebiasaan setiap hari!',
     likes: 31,
     comments: 8,
     liked: false,
-    impact: '0.9 kg CO₂ saved'
+    impact: '0,9 kg CO₂ tersimpan'
   },
+
   {
     id: 4,
     name: 'Fajar',
     avatar: 'F',
-    time: 'Yesterday',
-    category: 'Waste',
-    title: 'No plastic cup today 🌱',
-    content: 'Brought my reusable bottle and coffee cup everywhere today. No single-use cups needed!',
+    time: 'Kemarin',
+    category: 'Sampah',
+    title: 'Tidak menggunakan gelas plastik hari ini 🌱',
+    content:
+      'Membawa botol minum dan gelas kopi reusable ke mana pun hari ini. Tidak perlu menggunakan gelas sekali pakai!',
     likes: 15,
     comments: 3,
     liked: false,
-    impact: '0.5 kg waste avoided'
+    impact: '0,5 kg sampah berkurang'
   }
 ]
 
@@ -424,36 +465,39 @@ export const profileStats = {
   missionsCompleted: 18,
   challengesCompleted: 6,
   totalEcoActions: 42,
-  joinedDate: 'August 2026'
+  joinedDate: 'Agustus 2026'
 }
 
 export const profileActivity = [
   {
     id: 1,
-    title: 'Completed Recycle 5 Plastic Bottles',
-    type: 'Mission',
+    title: 'Menyelesaikan Daur Ulang 5 Botol Plastik',
+    type: 'Misi',
     xp: 50,
-    date: 'Today'
+    date: 'Hari ini'
   },
+
   {
     id: 2,
-    title: 'Completed Green Week challenge',
-    type: 'Challenge',
+    title: 'Menyelesaikan tantangan Minggu Hijau',
+    type: 'Tantangan',
     xp: 250,
-    date: 'Yesterday'
+    date: 'Kemarin'
   },
+
   {
     id: 3,
-    title: 'Recorded Bike to Work',
-    type: 'Eco Action',
+    title: 'Mencatat aksi Bersepeda ke Kantor',
+    type: 'Aksi Eco',
     xp: 75,
-    date: 'Yesterday'
+    date: 'Kemarin'
   },
+
   {
     id: 4,
-    title: 'Redeemed First Eco Badge',
+    title: 'Menukarkan Lencana Eco Pertama',
     type: 'Reward',
     xp: -250,
-    date: 'Aug 28, 2026'
+    date: '28 Agu 2026'
   }
 ]

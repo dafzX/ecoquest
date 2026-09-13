@@ -1,34 +1,152 @@
 <template>
   <div class="min-h-screen bg-[#F8FAF8] lg:flex lg:items-center lg:justify-center lg:p-8">
     <div
-      class="w-full bg-white overflow-hidden lg:max-w-[1080px] lg:min-h-[640px] lg:grid lg:grid-cols-2 lg:rounded-2xl lg:shadow-[0_16px_50px_rgba(23,33,27,0.08)]"
+      class="relative w-full overflow-hidden bg-white lg:grid lg:min-h-[640px] lg:max-w-[1080px] lg:grid-cols-2 lg:rounded-2xl lg:shadow-[0_16px_50px_rgba(23,33,27,0.08)]"
     >
-      <!-- Mobile Header -->
-      <div class="relative overflow-hidden bg-[#15803D] px-6 py-6 lg:hidden">
-        <div
-          class="absolute -right-16 -top-20 h-48 w-48 rounded-full bg-[#22C55E]/20"
-        ></div>
+      <!-- Mobile -->
+      <div class="relative min-h-screen overflow-hidden lg:hidden">
+        <!-- Mobile content -->
+        <div class="relative z-10 px-6 pb-10 pt-8">
+          <!-- Logo -->
+          <div class="flex flex-col items-center">
+            <div
+              class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#22C55E]"
+            >
+              <Leaf class="h-6 w-6 text-white" />
+            </div>
 
-        <div
-          class="absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-white/5"
-        ></div>
-
-        <div class="relative flex items-center gap-3">
-          <div
-            class="flex h-10 w-10 items-center justify-center rounded-xl bg-white"
-          >
-            <Leaf class="h-5 w-5 text-[#15803D]" />
-          </div>
-
-          <div>
-            <h1 class="text-lg font-bold text-white">
+            <h1 class="mt-2 text-[17px] font-bold text-[#17211B]">
               EcoQuest
             </h1>
+          </div>
 
-            <p class="text-xs text-white/60">
-              Make an impact
+          <!-- Heading -->
+          <div class="mt-10 text-center">
+            <h2 class="text-[21px] font-bold text-[#17211B]">
+              Welcome Back!
+            </h2>
+
+            <p class="mx-auto mt-1.5 max-w-[260px] text-[11px] leading-4 text-[#718078]">
+              Masuk untuk melanjutkan perjalanan
+              <br />
+              ramah lingkunganmu.
             </p>
           </div>
+
+          <!-- Form -->
+          <form
+            @submit.prevent="handleLogin"
+            class="mx-auto mt-7 w-full max-w-[330px] space-y-3"
+          >
+            <!-- Email -->
+            <div>
+              <div class="relative">
+                <Mail
+                  class="absolute left-3.5 top-1/2 h-[15px] w-[15px] -translate-y-1/2 text-[#7D8B83]"
+                />
+
+                <input
+                  id="email"
+                  v-model="form.email"
+                  type="email"
+                  placeholder="Email atau Username"
+                  required
+                  class="h-[40px] w-full rounded-lg border border-[#DDE6E0] bg-white pl-10 pr-3 text-[11px] text-[#17211B] outline-none transition placeholder:text-[#9AA69F] focus:border-[#22C55E] focus:ring-2 focus:ring-[#22C55E]/10"
+                />
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div>
+              <div class="relative">
+                <Lock
+                  class="absolute left-3.5 top-1/2 h-[15px] w-[15px] -translate-y-1/2 text-[#7D8B83]"
+                />
+
+                <input
+                  id="password"
+                  v-model="form.password"
+                  :type="showPassword ? 'text' : 'password'"
+                  placeholder="Password"
+                  required
+                  class="h-[40px] w-full rounded-lg border border-[#DDE6E0] bg-white pl-10 pr-10 text-[11px] text-[#17211B] outline-none transition placeholder:text-[#9AA69F] focus:border-[#22C55E] focus:ring-2 focus:ring-[#22C55E]/10"
+                />
+
+                <button
+                  type="button"
+                  @click="showPassword = !showPassword"
+                  class="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#7D8B83]"
+                >
+                  <Eye
+                    v-if="!showPassword"
+                    class="h-[15px] w-[15px]"
+                  />
+
+                  <EyeOff
+                    v-else
+                    class="h-[15px] w-[15px]"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <!-- Forgot password -->
+            <div class="flex justify-end pt-0.5">
+              <button
+                type="button"
+                class="text-[9px] font-medium text-[#22C55E] transition hover:text-[#15803D]"
+              >
+                Lupa password?
+              </button>
+            </div>
+
+            <!-- Login button -->
+            <button
+              type="submit"
+              class="h-[40px] w-full rounded-lg bg-[#22C55E] text-[11px] font-semibold text-white transition hover:bg-[#16A34A] active:bg-[#15803D]"
+            >
+              Login
+            </button>
+          </form>
+
+          <!-- Register -->
+          <p class="mt-7 text-center text-[9px] text-[#718078]">
+            Belum punya akun?
+
+            <RouterLink
+              to="/register"
+              class="ml-1 font-semibold text-[#22C55E]"
+            >
+              Daftar sekarang
+            </RouterLink>
+          </p>
+        </div>
+
+        <!-- Bottom decoration -->
+        <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-32">
+          <div
+            class="absolute -bottom-12 -left-8 h-32 w-24 rotate-[-28deg] rounded-[100%] bg-[#DCFCE7]/80"
+          ></div>
+
+          <div
+            class="absolute -bottom-8 left-10 h-24 w-10 rotate-[25deg] rounded-full bg-[#E8F8ED]"
+          ></div>
+
+          <div
+            class="absolute -bottom-10 right-3 h-32 w-20 rotate-[25deg] rounded-[100%] bg-[#E8F8ED]/80"
+          ></div>
+
+          <div
+            class="absolute bottom-3 right-16 h-20 w-8 rotate-[45deg] rounded-full bg-[#DCFCE7]/70"
+          ></div>
+
+          <Leaf
+            class="absolute bottom-4 left-4 h-16 w-16 rotate-[-18deg] text-[#BFE8CC]/50"
+          />
+
+          <Leaf
+            class="absolute bottom-1 right-8 h-14 w-14 rotate-[22deg] text-[#BFE8CC]/40"
+          />
         </div>
       </div>
 
@@ -109,8 +227,8 @@
         </div>
       </div>
 
-      <!-- Form -->
-      <div class="flex items-center px-6 py-8 sm:px-8 sm:py-10 lg:p-12">
+      <!-- Desktop Form -->
+      <div class="hidden items-center px-6 py-8 sm:px-8 sm:py-10 lg:flex lg:p-12">
         <div class="mx-auto w-full max-w-[390px]">
           <div class="mb-8">
             <p class="mb-2 text-sm font-medium text-[#22C55E]">
@@ -130,9 +248,10 @@
             @submit.prevent="handleLogin"
             class="space-y-5"
           >
+            <!-- Email -->
             <div>
               <label
-                for="email"
+                for="desktop-email"
                 class="mb-2 block text-sm font-medium text-[#17211B]"
               >
                 Email
@@ -144,7 +263,7 @@
                 />
 
                 <input
-                  id="email"
+                  id="desktop-email"
                   v-model="form.email"
                   type="email"
                   placeholder="you@example.com"
@@ -154,10 +273,11 @@
               </div>
             </div>
 
+            <!-- Password -->
             <div>
               <div class="mb-2 flex items-center justify-between gap-3">
                 <label
-                  for="password"
+                  for="desktop-password"
                   class="text-sm font-medium text-[#17211B]"
                 >
                   Password
@@ -177,7 +297,7 @@
                 />
 
                 <input
-                  id="password"
+                  id="desktop-password"
                   v-model="form.password"
                   :type="showPassword ? 'text' : 'password'"
                   placeholder="Enter your password"
@@ -203,6 +323,7 @@
               </div>
             </div>
 
+            <!-- Remember -->
             <label class="flex cursor-pointer items-center gap-3">
               <input
                 v-model="form.remember"
@@ -215,6 +336,7 @@
               </span>
             </label>
 
+            <!-- Button -->
             <button
               type="submit"
               class="h-12 w-full rounded-xl bg-[#22C55E] text-sm font-semibold text-white transition hover:bg-[#16A34A] active:bg-[#15803D]"

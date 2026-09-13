@@ -1,34 +1,219 @@
 <template>
   <div class="min-h-screen bg-[#F8FAF8] lg:flex lg:items-center lg:justify-center lg:p-8">
     <div
-      class="w-full bg-white overflow-hidden lg:max-w-[1080px] lg:min-h-[680px] lg:grid lg:grid-cols-2 lg:rounded-2xl lg:shadow-[0_16px_50px_rgba(23,33,27,0.08)]"
+      class="relative w-full overflow-hidden bg-white lg:grid lg:min-h-[680px] lg:max-w-[1080px] lg:grid-cols-2 lg:rounded-2xl lg:shadow-[0_16px_50px_rgba(23,33,27,0.08)]"
     >
-      <!-- Mobile Header -->
-      <div class="relative overflow-hidden bg-[#15803D] px-6 py-6 lg:hidden">
-        <div
-          class="absolute -right-16 -top-20 h-48 w-48 rounded-full bg-[#22C55E]/20"
-        ></div>
+      <!-- Mobile -->
+      <div class="relative min-h-screen overflow-hidden lg:hidden">
+        <!-- Mobile content -->
+        <div class="relative z-10 px-6 pb-10 pt-8">
+          <!-- Logo -->
+          <div class="flex flex-col items-center">
+            <div
+              class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#22C55E]"
+            >
+              <Leaf class="h-6 w-6 text-white" />
+            </div>
 
-        <div
-          class="absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-white/5"
-        ></div>
-
-        <div class="relative flex items-center gap-3">
-          <div
-            class="flex h-10 w-10 items-center justify-center rounded-xl bg-white"
-          >
-            <Leaf class="h-5 w-5 text-[#15803D]" />
-          </div>
-
-          <div>
-            <h1 class="text-lg font-bold text-white">
+            <h1 class="mt-2 text-[17px] font-bold text-[#17211B]">
               EcoQuest
             </h1>
+          </div>
 
-            <p class="text-xs text-white/60">
-              Make an impact
+          <!-- Heading -->
+          <div class="mt-8 text-center">
+            <h2 class="text-[21px] font-bold text-[#17211B]">
+              Buat Akun
+            </h2>
+
+            <p class="mx-auto mt-1.5 max-w-[270px] text-[11px] leading-4 text-[#718078]">
+              Bergabung dengan ribuan pengguna lainnya.
             </p>
           </div>
+
+          <!-- Form -->
+          <form
+            @submit.prevent="handleRegister"
+            class="mx-auto mt-6 w-full max-w-[330px] space-y-3"
+          >
+            <!-- Name -->
+            <div>
+              <div class="relative">
+                <User
+                  class="absolute left-3.5 top-1/2 h-[15px] w-[15px] -translate-y-1/2 text-[#7D8B83]"
+                />
+
+                <input
+                  id="name"
+                  v-model="form.name"
+                  type="text"
+                  placeholder="Nama Lengkap"
+                  required
+                  class="h-[40px] w-full rounded-lg border border-[#DDE6E0] bg-white pl-10 pr-3 text-[11px] text-[#17211B] outline-none transition placeholder:text-[#9AA69F] focus:border-[#22C55E] focus:ring-2 focus:ring-[#22C55E]/10"
+                />
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+              <div class="relative">
+                <Mail
+                  class="absolute left-3.5 top-1/2 h-[15px] w-[15px] -translate-y-1/2 text-[#7D8B83]"
+                />
+
+                <input
+                  id="email"
+                  v-model="form.email"
+                  type="email"
+                  placeholder="Email"
+                  required
+                  class="h-[40px] w-full rounded-lg border border-[#DDE6E0] bg-white pl-10 pr-3 text-[11px] text-[#17211B] outline-none transition placeholder:text-[#9AA69F] focus:border-[#22C55E] focus:ring-2 focus:ring-[#22C55E]/10"
+                />
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div>
+              <div class="relative">
+                <Lock
+                  class="absolute left-3.5 top-1/2 h-[15px] w-[15px] -translate-y-1/2 text-[#7D8B83]"
+                />
+
+                <input
+                  id="password"
+                  v-model="form.password"
+                  :type="showPassword ? 'text' : 'password'"
+                  placeholder="Password"
+                  required
+                  class="h-[40px] w-full rounded-lg border border-[#DDE6E0] bg-white pl-10 pr-10 text-[11px] text-[#17211B] outline-none transition placeholder:text-[#9AA69F] focus:border-[#22C55E] focus:ring-2 focus:ring-[#22C55E]/10"
+                />
+
+                <button
+                  type="button"
+                  @click="showPassword = !showPassword"
+                  class="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#7D8B83]"
+                >
+                  <Eye
+                    v-if="!showPassword"
+                    class="h-[15px] w-[15px]"
+                  />
+
+                  <EyeOff
+                    v-else
+                    class="h-[15px] w-[15px]"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div>
+              <div class="relative">
+                <Lock
+                  class="absolute left-3.5 top-1/2 h-[15px] w-[15px] -translate-y-1/2 text-[#7D8B83]"
+                />
+
+                <input
+                  id="confirmPassword"
+                  v-model="form.confirmPassword"
+                  :type="showConfirmPassword ? 'text' : 'password'"
+                  placeholder="Konfirmasi Password"
+                  required
+                  class="h-[40px] w-full rounded-lg border border-[#DDE6E0] bg-white pl-10 pr-10 text-[11px] text-[#17211B] outline-none transition placeholder:text-[#9AA69F] focus:border-[#22C55E] focus:ring-2 focus:ring-[#22C55E]/10"
+                />
+
+                <button
+                  type="button"
+                  @click="showConfirmPassword = !showConfirmPassword"
+                  class="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#7D8B83]"
+                >
+                  <Eye
+                    v-if="!showConfirmPassword"
+                    class="h-[15px] w-[15px]"
+                  />
+
+                  <EyeOff
+                    v-else
+                    class="h-[15px] w-[15px]"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <!-- Terms -->
+            <label class="flex cursor-pointer items-start gap-2.5 pt-1">
+              <input
+                v-model="form.terms"
+                type="checkbox"
+                required
+                class="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[#22C55E]"
+              />
+
+              <span class="text-[9px] leading-4 text-[#718078]">
+                Saya setuju dengan
+                <button
+                  type="button"
+                  class="font-medium text-[#22C55E]"
+                >
+                  Terms of Service
+                </button>
+                dan
+                <button
+                  type="button"
+                  class="font-medium text-[#22C55E]"
+                >
+                  Privacy Policy
+                </button>
+              </span>
+            </label>
+
+            <!-- Register button -->
+            <button
+              type="submit"
+              class="mt-1 h-[40px] w-full rounded-lg bg-[#22C55E] text-[11px] font-semibold text-white transition hover:bg-[#16A34A] active:bg-[#15803D]"
+            >
+              Daftar
+            </button>
+          </form>
+
+          <!-- Login -->
+          <p class="mt-6 text-center text-[9px] text-[#718078]">
+            Sudah punya akun?
+
+            <RouterLink
+              to="/login"
+              class="ml-1 font-semibold text-[#22C55E]"
+            >
+              Login di sini
+            </RouterLink>
+          </p>
+        </div>
+
+        <!-- Bottom decoration -->
+        <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-28">
+          <div
+            class="absolute -bottom-12 -left-8 h-32 w-24 rotate-[-28deg] rounded-[100%] bg-[#DCFCE7]/80"
+          ></div>
+
+          <div
+            class="absolute -bottom-8 left-10 h-24 w-10 rotate-[25deg] rounded-full bg-[#E8F8ED]"
+          ></div>
+
+          <div
+            class="absolute -bottom-10 right-3 h-32 w-20 rotate-[25deg] rounded-[100%] bg-[#E8F8ED]/80"
+          ></div>
+
+          <div
+            class="absolute bottom-3 right-16 h-20 w-8 rotate-[45deg] rounded-full bg-[#DCFCE7]/70"
+          ></div>
+
+          <Leaf
+            class="absolute bottom-3 left-4 h-14 w-14 rotate-[-18deg] text-[#BFE8CC]/50"
+          />
+
+          <Leaf
+            class="absolute bottom-1 right-8 h-12 w-12 rotate-[22deg] text-[#BFE8CC]/40"
+          />
         </div>
       </div>
 
@@ -109,8 +294,8 @@
         </div>
       </div>
 
-      <!-- Form -->
-      <div class="flex items-center px-6 py-8 sm:px-8 sm:py-10 lg:p-12">
+      <!-- Desktop Form -->
+      <div class="hidden items-center px-6 py-8 sm:px-8 sm:py-10 lg:flex lg:p-12">
         <div class="mx-auto w-full max-w-[390px]">
           <div class="mb-7">
             <p class="mb-2 text-sm font-medium text-[#22C55E]">
@@ -130,9 +315,10 @@
             @submit.prevent="handleRegister"
             class="space-y-4"
           >
+            <!-- Name -->
             <div>
               <label
-                for="name"
+                for="desktop-name"
                 class="mb-2 block text-sm font-medium text-[#17211B]"
               >
                 Full name
@@ -144,7 +330,7 @@
                 />
 
                 <input
-                  id="name"
+                  id="desktop-name"
                   v-model="form.name"
                   type="text"
                   placeholder="Your full name"
@@ -154,9 +340,10 @@
               </div>
             </div>
 
+            <!-- Email -->
             <div>
               <label
-                for="email"
+                for="desktop-email"
                 class="mb-2 block text-sm font-medium text-[#17211B]"
               >
                 Email
@@ -168,7 +355,7 @@
                 />
 
                 <input
-                  id="email"
+                  id="desktop-email"
                   v-model="form.email"
                   type="email"
                   placeholder="you@example.com"
@@ -178,9 +365,10 @@
               </div>
             </div>
 
+            <!-- Password -->
             <div>
               <label
-                for="password"
+                for="desktop-password"
                 class="mb-2 block text-sm font-medium text-[#17211B]"
               >
                 Password
@@ -192,7 +380,7 @@
                 />
 
                 <input
-                  id="password"
+                  id="desktop-password"
                   v-model="form.password"
                   :type="showPassword ? 'text' : 'password'"
                   placeholder="Create a password"
@@ -218,9 +406,10 @@
               </div>
             </div>
 
+            <!-- Confirm Password -->
             <div>
               <label
-                for="confirmPassword"
+                for="desktop-confirm-password"
                 class="mb-2 block text-sm font-medium text-[#17211B]"
               >
                 Confirm password
@@ -232,7 +421,7 @@
                 />
 
                 <input
-                  id="confirmPassword"
+                  id="desktop-confirm-password"
                   v-model="form.confirmPassword"
                   :type="showConfirmPassword ? 'text' : 'password'"
                   placeholder="Confirm your password"
@@ -258,12 +447,13 @@
               </div>
             </div>
 
+            <!-- Terms -->
             <label class="flex cursor-pointer items-start gap-3 pt-1">
               <input
                 v-model="form.terms"
                 type="checkbox"
                 required
-                class="mt-0.5 h-4 w-4 accent-[#22C55E]"
+                class="mt-0.5 h-4 w-4 shrink-0 accent-[#22C55E]"
               />
 
               <span class="text-sm leading-5 text-[#66736A]">
@@ -284,6 +474,7 @@
               </span>
             </label>
 
+            <!-- Button -->
             <button
               type="submit"
               class="mt-2 h-12 w-full rounded-xl bg-[#22C55E] text-sm font-semibold text-white transition hover:bg-[#16A34A] active:bg-[#15803D]"

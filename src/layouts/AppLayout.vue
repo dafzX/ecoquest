@@ -17,13 +17,16 @@
     </div>
 
     <!-- Mobile -->
-    <MobileBottomNav />
+    <MobileBottomNav v-if="!route.meta.hideBottomNav"/>
 
   </div>
 </template>
 
 <script setup>
-import Sidebar from '../components/navigation/Sidebar.vue'
-import Topbar from '../components/navigation/Topbar.vue'
-import MobileBottomNav from '../components/navigation/MobileBottomNav.vue'
+import { useRoute } from 'vue-router'
+import Sidebar from '@/components/navigation/Sidebar.vue'
+import Topbar from '@/components/navigation/Topbar.vue'
+import MobileBottomNav from '@/components/navigation/MobileBottomNav.vue'
+
+const route = useRoute()
 </script>

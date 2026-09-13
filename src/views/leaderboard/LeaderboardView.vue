@@ -217,9 +217,9 @@ import {
   Trophy
 } from 'lucide-vue-next'
 
-import AppLayout from '../layouts/AppLayout.vue'
-import LeaderboardRow from '../components/cards/LeaderboardRow.vue'
-import { leaderboard } from '../data/mockData.js'
+import AppLayout from '@/layouts/AppLayout.vue'
+import LeaderboardRow from '@/components/cards/LeaderboardRow.vue'
+import { leaderboard } from '@/data/mockData.js'
 
 const topThree = computed(() => {
   return leaderboard.slice(0, 3)
