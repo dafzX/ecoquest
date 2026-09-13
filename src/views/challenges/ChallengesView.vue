@@ -6,18 +6,18 @@
       <main class="mx-auto w-full max-w-[430px] px-4 pb-6 md:hidden">
 
         <!-- Header -->
-        <header class="flex h-[56px] items-center">
+                <header class="relative flex items-center justify-center py-4">
           <button
             type="button"
-            class="flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white active:scale-95"
             @click="goBack"
+            class="absolute left-0 flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white active:scale-95"
           >
             <ArrowLeft class="h-[18px] w-[18px]" />
           </button>
 
-          <h1 class="ml-3 text-[15px] font-bold text-[#17211B]">
+          <span class="text-[13px] font-semibold text-[#17211B]">
             Challenges
-          </h1>
+          </span>
         </header>
 
         <!-- Tabs -->
@@ -639,7 +639,8 @@ import {
   Recycle,
   Bike,
   Droplets,
-  TreePine
+  TreePine,
+  MoreHorizontal
 } from 'lucide-vue-next'
 
 import AppLayout from '@/layouts/AppLayout.vue'

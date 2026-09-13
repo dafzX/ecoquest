@@ -8,26 +8,33 @@ const router = createRouter({
   },
 
   routes: [
+    // Auth
     {
       path: '/',
       redirect: '/login'
     },
+
     {
       path: '/login',
       name: 'Login',
       component: () => import('@/views/auth/LoginView.vue'),
       meta: {
-        title: 'Login - EcoQuest'
+        title: 'Login - EcoQuest',
+        hideBottomNav: true
       }
     },
+
     {
       path: '/register',
       name: 'Register',
       component: () => import('@/views/auth/RegisterView.vue'),
       meta: {
-        title: 'Register - EcoQuest'
+        title: 'Register - EcoQuest',
+        hideBottomNav: true
       }
     },
+
+    // Dashboard
     {
       path: '/dashboard',
       name: 'Dashboard',
@@ -36,6 +43,8 @@ const router = createRouter({
         title: 'Dashboard - EcoQuest'
       }
     },
+
+    // Missions
     {
       path: '/missions',
       name: 'Missions',
@@ -44,15 +53,18 @@ const router = createRouter({
         title: 'Missions - EcoQuest'
       }
     },
+
     {
       path: '/missions/:id',
       name: 'MissionDetail',
       component: () => import('@/views/missions/MissionDetailView.vue'),
       meta: {
-        title: 'Mission Detail',
+        title: 'Mission Detail - EcoQuest',
         hideBottomNav: true
       }
     },
+
+    // Challenges
     {
       path: '/challenges',
       name: 'Challenges',
@@ -62,6 +74,8 @@ const router = createRouter({
         hideBottomNav: true
       }
     },
+
+    // Leaderboard
     {
       path: '/leaderboard',
       name: 'Leaderboard',
@@ -70,6 +84,8 @@ const router = createRouter({
         title: 'Leaderboard - EcoQuest'
       }
     },
+
+    // Impact
     {
       path: '/impact',
       name: 'Impact',
@@ -78,6 +94,8 @@ const router = createRouter({
         title: 'Impact - EcoQuest'
       }
     },
+
+    // Rewards
     {
       path: '/rewards',
       name: 'Rewards',
@@ -86,6 +104,8 @@ const router = createRouter({
         title: 'Rewards - EcoQuest'
       }
     },
+
+    // Community
     {
       path: '/community',
       name: 'Community',
@@ -94,12 +114,80 @@ const router = createRouter({
         title: 'Community - EcoQuest'
       }
     },
+
+    // Profile
     {
       path: '/profile',
       name: 'Profile',
       component: () => import('@/views/profile/ProfileView.vue'),
       meta: {
         title: 'Profile - EcoQuest'
+      }
+    },
+
+    // Edit Profile
+    {
+      path: '/profile/edit',
+      name: 'EditProfile',
+      component: () => import('@/views/profile/EditProfileView.vue'),
+      meta: {
+        title: 'Edit Profil - EcoQuest',
+        hideBottomNav: true
+      }
+    },
+
+    // Achievements
+    {
+      path: '/profile/achievements',
+      name: 'Achievements',
+      component: () => import('@/views/profile/AchievementsView.vue'),
+      meta: {
+        title: 'Achievements - EcoQuest',
+        hideBottomNav: true
+      }
+    },
+
+    // Settings
+    {
+      path: '/profile/settings',
+      name: 'Settings',
+      component: () => import('@/views/profile/SettingsView.vue'),
+      meta: {
+        title: 'Settings - EcoQuest',
+        hideBottomNav: true
+      }
+    },
+
+    // Help & Support
+    {
+      path: '/profile/help-support',
+      name: 'HelpSupport',
+      component: () => import('@/views/profile/HelpSupportView.vue'),
+      meta: {
+        title: 'Help & Support - EcoQuest',
+        hideBottomNav: true
+      }
+    },
+
+    // Privacy
+    {
+      path: '/profile/settings/privacy',
+      name: 'Privacy',
+      component: () => import('@/views/profile/PrivacyView.vue'),
+      meta: {
+        title: 'Privacy - EcoQuest',
+        hideBottomNav: true
+      }
+    },
+
+    // Security
+    {
+      path: '/profile/settings/security',
+      name: 'Security',
+      component: () => import('@/views/profile/SecurityView.vue'),
+      meta: {
+        title: 'Security - EcoQuest',
+        hideBottomNav: true
       }
     }
   ]

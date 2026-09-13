@@ -6,556 +6,735 @@
       <main class="mx-auto max-w-[430px] px-4 pb-24 md:hidden">
 
         <!-- Header -->
-        <header class="flex items-center justify-between py-3">
-          <div class="flex items-center gap-2">
-            <div
-              class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#22C55E]"
-            >
-              <Leaf class="h-4 w-4 text-white" />
-            </div>
+        <header class="relative flex items-center justify-center py-4">
+          <button
+            type="button"
+            @click="goBack"
+            class="absolute left-0 flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white active:scale-95"
+          >
+            <ArrowLeft class="h-[18px] w-[18px]" />
+          </button>
 
-            <h1 class="text-sm font-bold text-[#17211B]">
-              EcoQuest
-            </h1>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <button
-              type="button"
-              class="relative flex h-7 w-7 items-center justify-center"
-            >
-              <Bell class="h-4 w-4 text-[#405047]" />
-
-              <span
-                class="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-[#22C55E]"
-              ></span>
-            </button>
-
-            <div
-              class="flex h-7 w-7 items-center justify-center rounded-full bg-[#DCFCE7] text-[9px] font-bold text-[#15803D]"
-            >
-              DA
-            </div>
-          </div>
+          <span class="text-[13px] font-semibold text-[#17211B]">
+            Impact
+          </span>
         </header>
 
-        <!-- Intro -->
-        <section class="mb-4">
-          <div class="flex items-center justify-between">
-            <div>
-              <h2 class="text-[17px] font-bold text-[#17211B]">
-                Dampakmu
-              </h2>
-
-              <p class="mt-0.5 text-[9px] text-[#718078]">
-                Lihat kontribusi positif yang sudah kamu buat.
-              </p>
-            </div>
-
-            <div
-              class="flex h-8 w-8 items-center justify-center rounded-full bg-[#E8F8ED]"
-            >
-              <Globe2 class="h-4 w-4 text-[#22C55E]" />
-            </div>
-          </div>
-        </section>
-
-        <!-- Period Filter -->
-        <div
-          class="mb-4 flex rounded-xl border border-[#DCEBE0] bg-white p-1"
-        >
-          <button
-            v-for="period in periods"
-            :key="period.value"
-            type="button"
-            class="flex-1 rounded-lg py-2 text-[9px] font-semibold transition"
-            :class="
-              selectedPeriod === period.value
-                ? 'bg-[#22C55E] text-white'
-                : 'text-[#718078]'
-            "
-            @click="selectedPeriod = period.value"
-          >
-            {{ period.label }}
-          </button>
-        </div>
-
-        <!-- Impact Stats -->
-        <section class="mb-4 grid grid-cols-3 gap-2">
-
-          <div
-            class="rounded-[12px] border border-[#DCEBE0] bg-white p-3"
-          >
-            <div
-              class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#E8F8ED]"
-            >
-              <Recycle class="h-3.5 w-3.5 text-[#22C55E]" />
-            </div>
-
-            <p class="mt-2 text-[13px] font-bold text-[#17211B]">
-              {{ currentImpact.plastic }}
-            </p>
-
-            <p class="mt-0.5 text-[7px] leading-3 text-[#718078]">
-              Plastik<br />
-              Dikurangi
-            </p>
-
-            <p class="mt-1 text-[7px] font-semibold text-[#22C55E]">
-              +12%
-            </p>
-          </div>
-
-          <div
-            class="rounded-[12px] border border-[#DCEBE0] bg-white p-3"
-          >
-            <div
-              class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#EAF4FF]"
-            >
-              <Cloud class="h-3.5 w-3.5 text-[#3B82F6]" />
-            </div>
-
-            <p class="mt-2 text-[13px] font-bold text-[#17211B]">
-              {{ currentImpact.co2 }}
-            </p>
-
-            <p class="mt-0.5 text-[7px] leading-3 text-[#718078]">
-              CO₂<br />
-              Dikurangi
-            </p>
-
-            <p class="mt-1 text-[7px] font-semibold text-[#22C55E]">
-              +18%
-            </p>
-          </div>
-
-          <div
-            class="rounded-[12px] border border-[#DCEBE0] bg-white p-3"
-          >
-            <div
-              class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#ECFDF5]"
-            >
-              <TreePine class="h-3.5 w-3.5 text-[#059669]" />
-            </div>
-
-            <p class="mt-2 text-[13px] font-bold text-[#17211B]">
-              {{ currentImpact.trees }}
-            </p>
-
-            <p class="mt-0.5 text-[7px] leading-3 text-[#718078]">
-              Pohon<br />
-              Ditanam
-            </p>
-
-            <p class="mt-1 text-[7px] font-semibold text-[#22C55E]">
-              +8%
-            </p>
-          </div>
-
-        </section>
-
-        <!-- Impact Trend -->
+        <!-- Impact Hero -->
         <section
-          class="mb-4 rounded-[14px] border border-[#DCEBE0] bg-white p-3"
+          class="relative overflow-hidden rounded-2xl bg-[#15803D] p-5 text-white"
         >
-          <div class="flex items-center justify-between">
-            <div>
-              <h2 class="text-[11px] font-bold text-[#17211B]">
-                Tren Dampakmu
-              </h2>
+          <div
+            class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-white/10"
+          ></div>
 
-              <p class="mt-0.5 text-[8px] text-[#718078]">
-                Aktivitas dampak selama periode ini
-              </p>
-            </div>
+          <div
+            class="absolute -bottom-10 -left-8 h-24 w-24 rounded-full bg-white/5"
+          ></div>
 
-            <div
-              class="flex items-center gap-1 text-[8px] font-semibold text-[#22C55E]"
-            >
-              <TrendingUp class="h-3 w-3" />
-              +12%
-            </div>
-          </div>
+          <div class="relative">
 
-          <!-- Chart -->
-          <div class="mt-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-[9px] font-medium text-white/70">
+                  Total Impact
+                </p>
 
-            <div class="flex h-[125px] items-end gap-2">
-
-              <div
-                v-for="item in trendData"
-                :key="item.label"
-                class="flex h-full flex-1 flex-col items-center justify-end"
-              >
-
-                <div
-                  class="flex w-full flex-1 items-end justify-center"
-                >
-                  <div
-                    class="w-[65%] rounded-t-md bg-[#22C55E]"
-                    :style="{
-                      height: `${item.value}%`
-                    }"
-                  ></div>
-                </div>
-
-                <span class="mt-2 text-[7px] text-[#98A39C]">
-                  {{ item.label }}
-                </span>
-
-              </div>
-
-            </div>
-
-          </div>
-        </section>
-
-        <!-- Impact by Category -->
-        <section
-          class="mb-4 rounded-[14px] border border-[#DCEBE0] bg-white p-3"
-        >
-
-          <div class="mb-4">
-            <h2 class="text-[11px] font-bold text-[#17211B]">
-              Dampak berdasarkan Kategori
-            </h2>
-
-            <p class="mt-0.5 text-[8px] text-[#718078]">
-              Kontribusi aksi eco yang kamu lakukan
-            </p>
-          </div>
-
-          <div class="space-y-3">
-
-            <div
-              v-for="category in categories"
-              :key="category.name"
-            >
-
-              <div class="mb-1 flex items-center justify-between">
-
-                <div class="flex items-center gap-2">
-
-                  <div
-                    class="flex h-6 w-6 items-center justify-center rounded-lg"
-                    :class="category.bg"
-                  >
-                    <component
-                      :is="category.icon"
-                      class="h-3 w-3"
-                      :class="category.color"
-                    />
-                  </div>
-
-                  <span class="text-[8px] font-medium text-[#17211B]">
-                    {{ category.name }}
+                <div class="mt-1 flex items-end gap-2">
+                  <span class="text-[28px] font-bold leading-none">
+                    {{ totalImpact.toLocaleString() }}
                   </span>
 
+                  <span class="mb-0.5 text-[9px] text-white/70">
+                    points
+                  </span>
                 </div>
 
-                <span class="text-[8px] font-semibold text-[#718078]">
-                  {{ category.value }}%
-                </span>
-
+                <p class="mt-1 text-[8px] text-white/70">
+                  Total kontribusi positifmu untuk lingkungan.
+                </p>
               </div>
 
-              <div class="h-[5px] rounded-full bg-[#E8EFEA]">
+              <div
+                class="flex h-12 w-12 items-center justify-center rounded-full bg-white/15"
+              >
+                <Leaf class="h-6 w-6 text-white" />
+              </div>
+            </div>
+
+            <div class="mt-5">
+              <div class="mb-1.5 flex items-center justify-between">
+                <span class="text-[8px] text-white/70">
+                  Progress bulan ini
+                </span>
+
+                <span class="text-[8px] font-bold">
+                  {{ monthlyProgress }}%
+                </span>
+              </div>
+
+              <div
+                class="h-1.5 overflow-hidden rounded-full bg-white/15"
+              >
                 <div
-                  class="h-full rounded-full bg-[#22C55E]"
-                  :style="{
-                    width: `${category.value}%`
-                  }"
+                  class="h-full rounded-full bg-white transition-all"
+                  :style="{ width: `${monthlyProgress}%` }"
                 ></div>
               </div>
 
+              <p class="mt-2 text-[8px] text-white/60">
+                {{ monthlyCurrent }} / {{ monthlyTarget }} impact points
+              </p>
             </div>
 
           </div>
         </section>
 
-        <!-- Total Impact -->
-        <section
-          class="rounded-[14px] border border-[#BBF7D0] bg-[#ECFDF5] p-3"
-        >
-          <div class="flex items-center gap-3">
+        <!-- Stats -->
+        <section class="mt-4">
 
-            <div
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white"
-            >
-              <Leaf class="h-5 w-5 text-[#22C55E]" />
+          <div class="mb-3 flex items-end justify-between">
+            <div>
+              <h2 class="text-[12px] font-bold text-[#17211B]">
+                Dampak Lingkungan
+              </h2>
+
+              <p class="mt-0.5 text-[8px] text-[#718078]">
+                Kontribusi positif yang sudah kamu hasilkan.
+              </p>
             </div>
 
-            <div>
-              <p class="text-[8px] text-[#15803D]">
-                Total kontribusi
+            <span class="text-[8px] font-semibold text-[#8A958E]">
+              Tahun ini
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+
+            <div
+              v-for="stat in impactStats"
+              :key="stat.label"
+              class="rounded-xl border border-[#DCEBE0] bg-white p-3"
+            >
+              <div
+                class="flex h-8 w-8 items-center justify-center rounded-lg"
+                :class="stat.bg"
+              >
+                <component
+                  :is="stat.icon"
+                  class="h-4 w-4"
+                  :class="stat.iconColor"
+                />
+              </div>
+
+              <p class="mt-2 text-[15px] font-bold text-[#17211B]">
+                {{ stat.value }}
               </p>
 
-              <p class="mt-0.5 text-[14px] font-bold text-[#14532D]">
-                {{ totalImpact }} Eco Actions
-              </p>
-
-              <p class="mt-0.5 text-[7px] text-[#4D7C5A]">
-                Terus lakukan aksi kecil untuk dampak yang lebih besar.
+              <p class="mt-0.5 text-[8px] text-[#718078]">
+                {{ stat.label }}
               </p>
             </div>
 
           </div>
+        </section>
+
+        <!-- Monthly Goal -->
+        <section
+          class="mt-5 rounded-xl border border-[#DCEBE0] bg-white p-4"
+        >
+          <div class="flex items-center justify-between">
+
+            <div>
+              <p
+                class="text-[8px] font-semibold uppercase tracking-[0.08em] text-[#8A958E]"
+              >
+                Monthly Goal
+              </p>
+
+              <h2 class="mt-1 text-[13px] font-bold text-[#17211B]">
+                Green September
+              </h2>
+            </div>
+
+            <div
+              class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#EAF8EE]"
+            >
+              <Target class="h-4 w-4 text-[#15803D]" />
+            </div>
+
+          </div>
+
+          <div class="mt-4">
+
+            <div class="mb-1.5 flex items-center justify-between">
+              <span class="text-[8px] text-[#66736A]">
+                {{ monthlyCurrent }} / {{ monthlyTarget }} points
+              </span>
+
+              <span class="text-[8px] font-bold text-[#15803D]">
+                {{ monthlyProgress }}%
+              </span>
+            </div>
+
+            <div
+              class="h-1.5 overflow-hidden rounded-full bg-[#EAF0EC]"
+            >
+              <div
+                class="h-full rounded-full bg-[#22C55E]"
+                :style="{ width: `${monthlyProgress}%` }"
+              ></div>
+            </div>
+
+            <p class="mt-2 text-[8px] leading-3.5 text-[#8A958E]">
+              Tinggal {{ monthlyTarget - monthlyCurrent }} points lagi
+              untuk mencapai target bulan ini.
+            </p>
+
+          </div>
+        </section>
+
+        <!-- Impact Breakdown -->
+        <section class="mt-5">
+
+          <div class="mb-3">
+            <h2 class="text-[12px] font-bold text-[#17211B]">
+              Impact Breakdown
+            </h2>
+
+            <p class="mt-0.5 text-[8px] text-[#718078]">
+              Distribusi kontribusi dari berbagai eco action.
+            </p>
+          </div>
+
+          <div class="space-y-2">
+
+            <article
+              v-for="item in breakdown"
+              :key="item.label"
+              class="rounded-xl border border-[#DCEBE0] bg-white p-3"
+            >
+              <div class="flex items-center gap-3">
+
+                <div
+                  class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
+                  :class="item.bg"
+                >
+                  <component
+                    :is="item.icon"
+                    class="h-4 w-4"
+                    :class="item.iconColor"
+                  />
+                </div>
+
+                <div class="min-w-0 flex-1">
+
+                  <div class="flex items-center justify-between gap-2">
+                    <p
+                      class="truncate text-[9px] font-semibold text-[#17211B]"
+                    >
+                      {{ item.label }}
+                    </p>
+
+                    <span
+                      class="shrink-0 text-[9px] font-bold text-[#17211B]"
+                    >
+                      {{ item.value }}
+                    </span>
+                  </div>
+
+                  <div
+                    class="mt-1.5 h-1 overflow-hidden rounded-full bg-[#EEF3EF]"
+                  >
+                    <div
+                      class="h-full rounded-full bg-[#22C55E]"
+                      :style="{ width: `${item.progress}%` }"
+                    ></div>
+                  </div>
+
+                </div>
+
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- Recent Actions -->
+        <section class="mt-5">
+
+          <div class="mb-3 flex items-end justify-between">
+
+            <div>
+              <h2 class="text-[12px] font-bold text-[#17211B]">
+                Eco Actions Terbaru
+              </h2>
+
+              <p class="mt-0.5 text-[8px] text-[#718078]">
+                Aktivitas yang memberikan impact.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="text-[8px] font-semibold text-[#15803D]"
+              @click="showAllActions = !showAllActions"
+            >
+              {{ showAllActions ? 'Tutup' : 'Lihat semua' }}
+            </button>
+
+          </div>
+
+          <div class="space-y-2">
+
+            <article
+              v-for="action in visibleActions"
+              :key="action.id"
+              class="flex items-center gap-3 rounded-xl border border-[#DCEBE0] bg-white p-3"
+            >
+
+              <div
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+                :class="action.bg"
+              >
+                <component
+                  :is="action.icon"
+                  class="h-4 w-4"
+                  :class="action.iconColor"
+                />
+              </div>
+
+              <div class="min-w-0 flex-1">
+
+                <p
+                  class="truncate text-[9px] font-semibold text-[#17211B]"
+                >
+                  {{ action.title }}
+                </p>
+
+                <p class="mt-0.5 text-[7px] text-[#8A958E]">
+                  {{ action.date }}
+                </p>
+
+              </div>
+
+              <div class="shrink-0 text-right">
+                <p class="text-[9px] font-bold text-[#15803D]">
+                  +{{ action.points }}
+                </p>
+
+                <p class="text-[7px] text-[#A3ADA7]">
+                  Impact
+                </p>
+              </div>
+
+            </article>
+
+          </div>
+        </section>
+
+        <!-- Motivation -->
+        <section
+          class="mt-5 rounded-xl border border-[#DDEFE2] bg-[#EAF8EE] p-4"
+        >
+          <div
+            class="flex h-9 w-9 items-center justify-center rounded-lg bg-white"
+          >
+            <Sprout class="h-4 w-4 text-[#15803D]" />
+          </div>
+
+          <h3 class="mt-3 text-[11px] font-bold text-[#17211B]">
+            Small actions matter 🌱
+          </h3>
+
+          <p class="mt-1 text-[8px] leading-3.5 text-[#66736A]">
+            Konsistensi kecil setiap hari bisa menciptakan perubahan
+            besar untuk lingkungan.
+          </p>
         </section>
 
       </main>
 
       <!-- Desktop -->
       <main class="hidden md:block">
-        <div class="mx-auto max-w-[1400px] px-6 pb-10">
+
+        <div class="mx-auto max-w-[1100px] px-6 pb-10">
 
           <!-- Header -->
-          <section class="mb-7 flex items-end justify-between">
+          <header class="mb-6 flex items-center gap-3 pt-2">
+
+            <RouterLink
+              to="/dashboard"
+              class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#DCEBE0] bg-white text-[#405047] transition hover:bg-[#EAF8EE] hover:text-[#15803D]"
+            >
+              <ArrowLeft class="h-5 w-5" />
+            </RouterLink>
 
             <div>
-              <p class="mb-1 text-sm font-medium text-[#22C55E]">
-                Environmental Impact
-              </p>
-
-              <h1 class="text-[28px] font-bold text-[#17211B]">
-                Dampakmu
+              <h1 class="text-[24px] font-bold text-[#17211B]">
+                My Impact
               </h1>
 
-              <p class="mt-1 text-sm text-[#66736A]">
-                Lihat seberapa besar kontribusi positif yang telah kamu buat.
+              <p class="mt-1 text-sm text-[#718078]">
+                Lihat bagaimana aksi kecilmu memberikan dampak untuk bumi.
               </p>
             </div>
 
-            <!-- Period -->
-            <div
-              class="flex rounded-xl border border-[#E8EDE9] bg-white p-1"
-            >
-              <button
-                v-for="period in periods"
-                :key="period.value"
-                type="button"
-                class="rounded-lg px-5 py-2 text-xs font-medium"
-                :class="
-                  selectedPeriod === period.value
-                    ? 'bg-[#22C55E] text-white'
-                    : 'text-[#66736A]'
-                "
-                @click="selectedPeriod = period.value"
+          </header>
+
+          <!-- Main Grid -->
+          <div class="grid grid-cols-[1.35fr_0.65fr] gap-5">
+
+            <!-- Main Column -->
+            <div class="space-y-5">
+
+              <!-- Hero -->
+              <section
+                class="relative overflow-hidden rounded-2xl bg-[#15803D] p-6 text-white"
               >
-                {{ period.label }}
-              </button>
-            </div>
-
-          </section>
-
-          <!-- Stats -->
-          <section class="mb-5 grid grid-cols-3 gap-5">
-
-            <div
-              class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
-            >
-              <div class="flex items-center justify-between">
+                <div
+                  class="absolute -right-12 -top-14 h-44 w-44 rounded-full bg-white/10"
+                ></div>
 
                 <div
-                  class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E8F8ED]"
-                >
-                  <Recycle class="h-5 w-5 text-[#22C55E]" />
-                </div>
+                  class="absolute -bottom-16 left-1/3 h-40 w-40 rounded-full bg-white/5"
+                ></div>
 
-                <span class="text-[10px] font-semibold text-[#22C55E]">
-                  +12%
-                </span>
+                <div class="relative">
 
-              </div>
+                  <div class="flex items-start justify-between">
 
-              <p class="mt-5 text-xs text-[#718078]">
-                Plastik Dikurangi
-              </p>
+                    <div>
+                      <p class="text-xs font-medium text-white/70">
+                        Total Impact Points
+                      </p>
 
-              <p class="mt-1 text-2xl font-bold text-[#17211B]">
-                {{ currentImpact.plastic }}
-              </p>
+                      <div class="mt-2 flex items-end gap-3">
+                        <span class="text-[48px] font-bold leading-none">
+                          {{ totalImpact.toLocaleString() }}
+                        </span>
 
-              <p class="mt-1 text-[10px] text-[#98A39C]">
-                item plastik
-              </p>
-            </div>
+                        <span class="mb-1.5 text-xs text-white/70">
+                          points
+                        </span>
+                      </div>
 
-            <div
-              class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
-            >
-              <div class="flex items-center justify-between">
+                      <p class="mt-3 max-w-md text-xs leading-5 text-white/70">
+                        Setiap eco action yang kamu lakukan memberikan
+                        kontribusi positif untuk lingkungan.
+                      </p>
+                    </div>
 
-                <div
-                  class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EAF4FF]"
-                >
-                  <Cloud class="h-5 w-5 text-[#3B82F6]" />
-                </div>
-
-                <span class="text-[10px] font-semibold text-[#22C55E]">
-                  +18%
-                </span>
-
-              </div>
-
-              <p class="mt-5 text-xs text-[#718078]">
-                CO₂ Dikurangi
-              </p>
-
-              <p class="mt-1 text-2xl font-bold text-[#17211B]">
-                {{ currentImpact.co2 }}
-              </p>
-
-              <p class="mt-1 text-[10px] text-[#98A39C]">
-                kg CO₂e
-              </p>
-            </div>
-
-            <div
-              class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
-            >
-              <div class="flex items-center justify-between">
-
-                <div
-                  class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ECFDF5]"
-                >
-                  <TreePine class="h-5 w-5 text-[#059669]" />
-                </div>
-
-                <span class="text-[10px] font-semibold text-[#22C55E]">
-                  +8%
-                </span>
-
-              </div>
-
-              <p class="mt-5 text-xs text-[#718078]">
-                Pohon Ditanam
-              </p>
-
-              <p class="mt-1 text-2xl font-bold text-[#17211B]">
-                {{ currentImpact.trees }}
-              </p>
-
-              <p class="mt-1 text-[10px] text-[#98A39C]">
-                pohon
-              </p>
-            </div>
-
-          </section>
-
-          <!-- Charts -->
-          <section class="grid grid-cols-[1.4fr_1fr] gap-5">
-
-            <!-- Trend -->
-            <div
-              class="rounded-2xl border border-[#E8EDE9] bg-white p-6"
-            >
-
-              <div class="flex items-center justify-between">
-
-                <div>
-                  <h2 class="text-sm font-bold text-[#17211B]">
-                    Tren Dampakmu
-                  </h2>
-
-                  <p class="mt-1 text-xs text-[#98A39C]">
-                    Perkembangan dampak berdasarkan periode
-                  </p>
-                </div>
-
-                <div class="flex items-center gap-1 text-xs font-semibold text-[#22C55E]">
-                  <TrendingUp class="h-4 w-4" />
-                  +12%
-                </div>
-
-              </div>
-
-              <div class="mt-7 flex h-[230px] items-end gap-5">
-
-                <div
-                  v-for="item in trendData"
-                  :key="item.label"
-                  class="flex h-full flex-1 flex-col items-center justify-end"
-                >
-
-                  <div class="flex w-full flex-1 items-end justify-center">
                     <div
-                      class="w-[55%] rounded-t-lg bg-[#22C55E]"
-                      :style="{
-                        height: `${item.value}%`
-                      }"
-                    ></div>
+                      class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10"
+                    >
+                      <Leaf class="h-8 w-8" />
+                    </div>
+
                   </div>
 
-                  <span class="mt-3 text-[10px] text-[#98A39C]">
-                    {{ item.label }}
+                  <div class="mt-7 max-w-lg">
+
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-[10px] text-white/70">
+                        Progress bulan ini
+                      </span>
+
+                      <span class="text-[10px] font-bold">
+                        {{ monthlyProgress }}%
+                      </span>
+                    </div>
+
+                    <div
+                      class="h-2 overflow-hidden rounded-full bg-white/15"
+                    >
+                      <div
+                        class="h-full rounded-full bg-white"
+                        :style="{ width: `${monthlyProgress}%` }"
+                      ></div>
+                    </div>
+
+                    <p class="mt-2 text-[10px] text-white/60">
+                      {{ monthlyCurrent }} /
+                      {{ monthlyTarget }} impact points
+                    </p>
+
+                  </div>
+
+                </div>
+              </section>
+
+              <!-- Stats -->
+              <section>
+
+                <div class="mb-3 flex items-end justify-between">
+
+                  <div>
+                    <h2 class="text-base font-bold text-[#17211B]">
+                      Dampak Lingkungan
+                    </h2>
+
+                    <p class="mt-1 text-[11px] text-[#718078]">
+                      Kontribusi positif yang sudah kamu hasilkan.
+                    </p>
+                  </div>
+
+                  <span class="text-[10px] font-medium text-[#8A958E]">
+                    Tahun ini
                   </span>
 
                 </div>
 
-              </div>
+                <div class="grid grid-cols-4 gap-3">
 
-            </div>
+                  <div
+                    v-for="stat in impactStats"
+                    :key="stat.label"
+                    class="rounded-2xl border border-[#E8EDE9] bg-white p-4"
+                  >
 
-            <!-- Category -->
-            <div
-              class="rounded-2xl border border-[#E8EDE9] bg-white p-6"
-            >
-
-              <h2 class="text-sm font-bold text-[#17211B]">
-                Dampak berdasarkan Kategori
-              </h2>
-
-              <p class="mt-1 text-xs text-[#98A39C]">
-                Distribusi kontribusi eco action
-              </p>
-
-              <div class="mt-6 space-y-5">
-
-                <div
-                  v-for="category in categories"
-                  :key="category.name"
-                >
-
-                  <div class="mb-2 flex items-center justify-between">
-
-                    <div class="flex items-center gap-2">
-
+                    <div
+                      class="flex h-10 w-10 items-center justify-center rounded-xl"
+                      :class="stat.bg"
+                    >
                       <component
-                        :is="category.icon"
-                        class="h-4 w-4"
-                        :class="category.color"
+                        :is="stat.icon"
+                        class="h-5 w-5"
+                        :class="stat.iconColor"
                       />
-
-                      <span class="text-xs font-medium text-[#17211B]">
-                        {{ category.name }}
-                      </span>
-
                     </div>
 
-                    <span class="text-xs font-semibold text-[#718078]">
-                      {{ category.value }}%
-                    </span>
+                    <p class="mt-4 text-[21px] font-bold text-[#17211B]">
+                      {{ stat.value }}
+                    </p>
 
-                  </div>
+                    <p class="mt-1 text-[10px] text-[#718078]">
+                      {{ stat.label }}
+                    </p>
 
-                  <div class="h-1.5 rounded-full bg-[#E8EFEA]">
-                    <div
-                      class="h-full rounded-full bg-[#22C55E]"
-                      :style="{
-                        width: `${category.value}%`
-                      }"
-                    ></div>
                   </div>
 
                 </div>
 
-              </div>
+              </section>
+
+              <!-- Breakdown -->
+              <section
+                class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
+              >
+
+                <div class="mb-5">
+                  <h2 class="text-base font-bold text-[#17211B]">
+                    Impact Breakdown
+                  </h2>
+
+                  <p class="mt-1 text-[10px] text-[#8A958E]">
+                    Distribusi kontribusi dari berbagai eco action.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-x-6 gap-y-5">
+
+                  <div
+                    v-for="item in breakdown"
+                    :key="item.label"
+                    class="flex items-center gap-3"
+                  >
+
+                    <div
+                      class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+                      :class="item.bg"
+                    >
+                      <component
+                        :is="item.icon"
+                        class="h-5 w-5"
+                        :class="item.iconColor"
+                      />
+                    </div>
+
+                    <div class="min-w-0 flex-1">
+
+                      <div class="mb-2 flex items-center justify-between">
+                        <span class="text-[10px] font-semibold text-[#17211B]">
+                          {{ item.label }}
+                        </span>
+
+                        <span class="text-[10px] font-bold text-[#17211B]">
+                          {{ item.value }}
+                        </span>
+                      </div>
+
+                      <div
+                        class="h-1.5 overflow-hidden rounded-full bg-[#EEF3EF]"
+                      >
+                        <div
+                          class="h-full rounded-full bg-[#22C55E]"
+                          :style="{ width: `${item.progress}%` }"
+                        ></div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </section>
 
             </div>
 
-          </section>
+            <!-- Side Column -->
+            <div class="space-y-5">
+
+              <!-- Monthly Goal -->
+              <section
+                class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
+              >
+
+                <div class="flex items-start justify-between">
+
+                  <div>
+                    <p
+                      class="text-[9px] font-bold uppercase tracking-[0.1em] text-[#8A958E]"
+                    >
+                      Monthly Goal
+                    </p>
+
+                    <h2 class="mt-1 text-base font-bold text-[#17211B]">
+                      Green September
+                    </h2>
+                  </div>
+
+                  <div
+                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EAF8EE]"
+                  >
+                    <Target class="h-5 w-5 text-[#15803D]" />
+                  </div>
+
+                </div>
+
+                <div class="mt-5">
+
+                  <div class="mb-2 flex items-center justify-between">
+                    <span class="text-[10px] text-[#66736A]">
+                      {{ monthlyCurrent }} / {{ monthlyTarget }}
+                    </span>
+
+                    <span class="text-[10px] font-bold text-[#15803D]">
+                      {{ monthlyProgress }}%
+                    </span>
+                  </div>
+
+                  <div
+                    class="h-2 overflow-hidden rounded-full bg-[#EAF0EC]"
+                  >
+                    <div
+                      class="h-full rounded-full bg-[#22C55E]"
+                      :style="{ width: `${monthlyProgress}%` }"
+                    ></div>
+                  </div>
+
+                  <p class="mt-3 text-[10px] leading-4 text-[#8A958E]">
+                    {{ monthlyTarget - monthlyCurrent }} points lagi
+                    untuk mencapai target.
+                  </p>
+
+                </div>
+
+              </section>
+
+              <!-- Recent Actions -->
+              <section
+                class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
+              >
+
+                <div class="mb-4 flex items-center justify-between">
+
+                  <div>
+                    <h2 class="text-base font-bold text-[#17211B]">
+                      Eco Actions
+                    </h2>
+
+                    <p class="mt-1 text-[10px] text-[#8A958E]">
+                      Aktivitas terbarumu
+                    </p>
+                  </div>
+
+                  <Activity class="h-5 w-5 text-[#15803D]" />
+
+                </div>
+
+                <div class="space-y-4">
+
+                  <div
+                    v-for="action in actions.slice(0, 4)"
+                    :key="action.id"
+                    class="flex items-center gap-3"
+                  >
+
+                    <div
+                      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
+                      :class="action.bg"
+                    >
+                      <component
+                        :is="action.icon"
+                        class="h-4 w-4"
+                        :class="action.iconColor"
+                      />
+                    </div>
+
+                    <div class="min-w-0 flex-1">
+
+                      <p
+                        class="truncate text-[10px] font-semibold text-[#17211B]"
+                      >
+                        {{ action.title }}
+                      </p>
+
+                      <p class="mt-0.5 text-[9px] text-[#9AA49E]">
+                        {{ action.date }}
+                      </p>
+
+                    </div>
+
+                    <span class="text-[10px] font-bold text-[#15803D]">
+                      +{{ action.points }}
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </section>
+
+              <!-- Motivation -->
+              <section
+                class="rounded-2xl border border-[#DDEFE2] bg-[#EAF8EE] p-5"
+              >
+
+                <div
+                  class="flex h-10 w-10 items-center justify-center rounded-xl bg-white"
+                >
+                  <Sprout class="h-5 w-5 text-[#15803D]" />
+                </div>
+
+                <h3 class="mt-4 text-sm font-bold text-[#17211B]">
+                  Small actions matter 🌱
+                </h3>
+
+                <p class="mt-2 text-[10px] leading-4 text-[#66736A]">
+                  Konsistensi kecil setiap hari bisa menciptakan perubahan
+                  besar untuk lingkungan.
+                </p>
+
+              </section>
+
+            </div>
+
+          </div>
 
         </div>
+
       </main>
 
     </div>
@@ -564,146 +743,170 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 import {
-  Leaf,
-  Bell,
-  Recycle,
-  Cloud,
-  TreePine,
-  TrendingUp,
+  Activity,
+  ArrowLeft,
   Bike,
   Droplets,
-  Zap,
-  Globe2
+  Leaf,
+  MoreHorizontal,
+  Recycle,
+  Sprout,
+  Target,
+  TreePine,
+  Zap
 } from 'lucide-vue-next'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 
-const selectedPeriod = ref('week')
+const router = useRouter()
 
-const periods = [
-  {
-    label: 'Minggu Ini',
-    value: 'week'
-  },
-  {
-    label: 'Bulan Ini',
-    value: 'month'
-  }
-]
-
-const impactData = {
-  week: {
-    plastic: 18,
-    co2: 24,
-    trees: 3
-  },
-
-  month: {
-    plastic: 64,
-    co2: 86,
-    trees: 9
-  }
+const goBack = () => {
+  router.back()
 }
 
-const currentImpact = computed(() => {
-  return impactData[selectedPeriod.value]
+const totalImpact = 1248
+
+const monthlyCurrent = 340
+const monthlyTarget = 500
+
+const monthlyProgress = computed(() => {
+  return Math.min(
+    100,
+    Math.round((monthlyCurrent / monthlyTarget) * 100)
+  )
 })
 
-const trendData = computed(() => {
-  if (selectedPeriod.value === 'month') {
-    return [
-      {
-        label: 'M1',
-        value: 35
-      },
-      {
-        label: 'M2',
-        value: 48
-      },
-      {
-        label: 'M3',
-        value: 62
-      },
-      {
-        label: 'M4',
-        value: 78
-      }
-    ]
-  }
-
-  return [
-    {
-      label: 'Sen',
-      value: 35
-    },
-    {
-      label: 'Sel',
-      value: 48
-    },
-    {
-      label: 'Rab',
-      value: 42
-    },
-    {
-      label: 'Kam',
-      value: 65
-    },
-    {
-      label: 'Jum',
-      value: 55
-    },
-    {
-      label: 'Sab',
-      value: 82
-    },
-    {
-      label: 'Min',
-      value: 68
-    }
-  ]
-})
-
-const categories = [
+const impactStats = [
   {
-    name: 'Transportasi',
-    value: 30,
-    icon: Bike,
-    color: 'text-[#3B82F6]',
-    bg: 'bg-[#EAF4FF]'
+    label: 'CO₂ Reduced',
+    value: '42.8 kg',
+    icon: Leaf,
+    bg: 'bg-[#EAF8EE]',
+    iconColor: 'text-[#15803D]'
   },
   {
-    name: 'Plastik',
-    value: 25,
+    label: 'Waste Reduced',
+    value: '8.4 kg',
     icon: Recycle,
-    color: 'text-[#22C55E]',
-    bg: 'bg-[#E8F8ED]'
+    bg: 'bg-[#EEF8F0]',
+    iconColor: 'text-[#16A34A]'
   },
   {
-    name: 'Energi',
-    value: 20,
-    icon: Zap,
-    color: 'text-[#CA8A04]',
-    bg: 'bg-[#FFF8D8]'
-  },
-  {
-    name: 'Air',
-    value: 15,
+    label: 'Water Saved',
+    value: '120 L',
     icon: Droplets,
-    color: 'text-[#0284C7]',
-    bg: 'bg-[#E8F6FF]'
+    bg: 'bg-[#EAF3FF]',
+    iconColor: 'text-[#3B82F6]'
   },
   {
-    name: 'Lainnya',
-    value: 10,
-    icon: Globe2,
-    color: 'text-[#059669]',
-    bg: 'bg-[#ECFDF5]'
+    label: 'Green Distance',
+    value: '32 km',
+    icon: Bike,
+    bg: 'bg-[#FFF5E8]',
+    iconColor: 'text-[#F59E0B]'
   }
 ]
 
-const totalImpact = computed(() => {
-  return 47
+const breakdown = [
+  {
+    label: 'Hemat energi',
+    value: '32%',
+    progress: 32,
+    icon: Zap,
+    bg: 'bg-[#FFF7D6]',
+    iconColor: 'text-[#CA8A04]'
+  },
+  {
+    label: 'Recycle',
+    value: '26%',
+    progress: 26,
+    icon: Recycle,
+    bg: 'bg-[#EAF8EE]',
+    iconColor: 'text-[#15803D]'
+  },
+  {
+    label: 'Transportasi hijau',
+    value: '22%',
+    progress: 22,
+    icon: Bike,
+    bg: 'bg-[#EAF3FF]',
+    iconColor: 'text-[#3B82F6]'
+  },
+  {
+    label: 'Menanam',
+    value: '20%',
+    progress: 20,
+    icon: TreePine,
+    bg: 'bg-[#EEF8F0]',
+    iconColor: 'text-[#16A34A]'
+  }
+]
+
+const actions = [
+  {
+    id: 1,
+    title: 'Recycle plastik',
+    date: 'Hari ini',
+    points: 50,
+    icon: Recycle,
+    bg: 'bg-[#EAF8EE]',
+    iconColor: 'text-[#15803D]'
+  },
+  {
+    id: 2,
+    title: 'Bike to campus',
+    date: 'Kemarin',
+    points: 35,
+    icon: Bike,
+    bg: 'bg-[#EAF3FF]',
+    iconColor: 'text-[#3B82F6]'
+  },
+  {
+    id: 3,
+    title: 'Hemat penggunaan listrik',
+    date: '10 Sep 2026',
+    points: 40,
+    icon: Zap,
+    bg: 'bg-[#FFF7D6]',
+    iconColor: 'text-[#CA8A04]'
+  },
+  {
+    id: 4,
+    title: 'Menanam pohon',
+    date: '9 Sep 2026',
+    points: 100,
+    icon: TreePine,
+    bg: 'bg-[#EEF8F0]',
+    iconColor: 'text-[#16A34A]'
+  },
+  {
+    id: 5,
+    title: 'Gunakan transportasi umum',
+    date: '8 Sep 2026',
+    points: 45,
+    icon: Leaf,
+    bg: 'bg-[#EAF8EE]',
+    iconColor: 'text-[#15803D]'
+  },
+  {
+    id: 6,
+    title: 'Kurangi penggunaan plastik',
+    date: '7 Sep 2026',
+    points: 30,
+    icon: Sprout,
+    bg: 'bg-[#F0FDF4]',
+    iconColor: 'text-[#16A34A]'
+  }
+]
+
+const showAllActions = ref(false)
+
+const visibleActions = computed(() => {
+  return showAllActions.value
+    ? actions
+    : actions.slice(0, 4)
 })
 </script>

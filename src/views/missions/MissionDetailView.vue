@@ -4,11 +4,11 @@
       <!-- Mobile -->
       <div class="mx-auto max-w-[430px] px-4 pb-28 md:hidden">
         <!-- Header -->
-        <header class="flex items-center justify-between py-4">
+        <header class="relative flex items-center justify-center py-4">
           <button
             type="button"
             @click="goBack"
-            class="flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white active:scale-95"
+            class="absolute left-0 flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white active:scale-95"
           >
             <ArrowLeft class="h-[18px] w-[18px]" />
           </button>
@@ -16,13 +16,6 @@
           <span class="text-[13px] font-semibold text-[#17211B]">
             Mission Detail
           </span>
-
-          <button
-            type="button"
-            class="flex h-8 w-8 items-center justify-center rounded-full text-[#66736A]"
-          >
-            <MoreHorizontal class="h-[18px] w-[18px]" />
-          </button>
         </header>
 
         <!-- Mission Image -->
