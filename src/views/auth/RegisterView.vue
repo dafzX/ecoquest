@@ -501,6 +501,8 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { register } from '@/services/auth'
 import {
   Leaf,
   Mail,
@@ -513,6 +515,7 @@ import {
   Trophy
 } from 'lucide-vue-next'
 
+const router = useRouter()
 const showPassword = ref(false)
 const showConfirmPassword = ref(false)
 
@@ -530,6 +533,23 @@ function handleRegister() {
     return
   }
 
-  console.log(form.value)
+  if (form.value.password.length < 6) {
+    alert('Password minimal 6 karakter.')
+    return
+  }
+
+  const result = register({
+    name: form.value.name,
+    email: form.value.email,
+    password: form.value.password
+  })
+
+  if (!result.success) {
+    alert(result.message)
+    return
+  }
+
+  alert('Akun berhasil dibuat. Selamat datang di EcoQuest!')
+  router.push('/dashboard')
 }
 </script>

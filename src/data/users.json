@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Eco Admin",
+    "email": "admin@ecoquest.com",
+    "password": "ecoquest123"
+  },
+  {
+    "id": 2,
+    "name": "Dafa",
+    "email": "dafa@ecoquest.com",
+    "password": "dafa123"
+  },
+  {
+    "id": 3,
+    "name": "Denis",
+    "email": "denis@ecoquest.com",
+    "password": "denis123"
+  },
+  {
+    "id": 4,
+    "name": "Faras",
+    "email": "faras@ecoquest.com",
+    "password": "faras123"
+  }
+]
