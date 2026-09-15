@@ -323,7 +323,7 @@
         <!-- Logout -->
         <button
           type="button"
-          @click="logout"
+          @click="handleLogout"
           class="mt-5 flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-[#F1D7D7] bg-white text-[10px] font-bold text-[#DC2626] transition hover:bg-[#FEF2F2] active:scale-[0.98]"
         >
           <LogOut class="h-4 w-4" />
@@ -675,7 +675,7 @@
               <!-- Logout -->
               <button
                 type="button"
-                @click="logout"
+                @click="handleLogout"
                 class="flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-[#F1D7D7] bg-white text-xs font-bold text-[#DC2626] transition hover:bg-[#FEF2F2]"
               >
                 <LogOut class="h-4 w-4" />
@@ -701,6 +701,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { logout as clearSession } from '@/services/auth'
 
 import {
   ArrowLeft,
@@ -775,8 +776,12 @@ const selectLanguage = (language) => {
   showLanguage.value = false
 }
 
-const logout = () => {
-  console.log('Logout')
-  router.push('/login')
+const handleLogout = () => {
+  const confirmed = window.confirm('Yakin ingin keluar dari akun?')
+
+  if (!confirmed) return
+
+  clearSession()
+  router.replace('/login')
 }
 </script>
