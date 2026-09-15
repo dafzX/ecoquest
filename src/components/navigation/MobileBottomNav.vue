@@ -2,7 +2,9 @@
   <nav
     class="fixed bottom-0 left-0 right-0 z-50 border-t border-[#E8EDE9] bg-white/95 px-2 pb-[env(safe-area-inset-bottom)] pt-2 shadow-[0_-8px_30px_rgba(23,33,27,0.06)] backdrop-blur-md md:hidden"
   >
-    <div class="mx-auto flex h-[62px] max-w-md items-center justify-around">
+    <div
+      class="mx-auto flex h-[62px] max-w-md items-center justify-around"
+    >
       <RouterLink
         v-for="item in menu"
         :key="item.name"
@@ -11,15 +13,16 @@
         :class="
           isActive(item.to)
             ? 'text-[#15803D]'
-            : 'text-[#98A39C]'
+            : 'text-[#66736A]'
         "
       >
+        <!-- Icon -->
         <div
           class="flex h-7 w-10 items-center justify-center rounded-full transition"
           :class="
             isActive(item.to)
-              ? 'bg-[#EAF8EE]'
-              : 'bg-transparent'
+              ? 'bg-[#EAF8EE] text-[#15803D]'
+              : 'bg-transparent text-[#98A39C]'
           "
         >
           <component
@@ -29,6 +32,7 @@
           />
         </div>
 
+        <!-- Label -->
         <span
           class="text-[10px] font-medium"
           :class="
@@ -46,6 +50,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router'
+
 import {
   Home,
   ListChecks,

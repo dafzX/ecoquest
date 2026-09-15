@@ -6,18 +6,18 @@
       <main class="mx-auto w-full max-w-[430px] px-4 pb-6 md:hidden">
 
         <!-- Header -->
-        <header class="flex h-[56px] items-center">
+                <header class="relative flex items-center justify-center py-4">
           <button
             type="button"
-            class="flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white active:scale-95"
             @click="goBack"
+            class="absolute left-0 flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white active:scale-95"
           >
             <ArrowLeft class="h-[18px] w-[18px]" />
           </button>
 
-          <h1 class="ml-3 text-[15px] font-bold text-[#17211B]">
+          <span class="text-[13px] font-semibold text-[#17211B]">
             Challenges
-          </h1>
+          </span>
         </header>
 
         <!-- Tabs -->
@@ -310,7 +310,7 @@
             </div>
             
             <button class="flex items-center gap-2 rounded-lg border border-[#E8EDE9] px-4 py-1.5 text-sm font-medium text-[#66736A] transition hover:bg-[#F8FAF8]">
-              All
+              Semua
               <ChevronDown class="h-4 w-4" />
             </button>
           </section>
@@ -361,14 +361,14 @@
                 <div class="mt-6 flex items-center gap-6">
                   <div>
                     <span class="text-2xl font-bold text-[#15803D]">{{ featuredChallenge.progress }}%</span>
-                    <span class="ml-1 text-xs text-[#15803D]/70">completed</span>
+                    <span class="ml-1 text-xs text-[#15803D]/70">selesai</span>
                   </div>
                   <div>
                     <div class="flex items-center gap-1.5 text-[#15803D]">
                       <Users class="h-4 w-4" />
                       <span class="text-sm font-bold">{{ featuredChallenge.participants }}</span>
                     </div>
-                    <span class="text-xs text-[#15803D]/70">participants</span>
+                    <span class="text-xs text-[#15803D]/70">peserta</span>
                   </div>
                 </div>
               </div>
@@ -401,7 +401,7 @@
                 <div class="w-1/2">
                   <div class="mb-2 flex items-center justify-between text-xs">
                     <span class="font-bold text-[#17211B]">{{ challenge.progress }}%</span>
-                    <span class="text-[#66736A]">{{ challenge.participants }} participants</span>
+                    <span class="text-[#66736A]">{{ challenge.participants }} peserta</span>
                   </div>
                   <div class="h-1.5 w-full overflow-hidden rounded-full bg-[#E5EFE8]">
                     <div
@@ -412,6 +412,7 @@
                 </div>
 
                 <button
+                  @click="toggleJoin(challenge)"
                   class="rounded-lg px-6 py-2 text-sm font-semibold transition"
                   :class="
                     challenge.joined
@@ -419,7 +420,7 @@
                       : 'bg-[#22C55E] text-white hover:bg-[#15803D]'
                   "
                 >
-                  {{ challenge.joined ? 'Start' : 'Join' }}
+                  {{ challenge.joined ? 'Mulai' : 'Ikuti' }}
                 </button>
               </div>
             </article>
@@ -447,7 +448,8 @@ import {
   Bike,
   Droplets,
   TreePine,
-  ChevronDown
+  ChevronDown,
+  MoreHorizontal
 } from 'lucide-vue-next'
 
 import AppLayout from '@/layouts/AppLayout.vue'
@@ -566,6 +568,14 @@ const getChallengeStyle = (category) => {
   }
 
   return 'bg-[#E8F8ED] text-[#22C55E]'
+}
+
+const toggleJoin = (challenge) => {
+  if (challenge.joined) {
+    router.push(`/challenges/${challenge.id}`)
+  } else {
+    challenge.joined = true
+  }
 }
 
 const goBack = () => {

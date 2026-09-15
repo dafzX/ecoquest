@@ -378,10 +378,10 @@
               <h1
                 class="text-[24px] font-bold text-[#17211B]"
               >
-                Good morning, {{ currentUser.name }}! 👋
+                Selamat pagi, {{ currentUser.name }}! 👋
               </h1>
               <p class="mt-1 text-sm text-[#66736A]">
-                Setiap aksi kecil berarti. Yuk lanjutkan perjalananmu!
+                Saatnya lanjutkan langkah baik hari ini.
               </p>
             </div>
 
@@ -390,7 +390,7 @@
               class="flex h-10 items-center gap-2 rounded-xl bg-[#22C55E] px-4 text-sm font-semibold text-white transition hover:bg-[#15803D]"
             >
               <Plus class="h-4 w-4" />
-              Record Eco Action
+              Catat Aksi Eco
             </RouterLink>
           </section>
 
@@ -430,34 +430,34 @@
 
                 <!-- Impact Info -->
                 <div class="flex-1 pl-2">
-                  <p class="mb-4 text-xs font-semibold text-[#17211B]">Your Impact</p>
+                  <p class="mb-4 text-xs font-semibold text-[#17211B]">Dampakmu</p>
                   <div class="flex items-center justify-between gap-2 text-center">
                     <div>
                       <div class="mx-auto flex h-10 w-10 flex-col items-center justify-center rounded-full border border-[#E8EDE9] bg-[#F8FAF8]">
                         <Flame class="h-4 w-4 text-[#F97316]" />
                       </div>
-                      <p class="mt-2 text-[10px] font-bold text-[#17211B]">{{ currentUser.streak ?? 7 }} Days</p>
+                      <p class="mt-2 text-[10px] font-bold text-[#17211B]">{{ currentUser.streak ?? 7 }} Hari</p>
                     </div>
                     <div>
                       <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-[#E8EDE9] bg-[#F8FAF8]">
                         <Cloud class="h-4 w-4 text-[#22C55E]" />
                       </div>
                       <p class="mt-2 text-[10px] font-bold text-[#17211B]">{{ impact.co2Saved ?? 18 }} kg</p>
-                      <p class="text-[9px] text-[#66736A]">Plants avoided</p>
+                      <p class="text-[9px] text-[#66736A]">CO₂ Dihemat</p>
                     </div>
                     <div>
                       <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-[#E8EDE9] bg-[#F8FAF8]">
                         <Leaf class="h-4 w-4 text-[#22C55E]" />
                       </div>
                       <p class="mt-2 text-[10px] font-bold text-[#17211B]">{{ ecoActions }}</p>
-                      <p class="text-[9px] text-[#66736A]">Eco actions</p>
+                      <p class="text-[9px] text-[#66736A]">Eco Actions</p>
                     </div>
                     <div>
                       <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-[#E8EDE9] bg-[#F8FAF8]">
                         <Bike class="h-4 w-4 text-[#22C55E]" />
                       </div>
                       <p class="mt-2 text-[10px] font-bold text-[#17211B]">{{ lowCarbonDistance }} km</p>
-                      <p class="text-[9px] text-[#66736A]">Low-carbon travel</p>
+                      <p class="text-[9px] text-[#66736A]">Low Carbon</p>
                     </div>
                   </div>
                 </div>
@@ -465,7 +465,7 @@
 
               <!-- Your Next Quest -->
               <div>
-                <h2 class="mb-4 text-base font-bold text-[#17211B]">Your Next Quest</h2>
+                <h2 class="mb-4 text-base font-bold text-[#17211B]">Quest Berikutnya</h2>
                 <div v-if="nextQuest" class="rounded-2xl border border-[#E8EDE9] bg-white p-6">
                   <div class="flex items-start justify-between">
                     <div class="flex gap-4">
@@ -473,11 +473,11 @@
                         <Recycle class="h-6 w-6 text-[#22C55E]" />
                       </div>
                       <div>
-                        <h3 class="text-sm font-bold text-[#17211B]">{{ nextQuest.title || 'Reduce Plastic' }}</h3>
-                        <p class="mt-1 text-xs text-[#66736A]">{{ nextQuest.description || 'Use a reusable bottle for 3 days.' }}</p>
+                        <h3 class="text-sm font-bold text-[#17211B]">{{ nextQuest.title || 'Kurangi Plastik' }}</h3>
+                        <p class="mt-1 text-xs text-[#66736A]">{{ nextQuest.description || 'Gunakan botol minum reusable selama 3 hari.' }}</p>
                         
                         <div class="mt-4 flex items-center justify-between w-64">
-                          <span class="text-[10px] font-medium text-[#66736A]">{{ nextQuest.step || 'Day 2 of 3' }}</span>
+                          <span class="text-[10px] font-medium text-[#66736A]">{{ nextQuest.step || 'Hari ke-2 dari 3' }}</span>
                           <span class="text-[10px] font-bold text-[#22C55E]">{{ questProgress }}%</span>
                         </div>
                         <div class="mt-1.5 h-1.5 w-64 overflow-hidden rounded-full bg-[#E5EFE8]">
@@ -491,7 +491,7 @@
                         :to="nextQuest.link || '/missions'"
                         class="mt-4 block rounded-lg bg-[#22C55E] px-4 py-2 text-center text-xs font-semibold text-white transition hover:bg-[#15803D]"
                       >
-                        View Quest
+                        Lanjutkan
                       </RouterLink>
                     </div>
                   </div>
@@ -502,12 +502,12 @@
 
             <!-- Right Column (Habit Progress) -->
             <div>
-              <h2 class="mb-4 text-base font-bold text-[#17211B]">Habit Progress</h2>
+              <h2 class="mb-4 text-base font-bold text-[#17211B]">Progress Kebiasaan</h2>
               <div class="rounded-2xl border border-[#E8EDE9] bg-white p-6">
                 <div class="flex items-start justify-between">
                   <div>
-                    <h3 class="text-sm font-bold text-[#17211B]">Reduce Plastic</h3>
-                    <p class="mt-1 text-xs text-[#66736A]">Keep up the good work!</p>
+                    <h3 class="text-sm font-bold text-[#17211B]">Kurangi Plastik</h3>
+                    <p class="mt-1 text-xs text-[#66736A]">Terus pertahankan kebiasaan baikmu.</p>
                   </div>
                   <span class="text-lg font-bold text-[#22C55E]">{{ questProgress }}%</span>
                 </div>
@@ -522,8 +522,8 @@
                       <Flame class="h-4 w-4 text-[#F97316]" />
                     </div>
                     <div>
-                      <p class="text-xs font-bold text-[#17211B]">7-day streak</p>
-                      <p class="text-[10px] text-[#66736A]">Active streak</p>
+                      <p class="text-xs font-bold text-[#17211B]">7 hari streak</p>
+                      <p class="text-[10px] text-[#66736A]">Streak aktif</p>
                     </div>
                   </div>
                   <div class="flex items-center gap-3">
@@ -531,8 +531,8 @@
                       <Trophy class="h-4 w-4 text-[#0EA5E9]" />
                     </div>
                     <div>
-                      <p class="text-xs font-bold text-[#17211B]">Next milestone</p>
-                      <p class="text-[10px] text-[#66736A]">Use reusable bottle for 14 days</p>
+                      <p class="text-xs font-bold text-[#17211B]">Pencapaian berikutnya</p>
+                      <p class="text-[10px] text-[#66736A]">Gunakan botol minum reusable selama 14 hari</p>
                     </div>
                   </div>
                 </div>

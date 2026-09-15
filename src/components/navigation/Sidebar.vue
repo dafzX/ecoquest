@@ -143,11 +143,6 @@ const mainMenu = [
     icon: ListChecks
   },
   {
-    name: 'Eco Action',
-    to: '/eco-action',
-    icon: Leaf
-  },
-  {
     name: 'Challenges',
     to: '/challenges',
     icon: Trophy

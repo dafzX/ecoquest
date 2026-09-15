@@ -13,32 +13,41 @@
     </div>
 
     <div class="flex items-center gap-3">
-      <button
-        type="button"
-        class="relative flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white"
-      >
-        <Bell class="h-[17px] w-[17px]" />
+      <!-- Notification -->
+      <NotificationDropdown
+        :is-open="activeDropdown === 'notification'"
+        @toggle="toggleDropdown('notification')"
+        @close="closeDropdown"
+      />
 
-        <span
-          class="absolute right-[6px] top-[5px] h-1.5 w-1.5 rounded-full bg-[#22C55E]"
-        ></span>
-      </button>
-
-      <div
-        class="flex h-7 w-7 items-center justify-center rounded-full bg-[#DCFCE7] text-[10px] font-bold text-[#15803D]"
-      >
-        {{ currentUser.avatar }}
-      </div>
+      <!-- Profile -->
+      <ProfileDropdown
+        :is-open="activeDropdown === 'profile'"
+        @toggle="toggleDropdown('profile')"
+        @close="closeDropdown"
+      />
     </div>
   </header>
 </template>
 
 <script setup>
-import { Bell, Leaf } from 'lucide-vue-next'
-import { user } from '../../data/mockData.js'
+import { ref } from 'vue'
+import { Leaf } from 'lucide-vue-next'
+import NotificationDropdown from './NotificationDropdown.vue'
+import ProfileDropdown from './ProfileDropdown.vue'
 
-const currentUser = {
-  ...user,
-  avatar: user?.avatar || 'DA'
+const activeDropdown = ref(null)
+
+const toggleDropdown = type => {
+  if (activeDropdown.value === type) {
+    activeDropdown.value = null
+    return
+  }
+
+  activeDropdown.value = type
+}
+
+const closeDropdown = () => {
+  activeDropdown.value = null
 }
 </script>

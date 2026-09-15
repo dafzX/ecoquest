@@ -4,11 +4,11 @@
       <!-- Mobile -->
       <div class="mx-auto max-w-[430px] px-4 pb-28 md:hidden">
         <!-- Header -->
-        <header class="flex items-center justify-between py-4">
+        <header class="relative flex items-center justify-center py-4">
           <button
             type="button"
             @click="goBack"
-            class="flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white active:scale-95"
+            class="absolute left-0 flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white active:scale-95"
           >
             <ArrowLeft class="h-[18px] w-[18px]" />
           </button>
@@ -16,13 +16,6 @@
           <span class="text-[13px] font-semibold text-[#17211B]">
             Mission Detail
           </span>
-
-          <button
-            type="button"
-            class="flex h-8 w-8 items-center justify-center rounded-full text-[#66736A]"
-          >
-            <MoreHorizontal class="h-[18px] w-[18px]" />
-          </button>
         </header>
 
         <!-- Mission Image -->
@@ -39,16 +32,16 @@
 
           <div class="absolute inset-0 flex items-center justify-center">
             <div
-              class="flex h-24 w-24 items-center justify-center rounded-full bg-white/70"
+              class="flex h-20 w-20 items-center justify-center rounded-full bg-white/80"
             >
-              <Recycle class="h-12 w-12 text-[#22C55E]" />
+              <component :is="getCategoryIcon(mission.category)" class="h-10 w-10 text-[#22C55E]" />
             </div>
           </div>
 
           <div
             class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-semibold text-[#15803D]"
           >
-            Plastic
+            {{ mission.category }}
           </div>
         </div>
 
@@ -289,7 +282,7 @@
                     <div
                       class="flex h-32 w-32 items-center justify-center rounded-full bg-white/80"
                     >
-                      <Recycle class="h-20 w-20 text-[#22C55E]" />
+                      <component :is="getCategoryIcon(mission.category)" class="h-20 w-20 text-[#22C55E]" />
                     </div>
                   </div>
                 </div>
@@ -297,7 +290,7 @@
                 <div
                   class="absolute left-6 top-6 rounded-full bg-white px-4 py-2 text-xs font-semibold text-[#15803D]"
                 >
-                  Plastic
+                  {{ mission.category }}
                 </div>
               </div>
 
@@ -454,7 +447,8 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import {
   ArrowLeft,
   ArrowRight,
@@ -464,31 +458,26 @@ import {
   MoreHorizontal,
   Recycle,
   Trophy,
-  Zap
+  Zap,
+  Bike
 } from 'lucide-vue-next'
 import AppLayout from '@/layouts/AppLayout.vue'
+import { missions } from '@/data/mockData.js'
 
 const router = useRouter()
+const route = useRoute()
 
-const mission = {
-  id: 1,
-  title: 'Reduce Plastic',
-  description:
-    'Gunakan botol minum reusable selama 3 hari berturut-turut untuk mengurangi penggunaan plastik sekali pakai.',
-  category: 'Plastic',
-  currentStep: 2,
-  totalSteps: 3,
-  progress: 67,
-  completedDays: 2,
-  totalDays: 3,
-  daysLeft: 1,
-  completedSteps: 1,
-  xp: 75,
-  steps: [
-    'Gunakan botol minum reusable',
-    'Hindari botol plastik sekali pakai',
-    'Selesaikan aksi selama 3 hari'
-  ]
+const mission = computed(() => {
+  const id = Number(route.params.id)
+  return missions.find(m => m.id === id) || missions[0]
+})
+
+function getCategoryIcon(category) {
+  const cat = category?.toLowerCase() || ''
+  if (cat.includes('plastic') || cat.includes('daur ulang') || cat.includes('recycle')) return Recycle
+  if (cat.includes('transport') || cat.includes('bike')) return Bike
+  if (cat.includes('energy') || cat.includes('energi')) return Zap
+  return Leaf
 }
 
 function goBack() {
@@ -496,6 +485,6 @@ function goBack() {
 }
 
 function continueMission() {
-  console.log('Continue mission:', mission.id)
+  console.log('Continue mission:', mission.value.id)
 }
 </script>
