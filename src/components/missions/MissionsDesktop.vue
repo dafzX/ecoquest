@@ -26,10 +26,7 @@
           </button>
         </div>
 
-        <button class="flex items-center gap-2 rounded-lg border border-[#E8EDE9] px-4 py-1.5 text-sm font-medium text-[#66736A] transition hover:bg-[#F8FAF8]">
-          Filter
-          <ChevronDown class="h-4 w-4" />
-        </button>
+
       </section>
 
       <!-- Desktop List -->

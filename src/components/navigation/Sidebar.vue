@@ -87,30 +87,7 @@
       </div>
     </nav>
 
-    <div class="border-t border-[#E8EDE9] p-4">
-      <div class="flex items-center gap-3 rounded-xl bg-[#F8FAF8] p-3">
-        <div class="flex h-9 w-9 items-center justify-center rounded-full bg-[#DCFCE7] text-sm font-semibold text-[#15803D]">
-          D
-        </div>
 
-        <div class="min-w-0 flex-1">
-          <p class="truncate text-sm font-semibold text-[#17211B]">
-            Dafa
-          </p>
-
-          <p class="truncate text-xs text-[#98A39C]">
-            Eco Explorer
-          </p>
-        </div>
-
-        <button
-          type="button"
-          class="text-[#98A39C] transition hover:text-[#66736A]"
-        >
-          <MoreHorizontal class="h-[18px] w-[18px]" />
-        </button>
-      </div>
-    </div>
   </aside>
 </template>
 

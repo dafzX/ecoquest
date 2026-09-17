@@ -6,14 +6,7 @@
       <DesktopPageHeader
         title="Challenges"
         description="Bersama kita bisa lebih berdampak!"
-      >
-        <template #action>
-          <button class="flex items-center gap-2 rounded-lg border border-[#E8EDE9] px-4 py-1.5 text-sm font-medium text-[#66736A] transition hover:bg-[#F8FAF8]">
-            Semua
-            <ChevronDown class="h-4 w-4" />
-          </button>
-        </template>
-      </DesktopPageHeader>
+      />
 
       <!-- Tabs -->
       <div class="mb-6 flex gap-4 border-b border-[#E8EDE9]">
