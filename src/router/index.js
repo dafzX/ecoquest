@@ -68,13 +68,23 @@ const router = createRouter({
       }
     },
 
-    // Challenges
     {
       path: '/challenges',
       name: 'Challenges',
       component: () => import('@/views/challenges/ChallengesView.vue'),
       meta: {
         title: 'Challenges - EcoQuest',
+        hideBottomNav: true,
+        requireAuth: true
+      }
+    },
+
+    {
+      path: '/challenges/:id',
+      name: 'ChallengeDetail',
+      component: () => import('@/views/challenges/ChallengeDetailView.vue'),
+      meta: {
+        title: 'Challenge Detail - EcoQuest',
         hideBottomNav: true,
         requireAuth: true
       }
