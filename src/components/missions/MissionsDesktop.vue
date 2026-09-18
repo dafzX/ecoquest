@@ -10,10 +10,11 @@
 
       <!-- Desktop Filters -->
       <section class="mb-6 flex items-center justify-between">
-        <div class="flex gap-4">
+        <div class="flex gap-2">
           <button
             v-for="tab in tabs"
             :key="tab.value"
+            type="button"
             class="rounded-full px-4 py-1.5 text-sm font-semibold transition"
             :class="
               activeTab === tab.value
@@ -26,102 +27,201 @@
           </button>
         </div>
 
-
+        <span class="text-xs text-[#98A39C]">
+          {{ filteredMissions.length }} quest
+        </span>
       </section>
 
       <!-- Desktop List -->
       <section>
-        <div class="space-y-4">
+
+        <!-- Quest Header -->
+        <div class="mb-3 flex items-center justify-between">
+          <h2 class="text-sm font-bold text-[#17211B]">
+            {{
+              activeTab === 'all'
+                ? 'Semua Quest'
+                : activeTab === 'active'
+                  ? 'Quest Aktif'
+                  : activeTab === 'completed'
+                    ? 'Quest Selesai'
+                    : 'Quest Rekomendasi'
+            }}
+          </h2>
+        </div>
+
+        <!-- Quest List -->
+        <div
+          v-if="filteredMissions.length"
+          class="space-y-4"
+        >
           <article
             v-for="mission in filteredMissions"
             :key="mission.id"
-            class="flex items-center justify-between rounded-2xl border border-[#E8EDE9] bg-white p-6 transition hover:border-[#BBF7D0]"
+            class="flex items-center justify-between rounded-2xl border border-[#E8EDE9] bg-white p-6 transition hover:border-[#BBF7D0] hover:shadow-sm"
           >
-            <div class="flex flex-1 items-start gap-6">
+            <!-- Content -->
+            <div class="flex min-w-0 flex-1 items-start gap-6">
+
               <!-- Icon -->
               <div
                 class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
                 :class="getCategoryStyle(mission.category)"
               >
-                <component :is="getCategoryIcon(mission.category)" class="h-7 w-7" />
+                <component
+                  :is="getCategoryIcon(mission.category)"
+                  class="h-7 w-7"
+                />
               </div>
 
-              <!-- Content -->
-              <div class="flex-1">
+              <!-- Info -->
+              <div class="min-w-0 flex-1">
+
+                <!-- Title -->
                 <div class="flex items-center gap-3">
-                  <h3 class="text-base font-bold text-[#17211B]">
+                  <h3 class="truncate text-base font-bold text-[#17211B]">
                     {{ mission.title || 'Quest Title' }}
                   </h3>
+
+                  <!-- Completed -->
                   <span
                     v-if="mission.completed"
-                    class="rounded-full bg-[#F1F5F2] px-2.5 py-0.5 text-[10px] font-semibold text-[#66736A]"
+                    class="shrink-0 rounded-full bg-[#F1F5F2] px-2.5 py-0.5 text-[10px] font-semibold text-[#66736A]"
                   >
                     Completed
                   </span>
+
+                  <!-- Active -->
                   <span
                     v-else-if="mission.progress"
-                    class="rounded-full bg-[#EAF8EE] px-2.5 py-0.5 text-[10px] font-semibold text-[#15803D]"
+                    class="shrink-0 rounded-full bg-[#EAF8EE] px-2.5 py-0.5 text-[10px] font-semibold text-[#15803D]"
                   >
                     Active
                   </span>
+
+                  <!-- Recommended -->
                   <span
                     v-else
-                    class="rounded-full bg-[#F0FDF4] px-2.5 py-0.5 text-[10px] font-semibold text-[#16A34A] border border-[#DCFCE7]"
+                    class="shrink-0 rounded-full border border-[#DCFCE7] bg-[#F0FDF4] px-2.5 py-0.5 text-[10px] font-semibold text-[#16A34A]"
                   >
                     Recommended
                   </span>
                 </div>
 
+                <!-- Description -->
                 <p class="mt-1 text-sm text-[#66736A]">
-                  {{ mission.description || 'Description' }}
+                  {{ mission.description || 'Selesaikan quest untuk mendapatkan XP.' }}
                 </p>
 
                 <!-- Progress -->
-                <div v-if="mission.progress !== undefined && !mission.completed" class="mt-4 flex w-3/4 items-center gap-4">
-                  <span class="w-20 text-xs text-[#66736A]">{{ mission.step || 'Day 2 of 3' }}</span>
-                  <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-[#E5EFE8]">
+                <div
+                  v-if="
+                    mission.progress !== undefined &&
+                    !mission.completed
+                  "
+                  class="mt-4 flex w-3/4 items-center gap-4"
+                >
+                  <span class="w-20 shrink-0 text-xs text-[#66736A]">
+                    {{ mission.step || 'Day 2 of 3' }}
+                  </span>
+
+                  <div
+                    class="h-1.5 flex-1 overflow-hidden rounded-full bg-[#E5EFE8]"
+                  >
                     <div
                       class="h-full rounded-full bg-[#22C55E]"
                       :style="{ width: `${mission.progress}%` }"
                     ></div>
                   </div>
-                  <span class="w-10 text-right text-xs font-bold text-[#22C55E]">{{ mission.progress }}%</span>
+
+                  <span
+                    class="w-10 shrink-0 text-right text-xs font-bold text-[#22C55E]"
+                  >
+                    {{ mission.progress }}%
+                  </span>
                 </div>
+
+                <!-- Completed -->
+                <div
+                  v-if="mission.completed"
+                  class="mt-3 flex items-center gap-1.5 text-xs font-medium text-[#22C55E]"
+                >
+                  <span class="h-1.5 w-1.5 rounded-full bg-[#22C55E]"></span>
+                  Quest selesai
+                </div>
+
               </div>
             </div>
 
             <!-- Action -->
-            <div class="ml-6 flex flex-col items-end justify-center gap-4 border-l border-[#E8EDE9] pl-6">
-              <span class="text-sm font-bold text-[#22C55E]">+{{ mission.xp || 50 }} XP</span>
+            <div
+              class="ml-6 flex w-[150px] shrink-0 flex-col items-end justify-center gap-4 border-l border-[#E8EDE9] pl-6"
+            >
+              <!-- XP -->
+              <span class="text-sm font-bold text-[#22C55E]">
+                +{{ mission.xp || 50 }} XP
+              </span>
+
+              <!-- Action Button -->
               <RouterLink
-                :to="getMissionLink(mission)"
+                :to="{
+                  name: 'MissionDetail',
+                  params: {
+                    id: mission.id
+                  }
+                }"
                 class="flex h-10 w-28 items-center justify-center rounded-xl text-sm font-semibold transition"
                 :class="
                   mission.completed
-                    ? 'bg-[#F1F5F2] text-[#66736A]'
+                    ? 'bg-[#F1F5F2] text-[#66736A] hover:bg-[#E8EDE9]'
                     : 'bg-[#22C55E] text-white hover:bg-[#15803D]'
                 "
               >
-                {{ mission.completed ? 'Detail' : mission.progress ? 'Continue' : 'Start' }}
+                {{
+                  mission.completed
+                    ? 'Detail'
+                    : mission.progress
+                      ? 'Lanjutkan'
+                      : 'Mulai'
+                }}
               </RouterLink>
             </div>
           </article>
         </div>
-      </section>
 
+        <!-- Empty State -->
+        <div
+          v-else
+          class="rounded-2xl border border-dashed border-[#DCEBE0] bg-white px-6 py-16 text-center"
+        >
+          <div
+            class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E8F8ED]"
+          >
+            <Search class="h-6 w-6 text-[#22C55E]" />
+          </div>
+
+          <p class="mt-4 text-sm font-semibold text-[#17211B]">
+            Tidak ada quest
+          </p>
+
+          <p class="mt-1 text-xs text-[#718078]">
+            Belum ada quest pada kategori ini.
+          </p>
+        </div>
+
+      </section>
     </div>
   </main>
 </template>
 
 <script setup>
-import { ChevronDown } from 'lucide-vue-next'
+import { Search } from 'lucide-vue-next'
 import DesktopPageHeader from '@/components/ui/DesktopPageHeader.vue'
 
 defineProps({
   tabs: Array,
   activeTab: String,
   filteredMissions: Array,
-  getMissionLink: Function,
   getCategoryIcon: Function,
   getCategoryStyle: Function
 })

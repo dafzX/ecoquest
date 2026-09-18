@@ -2,18 +2,24 @@
   <AppLayout>
     <div class="min-h-screen bg-[#F4FBF7]">
 
-      <ChallengeDetailMobile
+      <ChallengeActionMobile
         :challenge="challenge"
         :get-category-icon="getCategoryIcon"
         :go-back="goBack"
-        @join="joinChallenge"
+        :completed-steps="completedSteps"
+        :total-steps="totalSteps"
+        :progress="progress"
+        @complete="completeAction"
       />
 
-      <ChallengeDetailDesktop
+      <ChallengeActionDesktop
         :challenge="challenge"
         :get-category-icon="getCategoryIcon"
         :go-back="goBack"
-        @join="joinChallenge"
+        :completed-steps="completedSteps"
+        :total-steps="totalSteps"
+        :progress="progress"
+        @complete="completeAction"
       />
 
     </div>
@@ -32,8 +38,8 @@ import {
 } from 'lucide-vue-next'
 
 import AppLayout from '@/layouts/AppLayout.vue'
-import ChallengeDetailMobile from '@/components/challenges/ChallengeDetailMobile.vue'
-import ChallengeDetailDesktop from '@/components/challenges/ChallengeDetailDesktop.vue'
+import ChallengeActionMobile from '@/components/challenges/ChallengeActionMobile.vue'
+import ChallengeActionDesktop from '@/components/challenges/ChallengeActionDesktop.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -147,41 +153,53 @@ const challenges = [
 const challenge = computed(() => {
   const id = Number(route.params.id)
 
-  const found = challenges.find(
-    item => item.id === id
+  return (
+    challenges.find(item => item.id === id) ||
+    challenges[0]
   )
+})
 
-  if (!found) {
-    return challenges[0]
-  }
+const storageKey = computed(() => {
+  return `ecoquest_challenge_progress_${challenge.value.id}`
+})
 
-  const saved = localStorage.getItem(
-    `ecoquest_challenge_progress_${found.id}`
-  )
+const savedProgress = computed(() => {
+  const saved = localStorage.getItem(storageKey.value)
 
-  let completedSteps = 0
-
-  if (saved) {
-    try {
-      const data = JSON.parse(saved)
-      completedSteps = data.completedSteps || 0
-    } catch {
-      completedSteps = 0
+  if (!saved) {
+    return {
+      completedSteps: 0
     }
   }
 
-  const totalSteps = found.steps?.length || 0
-
-  const actionProgress = totalSteps
-    ? Math.round((completedSteps / totalSteps) * 100)
-    : 0
-
-  return {
-    ...found,
-    completedSteps,
-    totalSteps,
-    actionProgress
+  try {
+    return JSON.parse(saved)
+  } catch {
+    return {
+      completedSteps: 0
+    }
   }
+})
+
+const totalSteps = computed(() => {
+  return challenge.value.steps?.length || 0
+})
+
+const completedSteps = computed(() => {
+  return Math.min(
+    savedProgress.value.completedSteps || 0,
+    totalSteps.value
+  )
+})
+
+const progress = computed(() => {
+  if (!totalSteps.value) {
+    return 0
+  }
+
+  return Math.round(
+    (completedSteps.value / totalSteps.value) * 100
+  )
 })
 
 function getCategoryIcon(category) {
@@ -207,23 +225,29 @@ function getCategoryIcon(category) {
 }
 
 function goBack() {
-  router.push('/challenges')
+  router.push({
+    name: 'ChallengeDetail',
+    params: {
+      id: challenge.value.id
+    }
+  })
 }
 
-function joinChallenge() {
-  if (challenge.value.joined) {
-    router.push({
-      name: 'ChallengeAction',
-      params: {
-        id: challenge.value.id
-      }
-    })
+function completeAction() {
+  const nextStep = Math.min(
+    completedSteps.value + 1,
+    totalSteps.value
+  )
 
-    return
-  }
+  localStorage.setItem(
+    storageKey.value,
+    JSON.stringify({
+      completedSteps: nextStep
+    })
+  )
 
   router.push({
-    name: 'ChallengeAction',
+    name: 'ChallengeDetail',
     params: {
       id: challenge.value.id
     }

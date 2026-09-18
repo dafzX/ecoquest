@@ -5,18 +5,6 @@
     </div>
 
     <div class="flex items-center gap-5">
-      <div class="relative w-[240px]">
-        <Search
-          class="absolute left-3.5 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-[#98A39C]"
-        />
-
-        <input
-          type="text"
-          placeholder="Search..."
-          class="h-10 w-full rounded-xl border border-[#E2E8E4] bg-[#F8FAF8] pl-10 pr-4 text-sm text-[#17211B] outline-none transition placeholder:text-[#98A39C] focus:border-[#22C55E] focus:bg-white focus:ring-4 focus:ring-[#22C55E]/10"
-        />
-      </div>
-
       <NotificationDropdown
         :is-open="activeDropdown === 'notification'"
         @toggle="toggleDropdown('notification')"

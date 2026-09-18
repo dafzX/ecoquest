@@ -4,12 +4,6 @@
 
       <!-- Header -->
       <header class="mb-6 flex items-center gap-3 pt-2">
-        <RouterLink
-          to="/dashboard"
-          class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#DCEBE0] bg-white text-[#405047] transition hover:bg-[#EAF8EE] hover:text-[#15803D]"
-        >
-          <ArrowLeft class="h-5 w-5" />
-        </RouterLink>
         <div>
           <h1 class="text-[24px] font-bold text-[#17211B]">Impact</h1>
           <p class="mt-1 text-sm text-[#718078]">

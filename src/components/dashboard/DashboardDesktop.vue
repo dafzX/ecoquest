@@ -7,15 +7,6 @@
         :title="`Selamat pagi, ${currentUser.name}! 👋`"
         description="Saatnya lanjutkan langkah baik hari ini."
       >
-        <template #action>
-          <RouterLink
-            to="/eco-action"
-            class="flex h-10 items-center gap-2 rounded-xl bg-[#22C55E] px-4 text-sm font-semibold text-white transition hover:bg-[#15803D]"
-          >
-            <Plus class="h-4 w-4" />
-            Catat Aksi Eco
-          </RouterLink>
-        </template>
       </DesktopPageHeader>
 
       <!-- Desktop Grid -->

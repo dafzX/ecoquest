@@ -15,17 +15,23 @@
     </section>
 
     <!-- Tabs -->
-    <div class="mb-4 flex rounded-xl border border-[#DCEBE0] bg-white p-1">
-      <button
-        v-for="tab in tabs"
-        :key="tab.value"
-        type="button"
-        class="flex-1 rounded-lg py-2 text-[9px] font-semibold transition"
-        :class="activeTab === tab.value ? 'bg-[#22C55E] text-white' : 'text-[#718078]'"
-        @click="$emit('update:activeTab', tab.value)"
-      >
-        {{ tab.label }}
-      </button>
+    <div class="mb-4 overflow-x-auto scrollbar-hide">
+      <div class="flex min-w-max rounded-xl border border-[#DCEBE0] bg-white p-1">
+        <button
+          v-for="tab in tabs"
+          :key="tab.value"
+          type="button"
+          class="min-w-[72px] rounded-lg px-3 py-2 text-[9px] font-semibold transition"
+          :class="
+            activeTab === tab.value
+              ? 'bg-[#22C55E] text-white'
+              : 'text-[#718078]'
+          "
+          @click="$emit('update:activeTab', tab.value)"
+        >
+          {{ tab.label }}
+        </button>
+      </div>
     </div>
 
     <!-- Quest List -->

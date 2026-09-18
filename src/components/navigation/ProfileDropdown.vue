@@ -131,6 +131,7 @@ import {
 } from 'lucide-vue-next'
 
 import { user } from '../../data/mockData.js'
+import { logout as logoutUser } from '@/services/auth'
 
 const props = defineProps({
   isOpen: {
@@ -149,6 +150,7 @@ const currentUser = computed(() => ({
 }))
 
 const logout = () => {
+  logoutUser()
   emit('close')
   router.push('/login')
 }

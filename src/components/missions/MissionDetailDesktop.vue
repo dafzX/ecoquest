@@ -1,144 +1,354 @@
 <template>
   <div class="hidden md:block">
-    <div class="mx-auto max-w-6xl px-6 py-8">
-      <!-- Desktop Header -->
-      <div class="mb-7 flex items-center justify-between">
-        <div class="flex items-center gap-3">
+    <div class="min-h-screen bg-[#F4FBF7] px-8 py-8">
+      <div class="mx-auto max-w-6xl">
+
+        <div class="mb-8 flex items-center justify-between">
+
           <button
             type="button"
             @click="goBack"
-            class="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E2EAE5] bg-white text-[#405047] transition hover:bg-[#F4FBF7]"
+            class="flex items-center gap-2 text-sm font-medium text-[#64748B] transition hover:text-[#15803D]"
           >
             <ArrowLeft class="h-4 w-4" />
+            Back to Missions
           </button>
-          <div>
-            <p class="text-xs text-[#98A39C]">Missions</p>
-            <h1 class="text-xl font-bold text-[#17211B]">Mission Detail</h1>
-          </div>
-        </div>
-        <div class="flex items-center gap-1.5 rounded-full bg-[#EAF8EE] px-4 py-2">
-          <Zap class="h-4 w-4 text-[#22C55E]" />
-          <span class="text-sm font-bold text-[#15803D]">+{{ mission.xp }} XP</span>
-        </div>
-      </div>
 
-      <!-- Desktop Content -->
-      <div class="grid grid-cols-[1.05fr_0.95fr] gap-7">
-        <!-- Left -->
-        <div>
-          <div class="relative h-[360px] overflow-hidden rounded-3xl bg-[#DCFCE7]">
-            <div class="absolute -right-20 -top-24 h-64 w-64 rounded-full bg-[#BBF7D0]"></div>
-            <div class="absolute -bottom-28 -left-16 h-72 w-72 rounded-full bg-[#ECFDF5]"></div>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="flex h-48 w-48 items-center justify-center rounded-full bg-white/60">
-                <div class="flex h-32 w-32 items-center justify-center rounded-full bg-white/80">
-                  <component :is="getCategoryIcon(mission.category)" class="h-20 w-20 text-[#22C55E]" />
-                </div>
-              </div>
-            </div>
-            <div class="absolute left-6 top-6 rounded-full bg-white px-4 py-2 text-xs font-semibold text-[#15803D]">
-              {{ mission.category }}
-            </div>
-          </div>
-
-          <div class="mt-6">
-            <p class="text-sm font-medium text-[#22C55E]">
-              Step {{ mission.currentStep }} of {{ mission.totalSteps }}
-            </p>
-            <div class="mt-1 flex items-center justify-between gap-5">
-              <h2 class="text-3xl font-bold text-[#17211B]">{{ mission.title }}</h2>
-              <span class="text-sm font-semibold text-[#66736A]">{{ mission.progress }}%</span>
-            </div>
-            <p class="mt-3 max-w-2xl text-sm leading-6 text-[#66736A]">
-              {{ mission.description }}
-            </p>
-          </div>
-        </div>
-
-        <!-- Right -->
-        <div class="space-y-5">
-          <!-- Progress -->
-          <section class="rounded-2xl border border-[#E5EEE8] bg-white p-6">
-            <div class="flex items-center justify-between">
-              <div>
-                <h3 class="text-sm font-bold text-[#17211B]">Your Progress</h3>
-                <p class="mt-1 text-xs text-[#98A39C]">Keep going to complete this mission.</p>
-              </div>
-              <div class="flex h-11 w-11 items-center justify-center rounded-full bg-[#EAF8EE]">
-                <span class="text-xs font-bold text-[#15803D]">{{ mission.progress }}%</span>
-              </div>
-            </div>
-            <div class="mt-5 h-2.5 overflow-hidden rounded-full bg-[#EAF1EC]">
-              <div class="h-full rounded-full bg-[#22C55E]" :style="{ width: `${mission.progress}%` }"></div>
-            </div>
-            <div class="mt-3 flex justify-between text-xs">
-              <span class="text-[#98A39C]">{{ mission.completedDays }} / {{ mission.totalDays }} hari</span>
-              <span class="font-medium text-[#15803D]">{{ mission.daysLeft }} hari tersisa</span>
-            </div>
-          </section>
-
-          <!-- Steps -->
-          <section class="rounded-2xl border border-[#E5EEE8] bg-white p-6">
-            <h3 class="text-sm font-bold text-[#17211B]">Apa yang harus dilakukan?</h3>
-            <div class="mt-4 space-y-3">
-              <div v-for="(step, index) in mission.steps" :key="step" class="flex items-center gap-3 rounded-xl bg-[#F8FBF9] p-3">
-                <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" :class="index < mission.completedSteps ? 'bg-[#22C55E] text-white' : 'bg-[#EAF8EE] text-[#15803D]'">
-                  <Check v-if="index < mission.completedSteps" class="h-4 w-4" />
-                  <span v-else class="text-xs font-bold">{{ index + 1 }}</span>
-                </div>
-                <div>
-                  <p class="text-xs font-semibold text-[#17211B]">{{ step }}</p>
-                  <p class="mt-0.5 text-[11px] text-[#98A39C]">Langkah {{ index + 1 }}</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Reward -->
-          <section class="rounded-2xl bg-[#17211B] p-5">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-xs text-white/50">Mission Reward</p>
-                <div class="mt-1 flex items-center gap-2">
-                  <Zap class="h-4 w-4 text-[#4ADE80]" />
-                  <span class="text-base font-bold text-white">+{{ mission.xp }} XP</span>
-                </div>
-              </div>
-              <Trophy class="h-7 w-7 text-[#4ADE80]" />
-            </div>
-          </section>
-
-          <button
-            type="button"
-            @click="$emit('continue')"
-            class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#22C55E] text-sm font-semibold text-white transition hover:bg-[#16A34A] active:scale-[0.99]"
+          <div
+            class="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm"
           >
-            Continue Quest
-            <ArrowRight class="h-4 w-4" />
-          </button>
+            <Zap class="h-4 w-4 text-[#F59E0B]" />
+
+            <span class="text-sm font-semibold text-[#334155]">
+              +{{ mission.xp || 50 }} XP
+            </span>
+          </div>
+
         </div>
+
+        <div
+          class="mb-8 overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white"
+        >
+          <div class="p-8">
+
+            <div class="mb-5 flex items-start justify-between gap-6">
+
+              <div class="flex items-start gap-4">
+
+                <div
+                  class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#DCFCE7]"
+                >
+                  <component
+                    :is="getCategoryIcon(mission.category)"
+                    class="h-7 w-7 text-[#15803D]"
+                  />
+                </div>
+
+                <div>
+
+                  <span
+                    class="mb-2 inline-flex rounded-full bg-[#F0FDF4] px-3 py-1 text-xs font-semibold text-[#15803D]"
+                  >
+                    {{ mission.category }}
+                  </span>
+
+                  <h1 class="text-2xl font-bold text-[#0F172A]">
+                    {{ mission.title }}
+                  </h1>
+
+                  <p class="mt-2 max-w-2xl text-sm leading-6 text-[#64748B]">
+                    {{ mission.description }}
+                  </p>
+
+                </div>
+
+              </div>
+
+              <div class="shrink-0 text-right">
+
+                <p class="text-xs font-medium text-[#94A3B8]">
+                  Progress
+                </p>
+
+                <p class="mt-1 text-2xl font-bold text-[#15803D]">
+                  {{ completedSteps }}/{{ totalSteps }}
+                </p>
+
+              </div>
+
+            </div>
+
+            <div>
+
+              <div class="mb-2 flex items-center justify-between">
+
+                <span class="text-xs font-medium text-[#64748B]">
+                  Quest Progress
+                </span>
+
+                <span class="text-xs font-semibold text-[#15803D]">
+                  {{ progress }}%
+                </span>
+
+              </div>
+
+              <div class="h-2 overflow-hidden rounded-full bg-[#E2E8F0]">
+                <div
+                  class="h-full rounded-full bg-[#22C55E] transition-all duration-500"
+                  :style="{ width: `${progress}%` }"
+                />
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-[#E2E8F0] bg-white p-8">
+
+          <div class="mb-6">
+
+            <h2 class="text-lg font-bold text-[#0F172A]">
+              Mission Steps
+            </h2>
+
+            <p class="mt-1 text-sm text-[#64748B]">
+              Complete each step to finish this mission.
+            </p>
+
+          </div>
+
+          <div class="space-y-4">
+
+            <div
+              v-for="(step, index) in mission.steps"
+              :key="index"
+              class="flex items-center gap-5 rounded-2xl border p-5 transition"
+              :class="
+                index < completedSteps
+                  ? 'border-[#BBF7D0] bg-[#F0FDF4]'
+                  : index === completedSteps && !allStepsCompleted
+                    ? 'border-[#86EFAC] bg-white shadow-sm'
+                    : 'border-[#E2E8F0] bg-white'
+              "
+            >
+
+              <div
+                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold"
+                :class="
+                  index < completedSteps
+                    ? 'bg-[#22C55E] text-white'
+                    : index === completedSteps && !allStepsCompleted
+                      ? 'bg-[#DCFCE7] text-[#15803D]'
+                      : 'bg-[#F1F5F9] text-[#94A3B8]'
+                "
+              >
+
+                <Check
+                  v-if="index < completedSteps"
+                  class="h-5 w-5"
+                />
+
+                <span v-else>
+                  {{ index + 1 }}
+                </span>
+
+              </div>
+
+              <div class="min-w-0 flex-1">
+
+                <div class="flex items-center gap-2">
+
+                  <h3
+                    class="text-sm font-semibold"
+                    :class="
+                      index < completedSteps
+                        ? 'text-[#15803D]'
+                        : 'text-[#0F172A]'
+                    "
+                  >
+                    {{ step.title || step.name || step }}
+                  </h3>
+
+                  <span
+                    v-if="index < completedSteps"
+                    class="rounded-full bg-[#DCFCE7] px-2 py-0.5 text-[10px] font-semibold text-[#15803D]"
+                  >
+                    Completed
+                  </span>
+
+                </div>
+
+                <p
+                  v-if="step.description"
+                  class="mt-1 text-xs leading-5 text-[#64748B]"
+                >
+                  {{ step.description }}
+                </p>
+
+              </div>
+
+              <div class="shrink-0">
+
+                <RouterLink
+                  v-if="index === completedSteps && !allStepsCompleted"
+                  :to="{
+                    name: 'MissionAction',
+                    params: {
+                      id: mission.id,
+                      step: index + 1
+                    }
+                  }"
+                  class="flex items-center gap-2 rounded-xl bg-[#15803D] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#166534]"
+                >
+                  Lakukan
+                  <ArrowRight class="h-4 w-4" />
+                </RouterLink>
+
+                <div
+                  v-else-if="index < completedSteps"
+                  class="flex items-center gap-1.5 text-xs font-medium text-[#16A34A]"
+                >
+                  <Check class="h-4 w-4" />
+                  Selesai
+                </div>
+
+                <span
+                  v-else
+                  class="text-xs font-medium text-[#94A3B8]"
+                >
+                  Belum tersedia
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div
+            v-if="allStepsCompleted"
+            class="mt-8 flex items-center justify-between rounded-2xl bg-[#F0FDF4] p-5"
+          >
+
+            <div class="flex items-center gap-3">
+
+              <div
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-[#DCFCE7]"
+              >
+                <Trophy class="h-5 w-5 text-[#15803D]" />
+              </div>
+
+              <div>
+
+                <p class="text-sm font-semibold text-[#166534]">
+                  Mission Completed!
+                </p>
+
+                <p class="mt-0.5 text-xs text-[#65A30D]">
+                  You completed all mission steps.
+                </p>
+
+              </div>
+
+            </div>
+
+            <div class="flex items-center gap-2 font-bold text-[#15803D]">
+
+              <Zap class="h-4 w-4" />
+
+              +{{ mission.xp || 50 }} XP
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ArrowLeft, ArrowRight, Check, Trophy, Zap } from 'lucide-vue-next'
+import { computed } from 'vue'
 
-defineProps({
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  Trophy,
+  Zap
+} from 'lucide-vue-next'
+
+const props = defineProps({
   mission: {
     type: Object,
     required: true
   },
+
   getCategoryIcon: {
     type: Function,
     required: true
   },
+
   goBack: {
     type: Function,
     required: true
   }
 })
 
-defineEmits(['continue'])
+const progressKey = computed(() => {
+  return `mission_progress_${props.mission.id}`
+})
+
+const savedProgress = computed(() => {
+  const saved = localStorage.getItem(progressKey.value)
+
+  if (!saved) {
+    return null
+  }
+
+  try {
+    return JSON.parse(saved)
+  } catch {
+    return null
+  }
+})
+
+const completedSteps = computed(() => {
+  if (savedProgress.value) {
+    return Number(
+      savedProgress.value.completedSteps || 0
+    )
+  }
+
+  return Number(
+    props.mission.completedSteps || 0
+  )
+})
+
+const totalSteps = computed(() => {
+  return props.mission.steps?.length || 0
+})
+
+const progress = computed(() => {
+  if (!totalSteps.value) {
+    return 0
+  }
+
+  return Math.min(
+    100,
+    Math.round(
+      (completedSteps.value / totalSteps.value) * 100
+    )
+  )
+})
+
+const allStepsCompleted = computed(() => {
+  return (
+    totalSteps.value > 0 &&
+    completedSteps.value >= totalSteps.value
+  )
+})
 </script>
