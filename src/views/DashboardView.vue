@@ -476,7 +476,12 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
+import { getCurrentUser } from '@/services/auth'
+import {
+  missions,
+  impact
+} from '@/data/mockData'
 
 import {
   Bike,
@@ -494,16 +499,24 @@ import {
 import AppLayout from '@/layouts/AppLayout.vue'
 import MobileHeader from '@/components/navigation/MobileHeader.vue'
 
-import {
-  user,
-  missions,
-  impact
-} from '../data/mockData'
-
 const currentUser = ref({
-  ...user
+  name: 'Eco Explorer',
+  xp: 0,
+  level: 1,
+  streak: 0,
+  completedMissionIds: []
 })
 
+onMounted(() => {
+  const loggedInUser = getCurrentUser()
+
+  if (loggedInUser) {
+    currentUser.value = {
+      ...currentUser.value,
+      ...loggedInUser
+    }
+  }
+})
 const missionList = ref(
   missions.map((mission) => ({
     ...mission

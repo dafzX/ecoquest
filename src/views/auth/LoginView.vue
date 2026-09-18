@@ -386,8 +386,8 @@ const form = ref({
   remember: false
 })
 
-function handleLogin() {
-  const result = login(form.value.email, form.value.password)
+async function handleLogin() {
+  const result = await login(form.value.email, form.value.password)
 
   if (!result.success) {
     alert(result.message)

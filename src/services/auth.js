@@ -1,82 +1,42 @@
-import defaultUsers from '@/data/users.json'
-
-const USERS_KEY = 'ecoquest_users'
+const API_URL = 'http://localhost:3000/api'
 const SESSION_KEY = 'ecoquest_session'
 
-function getRegisteredUsers() {
-  return JSON.parse(localStorage.getItem(USERS_KEY) || '[]')
+export async function login(email, password) {
+  const response = await fetch(`${API_URL}/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
+  })
+
+  const result = await response.json()
+
+  if (!response.ok) {
+    return result
+  }
+
+  localStorage.setItem(SESSION_KEY, JSON.stringify(result.user))
+  return result
 }
 
-function getAllUsers() {
-  return [...defaultUsers, ...getRegisteredUsers()]
-}
+export async function register({ name, email, password }) {
+  const response = await fetch(`${API_URL}/auth/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name, email, password })
+  })
 
-export function login(email, password) {
-  const user = getAllUsers().find(
-    (item) =>
-      item.email.toLowerCase() === email.toLowerCase().trim() &&
-      item.password === password
-  )
+  const result = await response.json()
 
-  if (!user) {
-    return {
-      success: false,
-      message: 'Email atau password salah.'
-    }
+  if (!response.ok) {
+    return result
   }
 
-  const sessionUser = {
-    id: user.id,
-    name: user.name,
-    email: user.email
-  }
-
-  localStorage.setItem(SESSION_KEY, JSON.stringify(sessionUser))
-
-  return {
-    success: true,
-    user: sessionUser
-  }
-}
-
-export function register({ name, email, password }) {
-  const normalizedEmail = email.toLowerCase().trim()
-
-  const emailAlreadyUsed = getAllUsers().some(
-    (item) => item.email.toLowerCase() === normalizedEmail
-  )
-
-  if (emailAlreadyUsed) {
-    return {
-      success: false,
-      message: 'Email sudah terdaftar.'
-    }
-  }
-
-  const newUser = {
-    id: Date.now(),
-    name: name.trim(),
-    email: normalizedEmail,
-    password
-  }
-
-  localStorage.setItem(
-    USERS_KEY,
-    JSON.stringify([...getRegisteredUsers(), newUser])
-  )
-
-  localStorage.setItem(
-    SESSION_KEY,
-    JSON.stringify({
-      id: newUser.id,
-      name: newUser.name,
-      email: newUser.email
-    })
-  )
-
-  return {
-    success: true
-  }
+  localStorage.setItem(SESSION_KEY, JSON.stringify(result.user))
+  return result
 }
 
 export function getCurrentUser() {

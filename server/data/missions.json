@@ -1,0 +1,19 @@
+{
+  "missions": [
+    {
+      "id": 1,
+      "title": "Reduce Plastic",
+      "xp": 75
+    },
+    {
+      "id": 2,
+      "title": "Green Transport",
+      "xp": 50
+    },
+    {
+      "id": 3,
+      "title": "Hemat Energi",
+      "xp": 40
+    }
+  ]
+}

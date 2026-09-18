@@ -447,7 +447,12 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+const isSubmitting = ref(false)
+const isCompleted = ref(false)
+
+import { completeMission } from '@/services/missions'
 import {
   ArrowLeft,
   ArrowRight,
@@ -488,7 +493,27 @@ function goBack() {
   router.back()
 }
 
-function continueMission() {
-  console.log('Continue mission:', mission.id)
+async function continueMission() {
+  if (isSubmitting.value || isCompleted.value) return
+
+  isSubmitting.value = true
+
+  try {
+    const result = await completeMission(mission.id)
+
+    if (!result.success) {
+      alert(result.message)
+      return
+    }
+
+    isCompleted.value = true
+    alert(result.message)
+
+    router.push('/dashboard')
+  } catch (error) {
+    alert('Gagal menyimpan mission. Pastikan backend sedang berjalan.')
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>

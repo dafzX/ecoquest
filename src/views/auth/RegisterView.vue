@@ -527,9 +527,9 @@ const form = ref({
   terms: false
 })
 
-function handleRegister() {
+async function handleRegister() {
   if (form.value.password !== form.value.confirmPassword) {
-    alert('Password tidak sama.')
+    alert('Email atau Password Salah.')
     return
   }
 
@@ -538,7 +538,7 @@ function handleRegister() {
     return
   }
 
-  const result = register({
+  const result = await register({
     name: form.value.name,
     email: form.value.email,
     password: form.value.password
@@ -549,7 +549,7 @@ function handleRegister() {
     return
   }
 
-  alert('Akun berhasil dibuat. Selamat datang di EcoQuest!')
+  alert('Akun berhasil didaftarkan. Selamat datang di EcoQuest!')
   router.push('/dashboard')
 }
 </script>
