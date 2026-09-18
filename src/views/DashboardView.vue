@@ -24,24 +24,50 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { getCurrentUser } from '@/services/auth'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 import DashboardMobile from '@/components/dashboard/DashboardMobile.vue'
 import DashboardDesktop from '@/components/dashboard/DashboardDesktop.vue'
 
 import {
-  user,
   missions,
   impact as mockImpact
-} from '../data/mockData'
+} from '@/data/mockData'
 
-const currentUser = ref({ ...user })
-const impact = ref({ ...mockImpact })
+const currentUser = ref({
+  name: 'Eco Explorer',
+  xp: 0,
+  level: 1,
+  streak: 0,
+  nextLevelXp: 500,
+  completedMissionIds: []
+})
 
-const missionList = ref(
-  missions.map((mission) => ({ ...mission }))
-)
+const impact = ref({
+  ...mockImpact
+})
+
+onMounted(() => {
+  const loggedInUser = getCurrentUser()
+
+  if (loggedInUser) {
+    currentUser.value = {
+      ...currentUser.value,
+      ...loggedInUser
+    }
+  }
+})
+
+const missionList = computed(() => {
+  return missions.map((mission) => ({
+    ...mission,
+    completed: currentUser.value.completedMissionIds.includes(
+      mission.id
+    )
+  }))
+})
 
 const nextQuest = computed(() => {
   return (
@@ -53,19 +79,34 @@ const nextQuest = computed(() => {
 
 const questProgress = computed(() => {
   if (!nextQuest.value) return 0
+
   if (typeof nextQuest.value.progress === 'number') {
-    return Math.min(Math.max(nextQuest.value.progress, 0), 100)
+    return Math.min(
+      Math.max(nextQuest.value.progress, 0),
+      100
+    )
   }
+
   return 67
 })
 
 const levelProgress = computed(() => {
-  const xp = Number(currentUser.value.xp ?? 1240)
-  const nextLevelXp = Number(currentUser.value.nextLevelXp ?? 1600)
-  if (nextLevelXp <= 0) return 0
-  return Math.min(Math.round((xp / nextLevelXp) * 100), 100)
+  const xp = Number(currentUser.value.xp)
+  const nextLevelXp = Number(
+    currentUser.value.nextLevelXp || 500
+  )
+
+  return Math.min(
+    Math.round((xp / nextLevelXp) * 100),
+    100
+  )
 })
 
-const ecoActions = computed(() => currentUser.value.ecoActions ?? 12)
-const lowCarbonDistance = computed(() => currentUser.value.lowCarbonDistance ?? 24)
+const ecoActions = computed(() => {
+  return currentUser.value.completedMissionIds.length
+})
+
+const lowCarbonDistance = computed(() => {
+  return currentUser.value.lowCarbonDistance || 0
+})
 </script>

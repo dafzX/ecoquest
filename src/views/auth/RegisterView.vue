@@ -527,7 +527,7 @@ const form = ref({
   terms: false
 })
 
-function handleRegister() {
+async function handleRegister() {
   if (form.value.password !== form.value.confirmPassword) {
     alert('Password tidak sama.')
     return
@@ -538,7 +538,7 @@ function handleRegister() {
     return
   }
 
-  const result = register({
+  const result = await register({
     name: form.value.name,
     email: form.value.email,
     password: form.value.password

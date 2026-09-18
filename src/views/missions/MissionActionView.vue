@@ -38,6 +38,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { completeMission } from '@/services/missions'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 
@@ -102,7 +103,7 @@ const getCompletedSteps = () => {
   )
 }
 
-const completeStep = () => {
+const completeStep = async () => {
   if (!mission.value || !currentStep.value) {
     return
   }
@@ -117,6 +118,18 @@ const completeStep = () => {
     completedSteps + 1,
     totalSteps.value
   )
+
+  // Hanya kirim XP ke backend ketika semua step selesai.
+  if (nextCompletedSteps === totalSteps.value) {
+    const result = await completeMission(mission.value.id)
+
+    if (!result.success) {
+      alert(result.message)
+      return
+    }
+
+    alert(result.message)
+  }
 
   localStorage.setItem(
     `mission_progress_${mission.value.id}`,
