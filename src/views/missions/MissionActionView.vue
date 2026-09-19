@@ -1,8 +1,9 @@
 <template>
   <AppLayout>
 
-    <MissionActionDesktop
-      v-if="mission"
+    <!-- Panggil versi Mobile -->
+    <MissionActionMobile
+      v-if="mission && currentStep"
       :mission="mission"
       :step="currentStep"
       :step-number="stepNumber"
@@ -11,12 +12,23 @@
       :go-back="goBack"
     />
 
+    <!-- Panggil versi Desktop -->
+    <MissionActionDesktop
+      v-if="mission && currentStep"
+      :mission="mission"
+      :step="currentStep"
+      :step-number="stepNumber"
+      :total-steps="totalSteps"
+      :complete-step="completeStep"
+      :go-back="goBack"
+    />
+
+    <!-- Jika mission atau step tidak ada, tampilkan ini (Mencegah Blank Screen) -->
     <div
       v-if="!mission || !currentStep"
       class="flex min-h-screen items-center justify-center bg-[#F4FBF7]"
     >
       <div class="text-center">
-
         <p class="text-sm font-semibold text-[#17211B]">
           Step tidak ditemukan
         </p>
@@ -28,7 +40,6 @@
         >
           Kembali
         </button>
-
       </div>
     </div>
 
@@ -42,7 +53,9 @@ import { completeMission } from '@/services/missions'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 
+// Import kedua komponen yang barusan dibuat
 import MissionActionDesktop from '@/components/missions/MissionActionDesktop.vue'
+import MissionActionMobile from '@/components/missions/MissionActionMobile.vue'
 
 import { missions } from '@/data/mockData'
 
@@ -67,7 +80,6 @@ const currentStep = computed(() => {
   if (!mission.value) {
     return null
   }
-
   return mission.value.steps?.[stepNumber.value - 1] || null
 })
 
@@ -119,7 +131,6 @@ const completeStep = async () => {
     totalSteps.value
   )
 
-  // Hanya kirim XP ke backend ketika semua step selesai.
   if (nextCompletedSteps === totalSteps.value) {
     const result = await completeMission(mission.value.id)
 
@@ -127,7 +138,6 @@ const completeStep = async () => {
       alert(result.message)
       return
     }
-
     alert(result.message)
   }
 
@@ -146,12 +156,8 @@ const completeStep = async () => {
   })
 }
 
-const goBack = () => {
-  router.push({
-    name: 'MissionDetail',
-    params: {
-      id: mission.value?.id || route.params.id
-    }
-  })
+function goBack() {
+  router.back()
 }
+
 </script>

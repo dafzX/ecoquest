@@ -33,18 +33,18 @@
                   <h2
                     class="truncate text-[20px] font-bold leading-tight text-[#17211B]"
                   >
-                    {{ currentUser.name }}
+                    {{ currentUser.name || 'Pengguna' }}
                   </h2>
 
                   <span
                     class="shrink-0 rounded-full bg-[#E8F8ED] px-3 py-1 text-[9px] font-semibold text-[#15803D]"
                   >
-                    Level 5
+                    Level {{ currentUser.level || 1 }}
                   </span>
                 </div>
 
                 <p class="mt-1.5 truncate text-xs text-[#718078]">
-                  {{ currentUser.email }}
+                  {{ currentUser.email || '-' }}
                 </p>
               </div>
 
@@ -63,18 +63,21 @@
 
               <div class="mb-2 flex items-center justify-between">
                 <span class="text-[10px] font-medium text-[#98A39C]">
-                  Progress ke Level 6
+                  Progress ke Level {{ Number(currentUser.level || 1) + 1 }}
                 </span>
 
                 <span class="text-[10px] font-semibold text-[#15803D]">
-                  1,240 / 1,600 XP
+                  {{ Number(currentUser.xp || 0).toLocaleString() }}
+                  /
+                  {{ Number(currentUser.nextLevelXp || 500).toLocaleString() }}
+                  XP
                 </span>
               </div>
 
               <div class="h-2 overflow-hidden rounded-full bg-[#E5EFE8]">
                 <div
-                  class="h-full rounded-full bg-[#22C55E]"
-                  style="width: 77.5%"
+                  class="h-full rounded-full bg-[#22C55E] transition-all"
+                  :style="{ width: `${levelProgress}%` }"
                 ></div>
               </div>
 
@@ -113,7 +116,7 @@
             </p>
 
             <p class="mt-1 text-[26px] font-bold leading-tight text-[#17211B]">
-              7 hari
+              {{ Number(currentUser.streak || 0) }} hari
             </p>
 
             <p class="mt-1.5 text-[10px] leading-4 text-[#98A39C]">
@@ -137,7 +140,7 @@
             <span
               class="rounded-full bg-[#F0FAF3] px-2.5 py-1 text-[9px] font-semibold text-[#22C55E]"
             >
-              +4 bulan ini
+              Eco Action
             </span>
 
           </div>
@@ -148,7 +151,7 @@
             </p>
 
             <p class="mt-1 text-[26px] font-bold leading-tight text-[#17211B]">
-              12
+              {{ ecoActions }}
             </p>
 
             <p class="mt-1.5 text-[10px] leading-4 text-[#98A39C]">
@@ -183,7 +186,7 @@
             </p>
 
             <p class="mt-1 text-[26px] font-bold leading-tight text-[#17211B]">
-              24 km
+              {{ lowCarbonDistance }} km
             </p>
 
             <p class="mt-1.5 text-[10px] leading-4 text-[#98A39C]">
@@ -307,8 +310,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-
 import DesktopPageHeader from '@/components/ui/DesktopPageHeader.vue'
 
 import {
@@ -323,29 +324,30 @@ import {
   TrendingUp
 } from 'lucide-vue-next'
 
-import { getCurrentUser } from '@/services/auth'
+defineProps({
+  currentUser: {
+    type: Object,
+    required: true
+  },
 
-const currentUser = computed(() => {
-  return getCurrentUser() || {
-    id: null,
-    name: 'Pengguna',
-    email: ''
+  ecoActions: {
+    type: Number,
+    default: 0
+  },
+
+  lowCarbonDistance: {
+    type: Number,
+    default: 0
+  },
+
+  levelProgress: {
+    type: Number,
+    default: 0
+  },
+
+  avatar: {
+    type: String,
+    default: 'EQ'
   }
-})
-
-const avatar = computed(() => {
-  const name = currentUser.value.name
-
-  if (!name) {
-    return 'EQ'
-  }
-
-  const words = name.trim().split(/\s+/)
-
-  if (words.length >= 2) {
-    return `${words[0][0]}${words[1][0]}`.toUpperCase()
-  }
-
-  return words[0].slice(0, 2).toUpperCase()
 })
 </script>

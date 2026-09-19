@@ -44,10 +44,11 @@
               </p>
             </div>
 
+            <!-- Level -->
             <span
               class="shrink-0 rounded-full bg-[#E8F8ED] px-2 py-1 text-[7px] font-semibold text-[#15803D]"
             >
-              Level 5
+              Level {{ currentLevel }}
             </span>
           </div>
 
@@ -55,11 +56,11 @@
           <div class="mt-3">
             <div class="mb-1 flex items-center justify-between">
               <span class="text-[7px] text-[#98A39C]">
-                Progress ke Level 6
+                Progress ke Level {{ nextLevel }}
               </span>
 
               <span class="text-[7px] font-semibold text-[#15803D]">
-                1,240 / 1,600 XP
+                {{ currentXp }} / {{ nextLevelXp }} XP
               </span>
             </div>
 
@@ -67,8 +68,8 @@
               class="h-[5px] overflow-hidden rounded-full bg-[#E5EFE8]"
             >
               <div
-                class="h-full rounded-full bg-[#22C55E]"
-                style="width: 77.5%"
+                class="h-full rounded-full bg-[#22C55E] transition-all duration-500"
+                :style="{ width: `${xpProgress}%` }"
               ></div>
             </div>
           </div>
@@ -100,7 +101,7 @@
         </div>
 
         <p class="mt-2 text-[13px] font-bold text-[#17211B]">
-          7
+          {{ currentStreak }}
         </p>
 
         <p class="text-[7px] text-[#718078]">
@@ -119,7 +120,7 @@
         </div>
 
         <p class="mt-2 text-[13px] font-bold text-[#17211B]">
-          12
+          {{ totalEcoActions }}
         </p>
 
         <p class="text-[7px] text-[#718078]">
@@ -138,7 +139,7 @@
         </div>
 
         <p class="mt-2 text-[13px] font-bold text-[#17211B]">
-          24
+          {{ lowCarbonDistance }}
         </p>
 
         <p class="text-[7px] text-[#718078]">
@@ -309,8 +310,109 @@ const currentUser = computed(() => {
   return getCurrentUser() || {
     id: null,
     name: 'Pengguna',
-    email: ''
+    email: '',
+    xp: 0,
+    level: 1,
+    streak: 0,
+    ecoActions: 0,
+    lowCarbonDistance: 0
   }
+})
+
+const currentLevel = computed(() => {
+  const level = Number(currentUser.value.level)
+
+  return Number.isFinite(level) && level > 0
+    ? level
+    : 1
+})
+
+const currentXp = computed(() => {
+  const xp = Number(currentUser.value.xp)
+
+  return Number.isFinite(xp) && xp >= 0
+    ? xp
+    : 0
+})
+
+const levelRequirements = {
+  1: 500,
+  2: 800,
+  3: 1100,
+  4: 1400,
+  5: 1600,
+  6: 2000,
+  7: 2500,
+  8: 3000,
+  9: 3500,
+  10: 4000
+}
+
+const nextLevel = computed(() => {
+  return currentLevel.value + 1
+})
+
+const nextLevelXp = computed(() => {
+  return levelRequirements[currentLevel.value] || (currentLevel.value * 500)
+})
+
+const previousLevelXp = computed(() => {
+  if (currentLevel.value <= 1) {
+    return 0
+  }
+
+  return levelRequirements[currentLevel.value - 1] || ((currentLevel.value - 1) * 500)
+})
+
+const xpProgress = computed(() => {
+  const requiredXp = nextLevelXp.value
+  const baseXp = previousLevelXp.value
+  const progressXp = currentXp.value - baseXp
+  const levelXp = requiredXp - baseXp
+
+  if (levelXp <= 0) {
+    return 0
+  }
+
+  return Math.min(
+    100,
+    Math.max(
+      0,
+      Math.round((progressXp / levelXp) * 100)
+    )
+  )
+})
+
+const currentStreak = computed(() => {
+  const streak = Number(currentUser.value.streak)
+
+  return Number.isFinite(streak) && streak >= 0
+    ? streak
+    : 0
+})
+
+const totalEcoActions = computed(() => {
+  const actions = Number(
+    currentUser.value.ecoActions ??
+    currentUser.value.totalEcoActions ??
+    currentUser.value.eco_actions
+  )
+
+  return Number.isFinite(actions) && actions >= 0
+    ? actions
+    : 0
+})
+
+const lowCarbonDistance = computed(() => {
+  const distance = Number(
+    currentUser.value.lowCarbonDistance ??
+    currentUser.value.low_carbon_distance ??
+    currentUser.value.greenDistance
+  )
+
+  return Number.isFinite(distance) && distance >= 0
+    ? `${distance} km`
+    : '0 km'
 })
 
 const avatar = computed(() => {

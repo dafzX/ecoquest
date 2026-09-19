@@ -5,9 +5,9 @@
       <button
         type="button"
         @click="goBack"
-        class="flex h-9 w-9 items-center justify-center rounded-xl border border-[#DCEBE0] bg-white text-[#405047]"
+        class="absolute left-0 flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#475569] shadow-sm transition active:scale-95"
       >
-        <ArrowLeft class="h-4 w-4" />
+        <ArrowLeft class="h-5 w-5" />
       </button>
 
       <div class="min-w-0">

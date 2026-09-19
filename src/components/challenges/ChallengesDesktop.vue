@@ -96,16 +96,16 @@
 
             <button
               @click="toggleJoin(challenge)"
-              class="rounded-lg px-6 py-2 text-sm font-semibold transition"
+              class="rounded-lg px-6 py-2 text-sm font-semibold transition active:scale-[0.98]"
               :class="
                 challenge.isCompleted
-                  ? 'bg-[#E5EFE8] text-[#98A39C] cursor-not-allowed'
+                  ? 'bg-[#EAF8EE] text-[#15803D] hover:bg-[#DCEBE0]'
                   : challenge.joined
                     ? 'bg-[#E8F8ED] text-[#15803D] hover:bg-[#DCFCE7]'
                     : 'bg-[#22C55E] text-white hover:bg-[#15803D]'
               "
             >
-              {{ challenge.isCompleted ? 'Selesai' : challenge.joined ? 'Mulai' : 'Ikuti' }}
+              {{ challenge.isCompleted ? 'Lihat Detail' : challenge.joined ? 'Mulai' : 'Ikuti' }}
             </button>
           </div>
         </article>

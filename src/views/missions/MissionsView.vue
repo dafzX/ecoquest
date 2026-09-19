@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import {
   Leaf,
   Recycle,
@@ -43,16 +43,42 @@ import MissionsDesktop from '@/components/missions/MissionsDesktop.vue'
 
 import { missions } from '@/data/mockData.js'
 
-const missionList = ref(
-  missions.map((mission) => ({
-    ...mission
-  }))
-)
-
+const missionList = ref([])
 const activeTab = ref('all')
 const searchQuery = ref('')
 
-/* Tabs */
+const loadMissionsProgress = () => {
+  missionList.value = missions.map((mission) => {
+    const saved = localStorage.getItem(`mission_progress_${mission.id}`)
+    let currentCompletedSteps = mission.completedSteps || 0
+
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved)
+        currentCompletedSteps = Number(parsed.completedSteps || 0)
+      } catch {
+      }
+    }
+
+    const totalSteps = mission.steps?.length || mission.totalSteps || 0
+    const calculatedProgress = totalSteps > 0 
+      ? Math.round((currentCompletedSteps / totalSteps) * 100) 
+      : 0
+    const isCompleted = totalSteps > 0 && currentCompletedSteps >= totalSteps
+
+    return {
+      ...mission,
+      completedSteps: currentCompletedSteps,
+      progress: calculatedProgress,
+      completed: isCompleted
+    }
+  })
+}
+
+onMounted(() => {
+  loadMissionsProgress()
+})
+
 const tabs = computed(() => [
   {
     label: 'All',
@@ -86,7 +112,6 @@ const tabs = computed(() => [
   }
 ])
 
-/* Filter */
 const filteredMissions = computed(() => {
   let result = [...missionList.value]
 
@@ -138,7 +163,6 @@ const filteredMissions = computed(() => {
   return result
 })
 
-/* Section title */
 const sectionTitle = computed(() => {
   if (activeTab.value === 'recommended') {
     return 'Quest Rekomendasi'
@@ -155,7 +179,6 @@ const sectionTitle = computed(() => {
   return 'Semua Quest'
 })
 
-/* Mission link */
 const getMissionLink = (mission) => {
   if (mission.link) {
     return mission.link
@@ -168,7 +191,6 @@ const getMissionLink = (mission) => {
   return '/missions'
 }
 
-/* Category icon */
 const getCategoryIcon = (category) => {
   const value = category?.toLowerCase() || ''
 
@@ -212,7 +234,6 @@ const getCategoryIcon = (category) => {
   return Leaf
 }
 
-/* Category style */
 const getCategoryStyle = (category) => {
   const value = category?.toLowerCase() || ''
 

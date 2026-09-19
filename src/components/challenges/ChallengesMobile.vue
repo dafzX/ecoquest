@@ -6,9 +6,9 @@
       <button
         type="button"
         @click="goBack"
-        class="absolute left-0 flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white active:scale-95"
+        class="absolute left-0 flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#475569] shadow-sm transition active:scale-95"
       >
-        <ArrowLeft class="h-[18px] w-[18px]" />
+        <ArrowLeft class="h-5 w-5" />
       </button>
 
       <span class="text-[13px] font-semibold text-[#17211B]">

@@ -224,12 +224,7 @@ function getCategoryIcon(category) {
 }
 
 function goBack() {
-  router.push({
-    name: 'ChallengeDetail',
-    params: {
-      id: challenge.value.id
-    }
-  })
+  router.back()
 }
 
 function completeAction() {

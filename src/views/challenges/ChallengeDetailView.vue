@@ -215,8 +215,9 @@ function getCategoryIcon(category) {
   return Globe2
 }
 
+// DIPERBAIKI: Menggunakan router.back()
 function goBack() {
-  router.push('/challenges')
+  router.back()
 }
 
 function joinChallenge() {

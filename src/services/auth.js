@@ -1,8 +1,18 @@
 const API_URL = 'http://localhost:3000/api'
 const SESSION_KEY = 'ecoquest_session'
 
-export async function login(email, password) {
+async function parseResponse(response) {
+  try {
+    return await response.json()
+  } catch {
+    return {
+      success: false,
+      message: 'Response dari server tidak valid.'
+    }
+  }
+}
 
+export async function login(email, password) {
   try {
     const response = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
@@ -15,16 +25,18 @@ export async function login(email, password) {
       })
     })
 
-    const result = await response.json()
+    const result = await parseResponse(response)
 
     if (!response.ok) {
       return result
     }
 
-    localStorage.setItem(
-      SESSION_KEY,
-      JSON.stringify(result.user)
-    )
+    if (result.user) {
+      localStorage.setItem(
+        SESSION_KEY,
+        JSON.stringify(result.user)
+      )
+    }
 
     return result
   } catch (error) {
@@ -49,16 +61,18 @@ export async function register({ name, email, password }) {
       })
     })
 
-    const result = await response.json()
+    const result = await parseResponse(response)
 
     if (!response.ok) {
       return result
     }
 
-    localStorage.setItem(
-      SESSION_KEY,
-      JSON.stringify(result.user)
-    )
+    if (result.user) {
+      localStorage.setItem(
+        SESSION_KEY,
+        JSON.stringify(result.user)
+      )
+    }
 
     return result
   } catch (error) {
@@ -67,13 +81,47 @@ export async function register({ name, email, password }) {
       message: 'Backend tidak terhubung. Jalankan server terlebih dahulu.'
     }
   }
+}
 
+export async function getProfile() {
+  try {
+    const response = await fetch(`${API_URL}/auth/profile`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const result = await parseResponse(response)
+
+    if (!response.ok) {
+      return result
+    }
+
+    if (result.user) {
+      localStorage.setItem(
+        SESSION_KEY,
+        JSON.stringify(result.user)
+      )
+    }
+
+    return result
+  } catch (error) {
+    return {
+      success: false,
+      message: 'Backend tidak terhubung.'
+    }
+  }
 }
 
 export function getCurrentUser() {
-  return JSON.parse(
-    localStorage.getItem(SESSION_KEY) || 'null'
-  )
+  try {
+    return JSON.parse(
+      localStorage.getItem(SESSION_KEY) || 'null'
+    )
+  } catch {
+    return null
+  }
 }
 
 export function isLoggedIn() {

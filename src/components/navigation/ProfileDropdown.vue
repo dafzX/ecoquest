@@ -1,10 +1,14 @@
 <template>
   <div class="relative">
     <!-- Profile Button -->
-    <slot name="trigger" :toggle="() => $emit('toggle')" :user="currentUser">
+    <slot
+      name="trigger"
+      :toggle="() => emit('toggle')"
+      :user="currentUser"
+    >
       <button
         type="button"
-        @click="$emit('toggle')"
+        @click="emit('toggle')"
         class="flex h-7 w-7 items-center justify-center rounded-full bg-[#DCFCE7] text-[10px] font-bold text-[#15803D] transition hover:bg-[#BBF7D0]"
       >
         {{ currentUser.avatar }}
@@ -39,7 +43,7 @@
               </p>
 
               <p class="truncate text-xs text-[#7A867E]">
-                @{{ currentUser.username }}
+                {{ currentUser.email }}
               </p>
             </div>
           </div>
@@ -67,7 +71,7 @@
         <div class="p-2">
           <RouterLink
             to="/profile"
-            @click="$emit('close')"
+            @click="emit('close')"
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
             <UserCircle class="h-[18px] w-[18px]" />
@@ -76,7 +80,7 @@
 
           <RouterLink
             to="/profile/achievements"
-            @click="$emit('close')"
+            @click="emit('close')"
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
             <Trophy class="h-[18px] w-[18px]" />
@@ -85,7 +89,7 @@
 
           <RouterLink
             to="/profile/settings"
-            @click="$emit('close')"
+            @click="emit('close')"
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
             <Settings class="h-[18px] w-[18px]" />
@@ -94,7 +98,7 @@
 
           <RouterLink
             to="/profile/help-support"
-            @click="$emit('close')"
+            @click="emit('close')"
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
             <CircleHelp class="h-[18px] w-[18px]" />
@@ -119,7 +123,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 import {
@@ -130,8 +134,10 @@ import {
   UserCircle
 } from 'lucide-vue-next'
 
-import { user } from '../../data/mockData.js'
-import { logout as logoutUser } from '@/services/auth'
+import {
+  getCurrentUser,
+  logout as logoutUser
+} from '@/services/auth'
 
 const props = defineProps({
   isOpen: {
@@ -144,14 +150,71 @@ const emit = defineEmits(['toggle', 'close'])
 
 const router = useRouter()
 
-const currentUser = computed(() => ({
-  ...user,
-  avatar: user?.avatar || 'DA'
-}))
+const userData = ref(null)
+
+const loadCurrentUser = () => {
+  userData.value = getCurrentUser()
+}
+
+const currentUser = computed(() => {
+  const user = userData.value
+
+  if (!user) {
+    return {
+      name: 'User',
+      username: 'user',
+      avatar: 'U',
+      level: 1,
+      xp: 0
+    }
+  }
+
+  const name = user.name || 'User'
+
+  const username =
+    user.username ||
+    user.email?.split('@')[0] ||
+    'user'
+
+  const avatar =
+    user.avatar ||
+    name
+      .split(' ')
+      .map((word) => word[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase()
+
+  return {
+    ...user,
+    name,
+    username,
+    avatar,
+    level: user.level ?? 1,
+    xp: user.xp ?? 0
+  }
+})
+
+watch(
+  () => props.isOpen,
+  (isOpen) => {
+    if (isOpen) {
+      loadCurrentUser()
+    }
+  }
+)
+
+onMounted(() => {
+  loadCurrentUser()
+})
 
 const logout = () => {
   logoutUser()
+
+  userData.value = null
+
   emit('close')
+
   router.push('/login')
 }
 </script>

@@ -8,10 +8,9 @@
           <button
             type="button"
             @click="goBack"
-            class="flex items-center gap-2 text-sm font-medium text-[#64748B] transition hover:text-[#15803D]"
+            class="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#475569] shadow-sm"
           >
-            <ArrowLeft class="h-4 w-4" />
-            Back to Missions
+            <ArrowLeft class="h-5 w-5" />
           </button>
 
           <div

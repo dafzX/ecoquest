@@ -15,10 +15,14 @@
       "name": "Dafa",
       "email": "dafa@ecoquest.com",
       "password": "dafa123",
-      "xp": 0,
+      "xp": 125,
       "level": 1,
-      "streak": 0,
-      "completedMissionIds": []
+      "streak": 1,
+      "completedMissionIds": [
+        1,
+        2
+      ],
+      "lastCompletedDate": "2026-09-19"
     },
     {
       "id": 3,
