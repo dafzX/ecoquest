@@ -362,39 +362,42 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { login } from '@/services/auth'
-import {
-  Leaf,
-  Mail,
-  Lock,
-  Eye,
-  EyeOff,
-  Zap,
-  Flame,
-  Trophy
-} from 'lucide-vue-next'
+  import { ref } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import { login } from '@/services/auth'
+  import {
+    Leaf,
+    Mail,
+    Lock,
+    Eye,
+    EyeOff,
+    Zap,
+    Flame,
+    Trophy
+  } from 'lucide-vue-next'
 
-const router = useRouter()
-const route = useRoute()
-const showPassword = ref(false)
+  const router = useRouter()
+  const route = useRoute()
+  const showPassword = ref(false)
 
-const form = ref({
-  email: '',
-  password: '',
-  remember: false
-})
+  const form = ref({
+    email: '',
+    password: '',
+    remember: false
+  })
 
-async function handleLogin() {
-  const result = await login(form.value.email, form.value.password)
+  async function handleLogin() {
+    const result = await login(
+      form.value.email,
+      form.value.password
+    )
 
-  if (!result.success) {
-    alert(result.message)
-    return
+    if (!result.success) {
+      alert(result.message)
+      return
+    }
+
+    const redirectTo = route.query.redirect || '/dashboard'
+    router.push(redirectTo)
   }
-
-  const redirectTo = route.query.redirect || '/dashboard'
-  router.push(redirectTo)
-}
 </script>

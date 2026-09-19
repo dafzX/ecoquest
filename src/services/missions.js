@@ -13,27 +13,38 @@ export async function completeMission(missionId) {
     }
   }
 
-  const response = await fetch(
-    `${API_URL}/missions/${missionId}/complete`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        userId: currentUser.id
-      })
+
+  try {
+    const response = await fetch(
+      `${API_URL}/missions/${missionId}/complete`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId: currentUser.id
+        })
+      }
+    )
+
+    const result = await response.json()
+
+    if (!response.ok) {
+      return result
     }
-  )
 
-  const result = await response.json()
+    localStorage.setItem(
+      SESSION_KEY,
+      JSON.stringify(result.user)
+    )
 
-  if (!response.ok) {
     return result
+  } catch (error) {
+    return {
+      success: false,
+      message: 'Backend tidak terhubung. Jalankan server terlebih dahulu.'
+    }
   }
 
-  // Update session agar XP/level/streak terbaru tersedia di frontend.
-  localStorage.setItem(SESSION_KEY, JSON.stringify(result.user))
-
-  return result
 }

@@ -12,7 +12,8 @@
       <Topbar />
 
       <main
-        class="min-h-[calc(100vh-76px)] px-4 py-6 pb-24 md:px-8 md:py-8 md:pb-8"
+        class="min-h-[calc(100vh-76px)] px-4 py-6 md:px-8 md:py-8"
+        :class="route.meta.hideBottomNav ? 'pb-6 md:pb-8' : 'pb-24 md:pb-8'"
       >
         <slot />
       </main>
@@ -20,7 +21,9 @@
     </div>
 
     <!-- Mobile -->
-    <MobileBottomNav v-if="!route.meta.hideBottomNav" />
+    <MobileBottomNav
+      v-if="!route.meta.hideBottomNav"
+    />
 
   </div>
 </template>

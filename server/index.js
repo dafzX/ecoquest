@@ -9,15 +9,23 @@ const PORT = 3000
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+
 const usersFile = path.join(__dirname, 'data', 'users.json')
 const missionsFile = path.join(__dirname, 'data', 'missions.json')
 
 app.use(cors())
 app.use(express.json())
 
-async function getData() {
+async function getUsersData() {
   const file = await fs.readFile(usersFile, 'utf8')
   return JSON.parse(file)
+}
+
+async function saveUsersData(data) {
+  await fs.writeFile(
+    usersFile,
+    JSON.stringify(data, null, 2)
+  )
 }
 
 async function getMissionsData() {
@@ -25,13 +33,6 @@ async function getMissionsData() {
   return JSON.parse(file)
 }
 
-async function saveData(data) {
-  await fs.writeFile(usersFile, JSON.stringify(data, null, 2))
-}
-
-app.get('/api/health', (req, res) => {
-  res.json({ message: 'EcoQuest API berjalan' })
-})
 
 function publicUser(user) {
   return {
@@ -45,10 +46,16 @@ function publicUser(user) {
   }
 }
 
+app.get('/api/health', (req, res) => {
+  res.json({
+    success: true,
+    message: 'EcoQuest API berjalan'
+  })
+})
+
 app.post('/api/auth/login', async (req, res) => {
   const { email, password } = req.body
-
-  const data = await getData()
+  const data = await getUsersData()
 
   const user = data.users.find(
     (item) =>
@@ -73,7 +80,7 @@ app.post('/api/auth/register', async (req, res) => {
   const { name, email, password } = req.body
   const normalizedEmail = email.toLowerCase().trim()
 
-  const data = await getData()
+  const data = await getUsersData()
 
   const emailUsed = data.users.some(
     (item) => item.email.toLowerCase() === normalizedEmail
@@ -98,9 +105,9 @@ app.post('/api/auth/register', async (req, res) => {
   }
 
   data.users.push(newUser)
-  await saveData(data)
+  await saveUsersData(data)
 
-  res.json({
+  res.status(201).json({
     success: true,
     user: publicUser(newUser)
   })
@@ -110,11 +117,11 @@ app.post('/api/missions/:missionId/complete', async (req, res) => {
   const userId = Number(req.body.userId)
   const missionId = Number(req.params.missionId)
 
-  const data = await getData()
-  const missionData = await getMissionsData()
+  const usersData = await getUsersData()
+  const missionsData = await getMissionsData()
 
-  const user = data.users.find((item) => item.id === userId)
-  const mission = missionData.missions.find(
+  const user = usersData.users.find((item) => item.id === userId)
+  const mission = missionsData.missions.find(
     (item) => item.id === missionId
   )
 
@@ -158,7 +165,7 @@ app.post('/api/missions/:missionId/complete', async (req, res) => {
   user.level = Math.floor(user.xp / 500) + 1
   user.completedMissionIds.push(missionId)
 
-  await saveData(data)
+  await saveUsersData(usersData)
 
   res.json({
     success: true,

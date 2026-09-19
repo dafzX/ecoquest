@@ -1,21 +1,23 @@
 <template>
   <div class="relative">
     <!-- Notification Button -->
-    <button
-      type="button"
-      @click="$emit('toggle')"
-      class="relative flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white"
-    >
-      <Bell class="h-[17px] w-[17px]" />
-
-      <!-- Badge -->
-      <span
-        v-if="unreadCount > 0"
-        class="absolute right-0 top-0 flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-[#EF4444] px-1 text-[8px] font-bold leading-none text-white ring-2 ring-[#F4FBF7]"
+    <slot name="trigger" :toggle="() => $emit('toggle')" :unread-count="unreadCount">
+      <button
+        type="button"
+        @click="$emit('toggle')"
+        class="relative flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white"
       >
-        {{ unreadCount > 9 ? '9+' : unreadCount }}
-      </span>
-    </button>
+        <Bell class="h-[17px] w-[17px]" />
+
+        <!-- Badge -->
+        <span
+          v-if="unreadCount > 0"
+          class="absolute right-0 top-0 flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-[#EF4444] px-1 text-[8px] font-bold leading-none text-white ring-2 ring-[#F4FBF7]"
+        >
+          {{ unreadCount > 9 ? '9+' : unreadCount }}
+        </span>
+      </button>
+    </slot>
 
     <!-- Dropdown -->
     <Transition

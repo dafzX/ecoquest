@@ -721,6 +721,7 @@ import {
 } from 'lucide-vue-next'
 
 import AppLayout from '@/layouts/AppLayout.vue'
+import { logout as logoutUser } from '@/services/auth'
 
 const router = useRouter()
 

@@ -1,13 +1,15 @@
 <template>
   <div class="relative">
     <!-- Profile Button -->
-    <button
-      type="button"
-      @click="$emit('toggle')"
-      class="flex h-7 w-7 items-center justify-center rounded-full bg-[#DCFCE7] text-[10px] font-bold text-[#15803D] transition hover:bg-[#BBF7D0]"
-    >
-      {{ currentUser.avatar }}
-    </button>
+    <slot name="trigger" :toggle="() => $emit('toggle')" :user="currentUser">
+      <button
+        type="button"
+        @click="$emit('toggle')"
+        class="flex h-7 w-7 items-center justify-center rounded-full bg-[#DCFCE7] text-[10px] font-bold text-[#15803D] transition hover:bg-[#BBF7D0]"
+      >
+        {{ currentUser.avatar }}
+      </button>
+    </slot>
 
     <!-- Dropdown -->
     <Transition
@@ -129,6 +131,7 @@ import {
 } from 'lucide-vue-next'
 
 import { user } from '../../data/mockData.js'
+import { logout as logoutUser } from '@/services/auth'
 
 const props = defineProps({
   isOpen: {
@@ -147,6 +150,7 @@ const currentUser = computed(() => ({
 }))
 
 const logout = () => {
+  logoutUser()
   emit('close')
   router.push('/login')
 }

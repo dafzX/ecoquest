@@ -17,7 +17,19 @@ export const missions = [
     category: 'Daur Ulang',
     xp: 50,
     icon: 'recycle',
-    completed: false
+    completed: false,
+    currentStep: 2,
+    totalSteps: 3,
+    progress: 67,
+    completedDays: 2,
+    totalDays: 3,
+    daysLeft: 1,
+    completedSteps: 1,
+    steps: [
+      'Siapkan botol plastik bekas',
+      'Bersihkan botol',
+      'Buang ke tempat daur ulang'
+    ]
   },
 
   {
@@ -27,7 +39,18 @@ export const missions = [
     category: 'Transportasi',
     xp: 75,
     icon: 'bike',
-    completed: false
+    completed: false,
+    currentStep: 1,
+    totalSteps: 2,
+    progress: 50,
+    completedDays: 1,
+    totalDays: 2,
+    daysLeft: 1,
+    completedSteps: 1,
+    steps: [
+      'Gunakan sepeda atau jalan kaki',
+      'Catat jarak tempuhmu'
+    ]
   },
 
   {
@@ -37,7 +60,19 @@ export const missions = [
     category: 'Energi',
     xp: 40,
     icon: 'energy',
-    completed: true
+    completed: true,
+    currentStep: 3,
+    totalSteps: 3,
+    progress: 100,
+    completedDays: 3,
+    totalDays: 3,
+    daysLeft: 0,
+    completedSteps: 3,
+    steps: [
+      'Cek lampu yang tidak digunakan',
+      'Cabut colokan elektronik',
+      'Pertahankan selama 3 hari'
+    ]
   }
 ]
 

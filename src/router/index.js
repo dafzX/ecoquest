@@ -12,7 +12,7 @@ const router = createRouter({
     // Auth
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/dashboard'
     },
 
     {
@@ -68,6 +68,17 @@ const router = createRouter({
       }
     },
 
+    {
+      path: '/missions/:id/step/:step',
+      name: 'MissionAction',
+      component: () => import('@/views/missions/MissionActionView.vue'),
+      meta: {
+        title: 'Mission Action - EcoQuest',
+        hideBottomNav: true,
+        requireAuth: true
+      }
+    },
+
     // Challenges
     {
       path: '/challenges',
@@ -75,6 +86,27 @@ const router = createRouter({
       component: () => import('@/views/challenges/ChallengesView.vue'),
       meta: {
         title: 'Challenges - EcoQuest',
+        requireAuth: true
+      }
+    },
+
+    {
+      path: '/challenges/:id',
+      name: 'ChallengeDetail',
+      component: () => import('@/views/challenges/ChallengeDetailView.vue'),
+      meta: {
+        title: 'Challenge Detail - EcoQuest',
+        hideBottomNav: true,
+        requireAuth: true
+      }
+    },
+
+    {
+      path: '/challenges/:id/action',
+      name: 'ChallengeAction',
+      component: () => import('@/views/challenges/ChallengesActionView.vue'),
+      meta: {
+        title: 'Challenge Action - EcoQuest',
         hideBottomNav: true,
         requireAuth: true
       }
@@ -135,7 +167,6 @@ const router = createRouter({
       }
     },
 
-    // Edit Profile
     {
       path: '/profile/edit',
       name: 'EditProfile',
@@ -149,9 +180,9 @@ const router = createRouter({
 
     // Achievements
     {
-      path: '/profile/achievements',
+      path: '/achievements',
       name: 'Achievements',
-      component: () => import('@/views/profile/AchievementsView.vue'),
+      component: () => import('@/views/achievements/AchievementsView.vue'),
       meta: {
         title: 'Achievements - EcoQuest',
         hideBottomNav: true,
@@ -209,11 +240,9 @@ const router = createRouter({
   ]
 })
 
-// Navigation Guard
 router.beforeEach((to) => {
   document.title = to.meta.title || 'EcoQuest'
 
-  // Halaman yang membutuhkan login
   if (to.meta.requireAuth && !isLoggedIn()) {
     return {
       name: 'Login',
@@ -223,7 +252,6 @@ router.beforeEach((to) => {
     }
   }
 
-  // Jika sudah login, tidak boleh kembali ke Login/Register
   if (
     (to.name === 'Login' || to.name === 'Register') &&
     isLoggedIn()
