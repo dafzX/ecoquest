@@ -66,7 +66,7 @@
             @click="$emit('complete')"
             class="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#22C55E] text-sm font-semibold text-white transition hover:bg-[#15803D]"
           >
-            Tandai Selesai
+            {{ currentStepNumber < totalSteps ? 'Selesaikan Langkah Ini' : 'Selesaikan Challenge' }}
             <Check class="h-4 w-4" />
           </button>
         </section>
@@ -75,9 +75,9 @@
 
           <section class="rounded-2xl border border-[#E5EEE8] bg-white p-5">
             <div class="flex items-center justify-between">
-              <div>
-                <p class="text-xs text-[#98A39C]">
-                  Progress Challenge
+              <div class="flex items-baseline gap-1">
+                <p class="text-sm font-medium text-[#718078]">
+                  Step
                 </p>
 
                 <p class="mt-1 text-lg font-bold text-[#17211B]">
@@ -85,13 +85,15 @@
                 </p>
               </div>
 
-              <div class="flex h-11 w-11 items-center justify-center rounded-full bg-[#EAF8EE]">
+              <div class="flex items-center gap-1.5 rounded-full bg-[#EAF8EE] px-3 py-1">
+                <Check class="h-3 w-3 text-[#15803D]" />
                 <span class="text-xs font-bold text-[#15803D]">
                   {{ progress }}%
                 </span>
               </div>
             </div>
 
+            <!-- Progress Bar -->
             <div class="mt-5 h-2 overflow-hidden rounded-full bg-[#E5EEE8]">
               <div
                 class="h-full rounded-full bg-[#22C55E] transition-all duration-500"
@@ -142,23 +144,30 @@ const props = defineProps({
   goBack: {
     type: Function,
     required: true
+  },
+
+  completedSteps: {
+    type: Number,
+    required: true
+  },
+
+  totalSteps: {
+    type: Number,
+    required: true
+  },
+
+  progress: {
+    type: Number,
+    required: true
   }
 })
 
 defineEmits(['complete'])
 
-const completedSteps = computed(() => {
-  return props.challenge.completedSteps || 0
-})
-
-const totalSteps = computed(() => {
-  return props.challenge.steps?.length || 0
-})
-
 const currentStepNumber = computed(() => {
   return Math.min(
-    completedSteps.value + 1,
-    totalSteps.value
+    props.completedSteps + 1,
+    props.totalSteps
   )
 })
 
@@ -171,14 +180,6 @@ const currentStep = computed(() => {
       description:
         'Semua aksi dalam challenge sudah selesai.'
     }
-  )
-})
-
-const progress = computed(() => {
-  if (!totalSteps.value) return 0
-
-  return Math.round(
-    (completedSteps.value / totalSteps.value) * 100
   )
 })
 </script>

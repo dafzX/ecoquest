@@ -83,19 +83,31 @@
     <!-- Action -->
     <button
       type="button"
-      @click="$emit('join')"
-      class="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#22C55E] text-[12px] font-semibold text-white shadow-[0_8px_20px_rgba(34,197,94,0.18)] transition hover:bg-[#16A34A] active:scale-[0.98]"
+      @click="!isCompleted && $emit('join')"
+      :disabled="isCompleted"
+      class="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-xl text-[12px] font-semibold text-white transition active:scale-[0.98]"
+      :class="isCompleted ? 'bg-[#98A39C] cursor-not-allowed' : 'bg-[#22C55E] shadow-[0_8px_20px_rgba(34,197,94,0.18)] hover:bg-[#16A34A]'"
     >
-      {{ challenge.joined ? 'Lanjutkan Challenge' : 'Ikuti Challenge' }}
-      <ArrowRight class="h-4 w-4" />
+      {{ 
+        isCompleted 
+          ? 'Challenge Selesai' 
+          : !challenge.joined 
+            ? 'Ikuti Challenge' 
+            : challenge.completedSteps === 0 
+              ? 'Mulai Challenge' 
+              : 'Lanjutkan Challenge' 
+      }}
+      <Check v-if="isCompleted" class="h-4 w-4" />
+      <ArrowRight v-else class="h-4 w-4" />
     </button>
   </main>
 </template>
 
 <script setup>
-import { ArrowLeft, ArrowRight, Trophy } from 'lucide-vue-next'
+import { computed } from 'vue'
+import { ArrowLeft, ArrowRight, Trophy, Check } from 'lucide-vue-next'
 
-defineProps({
+const props = defineProps({
   challenge: {
     type: Object,
     required: true
@@ -111,4 +123,10 @@ defineProps({
 })
 
 defineEmits(['join'])
+
+const isCompleted = computed(() => {
+  const total = props.challenge.totalSteps || props.challenge.steps?.length || 0
+  const completed = props.challenge.completedSteps || 0
+  return total > 0 && completed >= total
+})
 </script>

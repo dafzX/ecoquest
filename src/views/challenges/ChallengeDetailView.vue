@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
   Globe2,
@@ -144,7 +144,11 @@ const challenges = [
   }
 ]
 
+const updateTrigger = ref(0)
+
 const challenge = computed(() => {
+  updateTrigger.value // depend on trigger for reactivity
+
   const id = Number(route.params.id)
 
   const found = challenges.find(
@@ -160,11 +164,15 @@ const challenge = computed(() => {
   )
 
   let completedSteps = 0
+  let joined = found.joined || false
 
   if (saved) {
     try {
       const data = JSON.parse(saved)
       completedSteps = data.completedSteps || 0
+      if (data.joined !== undefined) {
+        joined = data.joined
+      }
     } catch {
       completedSteps = 0
     }
@@ -178,6 +186,7 @@ const challenge = computed(() => {
 
   return {
     ...found,
+    joined,
     completedSteps,
     totalSteps,
     actionProgress
@@ -211,21 +220,24 @@ function goBack() {
 }
 
 function joinChallenge() {
-  if (challenge.value.joined) {
-    router.push({
-      name: 'ChallengeAction',
-      params: {
-        id: challenge.value.id
-      }
-    })
+  const current = challenge.value
 
+  if (!current.joined) {
+    localStorage.setItem(
+      `ecoquest_challenge_progress_${current.id}`,
+      JSON.stringify({
+        joined: true,
+        completedSteps: current.completedSteps
+      })
+    )
+    updateTrigger.value++ // trigger re-render to update button state
     return
   }
 
   router.push({
     name: 'ChallengeAction',
     params: {
-      id: challenge.value.id
+      id: current.id
     }
   })
 }

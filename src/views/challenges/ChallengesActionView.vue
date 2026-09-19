@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
   Globe2,
@@ -163,22 +163,21 @@ const storageKey = computed(() => {
   return `ecoquest_challenge_progress_${challenge.value.id}`
 })
 
-const savedProgress = computed(() => {
+const localSavedProgress = ref({ completedSteps: 0 })
+
+onMounted(() => {
   const saved = localStorage.getItem(storageKey.value)
-
-  if (!saved) {
-    return {
-      completedSteps: 0
+  if (saved) {
+    try {
+      localSavedProgress.value = JSON.parse(saved)
+    } catch {
+      localSavedProgress.value = { completedSteps: 0 }
     }
   }
+})
 
-  try {
-    return JSON.parse(saved)
-  } catch {
-    return {
-      completedSteps: 0
-    }
-  }
+const savedProgress = computed(() => {
+  return localSavedProgress.value
 })
 
 const totalSteps = computed(() => {
@@ -239,18 +238,23 @@ function completeAction() {
     totalSteps.value
   )
 
+  localSavedProgress.value = { completedSteps: nextStep }
+  
   localStorage.setItem(
     storageKey.value,
     JSON.stringify({
+      joined: true,
       completedSteps: nextStep
     })
   )
 
-  router.push({
-    name: 'ChallengeDetail',
-    params: {
-      id: challenge.value.id
-    }
-  })
+  if (nextStep >= totalSteps.value) {
+    router.push({
+      name: 'ChallengeDetail',
+      params: {
+        id: challenge.value.id
+      }
+    })
+  }
 }
 </script>

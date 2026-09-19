@@ -205,16 +205,23 @@
           <!-- Action -->
           <button
             type="button"
-            @click="$emit('join')"
-            class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#22C55E] text-sm font-semibold text-white transition hover:bg-[#16A34A] active:scale-[0.99]"
+            @click="!isCompleted && $emit('join')"
+            :disabled="isCompleted"
+            class="flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold text-white transition active:scale-[0.99]"
+            :class="isCompleted ? 'bg-[#98A39C] cursor-not-allowed' : 'bg-[#22C55E] hover:bg-[#16A34A]'"
           >
             {{
-              challenge.joined
-                ? 'Lanjutkan Challenge'
-                : 'Ikuti Challenge'
+              isCompleted
+                ? 'Challenge Selesai'
+                : !challenge.joined
+                  ? 'Ikuti Challenge'
+                  : challenge.completedSteps === 0
+                    ? 'Mulai Challenge'
+                    : 'Lanjutkan Challenge'
             }}
 
-            <ArrowRight class="h-4 w-4" />
+            <Check v-if="isCompleted" class="h-4 w-4" />
+            <ArrowRight v-else class="h-4 w-4" />
           </button>
         </div>
       </div>
@@ -223,13 +230,15 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import {
   ArrowLeft,
   ArrowRight,
-  Trophy
+  Trophy,
+  Check
 } from 'lucide-vue-next'
 
-defineProps({
+const props = defineProps({
   challenge: {
     type: Object,
     required: true
@@ -247,4 +256,17 @@ defineProps({
 })
 
 defineEmits(['join'])
+
+const personalProgress = computed(() => {
+  const total = props.challenge.totalSteps || props.challenge.steps?.length || 0
+  const completed = props.challenge.completedSteps || 0
+  if (!total) return 0
+  return Math.round((completed / total) * 100)
+})
+
+const isCompleted = computed(() => {
+  const total = props.challenge.totalSteps || props.challenge.steps?.length || 0
+  const completed = props.challenge.completedSteps || 0
+  return total > 0 && completed >= total
+})
 </script>

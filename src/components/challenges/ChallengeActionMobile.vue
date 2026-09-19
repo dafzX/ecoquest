@@ -70,9 +70,9 @@
       <button
         type="button"
         @click="$emit('complete')"
-        class="mt-5 flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#22C55E] text-[11px] font-semibold text-white"
+        class="mt-5 flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#22C55E] text-[11px] font-semibold text-white transition hover:bg-[#15803D]"
       >
-        Tandai Selesai
+        {{ currentStepNumber < totalSteps ? 'Selesaikan Langkah Ini' : 'Selesaikan Challenge' }}
         <Check class="h-4 w-4" />
       </button>
     </section>
@@ -118,25 +118,32 @@ const props = defineProps({
   goBack: {
     type: Function,
     required: true
+  },
+
+  completedSteps: {
+    type: Number,
+    required: true
+  },
+
+  totalSteps: {
+    type: Number,
+    required: true
+  },
+
+  progress: {
+    type: Number,
+    required: true
   }
 })
 
 defineEmits(['complete'])
 
-const completedSteps = computed(() => {
-  return props.challenge.completedSteps || 0
-})
-
-const totalSteps = computed(() => {
-  return props.challenge.steps?.length || 0
-})
-
 const currentStepNumber = computed(() => {
-  if (!totalSteps.value) return 1
+  if (!props.totalSteps) return 1
 
   return Math.min(
-    completedSteps.value + 1,
-    totalSteps.value
+    props.completedSteps + 1,
+    props.totalSteps
   )
 })
 
@@ -149,14 +156,6 @@ const currentStep = computed(() => {
       description:
         'Semua aksi dalam challenge sudah selesai.'
     }
-  )
-})
-
-const progress = computed(() => {
-  if (!totalSteps.value) return 0
-
-  return Math.round(
-    (completedSteps.value / totalSteps.value) * 100
   )
 })
 </script>

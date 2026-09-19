@@ -41,9 +41,10 @@ const challenges = ref([
     description: 'Kurangi penggunaan plastik sekali pakai dan ajak komunitasmu melakukan aksi nyata.',
     category: 'Plastic',
     participants: 320,
-    progress: 68,
+    progress: 68, // community progress
     daysLeft: 7,
-    joined: true
+    joined: true,
+    steps: [1, 2, 3] // dummy steps length to calculate completion
   },
   {
     id: 2,
@@ -53,7 +54,8 @@ const challenges = ref([
     participants: 154,
     progress: 45,
     daysLeft: 12,
-    joined: true
+    joined: true,
+    steps: [1, 2, 3]
   },
   {
     id: 3,
@@ -63,7 +65,8 @@ const challenges = ref([
     participants: 89,
     progress: 32,
     daysLeft: 10,
-    joined: false
+    joined: false,
+    steps: [1, 2, 3]
   },
   {
     id: 4,
@@ -73,19 +76,50 @@ const challenges = ref([
     participants: 210,
     progress: 54,
     daysLeft: 9,
-    joined: false
+    joined: false,
+    steps: [1, 2, 3]
   }
 ])
 
+const syncedChallenges = computed(() => {
+  return challenges.value.map(challenge => {
+    const saved = localStorage.getItem(`ecoquest_challenge_progress_${challenge.id}`)
+    let completedSteps = 0
+    let joined = challenge.joined
+
+    if (saved) {
+      try {
+        const data = JSON.parse(saved)
+        completedSteps = data.completedSteps || 0
+        if (data.joined !== undefined) {
+          joined = data.joined
+        }
+      } catch {
+        // ignore
+      }
+    }
+
+    const totalSteps = challenge.steps?.length || 3
+    const isCompleted = totalSteps > 0 && completedSteps >= totalSteps
+
+    return {
+      ...challenge,
+      joined,
+      completedSteps,
+      isCompleted
+    }
+  })
+})
+
 const featuredChallenge = computed(() => {
-  return challenges.value[0]
+  return syncedChallenges.value[0]
 })
 
 const visibleChallenges = computed(() => {
   if (activeTab.value === 'mine') {
-    return challenges.value.filter(challenge => challenge.joined)
+    return syncedChallenges.value.filter(c => c.joined)
   }
-  return challenges.value.slice(1)
+  return syncedChallenges.value.slice(1)
 })
 
 const getChallengeIcon = (category) => {
@@ -110,7 +144,18 @@ const toggleJoin = (challenge) => {
   if (challenge.joined) {
     router.push(`/challenges/${challenge.id}`)
   } else {
-    challenge.joined = true
+    // If joining from the list view, we should save it to localStorage
+    localStorage.setItem(
+      `ecoquest_challenge_progress_${challenge.id}`,
+      JSON.stringify({
+        joined: true,
+        completedSteps: 0
+      })
+    )
+    // Force a reactivity update by pushing to route or just let reactivity handle it if we make challenges ref complex.
+    // For now, since syncedChallenges reads localStorage, it might not react instantly unless we trigger.
+    // Let's just route to the detail page when they click join so it flows naturally.
+    router.push(`/challenges/${challenge.id}`)
   }
 }
 
