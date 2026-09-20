@@ -4,7 +4,7 @@
 
       <!-- Header -->
       <DesktopPageHeader
-        title="Quest"
+        title="Misi"
         description="Tantangan kecil, perubahan besar."
       />
 
@@ -58,7 +58,7 @@
           <article
             v-for="mission in filteredMissions"
             :key="mission.id"
-            class="flex items-center justify-between rounded-2xl border border-[#E8EDE9] bg-white p-6 transition hover:border-[#BBF7D0] hover:shadow-sm"
+            class="flex items-center justify-between rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#BBF7D0] hover:shadow-md"
           >
             <!-- Content -->
             <div class="flex min-w-0 flex-1 items-start gap-6">
@@ -80,7 +80,7 @@
                 <!-- Title -->
                 <div class="flex items-center gap-3">
                   <h3 class="truncate text-base font-bold text-[#17211B]">
-                    {{ mission.title || 'Quest Title' }}
+                    {{ mission.title || 'Judul Quest' }}
                   </h3>
 
                   <!-- Completed -->
@@ -88,7 +88,7 @@
                     v-if="mission.completed"
                     class="shrink-0 rounded-full bg-[#F1F5F2] px-2.5 py-0.5 text-[10px] font-semibold text-[#66736A]"
                   >
-                    Completed
+                    Selesai
                   </span>
 
                   <!-- Active -->
@@ -96,7 +96,7 @@
                     v-else-if="mission.progress"
                     class="shrink-0 rounded-full bg-[#EAF8EE] px-2.5 py-0.5 text-[10px] font-semibold text-[#15803D]"
                   >
-                    Active
+                    Aktif
                   </span>
 
                   <!-- Recommended -->
@@ -104,7 +104,7 @@
                     v-else
                     class="shrink-0 rounded-full border border-[#DCFCE7] bg-[#F0FDF4] px-2.5 py-0.5 text-[10px] font-semibold text-[#16A34A]"
                   >
-                    Recommended
+                    Rekomendasi
                   </span>
                 </div>
 
@@ -122,7 +122,7 @@
                   class="mt-4 flex w-3/4 items-center gap-4"
                 >
                   <span class="w-20 shrink-0 text-xs text-[#66736A]">
-                    {{ mission.step || 'Day 2 of 3' }}
+                    {{ mission.step || 'Langkah 2 dari 3' }}
                   </span>
 
                   <div
@@ -192,7 +192,7 @@
         <!-- Empty State -->
         <div
           v-else
-          class="rounded-2xl border border-dashed border-[#DCEBE0] bg-white px-6 py-16 text-center"
+          class="rounded-3xl border border-dashed border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] px-6 py-16 text-center shadow-sm"
         >
           <div
             class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E8F8ED]"

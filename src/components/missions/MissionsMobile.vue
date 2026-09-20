@@ -49,7 +49,7 @@
         <article
           v-for="mission in filteredMissions"
           :key="mission.id"
-          class="rounded-[12px] border border-[#DCEBE0] bg-white p-3"
+          class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
         >
           <div class="flex gap-3">
             <!-- Icon -->
@@ -65,10 +65,10 @@
               <div class="flex items-start justify-between gap-2">
                 <div class="min-w-0">
                   <h3 class="truncate text-[10px] font-bold text-[#17211B]">
-                    {{ mission.title || 'Reduce Plastic' }}
+                    {{ mission.title || 'Kurangi Plastik' }}
                   </h3>
                   <p class="mt-0.5 text-[8px] text-[#718078]">
-                    {{ mission.step || 'Step 2 of 3' }}
+                    {{ mission.step || 'Langkah 2 dari 3' }}
                   </p>
                 </div>
                 <span class="shrink-0 text-[9px] font-semibold text-[#22C55E]">
@@ -112,7 +112,7 @@
       </div>
 
       <!-- Empty -->
-      <div v-else class="rounded-[12px] border border-dashed border-[#DCEBE0] bg-white px-5 py-10 text-center">
+      <div v-else class="rounded-2xl border border-dashed border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] px-5 py-10 text-center shadow-sm">
         <Search class="mx-auto h-6 w-6 text-[#22C55E]" />
         <p class="mt-3 text-[10px] font-semibold text-[#17211B]">Tidak ada quest</p>
         <p class="mt-1 text-[8px] text-[#718078]">Belum ada quest pada kategori ini.</p>
@@ -123,7 +123,7 @@
     <section class="mt-6">
       <div class="mb-2 flex items-end justify-between">
         <div>
-          <h2 class="text-[11px] font-bold text-[#17211B]">Community Challenges</h2>
+          <h2 class="text-[11px] font-bold text-[#17211B]">Tantangan Komunitas</h2>
           <p class="mt-0.5 text-[8px] text-[#718078]">Tantangan bersama EcoQuest Explorer lainnya.</p>
         </div>
         <RouterLink to="/challenges" class="flex items-center gap-1 text-[8px] font-semibold text-[#15803D]">
@@ -133,7 +133,7 @@
       </div>
 
       <!-- Challenge Card -->
-      <article class="overflow-hidden rounded-[12px] border border-[#DCEBE0] bg-white">
+      <article class="overflow-hidden rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] shadow-sm transition-all duration-300 active:scale-[0.98]">
         <!-- Challenge Header -->
         <div class="bg-[#15803D] p-3.5">
           <div class="flex items-start justify-between gap-3">
@@ -142,8 +142,8 @@
                 <Trophy class="h-5 w-5 text-white" />
               </div>
               <div class="min-w-0">
-                <p class="text-[7px] font-semibold text-white/70">COMMUNITY CHALLENGE</p>
-                <h3 class="mt-0.5 truncate text-[11px] font-bold text-white">Plastic Reduction Week</h3>
+                <p class="text-[7px] font-semibold text-white/70">TANTANGAN KOMUNITAS</p>
+                <h3 class="mt-0.5 truncate text-[11px] font-bold text-white">Minggu Bebas Plastik</h3>
               </div>
             </div>
             <span class="shrink-0 rounded-full bg-white/15 px-2 py-1 text-[7px] font-semibold text-white">

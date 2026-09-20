@@ -11,7 +11,7 @@
           <ArrowLeft class="h-5 w-5" />
         </RouterLink>
         <div>
-          <h1 class="text-[24px] font-bold text-[#17211B]">Settings</h1>
+          <h1 class="text-[24px] font-bold text-[#17211B]">Pengaturan</h1>
           <p class="mt-1 text-sm text-[#718078]">
             Kelola preferensi dan pengaturan akun EcoQuest.
           </p>

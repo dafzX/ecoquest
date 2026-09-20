@@ -12,7 +12,7 @@
           </h1>
 
           <p class="text-[11px] text-[#98A39C]">
-            Make an impact
+            Beri Dampak
           </p>
         </div>
       </div>
@@ -20,7 +20,7 @@
 
     <nav class="flex-1 px-4 py-5">
       <p class="mb-3 px-3 text-[11px] font-semibold uppercase tracking-wider text-[#98A39C]">
-        Menu
+        Navigasi
       </p>
 
       <div class="space-y-1">
@@ -57,7 +57,7 @@
       </div>
 
       <p class="mb-3 mt-8 px-3 text-[11px] font-semibold uppercase tracking-wider text-[#98A39C]">
-        Personal
+        Akun
       </p>
 
       <div class="space-y-1">
@@ -110,42 +110,42 @@ const route = useRoute()
 
 const mainMenu = [
   {
-    name: 'Dashboard',
+    name: 'Beranda',
     to: '/dashboard',
     icon: LayoutDashboard
   },
   {
-    name: 'Quest',
+    name: 'Misi',
     to: '/missions',
     icon: ListChecks
   },
   {
-    name: 'Challenges',
+    name: 'Tantangan',
     to: '/challenges',
     icon: Trophy
   },
   {
-    name: 'Leaderboard',
+    name: 'Peringkat',
     to: '/leaderboard',
     icon: Medal
   },
   {
-    name: 'Impact',
+    name: 'Dampak',
     to: '/impact',
     icon: Sprout
   },
   {
-    name: 'Rewards',
+    name: 'Hadiah',
     to: '/rewards',
     icon: Gift
   },
   {
-    name: 'Achievements',
+    name: 'Pencapaian',
     to: '/achievements',
     icon: Medal // Can use Award or similar
   },
   {
-    name: 'Community',
+    name: 'Komunitas',
     to: '/community',
     icon: Users
   }
@@ -153,7 +153,7 @@ const mainMenu = [
 
 const personalMenu = [
   {
-    name: 'Profile',
+    name: 'Profil',
     to: '/profile',
     icon: UserCircle
   }

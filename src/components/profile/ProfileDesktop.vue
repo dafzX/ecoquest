@@ -5,7 +5,7 @@
       <!-- Header -->
       <DesktopPageHeader
         tag="Akun Saya"
-        title="Profile"
+        title="Profil"
         description="Kelola profil dan perjalanan EcoQuest kamu."
       />
 

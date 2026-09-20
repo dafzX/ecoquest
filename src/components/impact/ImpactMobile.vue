@@ -12,13 +12,13 @@
       </button>
 
       <span class="text-[13px] font-semibold text-[#17211B]">
-        Impact
+        Dampak
       </span>
 
     </header>
 
     <!-- Hero -->
-    <section class="relative overflow-hidden rounded-2xl bg-[#15803D] p-5 text-white">
+    <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-600 to-green-800 p-5 text-white shadow-md">
 
       <div class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-white/10"></div>
 
@@ -31,7 +31,7 @@
           <div>
 
             <p class="text-[9px] font-medium text-white/70">
-              Total Impact
+              Total Dampak
             </p>
 
             <div class="mt-1 flex items-end gap-2">
@@ -41,7 +41,7 @@
               </span>
 
               <span class="mb-0.5 text-[9px] text-white/70">
-                points
+                poin
               </span>
 
             </div>
@@ -84,7 +84,7 @@
           <p class="mt-2 text-[8px] text-white/60">
             {{ monthlyCurrent }} /
             {{ monthlyTarget }}
-            impact points
+            poin dampak
           </p>
 
         </div>
@@ -121,7 +121,7 @@
         <div
           v-for="stat in impactStats"
           :key="stat.label"
-          class="rounded-xl border border-[#DCEBE0] bg-white p-3"
+          class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm"
         >
 
           <div
@@ -150,14 +150,14 @@
     </section>
 
     <!-- Monthly -->
-    <section class="mt-5 rounded-xl border border-[#DCEBE0] bg-white p-4">
+    <section class="mt-5 rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-4 shadow-sm">
 
       <div class="flex items-center justify-between">
 
         <div>
 
           <p class="text-[8px] font-semibold uppercase tracking-[0.08em] text-[#8A958E]">
-            Monthly Goal
+            Target Bulanan
           </p>
 
           <h2 class="mt-1 text-[13px] font-bold text-[#17211B]">
@@ -178,7 +178,7 @@
 
           <span class="text-[8px] text-[#66736A]">
             {{ monthlyCurrent }} /
-            {{ monthlyTarget }} points
+            {{ monthlyTarget }} poin
           </span>
 
           <span class="text-[8px] font-bold text-[#15803D]">
@@ -234,7 +234,7 @@
         <article
           v-for="item in breakdown"
           :key="item.label"
-          class="rounded-xl border border-[#DCEBE0] bg-white p-3"
+          class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm"
         >
 
           <div class="flex items-center gap-3">
@@ -284,14 +284,14 @@
     </section>
 
     <!-- Motivation -->
-    <section class="mt-5 rounded-xl border border-[#DDEFE2] bg-[#EAF8EE] p-4">
+    <section class="mt-5 rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-[#E8F8ED] p-4 shadow-sm">
 
       <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white">
         <Sprout class="h-4 w-4 text-[#15803D]" />
       </div>
 
       <h3 class="mt-3 text-[11px] font-bold text-[#17211B]">
-        Small actions matter 🌱
+        Aksi kecil berdampak besar 🌱
       </h3>
 
       <p class="mt-1 text-[8px] leading-3.5 text-[#66736A]">

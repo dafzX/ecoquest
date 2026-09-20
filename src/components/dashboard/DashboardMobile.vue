@@ -23,7 +23,7 @@
 
     <!-- Level Card -->
     <section
-      class="mb-3 rounded-[14px] border border-[#DCEBE0] bg-white p-3"
+      class="mb-3 rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
     >
       <div class="flex items-center gap-3">
 
@@ -79,7 +79,7 @@
 
     <!-- Quick Stats -->
     <section
-      class="mb-4 grid grid-cols-3 overflow-hidden rounded-[14px] border border-[#DCEBE0] bg-white"
+      class="mb-4 grid grid-cols-3 overflow-hidden rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] shadow-sm"
     >
 
       <!-- Streak -->
@@ -166,7 +166,7 @@
       <!-- Ada Quest -->
       <section
         v-if="nextQuest"
-        class="mb-4 rounded-[14px] border border-[#DCEBE0] bg-white p-3"
+        class="mb-4 rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
       >
         <div class="flex gap-3">
 
@@ -243,7 +243,7 @@
       <!-- Tidak Ada Quest -->
       <section
         v-else
-        class="mb-4 rounded-[14px] border border-[#DCEBE0] bg-white p-5"
+        class="mb-4 rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-5 shadow-sm"
       >
         <div class="text-center">
 
@@ -272,7 +272,7 @@
 
     <!-- Habit -->
     <section
-      class="mb-4 rounded-[14px] border border-[#DCEBE0] bg-white p-3"
+      class="mb-4 rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
     >
 
       <div
@@ -361,7 +361,7 @@
 
       <!-- CO2 -->
       <div
-        class="rounded-[12px] border border-[#DCEBE0] bg-white p-3"
+        class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
       >
         <Cloud
           class="h-4 w-4 text-[#22C55E]"
@@ -382,7 +382,7 @@
 
       <!-- Recycled -->
       <div
-        class="rounded-[12px] border border-[#DCEBE0] bg-white p-3"
+        class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
       >
         <Recycle
           class="h-4 w-4 text-[#22C55E]"
@@ -403,7 +403,7 @@
 
       <!-- Trees -->
       <div
-        class="rounded-[12px] border border-[#DCEBE0] bg-white p-3"
+        class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
       >
         <TreePine
           class="h-4 w-4 text-[#22C55E]"

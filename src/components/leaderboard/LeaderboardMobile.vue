@@ -3,10 +3,10 @@
     <!-- Header -->
     <div class="py-6">
       <h1 class="text-2xl font-bold tracking-tight text-[#17211B]">
-        Leaderboard
+        Peringkat
       </h1>
       <p class="mt-1 text-xs text-[#66736A]">
-        See how you rank among other eco explorers
+        Lihat peringkatmu di antara penjelajah lain
       </p>
     </div>
 
@@ -19,10 +19,10 @@
           </div>
           <div>
             <h2 class="text-sm font-bold text-[#17211B]">
-              Weekly Leaderboard
+              Peringkat Mingguan
             </h2>
             <p class="text-[10px] text-[#98A39C]">
-              Top eco explorers this week
+              Penjelajah terbaik minggu ini
             </p>
           </div>
         </div>
@@ -33,10 +33,10 @@
         <!-- Second -->
         <div class="flex flex-col items-center">
           <div class="relative">
-            <div class="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#D7DDE0] bg-[#F3F5F6] text-sm font-bold text-[#66736A]">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 shadow-md ring-2 ring-white text-sm font-bold text-slate-600">
               {{ topThree[1]?.avatar }}
             </div>
-            <div class="absolute -bottom-2 left-1/2 flex h-5 w-5 -translate-x-1/2 items-center justify-center rounded-full bg-[#D7DDE0] text-[10px] font-bold text-[#4B5563]">
+            <div class="absolute -bottom-2 left-1/2 flex h-5 w-5 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-b from-slate-400 to-slate-500 shadow-sm ring-1 ring-white text-[10px] font-bold text-white">
               2
             </div>
           </div>
@@ -51,14 +51,14 @@
         <!-- First -->
         <div class="flex flex-col items-center">
           <div class="relative">
-            <div class="flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#F4C94F] bg-[#FFF8E1] text-lg font-bold text-[#A16207]">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-yellow-200 via-yellow-400 to-yellow-500 shadow-[0_0_15px_rgba(250,204,21,0.4)] ring-2 ring-white text-lg font-bold text-yellow-900">
               {{ topThree[0]?.avatar }}
             </div>
-            <div class="absolute -bottom-2 left-1/2 flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full bg-[#F4C94F] text-[10px] font-bold text-[#7C5A00]">
+            <div class="absolute -bottom-2 left-1/2 flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-b from-yellow-400 to-yellow-600 shadow-sm ring-1 ring-white text-[10px] font-bold text-white">
               1
             </div>
             <div class="absolute -right-2 -top-3">
-              <Crown class="h-5 w-5 text-[#EAB308]" />
+              <Crown class="h-5 w-5 text-yellow-400 drop-shadow-sm" />
             </div>
           </div>
           <p class="mt-3 truncate text-sm font-bold text-[#17211B]">
@@ -72,10 +72,10 @@
         <!-- Third -->
         <div class="flex flex-col items-center">
           <div class="relative">
-            <div class="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#E8C0A5] bg-[#FFF4EC] text-sm font-bold text-[#9A5A2E]">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-orange-200 via-orange-300 to-orange-400 shadow-md ring-2 ring-white text-sm font-bold text-orange-900">
               {{ topThree[2]?.avatar }}
             </div>
-            <div class="absolute -bottom-2 left-1/2 flex h-5 w-5 -translate-x-1/2 items-center justify-center rounded-full bg-[#E8C0A5] text-[10px] font-bold text-[#7C4422]">
+            <div class="absolute -bottom-2 left-1/2 flex h-5 w-5 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-b from-orange-400 to-orange-600 shadow-sm ring-1 ring-white text-[10px] font-bold text-white">
               3
             </div>
           </div>
@@ -93,40 +93,40 @@
     <section class="mb-6">
       <div class="mb-3">
         <h2 class="text-sm font-bold text-[#17211B]">
-          Your Ranking
+          Peringkat Anda
         </h2>
       </div>
 
       <div
         v-if="currentUser"
-        class="flex items-center gap-3 rounded-2xl border border-[#BFE8C9] bg-[#F1FBF3] px-4 py-3"
+        class="flex items-center gap-3 rounded-2xl border border-emerald-100 bg-gradient-to-r from-emerald-50/80 to-green-50/80 px-4 py-3"
       >
         <div class="flex w-6 justify-center">
-          <span class="text-xs font-bold text-[#15803D]">
+          <span class="text-xs font-black italic text-emerald-600">
             #{{ currentUser.rank }}
           </span>
         </div>
 
-        <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#22C55E] text-xs font-bold text-white">
+        <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 shadow-sm ring-1 ring-white text-xs font-bold text-white">
           {{ currentUser.avatar }}
         </div>
 
         <div class="min-w-0 flex-1">
           <div class="flex items-center gap-2">
-            <p class="truncate text-xs font-semibold text-[#15803D]">
+            <p class="truncate text-xs font-bold text-emerald-900">
               {{ currentUser.name }}
             </p>
-            <span class="shrink-0 rounded-full bg-[#DCFCE7] px-2 py-0.5 text-[8px] font-semibold text-[#15803D]">
-              You
+            <span class="shrink-0 rounded-full bg-emerald-200 px-2 py-0.5 text-[8px] font-bold tracking-wide text-emerald-700">
+              ANDA
             </span>
           </div>
-          <p class="mt-0.5 text-[10px] text-[#66736A]">
+          <p class="mt-0.5 text-[10px] text-emerald-700">
             Level {{ currentUser.level }}
           </p>
         </div>
 
         <div class="text-right">
-          <p class="text-xs font-bold text-[#17211B]">
+          <p class="text-xs font-bold text-emerald-700">
             {{ currentUser.xp.toLocaleString() }} XP
           </p>
         </div>
@@ -137,7 +137,7 @@
     <section>
       <div class="mb-3">
         <h2 class="text-sm font-bold text-[#17211B]">
-          All Rankings
+          Semua Peringkat
         </h2>
       </div>
 

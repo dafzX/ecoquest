@@ -111,7 +111,7 @@
     <!-- Leaderboard -->
     <section class="mt-6">
       <div class="mb-3">
-        <h2 class="text-[12px] font-bold text-[#17211B]">Leaderboard</h2>
+        <h2 class="text-[12px] font-bold text-[#17211B]">Peringkat</h2>
         <p class="mt-0.5 text-[8px] text-[#8A958E]">Atur bagaimana kamu ditampilkan di leaderboard.</p>
       </div>
       <div class="rounded-2xl border border-[#DCEBE0] bg-white">

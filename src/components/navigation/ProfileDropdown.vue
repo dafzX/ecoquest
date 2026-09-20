@@ -75,7 +75,7 @@
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
             <UserCircle class="h-[18px] w-[18px]" />
-            <span>Profile</span>
+            <span>Profil</span>
           </RouterLink>
 
           <RouterLink
@@ -84,7 +84,7 @@
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
             <Trophy class="h-[18px] w-[18px]" />
-            <span>Achievements</span>
+            <span>Pencapaian</span>
           </RouterLink>
 
           <RouterLink
@@ -93,7 +93,7 @@
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
             <Settings class="h-[18px] w-[18px]" />
-            <span>Settings</span>
+            <span>Pengaturan</span>
           </RouterLink>
 
           <RouterLink
@@ -102,7 +102,7 @@
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
             <CircleHelp class="h-[18px] w-[18px]" />
-            <span>Help & Support</span>
+            <span>Bantuan & Dukungan</span>
           </RouterLink>
         </div>
 
@@ -114,7 +114,7 @@
             class="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#DC2626] transition hover:bg-[#FEF2F2]"
           >
             <LogOut class="h-[18px] w-[18px]" />
-            <span>Logout</span>
+            <span>Keluar</span>
           </button>
         </div>
       </div>

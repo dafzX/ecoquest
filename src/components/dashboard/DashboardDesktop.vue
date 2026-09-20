@@ -14,9 +14,8 @@
         <!-- Left Column -->
         <div class="space-y-6 lg:col-span-2">
 
-          <!-- Level Card -->
           <div
-            class="flex flex-col gap-6 rounded-2xl border border-[#E8EDE9] bg-white p-6 md:flex-row"
+            class="flex flex-col gap-6 rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:flex-row"
           >
 
             <!-- Level Info -->
@@ -154,7 +153,7 @@
             <!-- Ada Quest -->
             <div
               v-if="nextQuest"
-              class="rounded-2xl border border-[#E8EDE9] bg-white p-6"
+              class="rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               <div class="flex items-start justify-between">
 
@@ -221,7 +220,7 @@
             <!-- Tidak Ada Quest -->
             <div
               v-else
-              class="flex min-h-[150px] items-center justify-center rounded-2xl border border-[#E8EDE9] bg-white p-6"
+              class="flex min-h-[150px] items-center justify-center rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               <div class="text-center">
 
@@ -255,7 +254,7 @@
           </h2>
 
           <div
-            class="rounded-2xl border border-[#E8EDE9] bg-white p-6"
+            class="rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
           >
 
             <div class="flex items-start justify-between">

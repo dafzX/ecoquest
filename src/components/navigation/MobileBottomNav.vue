@@ -63,27 +63,27 @@ const route = useRoute()
 
 const menu = [
   {
-    name: 'Home',
+    name: 'Beranda',
     to: '/dashboard',
     icon: Home
   },
   {
-    name: 'Quest',
+    name: 'Misi',
     to: '/missions',
     icon: ListChecks
   },
   {
-    name: 'Community',
+    name: 'Komunitas',
     to: '/community',
     icon: Users
   },
   {
-    name: 'Rewards',
+    name: 'Hadiah',
     to: '/rewards',
     icon: Gift
   },
   {
-    name: 'Profile',
+    name: 'Profil',
     to: '/profile',
     icon: UserCircle
   }

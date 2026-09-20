@@ -12,7 +12,7 @@
       </button>
 
       <span class="text-[13px] font-semibold text-[#17211B]">
-        Challenges
+        Tantangan
       </span>
     </header>
 
@@ -24,7 +24,7 @@
         :class="activeTab === 'community' ? 'bg-[#22C55E] text-white' : 'text-[#718078] hover:bg-[#F4FBF7]'"
         @click="$emit('update:activeTab', 'community')"
       >
-        Community Quest
+        Tantangan Komunitas
       </button>
       <button
         type="button"
@@ -32,12 +32,12 @@
         :class="activeTab === 'mine' ? 'bg-[#22C55E] text-white' : 'text-[#718078] hover:bg-[#F4FBF7]'"
         @click="$emit('update:activeTab', 'mine')"
       >
-        My Challenge
+        Tantangan Saya
       </button>
     </div>
 
     <!-- Featured Challenge -->
-    <section v-if="featuredChallenge" class="mb-5 overflow-hidden rounded-[14px] border border-[#DCEBE0] bg-white">
+    <section v-if="featuredChallenge" class="mb-5 overflow-hidden rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] shadow-sm transition-all duration-300 active:scale-[0.98]">
       <!-- Banner -->
       <div class="relative h-[108px] overflow-hidden bg-[#DCFCE7]">
         <div class="absolute -right-8 -top-9 h-28 w-28 rounded-full bg-[#BBF7D0]"></div>
@@ -45,7 +45,7 @@
         <div class="absolute right-14 top-12 h-10 w-10 rounded-full bg-white/20"></div>
         <div class="absolute left-4 top-3">
           <span class="inline-flex rounded-full bg-white/85 px-2 py-1 text-[7px] font-bold tracking-[0.02em] text-[#15803D]">
-            COMMUNITY QUEST
+            TANTANGAN KOMUNITAS
           </span>
         </div>
         <div class="absolute bottom-3.5 left-4">
@@ -99,7 +99,7 @@
       <div class="mb-2.5 flex items-center justify-between">
         <div>
           <h2 class="text-[11px] font-bold text-[#17211B]">
-            {{ activeTab === 'community' ? 'Community Challenges' : 'Challenge Saya' }}
+            {{ activeTab === 'community' ? 'Tantangan Komunitas' : 'Tantangan Saya' }}
           </h2>
         </div>
         <span class="rounded-full bg-[#E8F8ED] px-2 py-1 text-[7px] font-semibold text-[#15803D]">
@@ -112,7 +112,7 @@
         <article
           v-for="challenge in visibleChallenges"
           :key="challenge.id"
-          class="rounded-[12px] border border-[#DCEBE0] bg-white p-3.5"
+          class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3.5 shadow-sm transition-all duration-300 active:scale-[0.98]"
         >
           <div class="flex items-start gap-3">
             <!-- Icon -->

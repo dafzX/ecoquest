@@ -4,7 +4,7 @@
 
       <!-- Header -->
       <DesktopPageHeader
-        title="Challenges"
+        title="Tantangan"
         description="Bersama kita bisa lebih berdampak!"
       />
 
@@ -15,14 +15,14 @@
           :class="activeTab === 'community' ? 'border-[#22C55E] text-[#17211B]' : 'border-transparent text-[#98A39C] hover:text-[#17211B]'"
           @click="$emit('update:activeTab', 'community')"
         >
-          Community Quest
+          Tantangan Komunitas
         </button>
         <button
           class="border-b-2 pb-3 text-sm font-semibold transition"
           :class="activeTab === 'mine' ? 'border-[#22C55E] text-[#17211B]' : 'border-transparent text-[#98A39C] hover:text-[#17211B]'"
           @click="$emit('update:activeTab', 'mine')"
         >
-          My Challenge
+          Tantangan Saya
         </button>
       </div>
 
@@ -32,7 +32,7 @@
         <!-- Featured Challenge -->
         <article
           v-if="featuredChallenge"
-          class="col-span-1 lg:col-span-2 overflow-hidden rounded-2xl bg-[#E8F8ED] p-8 flex flex-col justify-between relative"
+          class="col-span-1 lg:col-span-2 overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-[#E8F8ED] p-8 flex flex-col justify-between relative shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
         >
           <div class="absolute -right-8 -top-8 h-64 w-64 rounded-full bg-[#DCFCE7] mix-blend-multiply opacity-50"></div>
           <div class="relative z-10 w-full lg:w-2/3">
@@ -69,7 +69,7 @@
         <article
           v-for="challenge in visibleChallenges"
           :key="challenge.id"
-          class="flex flex-col justify-between rounded-2xl border border-[#E8EDE9] bg-white p-6 transition hover:border-[#DCEBE0]"
+          class="flex flex-col justify-between rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#BBF7D0] hover:shadow-md"
         >
           <div>
             <h3 class="text-base font-bold text-[#17211B]">

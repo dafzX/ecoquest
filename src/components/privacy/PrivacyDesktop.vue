@@ -12,7 +12,7 @@
           <ArrowLeft class="h-5 w-5" />
         </button>
         <div>
-          <p class="text-xs font-medium text-[#8A958E]">Settings</p>
+          <p class="text-xs font-medium text-[#8A958E]">Pengaturan</p>
           <h1 class="mt-1 text-2xl font-bold text-[#17211B]">Privacy</h1>
           <p class="mt-1 text-sm text-[#718078]">Kelola visibilitas profil dan aktivitasmu.</p>
         </div>
@@ -57,7 +57,7 @@
 
         <!-- Leaderboard -->
         <section class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
-          <h2 class="text-sm font-bold text-[#17211B]">Leaderboard</h2>
+          <h2 class="text-sm font-bold text-[#17211B]">Peringkat</h2>
           <p class="mt-1 text-[10px] text-[#8A958E]">Kontrol visibilitas profil pada leaderboard.</p>
           
           <div class="mt-5">

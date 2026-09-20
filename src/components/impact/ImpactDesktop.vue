@@ -5,7 +5,7 @@
       <header class="mb-6 flex items-center gap-3 pt-2">
         <div>
           <h1 class="text-[24px] font-bold text-[#17211B]">
-            Impact
+            Dampak
           </h1>
 
           <p class="mt-1 text-sm text-[#718078]">
@@ -19,7 +19,7 @@
         <div class="space-y-5">
 
           <!-- Hero -->
-          <section class="relative overflow-hidden rounded-2xl bg-[#15803D] p-6 text-white">
+          <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 to-green-800 p-6 text-white shadow-md">
 
             <div class="absolute -right-12 -top-14 h-44 w-44 rounded-full bg-white/10"></div>
             <div class="absolute -bottom-16 left-1/3 h-40 w-40 rounded-full bg-white/5"></div>
@@ -31,7 +31,7 @@
                 <div>
 
                   <p class="text-xs font-medium text-white/70">
-                    Total Impact
+                    Total Dampak
                   </p>
 
                   <div class="mt-2 flex items-end gap-3">
@@ -41,7 +41,7 @@
                     </span>
 
                     <span class="mb-1.5 text-xs text-white/70">
-                      points
+                      poin
                     </span>
 
                   </div>
@@ -82,7 +82,7 @@
                 <p class="mt-2 text-[10px] text-white/60">
                   {{ monthlyCurrent }} /
                   {{ monthlyTarget }}
-                  impact points
+                  poin dampak
                 </p>
 
               </div>
@@ -116,7 +116,7 @@
               <div
                 v-for="stat in impactStats"
                 :key="stat.label"
-                class="rounded-2xl border border-[#E8EDE9] bg-white p-4"
+                class="rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
               >
 
                 <div
@@ -144,7 +144,7 @@
           </section>
 
           <!-- Breakdown -->
-          <section class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+          <section class="rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm">
 
             <div class="mb-5">
 
@@ -213,14 +213,14 @@
         <div class="space-y-5">
 
           <!-- Monthly -->
-          <section class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+          <section class="rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm">
 
             <div class="flex items-start justify-between">
 
               <div>
 
                 <p class="text-[9px] font-bold uppercase tracking-[0.1em] text-[#8A958E]">
-                  Monthly Goal
+                  Target Bulanan
                 </p>
 
                 <h2 class="mt-1 text-base font-bold text-[#17211B]">
@@ -266,7 +266,7 @@
 
                 <template v-else>
                   {{ monthlyTarget - monthlyCurrent }}
-                  points lagi untuk mencapai target.
+                  poin lagi untuk mencapai target.
                 </template>
 
               </p>
@@ -276,14 +276,14 @@
           </section>
 
           <!-- Motivation -->
-          <section class="rounded-2xl border border-[#DDEFE2] bg-[#EAF8EE] p-5">
+          <section class="rounded-3xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-[#E8F8ED] p-6 shadow-sm">
 
             <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white">
               <Sprout class="h-5 w-5 text-[#15803D]" />
             </div>
 
             <h3 class="mt-4 text-sm font-bold text-[#17211B]">
-              Small actions matter 🌱
+              Aksi kecil berdampak besar 🌱
             </h3>
 
             <p class="mt-2 text-[10px] leading-4 text-[#66736A]">
