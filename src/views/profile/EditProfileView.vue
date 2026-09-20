@@ -1,4 +1,3 @@
-```vue
 <template>
   <AppLayout>
     <div class="min-h-screen bg-[#F4FBF7]">
@@ -295,23 +294,22 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-
 import {
   ArrowLeft,
   Save
 } from 'lucide-vue-next'
 
 import AppLayout from '@/layouts/AppLayout.vue'
-
 import { getCurrentUser } from '@/services/auth'
+import { updateProfile } from '@/services/users'
 
 const router = useRouter()
-
 const currentUser = getCurrentUser()
+const isSaving = ref(false)
 
-const getAvatar = (name) => {
+function getAvatar(name) {
   if (!name) return 'EQ'
 
   const words = name.trim().split(/\s+/)
@@ -323,34 +321,42 @@ const getAvatar = (name) => {
   return words[0].slice(0, 2).toUpperCase()
 }
 
-const goBack = () => {
-  router.back()
-}
-
 const form = reactive({
   avatar: getAvatar(currentUser?.name),
   name: currentUser?.name || '',
   email: currentUser?.email || ''
 })
 
-const saveProfile = () => {
+function goBack() {
+  router.back()
+}
+
+async function saveProfile() {
   const name = form.name.trim()
   const email = form.email.trim().toLowerCase()
 
   if (!name || !email) {
+    alert('Nama dan email wajib diisi.')
     return
   }
 
-  localStorage.setItem(
-    'ecoquest_session',
-    JSON.stringify({
-      id: currentUser?.id,
-      name,
-      email
-    })
-  )
+  isSaving.value = true
 
+  const result = await updateProfile({
+    name,
+    email
+  })
+
+  isSaving.value = false
+
+  if (!result.success) {
+    alert(result.message)
+    return
+  }
+
+  form.avatar = getAvatar(result.user.name)
+
+  alert(result.message)
   router.push('/profile')
 }
 </script>
-```

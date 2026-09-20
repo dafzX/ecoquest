@@ -63,6 +63,7 @@
 
         <button
           type="button"
+          @click="$emit('claim', reward)"
           :disabled="!reward.available || reward.owned"
           class="rounded-xl px-4 py-2.5 text-xs font-semibold transition"
           :class="
@@ -108,6 +109,7 @@ const props = defineProps({
     required: true
   }
 })
+defineEmits(['claim'])
 
 const rewardIcon = computed(() => {
   if (props.reward.icon === 'tree') {

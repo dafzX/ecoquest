@@ -39,11 +39,8 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { completeMission } from '@/services/missions'
-
 import AppLayout from '@/layouts/AppLayout.vue'
-
 import MissionActionDesktop from '@/components/missions/MissionActionDesktop.vue'
-
 import { missions } from '@/data/mockData'
 
 const route = useRoute()

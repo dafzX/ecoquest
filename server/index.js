@@ -12,6 +12,7 @@ const __dirname = path.dirname(__filename)
 
 const usersFile = path.join(__dirname, 'data', 'users.json')
 const missionsFile = path.join(__dirname, 'data', 'missions.json')
+const rewardsFile = path.join(__dirname, 'data', 'rewards.json')
 
 app.use(cors())
 app.use(express.json())
@@ -32,6 +33,10 @@ async function getMissionsData() {
   const file = await fs.readFile(missionsFile, 'utf8')
   return JSON.parse(file)
 }
+async function getRewardsData() {
+  const file = await fs.readFile(rewardsFile, 'utf8')
+  return JSON.parse(file)
+}
 
 function publicUser(user) {
   return {
@@ -41,7 +46,8 @@ function publicUser(user) {
     xp: user.xp || 0,
     level: user.level || 1,
     streak: user.streak || 0,
-    completedMissionIds: user.completedMissionIds || []
+    completedMissionIds: user.completedMissionIds || [],
+    redeemedRewardIds: user.redeemedRewardIds || []
   }
 }
 
@@ -156,6 +162,172 @@ app.post('/api/missions/:missionId/complete', async (req, res) => {
   res.json({
     success: true,
     message: `Mission selesai! Kamu mendapat ${mission.xp} XP.`,
+    user: publicUser(user)
+  })
+})
+
+app.get('/api/users/:id', async (req, res) => {
+  const userId = Number(req.params.id)
+  const data = await getUsersData()
+
+  const user = data.users.find(
+    (item) => item.id === userId
+  )
+
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: 'User tidak ditemukan.'
+    })
+  }
+
+  res.json({
+    success: true,
+    user: publicUser(user)
+  })
+})
+
+app.get('/api/missions', async (req, res) => {
+  const data = await getMissionsData()
+
+  res.json({
+    success: true,
+    missions: data.missions
+  })
+})
+
+app.get('/api/leaderboard', async (req, res) => {
+  const data = await getUsersData()
+
+  const leaderboard = data.users
+    .map(publicUser)
+    .sort((a, b) => b.xp - a.xp)
+    .map((user, index) => ({
+      ...user,
+      rank: index + 1
+    }))
+
+  res.json({
+    success: true,
+    leaderboard
+  })
+})
+
+app.put('/api/users/:id', async (req, res) => {
+  const userId = Number(req.params.id)
+  const { name, email } = req.body
+
+  const data = await getUsersData()
+
+  const user = data.users.find(
+    (item) => item.id === userId
+  )
+
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: 'User tidak ditemukan.'
+    })
+  }
+
+  if (!name?.trim() || !email?.trim()) {
+    return res.status(400).json({
+      success: false,
+      message: 'Nama dan email wajib diisi.'
+    })
+  }
+
+  const normalizedEmail = email.toLowerCase().trim()
+
+  const emailUsed = data.users.some(
+    (item) =>
+      item.id !== userId &&
+      item.email.toLowerCase() === normalizedEmail
+  )
+
+  if (emailUsed) {
+    return res.status(409).json({
+      success: false,
+      message: 'Email sudah digunakan akun lain.'
+    })
+  }
+
+  user.name = name.trim()
+  user.email = normalizedEmail
+
+  await saveUsersData(data)
+
+  res.json({
+    success: true,
+    message: 'Profil berhasil diperbarui.',
+    user: publicUser(user)
+  })
+})
+
+app.get('/api/rewards', async (req, res) => {
+  const data = await getRewardsData()
+
+  res.json({
+    success: true,
+    rewards: data.rewards
+  })
+})
+
+app.post('/api/rewards/:rewardId/claim', async (req, res) => {
+  const userId = Number(req.body.userId)
+  const rewardId = Number(req.params.rewardId)
+
+  const usersData = await getUsersData()
+  const rewardsData = await getRewardsData()
+
+  const user = usersData.users.find(
+    (item) => item.id === userId
+  )
+
+  const reward = rewardsData.rewards.find(
+    (item) => item.id === rewardId
+  )
+
+  if (!user || !reward) {
+    return res.status(404).json({
+      success: false,
+      message: 'User atau reward tidak ditemukan.'
+    })
+  }
+
+  user.xp = user.xp || 0
+  user.redeemedRewardIds = user.redeemedRewardIds || []
+
+  if (!reward.available) {
+    return res.status(400).json({
+      success: false,
+      message: 'Reward belum tersedia.'
+    })
+  }
+
+  if (user.redeemedRewardIds.includes(rewardId)) {
+    return res.status(409).json({
+      success: false,
+      message: 'Reward ini sudah pernah diklaim.'
+    })
+  }
+
+  if (user.xp < reward.cost) {
+    return res.status(400).json({
+      success: false,
+      message: 'XP kamu belum cukup untuk menukar reward ini.'
+    })
+  }
+
+  user.xp -= reward.cost
+  user.redeemedRewardIds.push(rewardId)
+
+  await saveUsersData(usersData)
+
+  res.json({
+    success: true,
+    message: `Reward ${reward.title} berhasil diklaim.`,
+    reward,
     user: publicUser(user)
   })
 })
