@@ -119,6 +119,7 @@ const router = createRouter({
       component: () => import('@/views/leaderboard/LeaderboardView.vue'),
       meta: {
         title: 'Leaderboard - EcoQuest',
+        hideBottomNav: true,
         requireAuth: true
       }
     },

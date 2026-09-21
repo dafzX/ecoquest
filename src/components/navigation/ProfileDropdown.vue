@@ -79,7 +79,7 @@
           </RouterLink>
 
           <RouterLink
-            to="/profile/achievements"
+            to="/achievements"
             @click="emit('close')"
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >

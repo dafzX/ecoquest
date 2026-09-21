@@ -232,6 +232,32 @@
         />
       </RouterLink>
 
+      <!-- Leaderboard -->
+      <RouterLink
+        to="/leaderboard"
+        class="flex items-center gap-3 border-b border-[#EEF2EF] px-4 py-3.5 transition active:bg-[#F8FBF9]"
+      >
+        <div
+          class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#FFF7D6]"
+        >
+          <Trophy class="h-3.5 w-3.5 text-[#D99A00]" />
+        </div>
+
+        <div class="min-w-0 flex-1">
+          <p class="text-[9px] font-semibold text-[#17211B]">
+            Leaderboard
+          </p>
+
+          <p class="mt-0.5 text-[7px] text-[#98A39C]">
+            Lihat peringkat kamu di EcoQuest
+          </p>
+        </div>
+
+        <ChevronRight
+          class="h-3.5 w-3.5 shrink-0 text-[#AAB4AE]"
+        />
+      </RouterLink>
+
       <!-- Settings -->
       <RouterLink
         to="/profile/settings"
@@ -297,6 +323,7 @@ import {
   Bike,
   Pencil,
   Award,
+  Trophy,
   Settings,
   HelpCircle,
   ChevronRight

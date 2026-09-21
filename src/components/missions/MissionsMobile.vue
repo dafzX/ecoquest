@@ -7,24 +7,24 @@
     <!-- Page Intro -->
     <section class="mb-4">
       <h2 class="text-[17px] font-bold text-[#17211B]">
-        Quest & Misi
+        Misi & Tantangan
       </h2>
       <p class="mt-0.5 text-[9px] text-[#718078]">
-        Selesaikan quest dan dapatkan XP.
+        Selesaikan misi dan dapatkan XP.
       </p>
     </section>
 
     <!-- Tabs -->
-    <div class="mb-4 overflow-x-auto scrollbar-hide">
-      <div class="flex min-w-max rounded-xl border border-[#DCEBE0] bg-white p-1">
+    <div class="mb-4 w-full overflow-x-auto scrollbar-hide">
+      <div class="flex w-full min-w-max gap-1 rounded-xl border border-[#DCEBE0] bg-white p-1">
         <button
           v-for="tab in tabs"
           :key="tab.value"
           type="button"
-          class="min-w-[72px] rounded-lg px-3 py-2 text-[9px] font-semibold transition"
+          class="flex-1 whitespace-nowrap rounded-lg px-3 py-2 text-center text-[10px] font-semibold transition hover:bg-[#F8FAF8]"
           :class="
             activeTab === tab.value
-              ? 'bg-[#22C55E] text-white'
+              ? 'bg-[#22C55E] text-white hover:bg-[#22C55E]'
               : 'text-[#718078]'
           "
           @click="$emit('update:activeTab', tab.value)"

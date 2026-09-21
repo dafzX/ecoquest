@@ -217,6 +217,7 @@
 
 <script setup>
 import { computed } from 'vue'
+
 import {
   ArrowLeft,
   ArrowRight,
@@ -230,18 +231,46 @@ const props = defineProps({
     type: Object,
     required: true
   },
+
   getCategoryIcon: {
     type: Function,
     required: true
   },
+
   goBack: {
     type: Function,
     required: true
   }
 })
 
+const progressKey = computed(() => {
+  return `mission_progress_${props.mission.id}`
+})
+
+const savedProgress = computed(() => {
+  const saved = localStorage.getItem(progressKey.value)
+
+  if (!saved) {
+    return null
+  }
+
+  try {
+    return JSON.parse(saved)
+  } catch {
+    return null
+  }
+})
+
 const completedSteps = computed(() => {
-  return props.mission.completedSteps || 0
+  if (savedProgress.value) {
+    return Number(
+      savedProgress.value.completedSteps || 0
+    )
+  }
+
+  return Number(
+    props.mission.completedSteps || 0
+  )
 })
 
 const totalSteps = computed(() => {
@@ -249,10 +278,15 @@ const totalSteps = computed(() => {
 })
 
 const progress = computed(() => {
-  if (!totalSteps.value) return 0
+  if (!totalSteps.value) {
+    return 0
+  }
 
-  return Math.round(
-    (completedSteps.value / totalSteps.value) * 100
+  return Math.min(
+    100,
+    Math.round(
+      (completedSteps.value / totalSteps.value) * 100
+    )
   )
 })
 
