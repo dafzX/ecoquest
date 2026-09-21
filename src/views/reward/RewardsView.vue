@@ -95,7 +95,12 @@
           </div>
 
           <div class="grid gap-3.5 sm:grid-cols-2">
-            <RewardCard v-for="reward in filteredRewards" :key="reward.id" :reward="reward" />
+            <RewardCard
+              v-for="reward in filteredRewards"
+              :key="reward.id"
+              :reward="reward"
+              @claim="handleClaim"
+            />
           </div>
 
           <div v-if="filteredRewards.length === 0" class="rounded-2xl border border-dashed border-[#DCE5DE] bg-white px-6 py-10 text-center">
@@ -194,12 +199,20 @@
                 
                 <div class="mt-auto pt-4 flex items-center justify-between">
                   <span class="text-sm font-bold text-[#22C55E]">{{ reward.cost.toLocaleString() }} XP</span>
-                  <button 
-                    class="rounded-lg bg-[#22C55E] px-4 py-1.5 text-xs font-semibold text-white transition hover:bg-[#15803D]"
-                  >
-                    Redeem
-                  </button>
-                </div>
+                    <button
+                      type="button"
+                      @click="handleClaim(reward)"
+                      :disabled="reward.owned || !reward.available"
+                      class="rounded-lg px-4 py-1.5 text-xs font-semibold transition"
+                      :class="
+                        reward.owned
+                          ? 'cursor-default bg-[#EAF8EE] text-[#15803D]'
+                          : 'bg-[#22C55E] text-white hover:bg-[#15803D]'
+                      "
+                    >
+                      {{ reward.owned ? 'Redeemed' : 'Redeem' }}
+                    </button>
+                  </div>
               </div>
             </article>
 
@@ -217,11 +230,10 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 import {
   Award,
-  Bell,
   Gift,
   Leaf,
   Zap
@@ -231,16 +243,24 @@ import AppLayout from '@/layouts/AppLayout.vue'
 import RewardCard from '@/components/cards/RewardCard.vue'
 import MobileHeader from '@/components/navigation/MobileHeader.vue'
 
+import { getCurrentUser } from '@/services/auth'
 import {
-  user,
-  rewards,
-  redeemedRewards
+  claimReward,
+  getRewards
+} from '@/services/rewards'
+
+import {
+  rewards as mockRewards
 } from '@/data/mockData.js'
 
-const currentUser = {
-  avatar: 'DA'
-}
+const user = ref(
+  getCurrentUser() || {
+    xp: 0,
+    redeemedRewardIds: []
+  }
+)
 
+const rewards = ref([])
 const selectedCategory = ref('All')
 
 const categories = [
@@ -250,33 +270,98 @@ const categories = [
   'Merchandise'
 ]
 
-const filteredRewards = computed(() => {
-  if (selectedCategory.value === 'All') {
-    return rewards
+onMounted(async () => {
+  const result = await getRewards()
+
+  if (!result.success) {
+    alert(result.message)
+    return
   }
 
-  return rewards.filter((reward) => {
-    return reward.category === selectedCategory.value
+  const redeemedIds = user.value.redeemedRewardIds || []
+
+  rewards.value = rewards.value.map((item) => ({
+    ...item,
+    owned: redeemedIds.includes(item.id)
+  }))
+
+  rewards.value = result.rewards.map((reward) => {
+    const uiData = mockRewards.find(
+      (item) => item.id === reward.id
+    )
+
+    return {
+      ...uiData,
+      ...reward,
+      owned: redeemedIds.includes(reward.id)
+    }
   })
 })
 
+const filteredRewards = computed(() => {
+  if (selectedCategory.value === 'All') {
+    return rewards.value
+  }
+
+  return rewards.value.filter(
+    (reward) => reward.category === selectedCategory.value
+  )
+})
+
+const redeemedRewards = computed(() => {
+  return rewards.value
+    .filter((reward) => reward.owned)
+    .map((reward) => ({
+      ...reward,
+      date: 'Baru saja'
+    }))
+})
+
 const availableRewards = computed(() => {
-  return rewards.filter((reward) => {
-    return reward.available
-  }).length
+  return rewards.value.filter(
+    (reward) => reward.available && !reward.owned
+  ).length
 })
 
 const xpSpent = computed(() => {
-  return redeemedRewards.reduce((total, reward) => {
-    return total + reward.cost
-  }, 0)
+  return redeemedRewards.value.reduce(
+    (total, reward) => total + reward.cost,
+    0
+  )
 })
 
 const nextReward = computed(() => {
-  return rewards
-    .filter((reward) => {
-      return reward.available && reward.cost > user.xp
-    })
+  return rewards.value
+    .filter(
+      (reward) =>
+        reward.available &&
+        !reward.owned &&
+        reward.cost > user.value.xp
+    )
     .sort((a, b) => a.cost - b.cost)[0]
 })
+
+async function handleClaim(reward) {
+  const confirmed = window.confirm(
+    `Tukar ${reward.cost} XP untuk ${reward.title}?`
+  )
+
+  if (!confirmed) return
+
+  const result = await claimReward(reward.id)
+
+  if (!result.success) {
+    alert(result.message)
+    return
+  }
+
+  user.value = result.user
+
+  rewards.value = rewards.value.map((item) => ({
+    ...item,
+    owned: user.value.redeemedRewardIds.includes(item.id)
+  }))
+
+  alert(result.message)
+}
 </script>

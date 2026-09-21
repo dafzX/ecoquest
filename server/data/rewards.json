@@ -1,0 +1,39 @@
+{
+  "rewards": [
+    {
+      "id": 1,
+      "title": "Lencana Eco Pemula",
+      "category": "Digital",
+      "cost": 300,
+      "available": true
+    },
+    {
+      "id": 2,
+      "title": "Tanam Satu Pohon",
+      "category": "Impact",
+      "cost": 500,
+      "available": true
+    },
+    {
+      "id": 3,
+      "title": "Botol Minum Reusable",
+      "category": "Merchandise",
+      "cost": 1000,
+      "available": true
+    },
+    {
+      "id": 4,
+      "title": "Tas EcoQuest",
+      "category": "Merchandise",
+      "cost": 1500,
+      "available": true
+    },
+    {
+      "id": 5,
+      "title": "Lencana Penjelajah Hijau",
+      "category": "Digital",
+      "cost": 800,
+      "available": true
+    }
+  ]
+}

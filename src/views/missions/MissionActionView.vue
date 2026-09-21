@@ -50,12 +50,9 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { completeMission } from '@/services/missions'
-
 import AppLayout from '@/layouts/AppLayout.vue'
 
-// Import kedua komponen yang barusan dibuat
 import MissionActionDesktop from '@/components/missions/MissionActionDesktop.vue'
-import MissionActionMobile from '@/components/missions/MissionActionMobile.vue'
 
 import { missions } from '@/data/mockData'
 
