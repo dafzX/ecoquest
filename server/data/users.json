@@ -52,10 +52,13 @@
       "name": "Gibran Slebew",
       "email": "gibran@ecoquest.com",
       "password": "fufufafa123",
-      "xp": 0,
+      "xp": 125,
       "level": 1,
-      "streak": 0,
-      "completedMissionIds": []
+      "streak": 2,
+      "completedMissionIds": [
+        1,
+        2
+      ]
     }
   ]
 }
