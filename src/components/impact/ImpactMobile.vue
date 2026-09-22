@@ -205,7 +205,7 @@
           <template v-else>
             Tinggal
             {{ monthlyTarget - monthlyCurrent }}
-            points lagi untuk mencapai target bulan ini.
+            poin lagi untuk mencapai target bulan ini.
           </template>
 
         </p>
@@ -220,11 +220,11 @@
       <div class="mb-3">
 
         <h2 class="text-[12px] font-bold text-[#17211B]">
-          Impact Breakdown
+          Rincian Dampak
         </h2>
 
         <p class="mt-0.5 text-[8px] text-[#718078]">
-          Distribusi kontribusi dari berbagai eco action.
+          Distribusi kontribusi dari berbagai aksi ramah lingkungan.
         </p>
 
       </div>

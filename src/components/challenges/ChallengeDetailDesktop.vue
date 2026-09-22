@@ -15,11 +15,11 @@
 
           <div>
             <p class="text-xs text-[#98A39C]">
-              Challenges
+              Tantangan
             </p>
 
             <h1 class="text-xl font-bold text-[#17211B]">
-              Challenge Detail
+              Detail Tantangan
             </h1>
           </div>
         </div>
@@ -94,11 +94,11 @@
             <div class="flex items-center justify-between">
               <div>
                 <h3 class="text-sm font-bold text-[#17211B]">
-                  Progress Kamu
+                  Kemajuan Kamu
                 </h3>
 
                 <p class="mt-1 text-xs text-[#98A39C]">
-                  Selesaikan semua aksi untuk menuntaskan challenge.
+                  Selesaikan semua aksi untuk menuntaskan tantangan.
                 </p>
               </div>
 
@@ -140,11 +140,11 @@
             <div class="flex items-center justify-between">
               <div>
                 <h3 class="text-sm font-bold text-[#17211B]">
-                  Progress Komunitas
+                  Kemajuan Komunitas
                 </h3>
 
                 <p class="mt-1 text-xs text-[#98A39C]">
-                  Progress seluruh peserta challenge.
+                  Kemajuan seluruh peserta tantangan.
                 </p>
               </div>
 
@@ -186,12 +186,12 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-xs text-white/50">
-                  Challenge Reward
+                  Hadiah Tantangan
                 </p>
 
                 <div class="mt-1">
                   <span class="text-base font-bold text-white">
-                    Special Badge & 500 XP
+                    Lencana Spesial & 500 XP
                   </span>
                 </div>
               </div>
@@ -208,21 +208,24 @@
             @click="!isCompleted && $emit('join')"
             :disabled="isCompleted"
             class="flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold text-white transition active:scale-[0.99]"
-            :class="isCompleted ? 'bg-[#98A39C] cursor-not-allowed' : 'bg-[#22C55E] hover:bg-[#16A34A]'"
+            :class="isCompleted
+              ? 'bg-[#98A39C] cursor-not-allowed'
+              : 'bg-[#22C55E] hover:bg-[#16A34A]'"
           >
             {{
               isCompleted
-                ? 'Challenge Selesai'
+                ? 'Tantangan Selesai'
                 : !challenge.joined
-                  ? 'Ikuti Challenge'
+                  ? 'Ikuti Tantangan'
                   : challenge.completedSteps === 0
-                    ? 'Mulai Challenge'
-                    : 'Lanjutkan Challenge'
+                    ? 'Mulai Tantangan'
+                    : 'Lanjutkan Tantangan'
             }}
 
             <Check v-if="isCompleted" class="h-4 w-4" />
             <ArrowRight v-else class="h-4 w-4" />
           </button>
+
         </div>
       </div>
     </div>
@@ -260,13 +263,16 @@ defineEmits(['join'])
 const personalProgress = computed(() => {
   const total = props.challenge.totalSteps || props.challenge.steps?.length || 0
   const completed = props.challenge.completedSteps || 0
+
   if (!total) return 0
+
   return Math.round((completed / total) * 100)
 })
 
 const isCompleted = computed(() => {
   const total = props.challenge.totalSteps || props.challenge.steps?.length || 0
   const completed = props.challenge.completedSteps || 0
+
   return total > 0 && completed >= total
 })
 </script>

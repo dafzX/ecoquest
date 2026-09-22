@@ -117,7 +117,7 @@
                   </p>
 
                   <p class="text-[9px] text-[#66736A]">
-                    Eco Actions
+                    Aksi Eco
                   </p>
                 </div>
 
@@ -136,7 +136,7 @@
                   </p>
 
                   <p class="text-[9px] text-[#66736A]">
-                    Low Carbon
+                    Rendah Karbon
                   </p>
                 </div>
 

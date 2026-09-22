@@ -53,7 +53,7 @@
                 class="flex h-9 shrink-0 items-center gap-2 rounded-xl border border-[#DCEBE0] bg-white px-4 text-xs font-semibold text-[#15803D] transition hover:border-[#BBF7D0] hover:bg-[#F7FBF8]"
               >
                 <Pencil class="h-3.5 w-3.5" />
-                Edit Profile
+                Edit Profil
               </RouterLink>
 
             </div>
@@ -175,7 +175,7 @@
             <span
               class="rounded-full bg-[#EAF4FF] px-2.5 py-1 text-[9px] font-semibold text-[#3B82F6]"
             >
-              Low Carbon
+              Rendah Karbon
             </span>
 
           </div>
@@ -213,7 +213,7 @@
 
           <div class="min-w-0 flex-1">
             <h3 class="text-sm font-bold text-[#17211B]">
-              My Achievements
+              Pencapaian Saya
             </h3>
 
             <p class="mt-1 text-xs leading-5 text-[#718078]">
@@ -239,7 +239,7 @@
 
           <div class="min-w-0 flex-1">
             <h3 class="text-sm font-bold text-[#17211B]">
-              My Impact
+              Dampak Saya
             </h3>
 
             <p class="mt-1 text-xs leading-5 text-[#718078]">
@@ -265,7 +265,7 @@
 
           <div class="min-w-0 flex-1">
             <h3 class="text-sm font-bold text-[#17211B]">
-              Settings
+              Pengaturan
             </h3>
 
             <p class="mt-1 text-xs leading-5 text-[#718078]">
@@ -291,7 +291,7 @@
 
           <div class="min-w-0 flex-1">
             <h3 class="text-sm font-bold text-[#17211B]">
-              Help & Support
+              Bantuan & Dukungan
             </h3>
 
             <p class="mt-1 text-xs leading-5 text-[#718078]">

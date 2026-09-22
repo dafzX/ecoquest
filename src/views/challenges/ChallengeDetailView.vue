@@ -41,7 +41,7 @@ const route = useRoute()
 const challenges = [
   {
     id: 1,
-    title: 'Plastic Reduction Week',
+    title: 'Pekan Pengurangan Plastik',
     description:
       'Kurangi penggunaan plastik sekali pakai dan ajak komunitasmu melakukan aksi nyata.',
     category: 'Plastic',
@@ -67,7 +67,7 @@ const challenges = [
 
   {
     id: 2,
-    title: 'Green Transport Challenge',
+    title: 'Tantangan Transportasi Hijau',
     description:
       'Gunakan transportasi ramah lingkungan untuk perjalanan sehari-hari.',
     category: 'Transport',
@@ -93,7 +93,7 @@ const challenges = [
 
   {
     id: 3,
-    title: 'Clean Energy Challenge',
+    title: 'Tantangan Energi Bersih',
     description:
       'Kurangi konsumsi energi dan gunakan energi secara lebih bijak.',
     category: 'Energy',
@@ -119,7 +119,7 @@ const challenges = [
 
   {
     id: 4,
-    title: 'Plant for Tomorrow',
+    title: 'Tanam untuk Masa Depan',
     description:
       'Ajak lebih banyak orang menanam dan merawat pohon di lingkungan sekitar.',
     category: 'Tree',
@@ -147,7 +147,7 @@ const challenges = [
 const updateTrigger = ref(0)
 
 const challenge = computed(() => {
-  updateTrigger.value // depend on trigger for reactivity
+  updateTrigger.value
 
   const id = Number(route.params.id)
 
@@ -169,7 +169,9 @@ const challenge = computed(() => {
   if (saved) {
     try {
       const data = JSON.parse(saved)
+
       completedSteps = data.completedSteps || 0
+
       if (data.joined !== undefined) {
         joined = data.joined
       }
@@ -215,7 +217,6 @@ function getCategoryIcon(category) {
   return Globe2
 }
 
-// DIPERBAIKI: Menggunakan router.back()
 function goBack() {
   router.back()
 }
@@ -231,7 +232,8 @@ function joinChallenge() {
         completedSteps: current.completedSteps
       })
     )
-    updateTrigger.value++ // trigger re-render to update button state
+
+    updateTrigger.value++
     return
   }
 

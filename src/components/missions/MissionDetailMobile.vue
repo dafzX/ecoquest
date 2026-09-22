@@ -1,8 +1,10 @@
 <template>
   <div class="md:hidden">
     <div class="min-h-screen bg-[#F4FBF7] px-4 pb-28">
+
       <!-- Header -->
       <header class="relative flex items-center justify-between py-4">
+
         <button
           type="button"
           @click="goBack"
@@ -20,14 +22,18 @@
             +{{ mission.xp }} XP
           </span>
         </div>
+
       </header>
 
       <!-- Mission -->
       <section class="mt-3">
+
         <div
           class="rounded-3xl border border-[#E2E8F0] bg-white p-5 shadow-sm"
         >
+
           <div class="flex items-start gap-3">
+
             <div
               class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#DCFCE7]"
             >
@@ -38,6 +44,7 @@
             </div>
 
             <div class="min-w-0">
+
               <span
                 class="inline-flex rounded-full bg-[#F0FDF4] px-2.5 py-1 text-[10px] font-semibold text-[#15803D]"
               >
@@ -51,19 +58,24 @@
               <p class="mt-2 text-xs leading-5 text-[#64748B]">
                 {{ mission.description }}
               </p>
+
             </div>
+
           </div>
 
           <!-- Progress -->
           <div class="mt-5">
+
             <div class="mb-2 flex items-center justify-between">
+
               <span class="text-[11px] font-medium text-[#64748B]">
-                Progress
+                Kemajuan
               </span>
 
               <span class="text-[11px] font-bold text-[#15803D]">
                 {{ completedSteps }}/{{ totalSteps }}
               </span>
+
             </div>
 
             <div class="h-2 overflow-hidden rounded-full bg-[#E2E8F0]">
@@ -72,23 +84,30 @@
                 :style="{ width: `${progress}%` }"
               />
             </div>
+
           </div>
+
         </div>
+
       </section>
 
       <!-- Steps -->
       <section class="mt-5">
+
         <div class="mb-4">
+
           <h2 class="text-base font-bold text-[#0F172A]">
-            Mission Steps
+            Langkah Misi
           </h2>
 
           <p class="mt-1 text-xs text-[#64748B]">
-            Complete each step to finish the mission.
+            Selesaikan setiap langkah untuk menyelesaikan misi ini.
           </p>
+
         </div>
 
         <div class="space-y-3">
+
           <div
             v-for="(step, index) in mission.steps"
             :key="index"
@@ -101,7 +120,9 @@
                   : 'border-[#E2E8F0] bg-white'
             "
           >
+
             <div class="flex items-center gap-3">
+
               <!-- Number -->
               <div
                 class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold"
@@ -113,6 +134,7 @@
                       : 'bg-[#F1F5F9] text-[#94A3B8]'
                 "
               >
+
                 <Check
                   v-if="index < completedSteps"
                   class="h-4 w-4"
@@ -121,10 +143,12 @@
                 <span v-else>
                   {{ index + 1 }}
                 </span>
+
               </div>
 
               <!-- Content -->
               <div class="min-w-0 flex-1">
+
                 <h3
                   class="text-sm font-semibold leading-5"
                   :class="
@@ -142,7 +166,9 @@
                 >
                   {{ step.description }}
                 </p>
+
               </div>
+
             </div>
 
             <!-- Action -->
@@ -150,6 +176,7 @@
               v-if="index === completedSteps && !mission.completed"
               class="mt-3 border-t border-[#E2E8F0] pt-3"
             >
+
               <RouterLink
                 :to="{
                   name: 'MissionAction',
@@ -160,9 +187,10 @@
                 }"
                 class="flex w-full items-center justify-center gap-2 rounded-xl bg-[#15803D] py-2.5 text-xs font-semibold text-white transition active:scale-[0.98]"
               >
-                Lakukan Step {{ index + 1 }}
+                Lakukan Langkah {{ index + 1 }}
                 <ArrowRight class="h-4 w-4" />
               </RouterLink>
+
             </div>
 
             <div
@@ -170,17 +198,20 @@
               class="mt-3 flex items-center gap-1.5 border-t border-[#DCFCE7] pt-3 text-[11px] font-semibold text-[#16A34A]"
             >
               <Check class="h-3.5 w-3.5" />
-              Step selesai
+              Langkah selesai
             </div>
 
             <div
               v-else
               class="mt-3 border-t border-[#E2E8F0] pt-3 text-[11px] font-medium text-[#94A3B8]"
             >
-              Selesaikan step sebelumnya terlebih dahulu
+              Selesaikan langkah sebelumnya terlebih dahulu
             </div>
+
           </div>
+
         </div>
+
       </section>
 
       <!-- Completed -->
@@ -188,7 +219,9 @@
         v-if="allStepsCompleted"
         class="mt-5 rounded-2xl bg-[#F0FDF4] p-4"
       >
+
         <div class="flex items-center gap-3">
+
           <div
             class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#DCFCE7]"
           >
@@ -196,21 +229,29 @@
           </div>
 
           <div class="min-w-0 flex-1">
+
             <p class="text-sm font-bold text-[#166534]">
-              Mission Completed!
+              Misi Selesai!
             </p>
 
             <p class="mt-1 text-[11px] text-[#65A30D]">
-              Semua step sudah selesai.
+              Semua langkah misi telah selesai.
             </p>
+
           </div>
 
           <div class="flex items-center gap-1 text-xs font-bold text-[#15803D]">
+
             <Zap class="h-3.5 w-3.5" />
-            +{{ mission.xp }}
+
+            +{{ mission.xp }} XP
+
           </div>
+
         </div>
+
       </section>
+
     </div>
   </div>
 </template>

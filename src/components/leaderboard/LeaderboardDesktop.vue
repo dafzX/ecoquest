@@ -4,7 +4,7 @@
 
       <div class="mb-6 lg:mb-8">
         <h1 class="text-2xl font-bold tracking-tight text-[#17211B] lg:text-[32px]">
-          Leaderboard
+          Papan Peringkat
         </h1>
 
         <p class="mt-1.5 text-sm text-[#66736A] lg:mt-2 lg:text-base">
@@ -20,7 +20,7 @@
           >
             <div class="mb-8 text-center lg:mb-10">
               <h2 class="text-lg font-bold text-[#17211B] lg:text-xl">
-                Top Explorers
+                Penjelajah Teratas
               </h2>
 
               <p class="text-xs text-[#98A39C] lg:text-sm">
@@ -135,7 +135,7 @@
               v-else
               class="flex min-h-[220px] items-center justify-center text-sm text-[#98A39C]"
             >
-              Belum ada data leaderboard.
+              Belum ada data papan peringkat.
             </div>
           </div>
         </div>
@@ -149,11 +149,11 @@
               class="hidden grid-cols-[64px_minmax(0,1fr)_90px_130px] items-center gap-4 border-b border-[#E8EDE9] bg-[#F8FAF8] px-5 py-4 text-xs font-semibold uppercase tracking-wider text-[#98A39C] lg:grid lg:px-6"
             >
               <div class="text-center">
-                Rank
+                Peringkat
               </div>
 
               <div>
-                Explorer
+                Penjelajah
               </div>
 
               <div class="text-center">
@@ -169,11 +169,11 @@
               class="grid grid-cols-[48px_minmax(0,1fr)_70px_100px] items-center gap-3 border-b border-[#E8EDE9] bg-[#F8FAF8] px-4 py-3 text-[10px] font-semibold uppercase tracking-wider text-[#98A39C] lg:hidden"
             >
               <div class="text-center">
-                Rank
+                Peringkat
               </div>
 
               <div>
-                Explorer
+                Penjelajah
               </div>
 
               <div class="text-center">
@@ -238,7 +238,7 @@
                         v-if="user.isCurrentUser"
                         class="shrink-0 rounded-full bg-emerald-200 px-1.5 py-0.5 text-[8px] font-bold tracking-wide text-emerald-700 lg:px-2 lg:text-[10px]"
                       >
-                        YOU
+                        ANDA
                       </span>
                     </div>
                   </div>

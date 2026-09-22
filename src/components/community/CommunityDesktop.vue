@@ -5,7 +5,7 @@
       <section class="mb-8 flex items-end justify-between">
         <div>
           <h1 class="text-[28px] font-bold text-[#17211B]">
-            Community
+            Komunitas
           </h1>
           <p class="mt-1 text-sm text-[#66736A]">
             Berbagi inspirasi dengan sesama Eco Explorer.
@@ -20,7 +20,7 @@
           <div class="mb-8 rounded-2xl border border-[#E8EDE9] bg-white p-5 shadow-sm">
             <div class="flex gap-4">
               <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#22C55E] text-lg font-bold text-white">
-                {{ user.avatar || 'DA' }}
+                {{ user?.avatar || 'DA' }}
               </div>
               <div class="flex-1">
                 <textarea 
@@ -32,10 +32,10 @@
                 <div class="mt-3 flex items-center justify-between border-t border-[#E8EDE9] pt-3">
                   <button class="flex items-center gap-2 rounded-lg p-2 text-[#66736A] transition hover:bg-[#F8FAF8] hover:text-[#22C55E]">
                     <ImageIcon class="h-5 w-5" />
-                    <span class="text-xs font-semibold">Photo/Video</span>
+                    <span class="text-xs font-semibold">Foto/Video</span>
                   </button>
                   <button class="rounded-xl bg-[#22C55E] px-6 py-2 text-sm font-semibold text-white transition hover:bg-[#15803D]">
-                    Post
+                    Kirim
                   </button>
                 </div>
               </div>
@@ -51,7 +51,7 @@
             />
             
             <button class="w-full rounded-2xl border border-[#E8EDE9] bg-white py-4 text-sm font-semibold text-[#15803D] transition hover:bg-[#F8FAF8]">
-              Load More
+              Muat Lebih Banyak
             </button>
           </div>
         </div>
@@ -60,24 +60,24 @@
         <div class="space-y-6">
           <!-- Trending Topics -->
           <div class="rounded-2xl border border-[#E8EDE9] bg-white p-6 shadow-sm">
-            <h3 class="mb-5 text-base font-bold text-[#17211B]">Trending Topics</h3>
+            <h3 class="mb-5 text-base font-bold text-[#17211B]">Topik Populer</h3>
             <div class="space-y-4">
               <div class="flex items-center justify-between">
                 <div>
                   <h4 class="text-sm font-bold text-[#15803D]">#BeachCleanup</h4>
-                  <p class="text-xs text-[#98A39C]">1.2k posts</p>
+                  <p class="text-xs text-[#98A39C]">1.2k postingan</p>
                 </div>
               </div>
               <div class="flex items-center justify-between">
                 <div>
                   <h4 class="text-sm font-bold text-[#15803D]">#ZeroWaste</h4>
-                  <p class="text-xs text-[#98A39C]">850 posts</p>
+                  <p class="text-xs text-[#98A39C]">850 postingan</p>
                 </div>
               </div>
               <div class="flex items-center justify-between">
                 <div>
                   <h4 class="text-sm font-bold text-[#15803D]">#Composting</h4>
-                  <p class="text-xs text-[#98A39C]">640 posts</p>
+                  <p class="text-xs text-[#98A39C]">640 postingan</p>
                 </div>
               </div>
             </div>
@@ -85,27 +85,27 @@
 
           <!-- Top Contributors -->
           <div class="rounded-2xl border border-[#E8EDE9] bg-white p-6 shadow-sm">
-            <h3 class="mb-5 text-base font-bold text-[#17211B]">Top Contributors</h3>
+            <h3 class="mb-5 text-base font-bold text-[#17211B]">Kontributor Utama</h3>
             <div class="space-y-4">
               <div class="flex items-center gap-3">
                 <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#EAF8EE] text-sm font-bold text-[#15803D]">A</div>
                 <div>
                   <h4 class="text-sm font-bold text-[#17211B]">Andi</h4>
-                  <p class="text-xs text-[#66736A]">152 posts</p>
+                  <p class="text-xs text-[#66736A]">152 postingan</p>
                 </div>
               </div>
               <div class="flex items-center gap-3">
                 <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#FFF8E1] text-sm font-bold text-[#A16207]">R</div>
                 <div>
                   <h4 class="text-sm font-bold text-[#17211B]">Rina</h4>
-                  <p class="text-xs text-[#66736A]">134 posts</p>
+                  <p class="text-xs text-[#66736A]">134 postingan</p>
                 </div>
               </div>
               <div class="flex items-center gap-3">
                 <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#E8F6FF] text-sm font-bold text-[#0284C7]">B</div>
                 <div>
                   <h4 class="text-sm font-bold text-[#17211B]">Budi</h4>
-                  <p class="text-xs text-[#66736A]">98 posts</p>
+                  <p class="text-xs text-[#66736A]">98 postingan</p>
                 </div>
               </div>
             </div>

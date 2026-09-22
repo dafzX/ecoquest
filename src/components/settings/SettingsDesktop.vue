@@ -83,7 +83,7 @@
           </div>
 
           <!-- Preferences -->
-          <div class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+          <!-- <div class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
             <h2 class="text-sm font-bold text-[#17211B]">Preferensi</h2>
             <p class="mt-1 text-xs text-[#718078]">Sesuaikan pengalaman penggunaan EcoQuest.</p>
             <div class="mt-4 space-y-2">
@@ -121,7 +121,7 @@
                 </span>
               </div>
             </div>
-          </div>
+          </div> -->
         </section>
 
         <!-- Right Sidebar -->

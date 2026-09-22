@@ -6,7 +6,7 @@
     <!-- Page Header -->
     <div class="mb-5">
       <h1 class="text-[22px] font-bold tracking-tight text-[#17211B]">
-        Community
+        Komunitas
       </h1>
 
       <p class="mt-1 max-w-[360px] text-xs leading-5 text-[#66736A]">
@@ -124,7 +124,7 @@
         <div class="mb-4 flex items-start justify-between gap-3">
           <div class="min-w-0">
             <h2 class="text-base font-bold text-[#17211B]">
-              Community Feed
+              Beranda Komunitas
             </h2>
 
             <p

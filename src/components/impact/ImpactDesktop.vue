@@ -149,11 +149,11 @@
             <div class="mb-5">
 
               <h2 class="text-base font-bold text-[#17211B]">
-                Impact Breakdown
+                Rincian Dampak
               </h2>
 
               <p class="mt-1 text-[10px] text-[#8A958E]">
-                Distribusi kontribusi dari berbagai eco action.
+                Distribusi kontribusi dari berbagai aksi ramah lingkungan.
               </p>
 
             </div>

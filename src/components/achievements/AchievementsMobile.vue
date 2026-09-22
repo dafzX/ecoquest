@@ -12,14 +12,14 @@
       </button>
 
       <span class="text-[13px] font-semibold text-[#17211B]">
-        Challenge Action
+        Aksi Tantangan
       </span>
     </header>
 
     <!-- Intro -->
     <section class="mb-3 mt-2">
       <h1 class="text-[17px] font-bold text-[#17211B]">
-        Achievements
+        Pencapaian
       </h1>
       <p class="mt-0.5 text-[10px] text-[#718078]">
         Koleksi pencapaianmu selama di EcoQuest.
@@ -34,12 +34,12 @@
       </div>
 
       <div class="rounded-xl border border-[#DCEBE0] bg-white p-3">
-        <p class="text-[9px] font-medium text-[#98A39C]">Completed</p>
+        <p class="text-[9px] font-medium text-[#98A39C]">Selesai</p>
         <p class="mt-1 text-[15px] font-bold text-[#22C55E]">{{ completedCount }}</p>
       </div>
 
       <div class="rounded-xl border border-[#DCEBE0] bg-white p-3">
-        <p class="text-[9px] font-medium text-[#98A39C]">Progress</p>
+        <p class="text-[9px] font-medium text-[#98A39C]">Berjalan</p>
         <p class="mt-1 text-[15px] font-bold text-[#66736A]">{{ progressCount }}</p>
       </div>
     </section>
@@ -55,7 +55,13 @@
           :class="activeTab === tab.value ? 'bg-[#22C55E] text-white' : 'text-[#718078] hover:bg-[#F4FBF7]'"
           @click="$emit('update:activeTab', tab.value)"
         >
-          {{ tab.label }}
+          {{
+            tab.value === 'all'
+              ? 'Semua'
+              : tab.value === 'progress'
+              ? 'Berjalan'
+              : 'Selesai'
+          }}
           <span
             class="ml-1"
             :class="activeTab === tab.value ? 'text-white/70' : 'text-[#98A39C]'"
@@ -109,7 +115,7 @@
                   class="shrink-0 rounded-full px-2 py-1 text-[7px] font-semibold"
                   :class="achievement.unlocked ? 'bg-[#EAF8EE] text-[#15803D]' : 'bg-[#F1F5F2] text-[#66736A]'"
                 >
-                  {{ achievement.unlocked ? 'Done' : 'Progress' }}
+                  {{ achievement.unlocked ? 'Selesai' : 'Berjalan' }}
                 </span>
               </div>
               <p class="mt-0.5 text-[8px] leading-[13px] text-[#718078]">
@@ -122,14 +128,14 @@
                   class="flex items-center gap-1 text-[8px] font-semibold text-[#22C55E]"
                 >
                   <CheckCircle2 class="h-3 w-3" />
-                  Achievement completed
+                  Pencapaian selesai
                 </div>
                 <div
                   v-else
                   class="flex items-center gap-1 text-[8px] font-medium text-[#98A39C]"
                 >
                   <Clock3 class="h-3 w-3" />
-                  Still in progress
+                  Masih berjalan
                 </div>
               </div>
             </div>
@@ -182,15 +188,15 @@ const props = defineProps({
   },
   sectionTitle: {
     type: String,
-    default: 'All Achievements'
+    default: 'Semua Pencapaian'
   },
   emptyTitle: {
     type: String,
-    default: 'Belum ada achievement'
+    default: 'Belum ada pencapaian'
   },
   emptyDescription: {
     type: String,
-    default: 'Belum ada achievement yang tersedia saat ini.'
+    default: 'Belum ada pencapaian yang tersedia saat ini.'
   }
 })
 

@@ -1,7 +1,6 @@
 <template>
   <main class="mx-auto w-full max-w-[430px] px-3 pb-24 sm:px-4 md:hidden">
 
-    <!-- Header -->
     <header class="relative flex h-14 items-center justify-center">
       <button
         type="button"
@@ -12,15 +11,13 @@
       </button>
 
       <span class="text-[13px] font-semibold text-[#17211B]">
-        Leaderboard
+        Papan Peringkat
       </span>
     </header>
 
-    <!-- Leaderboard Hero -->
     <section
       class="mb-5 overflow-hidden rounded-2xl border border-[#DCEBDD] bg-white"
     >
-      <!-- Hero Header -->
       <div
         class="border-b border-[#E8EDE9] px-3.5 py-3.5 sm:px-4 sm:py-4"
       >
@@ -47,11 +44,9 @@
         </div>
       </div>
 
-      <!-- Top 3 -->
       <div class="px-2.5 pb-6 pt-8 sm:px-4 sm:pt-9">
         <div class="grid grid-cols-3 items-end">
 
-          <!-- Rank 2 -->
           <div
             v-if="topThree[1]"
             class="flex min-w-0 flex-col items-center"
@@ -83,7 +78,6 @@
             </p>
           </div>
 
-          <!-- Rank 1 -->
           <div
             v-if="topThree[0]"
             class="flex min-w-0 flex-col items-center"
@@ -121,7 +115,6 @@
             </p>
           </div>
 
-          <!-- Rank 3 -->
           <div
             v-if="topThree[2]"
             class="flex min-w-0 flex-col items-center"
@@ -157,7 +150,6 @@
       </div>
     </section>
 
-    <!-- Your Ranking -->
     <section class="mb-5">
       <div class="mb-2.5">
         <h2 class="text-[12px] font-bold text-[#17211B] sm:text-sm">
@@ -171,7 +163,6 @@
       >
         <div class="flex min-w-0 items-center gap-2.5 sm:gap-3">
 
-          <!-- Rank -->
           <div class="w-6 shrink-0 text-center sm:w-7">
             <span
               class="text-[10px] font-black italic text-emerald-600 sm:text-xs"
@@ -180,14 +171,12 @@
             </span>
           </div>
 
-          <!-- Avatar -->
           <div
             class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-[10px] font-bold text-white shadow-sm ring-1 ring-white sm:h-9 sm:w-9 sm:text-xs"
           >
             {{ currentUser.avatar }}
           </div>
 
-          <!-- User -->
           <div class="min-w-0 flex-1">
             <div class="flex min-w-0 items-center gap-1.5">
               <p
@@ -210,7 +199,6 @@
             </p>
           </div>
 
-          <!-- XP -->
           <div class="shrink-0 text-right">
             <p
               class="whitespace-nowrap text-[9px] font-bold text-emerald-700 sm:text-xs"
@@ -227,7 +215,6 @@
       </div>
     </section>
 
-    <!-- All Rankings -->
     <section>
       <div class="mb-2.5 flex items-center justify-between">
         <h2 class="text-[12px] font-bold text-[#17211B] sm:text-sm">
@@ -235,11 +222,10 @@
         </h2>
 
         <span class="text-[8px] text-[#98A39C]">
-          {{ leaderboard.length }} Explorer
+          {{ leaderboard.length }} Penjelajah
         </span>
       </div>
 
-      <!-- Ranking List -->
       <div class="space-y-2">
 
         <article
@@ -254,7 +240,6 @@
         >
           <div class="flex min-w-0 items-center gap-2.5 sm:gap-3">
 
-            <!-- Rank -->
             <div class="w-6 shrink-0 text-center sm:w-7">
               <span
                 class="text-[10px] font-bold sm:text-xs"
@@ -268,7 +253,6 @@
               </span>
             </div>
 
-            <!-- Avatar -->
             <div
               class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold sm:h-9 sm:w-9 sm:text-xs"
               :class="
@@ -280,7 +264,6 @@
               {{ user.avatar }}
             </div>
 
-            <!-- Name + Level -->
             <div class="min-w-0 flex-1">
               <div class="flex min-w-0 items-center gap-1.5">
                 <p
@@ -314,7 +297,6 @@
               </p>
             </div>
 
-            <!-- XP -->
             <div class="shrink-0 text-right">
               <p
                 class="whitespace-nowrap text-[9px] font-bold sm:text-[10px]"

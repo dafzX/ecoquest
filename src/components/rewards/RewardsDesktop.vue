@@ -8,11 +8,11 @@
 
         <div class="min-w-0">
           <h1 class="text-[28px] font-bold tracking-tight text-[#17211B]">
-            Rewards
+            Hadiah
           </h1>
 
           <p class="mt-1 text-sm text-[#66736A]">
-            Tukar XP yang kamu kumpulkan dengan reward menarik.
+            Tukar XP yang kamu kumpulkan dengan hadiah menarik.
           </p>
         </div>
 
@@ -27,7 +27,7 @@
 
           <div>
             <p class="text-[11px] font-medium text-[#98A39C]">
-              Current XP
+              XP Saat Ini
             </p>
 
             <p class="text-base font-bold text-[#22C55E]">
@@ -53,7 +53,7 @@
 
             <div>
               <p class="text-xs text-[#98A39C]">
-                Reward tersedia
+                Hadiah tersedia
               </p>
 
               <p class="mt-0.5 text-xl font-bold text-[#17211B]">
@@ -128,11 +128,13 @@
             @click="$emit('update:selected-category', category)"
           >
             {{
-              category === 'Impact'
-                ? 'Donation'
+              category === 'All'
+                ? 'Semua'
+                : category === 'Impact'
+                ? 'Donasi'
                 : category === 'Digital'
-                  ? 'Voucher'
-                  : category
+                ? 'Voucher'
+                : 'Merchandise'
             }}
 
             <span
@@ -149,16 +151,16 @@
 
         <div>
           <h2 class="text-lg font-bold text-[#17211B]">
-            Rewards Store
+            Katalog Hadiah
           </h2>
 
           <p class="mt-1 text-xs text-[#98A39C]">
-            Pilih reward yang ingin kamu tukarkan dengan XP.
+            Pilih hadiah yang ingin kamu tukarkan dengan XP.
           </p>
         </div>
 
         <span class="shrink-0 text-xs text-[#98A39C]">
-          {{ filteredRewards.length }} reward
+          {{ filteredRewards.length }} hadiah
         </span>
 
       </section>
@@ -202,10 +204,12 @@
             >
               {{
                 reward.category === 'Impact'
-                  ? 'Donation'
+                  ? 'Donasi'
                   : reward.category === 'Digital'
-                    ? 'Voucher'
-                    : reward.category
+                  ? 'Voucher'
+                  : reward.category === 'Merchandise'
+                  ? 'Merchandise'
+                  : reward.category
               }}
             </span>
 
@@ -243,10 +247,10 @@
               >
                 {{
                   reward.owned
-                    ? 'Redeemed'
+                    ? 'Sudah Ditukar'
                     : !reward.available
-                      ? 'Unavailable'
-                      : 'Redeem'
+                      ? 'Tidak Tersedia'
+                      : 'Tukar'
                 }}
               </button>
             </div>
@@ -265,11 +269,11 @@
         <Gift class="mx-auto h-12 w-12 text-[#98A39C]" />
 
         <p class="mt-4 text-base font-semibold text-[#17211B]">
-          Reward tidak ditemukan
+          Hadiah tidak ditemukan
         </p>
 
         <p class="mt-1 text-sm text-[#98A39C]">
-          Coba pilih kategori reward lainnya.
+          Coba pilih kategori hadiah lainnya.
         </p>
       </div>
 
