@@ -40,37 +40,67 @@ import AppLayout from '@/layouts/AppLayout.vue'
 
 import MissionsMobile from '@/components/missions/MissionsMobile.vue'
 import MissionsDesktop from '@/components/missions/MissionsDesktop.vue'
-
+import { getCurrentUser } from '@/services/auth'
 import { missions } from '@/data/mockData.js'
 
 const missionList = ref([])
 const activeTab = ref('all')
 const searchQuery = ref('')
 
+const getProgressKey = (missionId) => {
+  const userId = getCurrentUser()?.id || 'guest'
+
+  return `ecoquest_mission_progress_${userId}_${missionId}`
+}
+
 const loadMissionsProgress = () => {
+  const currentUser = getCurrentUser()
+  const completedMissionIds =
+    currentUser?.completedMissionIds || []
+
   missionList.value = missions.map((mission) => {
-    const saved = localStorage.getItem(`mission_progress_${mission.id}`)
-    let currentCompletedSteps = mission.completedSteps || 0
+    const saved = localStorage.getItem(
+      getProgressKey(mission.id)
+    )
+
+    let currentCompletedSteps = 0
 
     if (saved) {
       try {
         const parsed = JSON.parse(saved)
-        currentCompletedSteps = Number(parsed.completedSteps || 0)
+
+        currentCompletedSteps = Number(
+          parsed.completedSteps || 0
+        )
       } catch {
+        currentCompletedSteps = 0
       }
     }
 
-    const totalSteps = mission.steps?.length || mission.totalSteps || 0
-    const calculatedProgress = totalSteps > 0 
-      ? Math.round((currentCompletedSteps / totalSteps) * 100) 
-      : 0
-    const isCompleted = totalSteps > 0 && currentCompletedSteps >= totalSteps
+    const totalSteps =
+      mission.steps?.length || mission.totalSteps || 0
+
+    const completedFromBackend =
+      completedMissionIds.includes(mission.id)
+
+    if (completedFromBackend) {
+      currentCompletedSteps = totalSteps
+    }
+
+    const calculatedProgress =
+      totalSteps > 0
+        ? Math.round(
+            (currentCompletedSteps / totalSteps) * 100
+          )
+        : 0
 
     return {
       ...mission,
       completedSteps: currentCompletedSteps,
-      progress: calculatedProgress,
-      completed: isCompleted
+      progress: completedFromBackend
+        ? 100
+        : calculatedProgress,
+      completed: completedFromBackend
     }
   })
 }

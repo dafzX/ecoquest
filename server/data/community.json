@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "userId": null,
+      "name": "Sinta",
+      "avatar": "S",
+      "time": "12 menit lalu",
+      "category": "Daur Ulang",
+      "title": "Hari ini aku mendaur ulang botol plastik",
+      "content": "Berhasil mengumpulkan dan mendaur ulang 8 botol plastik hari ini. Aksi kecil, tapi berdampak.",
+      "likes": 24,
+      "comments": 6,
+      "impact": "1,8 kg CO₂ tersimpan",
+      "likedBy": []
+    },
+    {
+      "id": 2,
+      "userId": null,
+      "name": "Andi",
+      "avatar": "A",
+      "time": "1 jam lalu",
+      "category": "Transport",
+      "title": "Bersepeda daripada berkendara",
+      "content": "Hari ini aku menggunakan sepeda untuk pergi bekerja. Sekalian olahraga dan mengurangi emisi.",
+      "likes": 18,
+      "comments": 4,
+      "impact": "2,4 kg CO₂ tersimpan",
+      "likedBy": []
+    }
+  ]
+}

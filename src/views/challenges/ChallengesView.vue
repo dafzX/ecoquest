@@ -22,13 +22,17 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Recycle, Bike, Droplets, TreePine, Globe2 } from 'lucide-vue-next'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 import ChallengesMobile from '@/components/challenges/ChallengesMobile.vue'
 import ChallengesDesktop from '@/components/challenges/ChallengesDesktop.vue'
+import {
+  getChallenges,
+  joinChallenge
+} from '@/services/challenges'
 
 const router = useRouter()
 
@@ -83,28 +87,13 @@ const challenges = ref([
 
 const syncedChallenges = computed(() => {
   return challenges.value.map(challenge => {
-    const saved = localStorage.getItem(`ecoquest_challenge_progress_${challenge.id}`)
-    let completedSteps = 0
-    let joined = challenge.joined
-
-    if (saved) {
-      try {
-        const data = JSON.parse(saved)
-        completedSteps = data.completedSteps || 0
-        if (data.joined !== undefined) {
-          joined = data.joined
-        }
-      } catch {
-        // ignore
-      }
-    }
-
     const totalSteps = challenge.steps?.length || 3
+    const completedSteps = Number(challenge.completedSteps || 0)
     const isCompleted = totalSteps > 0 && completedSteps >= totalSteps
 
     return {
       ...challenge,
-      joined,
+      joined: Boolean(challenge.joined),
       completedSteps,
       isCompleted
     }
@@ -140,21 +129,25 @@ const getChallengeStyle = (category) => {
   return 'bg-[#E8F8ED] text-[#22C55E]'
 }
 
-const toggleJoin = (challenge) => {
+onMounted(async () => {
+  const result = await getChallenges()
+
+  if (result.success) {
+    challenges.value = result.challenges
+  }
+})
+
+const toggleJoin = async (challenge) => {
   if (challenge.joined) {
     router.push(`/challenges/${challenge.id}`)
   } else {
-    // If joining from the list view, we should save it to localStorage
-    localStorage.setItem(
-      `ecoquest_challenge_progress_${challenge.id}`,
-      JSON.stringify({
-        joined: true,
-        completedSteps: 0
-      })
-    )
-    // Force a reactivity update by pushing to route or just let reactivity handle it if we make challenges ref complex.
-    // For now, since syncedChallenges reads localStorage, it might not react instantly unless we trigger.
-    // Let's just route to the detail page when they click join so it flows naturally.
+    const result = await joinChallenge(challenge.id)
+
+    if (!result.success) {
+      alert(result.message)
+      return
+    }
+
     router.push(`/challenges/${challenge.id}`)
   }
 }

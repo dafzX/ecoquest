@@ -271,6 +271,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import { getCurrentUser } from '@/services/auth'
 
 import {
   ArrowLeft,
@@ -298,7 +299,9 @@ const props = defineProps({
 })
 
 const progressKey = computed(() => {
-  return `mission_progress_${props.mission.id}`
+  const userId = getCurrentUser()?.id || 'guest'
+
+  return `ecoquest_mission_progress_${userId}_${props.mission.id}`
 })
 
 const savedProgress = computed(() => {
@@ -322,9 +325,7 @@ const completedSteps = computed(() => {
     )
   }
 
-  return Number(
-    props.mission.completedSteps || 0
-  )
+  return 0
 })
 
 const totalSteps = computed(() => {

@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import { reactive, watch, onMounted } from 'vue'
+import { reactive, ref, watch, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { logout as clearSession } from '@/services/auth'
 import { Check } from 'lucide-vue-next'
@@ -49,6 +49,10 @@ import { Check } from 'lucide-vue-next'
 import AppLayout from '@/layouts/AppLayout.vue'
 import SettingsMobile from '@/components/settings/SettingsMobile.vue'
 import SettingsDesktop from '@/components/settings/SettingsDesktop.vue'
+import {
+  getSettings,
+  updateSettings
+} from '@/services/settings'
 
 const router = useRouter()
 
@@ -62,6 +66,8 @@ const defaultSettings = {
 }
 
 const settings = reactive({ ...defaultSettings })
+const settingsLoaded = ref(false)
+let saveTimeout
 
 // Toast State
 const toast = reactive({
@@ -70,21 +76,24 @@ const toast = reactive({
   timeout: null
 })
 
-// Load from LocalStorage
-onMounted(() => {
-  const saved = localStorage.getItem('ecoquest_settings')
-  if (saved) {
-    try {
-      Object.assign(settings, JSON.parse(saved))
-    } catch (e) {
-      console.error('Error loading settings', e)
-    }
+onMounted(async () => {
+  const result = await getSettings()
+
+  if (result.success) {
+    Object.assign(settings, result.settings)
   }
+
+  settingsLoaded.value = true
 })
 
-// Save to LocalStorage
 watch(settings, (newSettings) => {
-  localStorage.setItem('ecoquest_settings', JSON.stringify(newSettings))
+  if (!settingsLoaded.value) return
+
+  clearTimeout(saveTimeout)
+
+  saveTimeout = setTimeout(() => {
+    updateSettings({ ...newSettings })
+  }, 300)
 }, { deep: true })
 
 const showToast = (message) => {

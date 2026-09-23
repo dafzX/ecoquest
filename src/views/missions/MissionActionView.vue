@@ -51,13 +51,21 @@ import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { completeMission } from '@/services/missions'
 import AppLayout from '@/layouts/AppLayout.vue'
+import { getCurrentUser } from '@/services/auth'
 
+import MissionActionMobile from '@/components/missions/MissionActionMobile.vue'
 import MissionActionDesktop from '@/components/missions/MissionActionDesktop.vue'
 
 import { missions } from '@/data/mockData'
 
 const route = useRoute()
 const router = useRouter()
+
+const getProgressKey = (missionId) => {
+  const userId = getCurrentUser()?.id || 'guest'
+
+  return `ecoquest_mission_progress_${userId}_${missionId}`
+}
 
 const mission = computed(() => {
   return missions.find(
@@ -86,7 +94,7 @@ const getSavedProgress = () => {
   }
 
   const saved = localStorage.getItem(
-    `mission_progress_${mission.value.id}`
+    getProgressKey(mission.value.id)
   )
 
   if (!saved) {
@@ -107,9 +115,7 @@ const getCompletedSteps = () => {
     return Number(saved.completedSteps || 0)
   }
 
-  return Number(
-    mission.value?.completedSteps || 0
-  )
+  return 0
 }
 
 const completeStep = async () => {
@@ -135,15 +141,20 @@ const completeStep = async () => {
       alert(result.message)
       return
     }
-    alert(result.message)
-  }
 
-  localStorage.setItem(
-    `mission_progress_${mission.value.id}`,
-    JSON.stringify({
-      completedSteps: nextCompletedSteps
-    })
-  )
+    localStorage.removeItem(
+      getProgressKey(mission.value.id)
+    )
+
+    alert(result.message)
+  } else {
+    localStorage.setItem(
+      getProgressKey(mission.value.id),
+      JSON.stringify({
+        completedSteps: nextCompletedSteps
+      })
+    )
+  }
 
   router.push({
     name: 'MissionDetail',

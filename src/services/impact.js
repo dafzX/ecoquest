@@ -1,3 +1,5 @@
+import { getCurrentUser } from '@/services/auth'
+
 const API_URL = 'http://localhost:3000/api'
 
 async function parseResponse(response) {
@@ -12,8 +14,17 @@ async function parseResponse(response) {
 }
 
 export async function getImpact() {
+  const currentUser = getCurrentUser()
+
+  if (!currentUser) {
+    return {
+      success: false,
+      message: 'Silakan login terlebih dahulu.'
+    }
+  }
+
   try {
-    const response = await fetch(`${API_URL}/impact`, {
+    const response = await fetch(`${API_URL}/impact?userId=${currentUser.id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

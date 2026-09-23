@@ -18,25 +18,32 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 import CommunityMobile from '@/components/community/CommunityMobile.vue'
 import CommunityDesktop from '@/components/community/CommunityDesktop.vue'
 
-import {
-  communityPosts,
-  communityStats,
-  leaderboard
-} from '@/data/mockData.js'
+import { getCurrentUser } from '@/services/auth'
+import { getCommunity } from '@/services/community'
 
-const mobileTab = ref('community')
-
-const topThree = computed(() => {
-  return leaderboard.slice(0, 3)
+const communityPosts = ref([])
+const communityStats = ref({
+  members: 0,
+  actionsToday: 0,
+  co2Saved: 0
+})
+const currentUser = ref(getCurrentUser() || {
+  name: 'Eco Explorer',
+  avatar: 'EQ'
 })
 
-const currentUser = computed(() => {
-  return leaderboard.find((user) => user.isCurrentUser)
+onMounted(async () => {
+  const result = await getCommunity()
+
+  if (result.success) {
+    communityPosts.value = result.posts
+    communityStats.value = result.stats
+  }
 })
 </script>

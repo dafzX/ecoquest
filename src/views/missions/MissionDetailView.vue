@@ -5,26 +5,22 @@
         :mission="mission"
         :get-category-icon="getCategoryIcon"
         :go-back="goBack"
-        @continue="continueMission"
       />
       <MissionDetailDesktop
         :mission="mission"
         :get-category-icon="getCategoryIcon"
         :go-back="goBack"
-        @continue="continueMission"
       />
     </div>
   </AppLayout>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { completeMission } from '@/services/missions'
 import { Leaf, Recycle, Zap, Bike } from 'lucide-vue-next'
+import { getCurrentUser } from '@/services/auth'
 
-const isSubmitting = ref(false)
-const isCompleted = ref(false)
 import AppLayout from '@/layouts/AppLayout.vue'
 import MissionDetailMobile from '@/components/missions/MissionDetailMobile.vue'
 import MissionDetailDesktop from '@/components/missions/MissionDetailDesktop.vue'
@@ -36,7 +32,23 @@ const route = useRoute()
 
 const mission = computed(() => {
   const id = Number(route.params.id)
-  return missions.find(m => m.id === id) || missions[0]
+
+  const missionData =
+    missions.find((item) => item.id === id) || missions[0]
+
+  const currentUser = getCurrentUser()
+  const completedIds =
+    currentUser?.completedMissionIds || []
+
+  const isCompleted = completedIds.includes(missionData.id)
+
+  return {
+    ...missionData,
+    completed: isCompleted,
+    completedSteps: isCompleted
+      ? missionData.steps.length
+      : 0
+  }
 })
 
 function getCategoryIcon(category) {
@@ -49,29 +61,5 @@ function getCategoryIcon(category) {
 
 function goBack() {
   router.back()
-}
-
-async function continueMission() {
-  if (isSubmitting.value || isCompleted.value) return
-
-  isSubmitting.value = true
-
-  try {
-    const result = await completeMission(mission.value.id)
-
-    if (!result.success) {
-      alert(result.message)
-      return
-    }
-
-    isCompleted.value = true
-    alert(result.message)
-
-    router.push('/dashboard')
-  } catch (error) {
-    alert('Gagal menyimpan mission. Pastikan backend sedang berjalan.')
-  } finally {
-    isSubmitting.value = false
-  }
 }
 </script>

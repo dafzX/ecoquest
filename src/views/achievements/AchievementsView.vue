@@ -27,24 +27,33 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 import AchievementsDesktop from '@/components/achievements/AchievementsDesktop.vue'
 import AchievementsMobile from '@/components/achievements/AchievementsMobile.vue'
 
-import { achievements } from '@/data/mockData'
+import { getAchievements } from '@/services/achievements'
 
 const activeTab = ref('all')
+const achievements = ref([])
+
+onMounted(async () => {
+  const result = await getAchievements()
+
+  if (result.success) {
+    achievements.value = result.achievements
+  }
+})
 
 const completedCount = computed(() => {
-  return achievements.filter(
+  return achievements.value.filter(
     achievement => achievement.unlocked
   ).length
 })
 
 const inProgressCount = computed(() => {
-  return achievements.filter(
+  return achievements.value.filter(
     achievement => !achievement.unlocked
   ).length
 })
@@ -53,7 +62,7 @@ const tabs = computed(() => [
   {
     label: 'All',
     value: 'all',
-    count: achievements.length
+    count: achievements.value.length
   },
   {
     label: 'In Progress',
@@ -69,18 +78,18 @@ const tabs = computed(() => [
 
 const filteredAchievements = computed(() => {
   if (activeTab.value === 'progress') {
-    return achievements.filter(
+    return achievements.value.filter(
       achievement => !achievement.unlocked
     )
   }
 
   if (activeTab.value === 'completed') {
-    return achievements.filter(
+    return achievements.value.filter(
       achievement => achievement.unlocked
     )
   }
 
-  return achievements
+  return achievements.value
 })
 
 const sectionTitle = computed(() => {

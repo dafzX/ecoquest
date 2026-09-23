@@ -1,0 +1,64 @@
+{
+  "challenges": [
+    {
+      "id": 1,
+      "title": "Plastic Reduction Week",
+      "description": "Kurangi penggunaan plastik sekali pakai dan ajak komunitasmu melakukan aksi nyata.",
+      "category": "Plastic",
+      "participants": 320,
+      "progress": 68,
+      "daysLeft": 7,
+      "xp": 150,
+      "steps": [
+        { "title": "Gunakan botol minum sendiri", "description": "Hindari membeli minuman dengan botol plastik sekali pakai." },
+        { "title": "Kurangi kantong plastik", "description": "Gunakan tas belanja yang dapat digunakan kembali." },
+        { "title": "Ajak satu orang", "description": "Ajak teman atau keluarga untuk mengurangi plastik." }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Green Transport Challenge",
+      "description": "Gunakan transportasi ramah lingkungan untuk perjalanan sehari-hari.",
+      "category": "Transport",
+      "participants": 154,
+      "progress": 45,
+      "daysLeft": 12,
+      "xp": 150,
+      "steps": [
+        { "title": "Gunakan transportasi umum", "description": "Gunakan bus atau transportasi umum untuk perjalananmu." },
+        { "title": "Berjalan atau bersepeda", "description": "Pilih berjalan kaki atau bersepeda untuk perjalanan dekat." },
+        { "title": "Kurangi kendaraan pribadi", "description": "Pilih alternatif transportasi yang lebih ramah lingkungan." }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Clean Energy Challenge",
+      "description": "Kurangi konsumsi energi dan gunakan energi secara lebih bijak.",
+      "category": "Energy",
+      "participants": 89,
+      "progress": 32,
+      "daysLeft": 10,
+      "xp": 120,
+      "steps": [
+        { "title": "Matikan lampu", "description": "Pastikan lampu dimatikan ketika tidak diperlukan." },
+        { "title": "Cabut perangkat", "description": "Cabut charger dan perangkat yang tidak digunakan." },
+        { "title": "Gunakan energi seperlunya", "description": "Kurangi penggunaan perangkat listrik yang tidak diperlukan." }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Plant for Tomorrow",
+      "description": "Ajak lebih banyak orang menanam dan merawat pohon di lingkungan sekitar.",
+      "category": "Tree",
+      "participants": 210,
+      "progress": 54,
+      "daysLeft": 9,
+      "xp": 180,
+      "steps": [
+        { "title": "Tanam satu tanaman", "description": "Tanam pohon atau tanaman di lingkungan sekitar." },
+        { "title": "Rawat tanaman", "description": "Siram dan rawat tanaman secara rutin." },
+        { "title": "Ajak orang lain", "description": "Ajak teman atau keluarga untuk ikut menanam." }
+      ]
+    }
+  ]
+}
