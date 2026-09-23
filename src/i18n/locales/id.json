@@ -1,0 +1,39 @@
+{
+  "settings": {
+    "title": "Pengaturan",
+    "notifications": "Notifikasi",
+    "pushNotification": "Notifikasi Push",
+    "pushDesc": "Terima update aktivitas EcoQuest",
+    "missionReminder": "Pengingat Misi",
+    "missionDesc": "Ingatkan aku menyelesaikan misi",
+    "streakReminder": "Pengingat Streak",
+    "streakDesc": "Jangan sampai streak kamu terputus",
+    "promoNotification": "Notifikasi Promo",
+    "promoDesc": "Dapatkan info reward dan promo terbaru",
+    "communityNotification": "Notifikasi Komunitas",
+    "communityDesc": "Update dari forum komunitas",
+    "preferences": "Preferensi",
+    "darkMode": "Mode Gelap",
+    "darkModeDesc": "Gunakan tampilan gelap",
+    "language": "Bahasa",
+    "privacySecurity": "Privasi & Keamanan",
+    "privacy": "Privasi",
+    "privacyDesc": "Kelola pengaturan privasi",
+    "security": "Keamanan",
+    "securityDesc": "Password dan keamanan akun",
+    "logout": "Keluar dari Akun"
+  },
+  "dashboard": {
+    "welcome": "Selamat datang kembali",
+    "level": "Level",
+    "ecoActions": "Eco Actions",
+    "lowCarbon": "Jarak Rendah Karbon",
+    "nextQuest": "Quest Selanjutnya",
+    "startMission": "Mulai Misi",
+    "completed": "Selesai",
+    "impact": "Dampak Positifmu",
+    "co2Saved": "CO₂ Dihemat",
+    "trees": "Pohon",
+    "water": "Air Dihemat"
+  }
+}

@@ -1,6 +1,6 @@
 <template>
   <AppLayout>
-    <div class="min-h-screen bg-[#F4FBF7]">
+    <div class="min-h-screen bg-[#F4FBF7] transition-colors duration-300">
       <DashboardMobile
         :current-user="currentUser"
         :eco-actions="ecoActions"
