@@ -23,7 +23,7 @@
 
     <!-- Level Card -->
     <section
-      class="mb-3 rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
+      class="mb-4 rounded-xl border border-[#DCEBE0] bg-white p-4 transition-colors active:border-[#9DD8AD]"
     >
       <div class="flex items-center gap-3">
 
@@ -47,14 +47,14 @@
               </p>
 
               <p
-                class="text-[9px] text-[#718078]"
+                class="text-[11px] text-[#718078]"
               >
                 {{ currentUser.levelName || 'Eco Explorer' }}
               </p>
             </div>
 
             <span
-              class="text-[9px] font-medium text-[#718078]"
+              class="text-[11px] font-medium text-[#718078]"
             >
               {{ currentUser.xp }} /
               {{ currentUser.nextLevelXp }} XP
@@ -79,7 +79,7 @@
 
     <!-- Quick Stats -->
     <section
-      class="mb-4 grid grid-cols-3 overflow-hidden rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] shadow-sm"
+      class="mb-5 grid grid-cols-3 overflow-hidden rounded-xl border border-[#DCEBE0] bg-white"
     >
 
       <!-- Streak -->
@@ -97,7 +97,7 @@
         </p>
 
         <p
-          class="text-[8px] text-[#718078]"
+          class="text-[10px] text-[#718078]"
         >
           Streak
         </p>
@@ -118,7 +118,7 @@
         </p>
 
         <p
-          class="text-[8px] text-[#718078]"
+          class="text-[10px] text-[#718078]"
         >
           Aksi Eco
         </p>
@@ -139,7 +139,7 @@
         </p>
 
         <p
-          class="text-[8px] text-[#718078]"
+          class="text-[10px] text-[#718078]"
         >
           Rendah Karbon
         </p>
@@ -166,7 +166,7 @@
       <!-- Ada Quest -->
       <section
         v-if="nextQuest"
-        class="mb-4 rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
+        class="mb-5 rounded-xl border border-[#DCEBE0] bg-white p-4 transition-colors active:border-[#9DD8AD]"
       >
         <div class="flex gap-3">
 
@@ -190,7 +190,7 @@
                 </h3>
 
                 <p
-                  class="mt-0.5 text-[8px] leading-3 text-[#718078]"
+                  class="mt-1 text-[10px] leading-4 text-[#718078]"
                 >
                   {{ nextQuest.description }}
                 </p>
@@ -198,7 +198,7 @@
               </div>
 
               <span
-                class="shrink-0 text-[9px] font-semibold text-[#22C55E]"
+                class="shrink-0 text-[11px] font-semibold text-[#16834B]"
               >
                 +{{ nextQuest.xp }} XP
               </span>
@@ -207,19 +207,19 @@
             <div
               class="mt-2 flex items-center justify-between"
             >
-              <span class="text-[8px] text-[#718078]">
+              <span class="text-[10px] text-[#718078]">
                 {{ nextQuest.step || 'Belum dimulai' }}
               </span>
 
               <span
-                class="text-[8px] font-semibold text-[#22C55E]"
+                class="text-[10px] font-semibold text-[#16834B]"
               >
                 {{ questProgress }}%
               </span>
             </div>
 
             <div
-              class="mt-1 h-[4px] overflow-hidden rounded-full bg-[#E5EFE8]"
+              class="mt-1.5 h-[5px] overflow-hidden rounded-full bg-[#E5EFE8]"
             >
               <div
                 class="h-full rounded-full bg-[#22C55E]"
@@ -234,7 +234,7 @@
 
         <RouterLink
           :to="nextQuest.link || `/missions/${nextQuest.id}`"
-          class="mt-3 flex h-8 items-center justify-center rounded-lg bg-[#22C55E] text-[9px] font-semibold text-white transition active:scale-[0.98]"
+          class="mt-4 flex h-9 items-center justify-center rounded-lg bg-[#16834B] text-[11px] font-semibold text-white transition active:scale-[0.98]"
         >
           Lanjutkan
         </RouterLink>
@@ -243,7 +243,7 @@
       <!-- Tidak Ada Quest -->
       <section
         v-else
-        class="mb-4 rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-5 shadow-sm"
+        class="mb-5 rounded-xl border border-[#DCEBE0] bg-white p-5"
       >
         <div class="text-center">
 
@@ -272,7 +272,7 @@
 
     <!-- Habit -->
     <section
-      class="mb-4 rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
+      class="mb-5 rounded-xl border border-[#DCEBE0] bg-white p-4 transition-colors active:border-[#9DD8AD]"
     >
 
       <div
@@ -287,14 +287,14 @@
           </h2>
 
           <p
-            class="mt-0.5 text-[8px] text-[#718078]"
+            class="mt-1 text-[10px] text-[#718078]"
           >
             Konsistensi eco-mu minggu ini
           </p>
         </div>
 
         <span
-          class="text-[11px] font-bold text-[#22C55E]"
+          class="text-[13px] font-bold text-[#16834B]"
         >
           {{ questProgress }}%
         </span>
@@ -307,13 +307,13 @@
 
         <div>
           <p
-            class="text-[10px] font-semibold text-[#17211B]"
+            class="text-[12px] font-semibold text-[#17211B]"
           >
             Kurangi Plastik
           </p>
 
           <p
-            class="mt-0.5 text-[8px] text-[#718078]"
+            class="mt-1 text-[10px] text-[#718078]"
           >
             Terus pertahankan kebiasaan baikmu.
           </p>
@@ -350,7 +350,7 @@
 
       <RouterLink
         to="/impact"
-        class="text-[9px] font-medium text-[#22C55E]"
+        class="text-[10px] font-semibold text-[#16834B]"
       >
         Lihat Semua
       </RouterLink>
@@ -361,7 +361,7 @@
 
       <!-- CO2 -->
       <div
-        class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
+        class="rounded-xl border border-[#DCEBE0] bg-white p-3 transition-colors active:border-[#9DD8AD]"
       >
         <Cloud
           class="h-4 w-4 text-[#22C55E]"
@@ -374,7 +374,7 @@
         </p>
 
         <p
-          class="text-[8px] text-[#718078]"
+          class="text-[10px] text-[#718078]"
         >
           CO₂ Dihemat
         </p>
@@ -382,7 +382,7 @@
 
       <!-- Recycled -->
       <div
-        class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
+        class="rounded-xl border border-[#DCEBE0] bg-white p-3 transition-colors active:border-[#9DD8AD]"
       >
         <Recycle
           class="h-4 w-4 text-[#22C55E]"
@@ -395,7 +395,7 @@
         </p>
 
         <p
-          class="text-[8px] text-[#718078]"
+          class="text-[10px] text-[#718078]"
         >
           Item Didaur Ulang
         </p>
@@ -403,7 +403,7 @@
 
       <!-- Trees -->
       <div
-        class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
+        class="rounded-xl border border-[#DCEBE0] bg-white p-3 transition-colors active:border-[#9DD8AD]"
       >
         <TreePine
           class="h-4 w-4 text-[#22C55E]"
@@ -416,7 +416,7 @@
         </p>
 
         <p
-          class="text-[8px] text-[#718078]"
+          class="text-[10px] text-[#718078]"
         >
           Setara Pohon
         </p>

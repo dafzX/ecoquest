@@ -1,11 +1,11 @@
 <template>
-  <section class="mb-7 flex items-end justify-between pt-2">
+  <section class="mb-7 flex items-end justify-between border-b border-[#DCEBE0] pb-6 pt-2">
     <div>
       <p v-if="tag" class="mb-1 text-sm font-medium text-[#22C55E]">
         {{ tag }}
       </p>
 
-      <h1 class="text-[28px] font-bold text-[#17211B]">
+      <h1 class="text-[30px] font-bold tracking-[-0.02em] text-[#17211B]">
         {{ title }}
       </h1>
 

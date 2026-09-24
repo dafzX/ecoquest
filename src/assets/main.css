@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #17211B;
-  background: #F8FAF8;
+  --ink: #17211b;
+  --muted: #66736a;
+  --quiet: #8a958e;
+  --line: #e2ebe4;
+  --surface: #ffffff;
+  --canvas: #f4f8f4;
+  --accent: #16834b;
+  --accent-soft: #e4f4e9;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--canvas);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,5 +32,17 @@ body,
 
 body {
   min-height: 100vh;
-  background: #F8FAF8;
+  background:
+    radial-gradient(circle at 100% 0, #e8f4e9 0, transparent 26rem),
+    var(--canvas);
+}
+
+::selection {
+  background: #bde7c9;
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid #8bd3a0;
+  outline-offset: 3px;
 }

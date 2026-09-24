@@ -1,8 +1,8 @@
 <template>
   <header class="hidden h-[76px] items-center justify-between border-b border-[#E8EDE9] bg-white px-8 md:flex">
-    <div>
-
-    </div>
+    <p class="text-sm font-medium text-[#66736A]">
+      Ruang aksi baikmu
+    </p>
 
     <div class="flex items-center gap-5">
       <NotificationDropdown
@@ -65,11 +65,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Search,
-  Bell,
-  ChevronDown
-} from 'lucide-vue-next'
+import { Bell, ChevronDown } from 'lucide-vue-next'
 import NotificationDropdown from './NotificationDropdown.vue'
 import ProfileDropdown from './ProfileDropdown.vue'
 
