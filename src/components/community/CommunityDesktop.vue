@@ -23,7 +23,7 @@
           >
             <div class="flex gap-4">
               <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#22C55E] text-lg font-bold text-white">
-                {{ user?.avatar || 'DA' }}
+                {{ user?.avatar || user?.name?.charAt(0) || 'U' }}
               </div>
               <div class="flex-1">
                 <textarea

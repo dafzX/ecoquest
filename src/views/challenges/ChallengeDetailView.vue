@@ -34,6 +34,7 @@ import {
 import AppLayout from '@/layouts/AppLayout.vue'
 import ChallengeDetailMobile from '@/components/challenges/ChallengeDetailMobile.vue'
 import ChallengeDetailDesktop from '@/components/challenges/ChallengeDetailDesktop.vue'
+import { getCurrentUser } from '@/services/auth'
 
 const router = useRouter()
 const route = useRoute()
@@ -146,6 +147,12 @@ const challenges = [
 
 const updateTrigger = ref(0)
 
+const getProgressKey = (challengeId) => {
+  const userId = getCurrentUser()?.id || 'guest'
+
+  return `ecoquest_challenge_progress_${userId}_${challengeId}`
+}
+
 const challenge = computed(() => {
   updateTrigger.value
 
@@ -160,7 +167,7 @@ const challenge = computed(() => {
   }
 
   const saved = localStorage.getItem(
-    `ecoquest_challenge_progress_${found.id}`
+    getProgressKey(found.id)
   )
 
   let completedSteps = 0
@@ -226,7 +233,7 @@ function joinChallenge() {
 
   if (!current.joined) {
     localStorage.setItem(
-      `ecoquest_challenge_progress_${current.id}`,
+      getProgressKey(current.id),
       JSON.stringify({
         joined: true,
         completedSteps: current.completedSteps

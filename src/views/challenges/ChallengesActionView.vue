@@ -41,6 +41,7 @@ import AppLayout from '@/layouts/AppLayout.vue'
 import ChallengeActionMobile from '@/components/challenges/ChallengeActionMobile.vue'
 import ChallengeActionDesktop from '@/components/challenges/ChallengeActionDesktop.vue'
 import { completeChallengeStep } from '@/services/challenges'
+import { getCurrentUser } from '@/services/auth'
 
 const router = useRouter()
 const route = useRoute()
@@ -160,14 +161,16 @@ const challenge = computed(() => {
   )
 })
 
-const storageKey = computed(() => {
-  return `ecoquest_challenge_progress_${challenge.value.id}`
-})
-
 const localSavedProgress = ref({ completedSteps: 0 })
 
+const getProgressKey = (challengeId) => {
+  const userId = getCurrentUser()?.id || 'guest'
+
+  return `ecoquest_challenge_progress_${userId}_${challengeId}`
+}
+
 onMounted(() => {
-  const saved = localStorage.getItem(storageKey.value)
+  const saved = localStorage.getItem(getProgressKey(challenge.value.id))
 
   if (saved) {
     try {
@@ -251,7 +254,7 @@ async function completeAction() {
   }
 
   localStorage.setItem(
-    storageKey.value,
+    getProgressKey(challenge.value.id),
     JSON.stringify({
       joined: true,
       completedSteps: nextStep
