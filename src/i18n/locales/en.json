@@ -1,0 +1,39 @@
+{
+  "settings": {
+    "title": "Settings",
+    "notifications": "Notifications",
+    "pushNotification": "Push Notification",
+    "pushDesc": "Receive EcoQuest activity updates",
+    "missionReminder": "Mission Reminder",
+    "missionDesc": "Remind me to complete missions",
+    "streakReminder": "Streak Reminder",
+    "streakDesc": "Don't let your streak break",
+    "promoNotification": "Promo Notification",
+    "promoDesc": "Get the latest reward and promo info",
+    "communityNotification": "Community Notification",
+    "communityDesc": "Updates from community forum",
+    "preferences": "Preferences",
+    "darkMode": "Dark Mode",
+    "darkModeDesc": "Use dark theme",
+    "language": "Language",
+    "privacySecurity": "Privacy & Security",
+    "privacy": "Privacy",
+    "privacyDesc": "Manage privacy settings",
+    "security": "Security",
+    "securityDesc": "Password and account security",
+    "logout": "Log Out"
+  },
+  "dashboard": {
+    "welcome": "Welcome back",
+    "level": "Level",
+    "ecoActions": "Eco Actions",
+    "lowCarbon": "Low Carbon Distance",
+    "nextQuest": "Next Quest",
+    "startMission": "Start Mission",
+    "completed": "Completed",
+    "impact": "Your Positive Impact",
+    "co2Saved": "CO₂ Saved",
+    "trees": "Trees",
+    "water": "Water Saved"
+  }
+}

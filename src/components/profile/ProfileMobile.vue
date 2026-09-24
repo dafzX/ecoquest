@@ -5,7 +5,7 @@
     <!-- Header -->
     <div class="mb-4 mt-4">
       <h2 class="text-[17px] font-bold text-[#17211B]">
-        Profile
+        Profil
       </h2>
 
       <p class="mt-1 text-[9px] text-[#718078]">
@@ -83,7 +83,7 @@
         class="mt-4 flex h-9 items-center justify-center gap-2 rounded-xl bg-[#22C55E] text-[9px] font-bold text-white transition active:scale-[0.98]"
       >
         <Pencil class="h-3.5 w-3.5" />
-        Edit Profile
+        Edit Profil
       </RouterLink>
     </section>
 
@@ -143,7 +143,7 @@
         </p>
 
         <p class="text-[7px] text-[#718078]">
-          Low Carbon
+          Rendah Karbon
         </p>
       </div>
 
@@ -167,7 +167,7 @@
 
         <div class="min-w-0 flex-1">
           <p class="text-[9px] font-semibold text-[#17211B]">
-            Edit Profile
+            Edit Profil
           </p>
 
           <p class="mt-0.5 text-[7px] text-[#98A39C]">
@@ -193,7 +193,7 @@
 
         <div class="min-w-0 flex-1">
           <p class="text-[9px] font-semibold text-[#17211B]">
-            My Achievements
+            Pencapaian Saya
           </p>
 
           <p class="mt-0.5 text-[7px] text-[#98A39C]">
@@ -219,7 +219,7 @@
 
         <div class="min-w-0 flex-1">
           <p class="text-[9px] font-semibold text-[#17211B]">
-            My Impact
+            Dampak Saya
           </p>
 
           <p class="mt-0.5 text-[7px] text-[#98A39C]">
@@ -245,7 +245,7 @@
 
         <div class="min-w-0 flex-1">
           <p class="text-[9px] font-semibold text-[#17211B]">
-            Leaderboard
+            Papan Peringkat
           </p>
 
           <p class="mt-0.5 text-[7px] text-[#98A39C]">
@@ -271,7 +271,7 @@
 
         <div class="min-w-0 flex-1">
           <p class="text-[9px] font-semibold text-[#17211B]">
-            Settings
+            Pengaturan
           </p>
 
           <p class="mt-0.5 text-[7px] text-[#98A39C]">
@@ -297,7 +297,7 @@
 
         <div class="min-w-0 flex-1">
           <p class="text-[9px] font-semibold text-[#17211B]">
-            Help & Support
+            Bantuan & Dukungan
           </p>
 
           <p class="mt-0.5 text-[7px] text-[#98A39C]">

@@ -66,7 +66,7 @@
               <div class="shrink-0 text-right">
 
                 <p class="text-xs font-medium text-[#94A3B8]">
-                  Progress
+                  Kemajuan
                 </p>
 
                 <p class="mt-1 text-2xl font-bold text-[#15803D]">
@@ -82,7 +82,7 @@
               <div class="mb-2 flex items-center justify-between">
 
                 <span class="text-xs font-medium text-[#64748B]">
-                  Quest Progress
+                  Kemajuan Misi
                 </span>
 
                 <span class="text-xs font-semibold text-[#15803D]">
@@ -108,11 +108,11 @@
           <div class="mb-6">
 
             <h2 class="text-lg font-bold text-[#0F172A]">
-              Mission Steps
+              Langkah Misi
             </h2>
 
             <p class="mt-1 text-sm text-[#64748B]">
-              Complete each step to finish this mission.
+              Selesaikan setiap langkah untuk menyelesaikan misi ini.
             </p>
 
           </div>
@@ -173,7 +173,7 @@
                     v-if="index < completedSteps"
                     class="rounded-full bg-[#DCFCE7] px-2 py-0.5 text-[10px] font-semibold text-[#15803D]"
                   >
-                    Completed
+                    Selesai
                   </span>
 
                 </div>
@@ -241,11 +241,11 @@
               <div>
 
                 <p class="text-sm font-semibold text-[#166534]">
-                  Mission Completed!
+                  Misi Selesai!
                 </p>
 
                 <p class="mt-0.5 text-xs text-[#65A30D]">
-                  You completed all mission steps.
+                  Semua langkah misi telah selesai.
                 </p>
 
               </div>

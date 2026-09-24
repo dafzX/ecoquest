@@ -1,6 +1,6 @@
 <template>
   <AppLayout>
-    <div class="min-h-screen bg-[#F4FBF7] relative">
+    <div class="min-h-screen bg-[#F4FBF7] relative transition-colors duration-300">
       <!-- Mobile Component -->
       <SettingsMobile
         :settings="settings"
@@ -45,6 +45,7 @@ import { reactive, ref, watch, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { logout as clearSession } from '@/services/auth'
 import { Check } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 import SettingsMobile from '@/components/settings/SettingsMobile.vue'
@@ -55,13 +56,15 @@ import {
 } from '@/services/settings'
 
 const router = useRouter()
+const { t, locale } = useI18n()
 
 // 1. Data State (Dibagikan ke komponen mobile & desktop)
 const defaultSettings = {
   pushNotification: true,
   missionReminder: true,
   streakReminder: true,
-  darkMode: false,
+  promoNotification: false,
+  communityNotification: false,
   language: 'Bahasa Indonesia'
 }
 
@@ -81,6 +84,7 @@ onMounted(async () => {
 
   if (result.success) {
     Object.assign(settings, result.settings)
+    locale.value = settings.language
   }
 
   settingsLoaded.value = true
@@ -93,6 +97,10 @@ watch(settings, (newSettings) => {
 
   saveTimeout = setTimeout(() => {
     updateSettings({ ...newSettings })
+    localStorage.setItem('ecoquest_settings', JSON.stringify(newSettings))
+    window.dispatchEvent(
+      new StorageEvent('storage', { key: 'ecoquest_settings' })
+    )
   }, 300)
 }, { deep: true })
 
@@ -118,10 +126,11 @@ const toggleSetting = (key) => {
   const status = settings[key] ? 'diaktifkan' : 'dimatikan'
   
   const labels = {
-    pushNotification: 'Notifikasi Push',
-    missionReminder: 'Reminder Mission',
-    streakReminder: 'Streak Reminder',
-    darkMode: 'Dark Mode'
+    pushNotification: t('settings.pushNotification'),
+    missionReminder: t('settings.missionReminder'),
+    streakReminder: t('settings.streakReminder'),
+    promoNotification: t('settings.promoNotification'),
+    communityNotification: t('settings.communityNotification')
   }
   
   showToast(`${labels[key] || 'Pengaturan'} berhasil ${status}.`)
@@ -129,6 +138,7 @@ const toggleSetting = (key) => {
 
 const updateLanguage = (language) => {
   settings.language = language
+  locale.value = language
   showToast(`Bahasa berhasil diubah ke ${language}.`)
 }
 

@@ -60,17 +60,17 @@ const inProgressCount = computed(() => {
 
 const tabs = computed(() => [
   {
-    label: 'All',
+    label: 'Semua',
     value: 'all',
     count: achievements.value.length
   },
   {
-    label: 'In Progress',
+    label: 'Sedang Berjalan',
     value: 'progress',
     count: inProgressCount.value
   },
   {
-    label: 'Completed',
+    label: 'Selesai',
     value: 'completed',
     count: completedCount.value
   }
@@ -94,37 +94,37 @@ const filteredAchievements = computed(() => {
 
 const sectionTitle = computed(() => {
   if (activeTab.value === 'progress') {
-    return 'Achievements In Progress'
+    return 'Pencapaian yang Sedang Berjalan'
   }
 
   if (activeTab.value === 'completed') {
-    return 'Completed Achievements'
+    return 'Pencapaian yang Telah Selesai'
   }
 
-  return 'All Achievements'
+  return 'Semua Pencapaian'
 })
 
 const emptyTitle = computed(() => {
   if (activeTab.value === 'progress') {
-    return 'Tidak ada achievement yang sedang berjalan'
+    return 'Tidak ada pencapaian yang sedang berjalan'
   }
 
   if (activeTab.value === 'completed') {
-    return 'Belum ada achievement yang selesai'
+    return 'Belum ada pencapaian yang selesai'
   }
 
-  return 'Belum ada achievement'
+  return 'Belum ada pencapaian'
 })
 
 const emptyDescription = computed(() => {
   if (activeTab.value === 'progress') {
-    return 'Semua achievement yang tersedia sudah kamu selesaikan.'
+    return 'Semua pencapaian yang tersedia sudah kamu selesaikan.'
   }
 
   if (activeTab.value === 'completed') {
-    return 'Selesaikan quest dan eco action untuk membuka achievement pertamamu.'
+    return 'Selesaikan quest dan aksi ramah lingkungan untuk membuka pencapaian pertamamu.'
   }
 
-  return 'Belum ada achievement yang tersedia saat ini.'
+  return 'Belum ada pencapaian yang tersedia saat ini.'
 })
 </script>

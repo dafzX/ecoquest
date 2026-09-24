@@ -1,5 +1,6 @@
 <template>
   <main class="hidden md:block">
+
     <div class="mx-auto max-w-[1080px] px-6 pb-10">
 
       <!-- Header -->
@@ -10,7 +11,9 @@
 
       <!-- Desktop Filters -->
       <section class="mb-6 flex items-center justify-between">
+
         <div class="flex gap-2">
+
           <button
             v-for="tab in tabs"
             :key="tab.value"
@@ -25,11 +28,13 @@
           >
             {{ tab.label }}
           </button>
+
         </div>
 
         <span class="text-xs text-[#98A39C]">
-          {{ filteredMissions.length }} quest
+          {{ filteredMissions.length }} misi
         </span>
+
       </section>
 
       <!-- Desktop List -->
@@ -37,17 +42,19 @@
 
         <!-- Quest Header -->
         <div class="mb-3 flex items-center justify-between">
+
           <h2 class="text-sm font-bold text-[#17211B]">
             {{
               activeTab === 'all'
-                ? 'Semua Quest'
+                ? 'Semua Misi'
                 : activeTab === 'active'
-                  ? 'Quest Aktif'
+                  ? 'Misi Aktif'
                   : activeTab === 'completed'
-                    ? 'Quest Selesai'
-                    : 'Quest Rekomendasi'
+                    ? 'Misi Selesai'
+                    : 'Misi Rekomendasi'
             }}
           </h2>
+
         </div>
 
         <!-- Quest List -->
@@ -55,11 +62,13 @@
           v-if="filteredMissions.length"
           class="space-y-4"
         >
+
           <article
             v-for="mission in filteredMissions"
             :key="mission.id"
             class="flex items-center justify-between rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#BBF7D0] hover:shadow-md"
           >
+
             <!-- Content -->
             <div class="flex min-w-0 flex-1 items-start gap-6">
 
@@ -68,10 +77,12 @@
                 class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
                 :class="getCategoryStyle(mission.category)"
               >
+
                 <component
                   :is="getCategoryIcon(mission.category)"
                   class="h-7 w-7"
                 />
+
               </div>
 
               <!-- Info -->
@@ -79,8 +90,9 @@
 
                 <!-- Title -->
                 <div class="flex items-center gap-3">
+
                   <h3 class="truncate text-base font-bold text-[#17211B]">
-                    {{ mission.title || 'Judul Quest' }}
+                    {{ mission.title || 'Judul Misi' }}
                   </h3>
 
                   <!-- Completed -->
@@ -106,11 +118,12 @@
                   >
                     Rekomendasi
                   </span>
+
                 </div>
 
                 <!-- Description -->
                 <p class="mt-1 text-sm text-[#66736A]">
-                  {{ mission.description || 'Selesaikan quest untuk mendapatkan XP.' }}
+                  {{ mission.description || 'Selesaikan misi untuk mendapatkan XP.' }}
                 </p>
 
                 <!-- Progress -->
@@ -121,6 +134,7 @@
                   "
                   class="mt-4 flex w-3/4 items-center gap-4"
                 >
+
                   <span class="w-20 shrink-0 text-xs text-[#66736A]">
                     {{ mission.step || 'Langkah 2 dari 3' }}
                   </span>
@@ -139,6 +153,7 @@
                   >
                     {{ mission.progress }}%
                   </span>
+
                 </div>
 
                 <!-- Completed -->
@@ -147,7 +162,7 @@
                   class="mt-3 flex items-center gap-1.5 text-xs font-medium text-[#22C55E]"
                 >
                   <span class="h-1.5 w-1.5 rounded-full bg-[#22C55E]"></span>
-                  Quest selesai
+                  Misi selesai
                 </div>
 
               </div>
@@ -157,6 +172,7 @@
             <div
               class="ml-6 flex w-[150px] shrink-0 flex-col items-end justify-center gap-4 border-l border-[#E8EDE9] pl-6"
             >
+
               <!-- XP -->
               <span class="text-sm font-bold text-[#22C55E]">
                 +{{ mission.xp || 50 }} XP
@@ -179,14 +195,17 @@
               >
                 {{
                   mission.completed
-                    ? 'Detail'
+                    ? 'Lihat Detail'
                     : mission.progress
                       ? 'Lanjutkan'
-                      : 'Mulai'
+                      : 'Mulai Misi'
                 }}
               </RouterLink>
+
             </div>
+
           </article>
+
         </div>
 
         <!-- Empty State -->
@@ -194,6 +213,7 @@
           v-else
           class="rounded-3xl border border-dashed border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] px-6 py-16 text-center shadow-sm"
         >
+
           <div
             class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E8F8ED]"
           >
@@ -201,15 +221,17 @@
           </div>
 
           <p class="mt-4 text-sm font-semibold text-[#17211B]">
-            Tidak ada quest
+            Tidak ada misi
           </p>
 
           <p class="mt-1 text-xs text-[#718078]">
-            Belum ada quest pada kategori ini.
+            Belum ada misi pada kategori ini.
           </p>
+
         </div>
 
       </section>
+
     </div>
   </main>
 </template>

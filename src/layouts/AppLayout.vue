@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-[#F8FAF8]">
+  <div class="min-h-screen bg-[#F8FAF8] transition-colors duration-300">
 
     <!-- Desktop -->
     <div class="hidden md:block">

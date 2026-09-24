@@ -5,7 +5,7 @@
       <!-- Header -->
       <section class="mb-7">
         <h1 class="text-[24px] font-bold tracking-tight text-[#17211B]">
-          Achievements
+          Pencapaian
         </h1>
 
         <p class="mt-1 text-sm text-[#66736A]">
@@ -23,7 +23,7 @@
           <div class="flex items-center justify-between">
             <div>
               <p class="text-xs font-medium text-[#98A39C]">
-                Total Achievements
+                Total Pencapaian
               </p>
 
               <p class="mt-1 text-xl font-bold text-[#17211B]">
@@ -46,7 +46,7 @@
           <div class="flex items-center justify-between">
             <div>
               <p class="text-xs font-medium text-[#98A39C]">
-                Completed
+                Selesai
               </p>
 
               <p class="mt-1 text-xl font-bold text-[#17211B]">
@@ -69,7 +69,7 @@
           <div class="flex items-center justify-between">
             <div>
               <p class="text-xs font-medium text-[#98A39C]">
-                In Progress
+                Sedang Berjalan
               </p>
 
               <p class="mt-1 text-xl font-bold text-[#17211B]">
@@ -102,7 +102,13 @@
             "
             @click="$emit('update:activeTab', tab.value)"
           >
-            {{ tab.label }}
+            {{
+              tab.value === 'all'
+                ? 'Semua'
+                : tab.value === 'progress'
+                ? 'Sedang Berjalan'
+                : 'Selesai'
+            }}
           </button>
         </div>
       </section>
@@ -157,7 +163,7 @@
                     : 'bg-[#F1F5F2] text-[#66736A]'
                 "
               >
-                {{ achievement.unlocked ? 'Unlocked' : 'Locked' }}
+                {{ achievement.unlocked ? 'Terbuka' : 'Terkunci' }}
               </span>
             </div>
 
@@ -179,7 +185,7 @@
                 class="flex items-center gap-1.5 text-[10px] font-semibold text-[#15803D]"
               >
                 <CheckCircle2 class="h-3.5 w-3.5" />
-                Achievement completed
+                Pencapaian selesai
               </div>
 
               <div
@@ -187,7 +193,7 @@
                 class="flex items-center gap-1.5 text-[10px] font-medium text-[#98A39C]"
               >
                 <Clock3 class="h-3.5 w-3.5" />
-                Still in progress
+                Masih berjalan
               </div>
             </div>
 
@@ -255,17 +261,17 @@ defineProps({
 
   sectionTitle: {
     type: String,
-    default: 'All Achievements'
+    default: 'Semua Pencapaian'
   },
 
   emptyTitle: {
     type: String,
-    default: 'Belum ada achievement'
+    default: 'Belum ada pencapaian'
   },
 
   emptyDescription: {
     type: String,
-    default: 'Belum ada achievement yang tersedia saat ini.'
+    default: 'Belum ada pencapaian yang tersedia saat ini.'
   }
 })
 

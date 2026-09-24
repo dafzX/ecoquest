@@ -6,11 +6,11 @@
     <!-- Header -->
     <section class="mb-5">
       <h1 class="text-[22px] font-bold tracking-tight text-[#17211B]">
-        Rewards
+        Hadiah
       </h1>
 
       <p class="mt-1 max-w-[350px] text-xs leading-5 text-[#66736A]">
-        Gunakan XP-mu untuk mendapatkan reward menarik.
+        Gunakan XP-mu untuk mendapatkan hadiah menarik.
       </p>
     </section>
 
@@ -52,7 +52,7 @@
 
         <div class="mt-5 rounded-2xl bg-white/10 px-4 py-3">
           <p class="text-[10px] text-white/70">
-            Reward berikutnya
+            Hadiah berikutnya
           </p>
 
           <p class="mt-1 truncate text-xs font-semibold text-white">
@@ -70,7 +70,7 @@
             v-else
             class="mt-0.5 text-[10px] text-white/70"
           >
-            Semua reward sudah dapat ditukar
+            Semua hadiah sudah dapat ditukar
           </p>
         </div>
 
@@ -138,24 +138,32 @@
 
     <!-- Categories -->
     <section class="mb-6 w-full overflow-x-auto scrollbar-hide">
-    <div
+      <div
         class="flex w-full min-w-max gap-1 rounded-xl border border-[#DCEBE0] bg-white p-1"
-    >
+      >
         <button
-        v-for="category in categories"
-        :key="category"
-        type="button"
-        class="flex-1 whitespace-nowrap rounded-lg px-3 py-2 text-center text-[10px] font-semibold transition hover:bg-[#F8FAF8]"
-        :class="
+          v-for="category in categories"
+          :key="category"
+          type="button"
+          class="flex-1 whitespace-nowrap rounded-lg px-3 py-2 text-center text-[10px] font-semibold transition hover:bg-[#F8FAF8]"
+          :class="
             selectedCategory === category
-            ? 'bg-[#22C55E] text-white hover:bg-[#22C55E]'
-            : 'text-[#718078]'
-        "
-        @click="$emit('update:selected-category', category)"
+              ? 'bg-[#22C55E] text-white hover:bg-[#22C55E]'
+              : 'text-[#718078]'
+          "
+          @click="$emit('update:selected-category', category)"
         >
-        {{ category }}
+          {{
+            category === 'All'
+              ? 'Semua'
+              : category === 'Impact'
+              ? 'Donasi'
+              : category === 'Digital'
+              ? 'Voucher'
+              : 'Merchandise'
+          }}
         </button>
-    </div>
+      </div>
     </section>
 
     <!-- Store -->
@@ -165,21 +173,20 @@
         <div class="flex items-end justify-between gap-3">
           <div class="min-w-0">
             <h2 class="text-base font-bold text-[#17211B]">
-              Rewards Store
+              Katalog Hadiah
             </h2>
 
             <p class="mt-0.5 text-[10px] leading-4 text-[#98A39C]">
-              Tukarkan XP dengan reward pilihanmu.
+              Tukarkan XP dengan hadiah pilihanmu.
             </p>
           </div>
 
           <span class="shrink-0 text-[10px] text-[#98A39C]">
-            {{ filteredRewards.length }} reward
+            {{ filteredRewards.length }} hadiah
           </span>
         </div>
       </div>
 
-      <!-- One column on mobile -->
       <div class="grid grid-cols-1 gap-3.5">
         <RewardCard
           v-for="reward in filteredRewards"
@@ -197,11 +204,11 @@
         <Gift class="mx-auto h-8 w-8 text-[#98A39C]" />
 
         <p class="mt-3 text-sm font-semibold text-[#17211B]">
-          Reward tidak ditemukan
+          Hadiah tidak ditemukan
         </p>
 
         <p class="mt-1 text-xs text-[#98A39C]">
-          Coba pilih kategori reward lainnya.
+          Coba pilih kategori hadiah lainnya.
         </p>
       </div>
 
@@ -212,11 +219,11 @@
 
       <div class="mb-4">
         <h2 class="text-base font-bold text-[#17211B]">
-          Reward yang Ditukar
+          Hadiah yang Ditukar
         </h2>
 
         <p class="mt-0.5 text-[10px] text-[#98A39C]">
-          Reward yang sudah berhasil kamu klaim.
+          Hadiah yang sudah berhasil kamu klaim.
         </p>
       </div>
 
@@ -264,11 +271,11 @@
         <Award class="mx-auto h-7 w-7 text-[#98A39C]" />
 
         <p class="mt-2 text-xs font-semibold text-[#17211B]">
-          Belum ada reward yang ditukar
+          Belum ada hadiah yang ditukar
         </p>
 
         <p class="mt-1 text-[10px] text-[#98A39C]">
-          Tukarkan XP-mu dengan reward yang tersedia.
+          Tukarkan XP-mu dengan hadiah yang tersedia.
         </p>
       </div>
 

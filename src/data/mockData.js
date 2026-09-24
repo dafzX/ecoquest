@@ -8,7 +8,7 @@ export const user = {
   avatar: 'D'
 }
 
-// Missions
+// Misi
 export const missions = [
   {
     id: 1,
@@ -76,7 +76,7 @@ export const missions = [
   }
 ]
 
-// Impact
+// Dampak
 export const impact = {
   co2Saved: 24.5,
   wasteRecycled: 18,
@@ -84,7 +84,7 @@ export const impact = {
   treesEquivalent: 3
 }
 
-// Achievements
+// Pencapaian
 export const achievements = [
   {
     id: 1,
@@ -108,7 +108,7 @@ export const achievements = [
   }
 ]
 
-// Challenges
+// Tantangan
 export const challenges = [
   {
     id: 1,
@@ -150,7 +150,7 @@ export const challenges = [
   }
 ]
 
-// Leaderboard
+// Papan Peringkat
 export const leaderboard = [
   {
     rank: 1,
@@ -262,7 +262,7 @@ export const leaderboard = [
   }
 ]
 
-// Impact History
+// Riwayat Dampak
 export const impactHistory = [
   {
     month: 'Apr',
@@ -307,7 +307,7 @@ export const impactHistory = [
   }
 ]
 
-// Eco Actions
+// Aksi Eco
 export const ecoActions = [
   {
     id: 1,
@@ -338,7 +338,7 @@ export const ecoActions = [
 
   {
     id: 4,
-    title: 'Menggunakan botol minum reusable',
+    title: 'Menggunakan botol minum guna ulang',
     category: 'Sampah',
     value: '1 botol',
     impact: '0,3 kg CO₂ tersimpan',
@@ -346,7 +346,7 @@ export const ecoActions = [
   }
 ]
 
-// Rewards
+// Hadiah
 export const rewards = [
   {
     id: 1,
@@ -372,8 +372,8 @@ export const rewards = [
 
   {
     id: 3,
-    title: 'Botol Minum Reusable',
-    description: 'Tukarkan reward ini dengan botol minum reusable EcoQuest.',
+    title: 'Botol Minum Guna Ulang',
+    description: 'Tukarkan hadiah ini dengan botol minum guna ulang EcoQuest.',
     category: 'Merchandise',
     cost: 1000,
     icon: 'bottle',
@@ -384,7 +384,7 @@ export const rewards = [
   {
     id: 4,
     title: 'Tas EcoQuest',
-    description: 'Tas reusable untuk menemani aktivitas sehari-harimu.',
+    description: 'Tas guna ulang untuk menemani aktivitas sehari-harimu.',
     category: 'Merchandise',
     cost: 1500,
     icon: 'bag',
@@ -406,7 +406,7 @@ export const rewards = [
   {
     id: 6,
     title: 'Eco Champion',
-    description: 'Reward khusus untuk pengguna yang mencapai pencapaian tingkat lanjut.',
+    description: 'Hadiah khusus untuk pengguna yang mencapai pencapaian tingkat lanjut.',
     category: 'Digital',
     cost: 2000,
     icon: 'trophy',
@@ -415,7 +415,7 @@ export const rewards = [
   }
 ]
 
-// Redeemed Rewards
+// Hadiah yang Ditukarkan
 export const redeemedRewards = [
   {
     id: 101,
@@ -426,7 +426,7 @@ export const redeemedRewards = [
   }
 ]
 
-// Community
+// Komunitas
 export const communityPosts = [
   {
     id: 1,
@@ -481,7 +481,7 @@ export const communityPosts = [
     category: 'Sampah',
     title: 'Tidak menggunakan gelas plastik hari ini 🌱',
     content:
-      'Membawa botol minum dan gelas kopi reusable ke mana pun hari ini. Tidak perlu menggunakan gelas sekali pakai!',
+      'Membawa botol minum dan gelas kopi guna ulang ke mana pun hari ini. Tidak perlu menggunakan gelas sekali pakai!',
     likes: 15,
     comments: 3,
     liked: false,
@@ -495,7 +495,7 @@ export const communityStats = {
   co2Saved: 486.7
 }
 
-// Profile
+// Profil
 export const profileStats = {
   missionsCompleted: 18,
   challengesCompleted: 6,
@@ -506,7 +506,7 @@ export const profileStats = {
 export const profileActivity = [
   {
     id: 1,
-    title: 'Menyelesaikan Daur Ulang 5 Botol Plastik',
+    title: 'Menyelesaikan Misi Daur Ulang 5 Botol Plastik',
     type: 'Misi',
     xp: 50,
     date: 'Hari ini'
@@ -514,7 +514,7 @@ export const profileActivity = [
 
   {
     id: 2,
-    title: 'Menyelesaikan tantangan Minggu Hijau',
+    title: 'Menyelesaikan Tantangan Minggu Hijau',
     type: 'Tantangan',
     xp: 250,
     date: 'Kemarin'
@@ -522,7 +522,7 @@ export const profileActivity = [
 
   {
     id: 3,
-    title: 'Mencatat aksi Bersepeda ke Kantor',
+    title: 'Mencatat Aksi Eco Bersepeda ke Kantor',
     type: 'Aksi Eco',
     xp: 75,
     date: 'Kemarin'
@@ -531,7 +531,7 @@ export const profileActivity = [
   {
     id: 4,
     title: 'Menukarkan Lencana Eco Pertama',
-    type: 'Reward',
+    type: 'Hadiah',
     xp: -250,
     date: '28 Agu 2026'
   }

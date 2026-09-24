@@ -11,7 +11,7 @@
       </button>
 
       <span class="text-[13px] font-semibold text-[#17211B]">
-        Settings
+        {{ $t('settings.title') }}
       </span>
     </header>
 
@@ -23,13 +23,16 @@
 
       <div class="overflow-hidden rounded-xl border border-[#DCEBE0] bg-white">
         <!-- Push Notification -->
-        <div class="flex items-center gap-3 border-b border-[#EEF3EF] px-4 py-3">
+        <div 
+          class="flex items-center gap-3 border-b border-[#EEF3EF] px-4 py-3 cursor-pointer active:bg-[#F8FBF9] transition"
+          @click="$emit('toggle', 'pushNotification')"
+        >
           <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#EAF2FF] text-[#3B82F6]">
             <Bell class="h-4 w-4" />
           </div>
           <div class="min-w-0 flex-1">
-            <p class="text-[10px] font-semibold text-[#17211B]">Notifikasi Push</p>
-            <p class="mt-0.5 text-[8px] text-[#718078]">Terima update aktivitas EcoQuest</p>
+            <p class="text-[10px] font-semibold text-[#17211B]">{{ $t('settings.pushNotification') }}</p>
+            <p class="mt-0.5 text-[8px] text-[#718078]">{{ $t('settings.pushDesc') }}</p>
           </div>
           <button
             type="button"
@@ -45,13 +48,16 @@
         </div>
 
         <!-- Mission Reminder -->
-        <div class="flex items-center gap-3 border-b border-[#EEF3EF] px-4 py-3">
+        <div 
+          class="flex items-center gap-3 border-b border-[#EEF3EF] px-4 py-3 cursor-pointer active:bg-[#F8FBF9] transition"
+          @click="$emit('toggle', 'missionReminder')"
+        >
           <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FFF1E8] text-[#F97316]">
             <Clock3 class="h-4 w-4" />
           </div>
           <div class="min-w-0 flex-1">
-            <p class="text-[10px] font-semibold text-[#17211B]">Reminder Mission</p>
-            <p class="mt-0.5 text-[8px] text-[#718078]">Ingatkan aku menyelesaikan mission</p>
+            <p class="text-[10px] font-semibold text-[#17211B]">{{ $t('settings.missionReminder') }}</p>
+            <p class="mt-0.5 text-[8px] text-[#718078]">{{ $t('settings.missionDesc') }}</p>
           </div>
           <button
             type="button"
@@ -67,13 +73,16 @@
         </div>
 
         <!-- Streak Reminder -->
-        <div class="flex items-center gap-3 px-4 py-3">
+        <div 
+          class="flex items-center gap-3 border-b border-[#EEF3EF] px-4 py-3 cursor-pointer active:bg-[#F8FBF9] transition"
+          @click="$emit('toggle', 'streakReminder')"
+        >
           <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FFF7D6] text-[#B88900]">
             <Flame class="h-4 w-4" />
           </div>
           <div class="min-w-0 flex-1">
-            <p class="text-[10px] font-semibold text-[#17211B]">Streak Reminder</p>
-            <p class="mt-0.5 text-[8px] text-[#718078]">Jangan sampai streak kamu terputus</p>
+            <p class="text-[10px] font-semibold text-[#17211B]">{{ $t('settings.streakReminder') }}</p>
+            <p class="mt-0.5 text-[8px] text-[#718078]">{{ $t('settings.streakDesc') }}</p>
           </div>
           <button
             type="button"
@@ -87,68 +96,54 @@
             ></span>
           </button>
         </div>
-      </div>
-    </section>
 
-    <!-- Preferences -->
-    <section class="mt-5">
-      <p class="mb-2 px-1 text-[9px] font-bold uppercase tracking-wide text-[#9AA59E]">
-        Preferensi
-      </p>
-
-      <div class="overflow-hidden rounded-xl border border-[#DCEBE0] bg-white">
-        <!-- Dark Mode -->
-        <div class="flex items-center gap-3 border-b border-[#EEF3EF] px-4 py-3">
-          <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#F1F5F2] text-[#405047]">
-            <Moon class="h-4 w-4" />
+        <!-- Promo Notification -->
+        <div 
+          class="flex items-center gap-3 border-b border-[#EEF3EF] px-4 py-3 cursor-pointer active:bg-[#F8FBF9] transition"
+          @click="$emit('toggle', 'promoNotification')"
+        >
+          <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FDF2F8] text-[#DB2777]">
+            <Flame class="h-4 w-4" />
           </div>
           <div class="min-w-0 flex-1">
-            <p class="text-[10px] font-semibold text-[#17211B]">Dark Mode</p>
-            <p class="mt-0.5 text-[8px] text-[#718078]">Gunakan tampilan gelap</p>
+            <p class="text-[10px] font-semibold text-[#17211B]">{{ $t('settings.promoNotification') }}</p>
+            <p class="mt-0.5 text-[8px] text-[#718078]">{{ $t('settings.promoDesc') }}</p>
           </div>
           <button
             type="button"
-            @click="$emit('toggle', 'darkMode')"
+            @click="$emit('toggle', 'promoNotification')"
             class="relative h-5 w-9 rounded-full transition"
-            :class="settings.darkMode ? 'bg-[#22C55E]' : 'bg-[#DCEBE0]'"
+            :class="settings.promoNotification ? 'bg-[#22C55E]' : 'bg-[#DCEBE0]'"
           >
             <span
               class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
-              :class="settings.darkMode ? 'left-[18px]' : 'left-0.5'"
+              :class="settings.promoNotification ? 'left-[18px]' : 'left-0.5'"
             ></span>
           </button>
         </div>
 
-        <!-- Language -->
-        <button
-          type="button"
-          @click="showLanguage = !showLanguage"
-          class="flex w-full items-center gap-3 px-4 py-3 text-left transition hover:bg-[#F8FBF9]"
+        <!-- Community Notification -->
+        <div 
+          class="flex items-center gap-3 px-4 py-3 cursor-pointer active:bg-[#F8FBF9] transition"
+          @click="$emit('toggle', 'communityNotification')"
         >
-          <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#EAF8EE] text-[#15803D]">
-            <Globe2 class="h-4 w-4" />
+          <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#F3F4F6] text-[#4B5563]">
+            <Bell class="h-4 w-4" />
           </div>
           <div class="min-w-0 flex-1">
-            <p class="text-[10px] font-semibold text-[#17211B]">Bahasa</p>
-            <p class="mt-0.5 text-[8px] text-[#718078]">{{ settings.language }}</p>
+            <p class="text-[10px] font-semibold text-[#17211B]">{{ $t('settings.communityNotification') }}</p>
+            <p class="mt-0.5 text-[8px] text-[#718078]">{{ $t('settings.communityDesc') }}</p>
           </div>
-          <ChevronRight
-            class="h-4 w-4 text-[#A3ADA7] transition"
-            :class="showLanguage ? 'rotate-90' : ''"
-          />
-        </button>
-
-        <!-- Language Options -->
-        <div v-if="showLanguage" class="border-t border-[#EEF3EF] bg-[#FAFCFA] px-4 py-3">
           <button
-            v-for="language in languages"
-            :key="language"
             type="button"
-            @click="selectLanguage(language)"
-            class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left transition hover:bg-[#EAF8EE]"
+            @click="$emit('toggle', 'communityNotification')"
+            class="relative h-5 w-9 rounded-full transition"
+            :class="settings.communityNotification ? 'bg-[#22C55E]' : 'bg-[#DCEBE0]'"
           >
-            <span class="text-[9px] font-medium text-[#405047]">{{ language }}</span>
-            <Check v-if="settings.language === language" class="h-3.5 w-3.5 text-[#22C55E]" />
+            <span
+              class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
+              :class="settings.communityNotification ? 'left-[18px]' : 'left-0.5'"
+            ></span>
           </button>
         </div>
       </div>
@@ -166,8 +161,8 @@
             <ShieldCheck class="h-4 w-4" />
           </div>
           <div class="min-w-0 flex-1">
-            <p class="text-[10px] font-semibold text-[#17211B]">Privasi</p>
-            <p class="mt-0.5 text-[8px] text-[#718078]">Kelola pengaturan privasi</p>
+            <p class="text-[10px] font-semibold text-[#17211B]">{{ $t('settings.privacy') }}</p>
+            <p class="mt-0.5 text-[8px] text-[#718078]">{{ $t('settings.privacyDesc') }}</p>
           </div>
           <ChevronRight class="h-4 w-4 text-[#A3ADA7]" />
         </RouterLink>
@@ -177,8 +172,8 @@
             <LockKeyhole class="h-4 w-4" />
           </div>
           <div class="min-w-0 flex-1">
-            <p class="text-[10px] font-semibold text-[#17211B]">Keamanan</p>
-            <p class="mt-0.5 text-[8px] text-[#718078]">Password dan keamanan akun</p>
+            <p class="text-[10px] font-semibold text-[#17211B]">{{ $t('settings.security') }}</p>
+            <p class="mt-0.5 text-[8px] text-[#718078]">{{ $t('settings.securityDesc') }}</p>
           </div>
           <ChevronRight class="h-4 w-4 text-[#A3ADA7]" />
         </RouterLink>

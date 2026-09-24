@@ -83,7 +83,7 @@
           </div>
 
           <!-- Preferences -->
-          <div class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+          <!-- <div class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
             <h2 class="text-sm font-bold text-[#17211B]">Preferensi</h2>
             <p class="mt-1 text-xs text-[#718078]">Sesuaikan pengalaman penggunaan EcoQuest.</p>
             <div class="mt-4 space-y-2">
@@ -121,7 +121,7 @@
                 </span>
               </div>
             </div>
-          </div>
+          </div> -->
         </section>
 
         <!-- Right Sidebar -->
@@ -171,6 +171,8 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import {
   ArrowLeft, Bell, ChevronRight, Clock3, Flame, Globe2,
   LockKeyhole, LogOut, Moon, ShieldCheck, Trophy, UserRound
@@ -185,27 +187,43 @@ const props = defineProps({
 
 defineEmits(['toggle', 'logout'])
 
-const notificationOptions = [
+const { t } = useI18n()
+
+const notificationOptions = computed(() => [
   {
     key: 'pushNotification',
-    title: 'Notifikasi Push',
-    description: 'Terima update aktivitas EcoQuest',
+    title: t('settings.pushNotification'),
+    description: t('settings.pushDesc'),
     icon: Bell,
     bg: 'bg-[#EAF2FF] text-[#3B82F6]'
   },
   {
     key: 'missionReminder',
-    title: 'Reminder Mission',
-    description: 'Pengingat untuk menyelesaikan mission',
+    title: t('settings.missionReminder'),
+    description: t('settings.missionDesc'),
     icon: Clock3,
     bg: 'bg-[#FFF1E8] text-[#F97316]'
   },
   {
     key: 'streakReminder',
-    title: 'Streak Reminder',
-    description: 'Pengingat agar streak tidak terputus',
+    title: t('settings.streakReminder'),
+    description: t('settings.streakDesc'),
     icon: Flame,
     bg: 'bg-[#FFF7D6] text-[#B88900]'
+  },
+  {
+    key: 'promoNotification',
+    title: t('settings.promoNotification'),
+    description: t('settings.promoDesc'),
+    icon: Flame,
+    bg: 'bg-[#FDF2F8] text-[#DB2777]'
+  },
+  {
+    key: 'communityNotification',
+    title: t('settings.communityNotification'),
+    description: t('settings.communityDesc'),
+    icon: Bell,
+    bg: 'bg-[#F3F4F6] text-[#4B5563]'
   }
-]
+])
 </script>

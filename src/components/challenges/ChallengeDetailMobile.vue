@@ -1,5 +1,6 @@
 <template>
   <main class="mx-auto max-w-[430px] px-4 pb-28 md:hidden">
+
     <!-- Header -->
     <header class="relative flex items-center justify-center py-4">
       <button
@@ -9,9 +10,9 @@
       >
         <ArrowLeft class="h-5 w-5" />
       </button>
-      
+
       <span class="text-[13px] font-semibold text-[#17211B]">
-        Challenge Detail
+        Detail Tantangan
       </span>
     </header>
 
@@ -22,7 +23,10 @@
 
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="flex h-20 w-20 items-center justify-center rounded-full bg-white/80">
-          <component :is="getCategoryIcon(challenge.category)" class="h-10 w-10 text-[#22C55E]" />
+          <component
+            :is="getCategoryIcon(challenge.category)"
+            class="h-10 w-10 text-[#22C55E]"
+          />
         </div>
       </div>
 
@@ -38,6 +42,7 @@
           <h1 class="text-[23px] font-bold leading-tight text-[#17211B]">
             {{ challenge.title }}
           </h1>
+
           <p class="mt-1 text-[11px] font-medium text-[#22C55E]">
             {{ challenge.participants }} Peserta Bergabung
           </p>
@@ -53,17 +58,35 @@
     <section class="mt-5 rounded-2xl border border-[#E5EEE8] bg-white p-4">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-[11px] font-semibold text-[#17211B]">Progress Komunitas</p>
-          <p class="mt-1 text-[10px] text-[#98A39C]">Mari capai target bersama!</p>
+          <p class="text-[11px] font-semibold text-[#17211B]">
+            Kemajuan Komunitas
+          </p>
+
+          <p class="mt-1 text-[10px] text-[#98A39C]">
+            Mari capai target bersama!
+          </p>
         </div>
-        <span class="text-[11px] font-bold text-[#22C55E]">{{ challenge.progress }}%</span>
+
+        <span class="text-[11px] font-bold text-[#22C55E]">
+          {{ challenge.progress }}%
+        </span>
       </div>
+
       <div class="mt-3 h-2 overflow-hidden rounded-full bg-[#EAF1EC]">
-        <div class="h-full rounded-full bg-[#22C55E] transition-all" :style="{ width: `${challenge.progress}%` }"></div>
+        <div
+          class="h-full rounded-full bg-[#22C55E] transition-all"
+          :style="{ width: `${challenge.progress}%` }"
+        ></div>
       </div>
+
       <div class="mt-2 flex items-center justify-between">
-        <span class="text-[10px] text-[#98A39C]">{{ challenge.daysLeft }} hari lagi</span>
-        <span class="text-[10px] font-medium text-[#66736A]">{{ challenge.progress }}% selesai</span>
+        <span class="text-[10px] text-[#98A39C]">
+          {{ challenge.daysLeft }} hari lagi
+        </span>
+
+        <span class="text-[10px] font-medium text-[#66736A]">
+          {{ challenge.progress }}% selesai
+        </span>
       </div>
     </section>
 
@@ -73,9 +96,15 @@
         <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#22C55E]/15">
           <Trophy class="h-5 w-5 text-[#4ADE80]" />
         </div>
+
         <div>
-          <p class="text-[10px] text-white/50">Challenge Reward</p>
-          <p class="mt-0.5 text-[13px] font-semibold text-white">Special Badge & 500 XP</p>
+          <p class="text-[10px] text-white/50">
+            Hadiah Tantangan
+          </p>
+
+          <p class="mt-0.5 text-[13px] font-semibold text-white">
+            Lencana Spesial & 500 XP
+          </p>
         </div>
       </div>
     </section>
@@ -86,20 +115,24 @@
       @click="!isCompleted && $emit('join')"
       :disabled="isCompleted"
       class="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-xl text-[12px] font-semibold text-white transition active:scale-[0.98]"
-      :class="isCompleted ? 'bg-[#98A39C] cursor-not-allowed' : 'bg-[#22C55E] shadow-[0_8px_20px_rgba(34,197,94,0.18)] hover:bg-[#16A34A]'"
+      :class="isCompleted
+        ? 'bg-[#98A39C] cursor-not-allowed'
+        : 'bg-[#22C55E] shadow-[0_8px_20px_rgba(34,197,94,0.18)] hover:bg-[#16A34A]'"
     >
-      {{ 
-        isCompleted 
-          ? 'Challenge Selesai' 
-          : !challenge.joined 
-            ? 'Ikuti Challenge' 
-            : challenge.completedSteps === 0 
-              ? 'Mulai Challenge' 
-              : 'Lanjutkan Challenge' 
+      {{
+        isCompleted
+          ? 'Tantangan Selesai'
+          : !challenge.joined
+            ? 'Ikuti Tantangan'
+            : challenge.completedSteps === 0
+              ? 'Mulai Tantangan'
+              : 'Lanjutkan Tantangan'
       }}
+
       <Check v-if="isCompleted" class="h-4 w-4" />
       <ArrowRight v-else class="h-4 w-4" />
     </button>
+
   </main>
 </template>
 
@@ -127,6 +160,7 @@ defineEmits(['join'])
 const isCompleted = computed(() => {
   const total = props.challenge.totalSteps || props.challenge.steps?.length || 0
   const completed = props.challenge.completedSteps || 0
+
   return total > 0 && completed >= total
 })
 </script>

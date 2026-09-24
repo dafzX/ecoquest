@@ -111,12 +111,12 @@ onMounted(() => {
 
 const tabs = computed(() => [
   {
-    label: 'All',
+    label: 'Semua',
     value: 'all',
     count: missionList.value.length
   },
   {
-    label: 'Recommended',
+    label: 'Rekomendasi',
     value: 'recommended',
     count: missionList.value.filter(
       (mission) =>
@@ -125,7 +125,7 @@ const tabs = computed(() => [
     ).length
   },
   {
-    label: 'Active',
+    label: 'Aktif',
     value: 'active',
     count: missionList.value.filter(
       (mission) =>
@@ -134,7 +134,7 @@ const tabs = computed(() => [
     ).length
   },
   {
-    label: 'Completed',
+    label: 'Selesai',
     value: 'completed',
     count: missionList.value.filter(
       (mission) => mission.completed
@@ -195,18 +195,18 @@ const filteredMissions = computed(() => {
 
 const sectionTitle = computed(() => {
   if (activeTab.value === 'recommended') {
-    return 'Quest Rekomendasi'
+    return 'Misi Rekomendasi'
   }
 
   if (activeTab.value === 'active') {
-    return 'Quest Aktif'
+    return 'Misi Aktif'
   }
 
   if (activeTab.value === 'completed') {
-    return 'Quest Selesai'
+    return 'Misi Selesai'
   }
 
-  return 'Semua Quest'
+  return 'Semua Misi'
 })
 
 const getMissionLink = (mission) => {

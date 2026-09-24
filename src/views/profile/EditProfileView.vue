@@ -16,7 +16,7 @@
             </button>
 
           <span class="text-[13px] font-semibold text-[#17211B]">
-            Edit Profile
+            Edit Profil
           </span>
         </header>
 

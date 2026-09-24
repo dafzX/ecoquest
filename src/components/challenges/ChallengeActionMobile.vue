@@ -16,7 +16,7 @@
         </p>
 
         <h1 class="text-[15px] font-bold text-[#17211B]">
-          Challenge Action
+          Aksi Tantangan
         </h1>
       </div>
     </div>
@@ -25,7 +25,7 @@
 
       <div class="flex items-center justify-between">
         <span class="rounded-full bg-[#EAF8EE] px-2.5 py-1 text-[8px] font-semibold text-[#15803D]">
-          Step {{ currentStepNumber }}/{{ totalSteps }}
+          Langkah {{ currentStepNumber }}/{{ totalSteps }}
         </span>
 
         <span class="text-[9px] font-bold text-[#15803D]">
@@ -63,7 +63,7 @@
         </p>
 
         <p class="mt-1 text-[9px] leading-4 text-[#718078]">
-          Selesaikan aksi nyata ini untuk melanjutkan challenge.
+          Selesaikan aksi nyata ini untuk melanjutkan tantangan.
         </p>
       </div>
 
@@ -72,7 +72,7 @@
         @click="$emit('complete')"
         class="mt-5 flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#22C55E] text-[11px] font-semibold text-white transition hover:bg-[#15803D]"
       >
-        {{ currentStepNumber < totalSteps ? 'Selesaikan Langkah Ini' : 'Selesaikan Challenge' }}
+        {{ currentStepNumber < totalSteps ? 'Selesaikan Langkah Ini' : 'Selesaikan Tantangan' }}
         <Check class="h-4 w-4" />
       </button>
     </section>
@@ -81,11 +81,11 @@
       <div class="flex items-center justify-between">
         <div>
           <p class="text-[8px] text-white/50">
-            Challenge Reward
+            Hadiah Tantangan
           </p>
 
           <p class="mt-1 text-[10px] font-bold text-white">
-            Special Badge & 500 XP
+            Lencana Spesial & 500 XP
           </p>
         </div>
 
@@ -152,9 +152,9 @@ const currentStep = computed(() => {
     props.challenge.steps?.[
       currentStepNumber.value - 1
     ] || {
-      title: 'Challenge selesai',
+      title: 'Tantangan selesai',
       description:
-        'Semua aksi dalam challenge sudah selesai.'
+        'Semua aksi dalam tantangan sudah selesai.'
     }
   )
 })

@@ -115,7 +115,7 @@ const monthlyProgress = computed(() => {
 
 const impactStats = computed(() => [
   {
-    label: 'CO₂ Reduced',
+    label: 'Pengurangan CO₂',
     value: `${impact.value.co2Saved ?? 0} kg`,
     icon: Leaf,
     bg: 'bg-[#EAF8EE]',
@@ -123,7 +123,7 @@ const impactStats = computed(() => [
   },
 
   {
-    label: 'Waste Reduced',
+    label: 'Pengurangan Sampah',
     value: `${impact.value.wasteReduced ?? 0} kg`,
     icon: Recycle,
     bg: 'bg-[#EEF8F0]',
@@ -131,7 +131,7 @@ const impactStats = computed(() => [
   },
 
   {
-    label: 'Water Saved',
+    label: 'Penghematan Air',
     value: `${impact.value.waterSaved ?? 0} L`,
     icon: Droplets,
     bg: 'bg-[#EAF3FF]',
@@ -139,7 +139,7 @@ const impactStats = computed(() => [
   },
 
   {
-    label: 'Green Distance',
+    label: 'Jarak Hijau',
     value: `${impact.value.greenDistance ?? 0} km`,
     icon: Bike,
     bg: 'bg-[#FFF5E8]',
@@ -158,7 +158,7 @@ const breakdown = computed(() => [
   },
 
   {
-    label: 'Recycle',
+    label: 'Daur Ulang',
     value: `${impact.value.breakdown?.recycle ?? 0}%`,
     progress: impact.value.breakdown?.recycle ?? 0,
     icon: Recycle,
