@@ -1,6 +1,6 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto max-w-[1000px] px-6 pb-12 pt-8">
+    <div class="mx-auto max-w-250 px-6 pb-12 pt-8">
 
       <!-- Header -->
       <header class="mb-7 flex items-center gap-3">
@@ -30,7 +30,7 @@
       <div class="grid grid-cols-2 gap-5">
 
         <!-- Password -->
-        <section class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+        <section class="rounded-lg border border-[#E8EDE9] bg-white p-5">
           <h2 class="text-sm font-bold text-[#17211B]">
             Keamanan Password
           </h2>
@@ -63,7 +63,7 @@
         </section>
 
         <!-- Email -->
-        <section class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+        <section class="rounded-lg border border-[#E8EDE9] bg-white p-5">
           <h2 class="text-sm font-bold text-[#17211B]">
             Email
           </h2>
@@ -94,7 +94,7 @@
         </section>
 
         <!-- Sessions -->
-        <section class="col-span-2 rounded-2xl border border-[#E8EDE9] bg-white p-5">
+        <section class="col-span-2 rounded-lg border border-[#E8EDE9] bg-white p-5">
           <div class="flex items-center justify-between">
             <div>
               <h2 class="text-sm font-bold text-[#17211B]">

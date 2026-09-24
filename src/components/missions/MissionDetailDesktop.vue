@@ -26,7 +26,7 @@
         </div>
 
         <div
-          class="mb-8 overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white"
+          class="mb-8 overflow-hidden rounded-lg border border-[#E2E8F0] bg-white"
         >
           <div class="p-8">
 
@@ -35,7 +35,7 @@
               <div class="flex items-start gap-4">
 
                 <div
-                  class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#DCFCE7]"
+                  class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-[#DCFCE7]"
                 >
                   <component
                     :is="getCategoryIcon(mission.category)"
@@ -103,7 +103,7 @@
           </div>
         </div>
 
-        <div class="rounded-3xl border border-[#E2E8F0] bg-white p-8">
+        <div class="rounded-lg border border-[#E2E8F0] bg-white p-8">
 
           <div class="mb-6">
 
@@ -122,7 +122,7 @@
             <div
               v-for="(step, index) in mission.steps"
               :key="index"
-              class="flex items-center gap-5 rounded-2xl border p-5 transition"
+              class="flex items-center gap-5 rounded-lg border p-5 transition"
               :class="
                 index < completedSteps
                   ? 'border-[#BBF7D0] bg-[#F0FDF4]'
@@ -227,7 +227,7 @@
 
           <div
             v-if="allStepsCompleted"
-            class="mt-8 flex items-center justify-between rounded-2xl bg-[#F0FDF4] p-5"
+            class="mt-8 flex items-center justify-between rounded-lg bg-[#F0FDF4] p-5"
           >
 
             <div class="flex items-center gap-3">

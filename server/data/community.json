@@ -1,6 +1,22 @@
 {
   "posts": [
     {
+      "id": 1790220237878,
+      "userId": 4,
+      "name": "Lita",
+      "avatar": "L",
+      "time": "Baru saja",
+      "category": "Eco Action",
+      "title": "Aksi Eco Baru",
+      "content": "hai semua",
+      "likes": 1,
+      "comments": 0,
+      "impact": "Aksi ramah lingkungan",
+      "likedBy": [
+        4
+      ]
+    },
+    {
       "id": 1,
       "userId": null,
       "name": "Sinta",

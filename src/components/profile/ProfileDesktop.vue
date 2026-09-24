@@ -1,6 +1,6 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto max-w-[1080px] px-6 pb-10 pt-8">
+    <div class="mx-auto max-w-270 px-6 pb-10 pt-8">
 
       <!-- Header -->
       <DesktopPageHeader
@@ -11,13 +11,13 @@
 
       <!-- Profile Overview -->
       <section
-        class="mb-6 rounded-2xl border border-[#E8EDE9] bg-white px-7 py-6"
+        class="mb-6 rounded-lg border border-[#E8EDE9] bg-white px-7 py-6"
       >
         <div class="flex items-center gap-6">
 
           <!-- Avatar -->
           <div
-            class="flex h-[88px] w-[88px] shrink-0 items-center justify-center rounded-full bg-[#DCFCE7] text-2xl font-bold text-[#15803D]"
+            class="flex h-22 w-22 shrink-0 items-center justify-center rounded-full bg-[#DCFCE7] text-2xl font-bold text-[#15803D]"
           >
             {{ avatar }}
           </div>
@@ -59,7 +59,7 @@
             </div>
 
             <!-- XP Progress -->
-            <div class="mt-5 max-w-[650px]">
+            <div class="mt-5 max-w-162.5">
 
               <div class="mb-2 flex items-center justify-between">
                 <span class="text-[10px] font-medium text-[#98A39C]">
@@ -92,7 +92,7 @@
 
         <!-- Streak -->
         <div
-          class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
+          class="rounded-lg border border-[#E8EDE9] bg-white p-5"
         >
           <div class="flex items-center justify-between">
 
@@ -127,7 +127,7 @@
 
         <!-- Eco Actions -->
         <div
-          class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
+          class="rounded-lg border border-[#E8EDE9] bg-white p-5"
         >
           <div class="flex items-center justify-between">
 
@@ -162,7 +162,7 @@
 
         <!-- Low Carbon -->
         <div
-          class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
+          class="rounded-lg border border-[#E8EDE9] bg-white p-5"
         >
           <div class="flex items-center justify-between">
 
@@ -203,7 +203,7 @@
         <!-- Achievements -->
         <RouterLink
           to="/achievements"
-          class="group flex min-h-[104px] items-center gap-4 rounded-2xl border border-[#E8EDE9] bg-white px-5 py-4 transition hover:border-[#BBF7D0] hover:bg-[#FCFEFC]"
+          class="group flex min-h-26 items-center gap-4 rounded-lg border border-[#E8EDE9] bg-white px-5 py-4 transition hover:border-[#BBF7D0] hover:bg-[#FCFEFC]"
         >
           <div
             class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#FFF7D6]"
@@ -229,7 +229,7 @@
         <!-- My Impact -->
         <RouterLink
           to="/impact"
-          class="group flex min-h-[104px] items-center gap-4 rounded-2xl border border-[#E8EDE9] bg-white px-5 py-4 transition hover:border-[#BBF7D0] hover:bg-[#FCFEFC]"
+          class="group flex min-h-26 items-center gap-4 rounded-lg border border-[#E8EDE9] bg-white px-5 py-4 transition hover:border-[#BBF7D0] hover:bg-[#FCFEFC]"
         >
           <div
             class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#E8F8ED]"
@@ -255,7 +255,7 @@
         <!-- Settings -->
         <RouterLink
           to="/profile/settings"
-          class="group flex min-h-[104px] items-center gap-4 rounded-2xl border border-[#E8EDE9] bg-white px-5 py-4 transition hover:border-[#BBF7D0] hover:bg-[#FCFEFC]"
+          class="group flex min-h-26 items-center gap-4 rounded-lg border border-[#E8EDE9] bg-white px-5 py-4 transition hover:border-[#BBF7D0] hover:bg-[#FCFEFC]"
         >
           <div
             class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EAF4FF]"
@@ -281,7 +281,7 @@
         <!-- Help & Support -->
         <RouterLink
           to="/profile/help-support"
-          class="group flex min-h-[104px] items-center gap-4 rounded-2xl border border-[#E8EDE9] bg-white px-5 py-4 transition hover:border-[#BBF7D0] hover:bg-[#FCFEFC]"
+          class="group flex min-h-26 items-center gap-4 rounded-lg border border-[#E8EDE9] bg-white px-5 py-4 transition hover:border-[#BBF7D0] hover:bg-[#FCFEFC]"
         >
           <div
             class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F2F5F3]"

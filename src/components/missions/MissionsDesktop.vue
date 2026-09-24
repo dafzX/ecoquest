@@ -1,7 +1,7 @@
 <template>
   <main class="hidden md:block">
 
-    <div class="mx-auto max-w-[1080px] px-6 pb-10">
+    <div class="mx-auto max-w-270 px-6 pb-10">
 
       <!-- Header -->
       <DesktopPageHeader
@@ -66,7 +66,7 @@
           <article
             v-for="mission in filteredMissions"
             :key="mission.id"
-            class="flex items-center justify-between rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#BBF7D0] hover:shadow-md"
+            class="flex items-center justify-between rounded-lg border border-[#E8EDE9] bg-linear-to-b from-white to-[#F8FAF8] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#BBF7D0] hover:shadow-md"
           >
 
             <!-- Content -->
@@ -74,7 +74,7 @@
 
               <!-- Icon -->
               <div
-                class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
+                class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg"
                 :class="getCategoryStyle(mission.category)"
               >
 
@@ -170,7 +170,7 @@
 
             <!-- Action -->
             <div
-              class="ml-6 flex w-[150px] shrink-0 flex-col items-end justify-center gap-4 border-l border-[#E8EDE9] pl-6"
+              class="ml-6 flex w-37.5 shrink-0 flex-col items-end justify-center gap-4 border-l border-[#E8EDE9] pl-6"
             >
 
               <!-- XP -->
@@ -211,11 +211,11 @@
         <!-- Empty State -->
         <div
           v-else
-          class="rounded-3xl border border-dashed border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] px-6 py-16 text-center shadow-sm"
+          class="rounded-lg border border-dashed border-[#DCEBE0] bg-linear-to-b from-white to-[#F8FAF8] px-6 py-16 text-center shadow-sm"
         >
 
           <div
-            class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E8F8ED]"
+            class="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-[#E8F8ED]"
           >
             <Search class="h-6 w-6 text-[#22C55E]" />
           </div>

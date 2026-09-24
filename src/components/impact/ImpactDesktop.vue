@@ -1,6 +1,6 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto max-w-[1100px] px-6 pb-10">
+    <div class="mx-auto max-w-275 px-6 pb-10">
 
       <header class="mb-6 flex items-center gap-3 pt-2">
         <div>
@@ -19,7 +19,7 @@
         <div class="space-y-5">
 
           <!-- Hero -->
-          <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 to-green-800 p-6 text-white shadow-md">
+          <section class="relative overflow-hidden rounded-lg bg-linear-to-br from-emerald-600 to-green-800 p-6 text-white shadow-md">
 
             <div class="absolute -right-12 -top-14 h-44 w-44 rounded-full bg-white/10"></div>
             <div class="absolute -bottom-16 left-1/3 h-40 w-40 rounded-full bg-white/5"></div>
@@ -52,7 +52,7 @@
 
                 </div>
 
-                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10">
+                <div class="flex h-16 w-16 items-center justify-center rounded-lg bg-white/10">
                   <Leaf class="h-8 w-8" />
                 </div>
 
@@ -116,7 +116,7 @@
               <div
                 v-for="stat in impactStats"
                 :key="stat.label"
-                class="rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                class="rounded-lg border border-[#E8EDE9] bg-linear-to-b from-white to-[#F8FAF8] p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
               >
 
                 <div
@@ -144,7 +144,7 @@
           </section>
 
           <!-- Breakdown -->
-          <section class="rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm">
+          <section class="rounded-lg border border-[#E8EDE9] bg-linear-to-b from-white to-[#F8FAF8] p-6 shadow-sm">
 
             <div class="mb-5">
 
@@ -213,13 +213,13 @@
         <div class="space-y-5">
 
           <!-- Monthly -->
-          <section class="rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm">
+          <section class="rounded-lg border border-[#E8EDE9] bg-linear-to-b from-white to-[#F8FAF8] p-6 shadow-sm">
 
             <div class="flex items-start justify-between">
 
               <div>
 
-                <p class="text-[9px] font-bold uppercase tracking-[0.1em] text-[#8A958E]">
+                <p class="text-[9px] font-bold uppercase tracking-widest text-[#8A958E]">
                   Target Bulanan
                 </p>
 
@@ -276,7 +276,7 @@
           </section>
 
           <!-- Motivation -->
-          <section class="rounded-3xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-[#E8F8ED] p-6 shadow-sm">
+          <section class="rounded-lg border border-emerald-100 bg-linear-to-br from-emerald-50 to-[#E8F8ED] p-6 shadow-sm">
 
             <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white">
               <Sprout class="h-5 w-5 text-[#15803D]" />

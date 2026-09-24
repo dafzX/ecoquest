@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto max-w-[430px] px-4 pb-24 md:hidden">
+  <main class="mx-auto max-w-107.5 px-4 pb-24 md:hidden">
 
     <header class="relative flex items-center justify-center py-4">
 
@@ -18,7 +18,7 @@
     </header>
 
     <!-- Hero -->
-    <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-600 to-green-800 p-5 text-white shadow-md">
+    <section class="relative overflow-hidden rounded-lg bg-linear-to-br from-emerald-600 to-green-800 p-5 text-white shadow-md">
 
       <div class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-white/10"></div>
 
@@ -121,7 +121,7 @@
         <div
           v-for="stat in impactStats"
           :key="stat.label"
-          class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm"
+          class="rounded-lg border border-[#DCEBE0] bg-linear-to-b from-white to-[#F8FAF8] p-3 shadow-sm"
         >
 
           <div
@@ -150,13 +150,13 @@
     </section>
 
     <!-- Monthly -->
-    <section class="mt-5 rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-4 shadow-sm">
+    <section class="mt-5 rounded-lg border border-[#DCEBE0] bg-linear-to-b from-white to-[#F8FAF8] p-4 shadow-sm">
 
       <div class="flex items-center justify-between">
 
         <div>
 
-          <p class="text-[8px] font-semibold uppercase tracking-[0.08em] text-[#8A958E]">
+          <p class="text-[8px] font-semibold uppercase tracking-widest text-[#8A958E]">
             Target Bulanan
           </p>
 
@@ -234,7 +234,7 @@
         <article
           v-for="item in breakdown"
           :key="item.label"
-          class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm"
+          class="rounded-lg border border-[#DCEBE0] bg-linear-to-b from-white to-[#F8FAF8] p-3 shadow-sm"
         >
 
           <div class="flex items-center gap-3">
@@ -284,7 +284,7 @@
     </section>
 
     <!-- Motivation -->
-    <section class="mt-5 rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-[#E8F8ED] p-4 shadow-sm">
+    <section class="mt-5 rounded-lg border border-emerald-100 bg-linear-to-br from-emerald-50 to-[#E8F8ED] p-4 shadow-sm">
 
       <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white">
         <Sprout class="h-4 w-4 text-[#15803D]" />

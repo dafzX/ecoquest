@@ -1,6 +1,6 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto max-w-[1000px] px-6 pb-10 pt-6">
+    <div class="mx-auto max-w-250 px-6 pb-10 pt-6">
       
       <!-- Header -->
       <header class="mb-6 flex items-center gap-3">
@@ -22,7 +22,7 @@
         <!-- Main Settings -->
         <section class="space-y-5">
           <!-- Account -->
-          <div class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+          <div class="rounded-lg border border-[#E8EDE9] bg-white p-5">
             <h2 class="text-sm font-bold text-[#17211B]">Akun</h2>
             <p class="mt-1 text-xs text-[#718078]">Kelola informasi akun dan profil kamu.</p>
             <div class="mt-4 space-y-2">
@@ -51,7 +51,7 @@
           </div>
 
           <!-- Notifications -->
-          <div class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+          <div class="rounded-lg border border-[#E8EDE9] bg-white p-5">
             <h2 class="text-sm font-bold text-[#17211B]">Notifikasi</h2>
             <p class="mt-1 text-xs text-[#718078]">Atur jenis notifikasi yang ingin kamu terima.</p>
             <div class="mt-4 space-y-2">
@@ -75,7 +75,7 @@
                 >
                   <span
                     class="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition"
-                    :class="settings[item.key] ? 'left-[23px]' : 'left-0.5'"
+                    :class="settings[item.key] ? 'left-5.75' : 'left-0.5'"
                   ></span>
                 </button>
               </div>
@@ -83,7 +83,7 @@
           </div>
 
           <!-- Preferences -->
-          <!-- <div class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+          <!-- <div class="rounded-lg border border-[#E8EDE9] bg-white p-5">
             <h2 class="text-sm font-bold text-[#17211B]">Preferensi</h2>
             <p class="mt-1 text-xs text-[#718078]">Sesuaikan pengalaman penggunaan EcoQuest.</p>
             <div class="mt-4 space-y-2">
@@ -103,7 +103,7 @@
                 >
                   <span
                     class="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition"
-                    :class="settings.darkMode ? 'left-[23px]' : 'left-0.5'"
+                    :class="settings.darkMode ? 'left-5.75' : 'left-0.5'"
                   ></span>
                 </button>
               </div>
@@ -127,7 +127,7 @@
         <!-- Right Sidebar -->
         <aside class="space-y-5">
           <!-- Privacy -->
-          <section class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+          <section class="rounded-lg border border-[#E8EDE9] bg-white p-5">
             <h3 class="text-xs font-bold text-[#17211B]">Privasi & Keamanan</h3>
             <div class="mt-3 space-y-1">
               

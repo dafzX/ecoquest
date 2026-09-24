@@ -1,10 +1,6 @@
 <template>
-  <header class="hidden h-[76px] items-center justify-between border-b border-[#E8EDE9] bg-white px-8 md:flex">
-    <p class="text-sm font-medium text-[#66736A]">
-      Ruang aksi baikmu
-    </p>
-
-    <div class="flex items-center gap-5">
+  <header class="hidden h-19 items-center justify-between shadow-md bg-white px-8 md:flex">
+    <div class="ml-auto flex items-center gap-5">
       <NotificationDropdown
         :is-open="activeDropdown === 'notification'"
         @toggle="toggleDropdown('notification')"
@@ -16,11 +12,11 @@
             @click="toggle"
             class="relative flex h-10 w-10 items-center justify-center rounded-xl text-[#66736A] transition hover:bg-[#F5F8F5]"
           >
-            <Bell class="h-[19px] w-[19px]" />
+            <Bell class="h-4.75 w-4.75" />
 
             <span
               v-if="unreadCount > 0"
-              class="absolute right-1 top-1 flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-[#EF4444] px-1 text-[8px] font-bold leading-none text-white ring-2 ring-white"
+              class="absolute right-1 top-1 flex h-3.75 min-w-3.75 items-center justify-center rounded-full bg-[#EF4444] px-1 text-[8px] font-bold leading-none text-white ring-2 ring-white"
             >
               {{ unreadCount > 9 ? '9+' : unreadCount }}
             </span>

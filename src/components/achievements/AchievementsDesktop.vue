@@ -1,6 +1,6 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto max-w-[1080px] px-6 py-8">
+    <div class="mx-auto max-w-270 px-6 py-8">
 
       <!-- Header -->
       <section class="mb-7">
@@ -18,7 +18,7 @@
 
         <!-- Total -->
         <div
-          class="rounded-2xl border border-[#E8EDE9] bg-white px-5 py-4"
+          class="rounded-lg border border-[#E8EDE9] bg-white px-5 py-4"
         >
           <div class="flex items-center justify-between">
             <div>
@@ -41,7 +41,7 @@
 
         <!-- Completed -->
         <div
-          class="rounded-2xl border border-[#E8EDE9] bg-white px-5 py-4"
+          class="rounded-lg border border-[#E8EDE9] bg-white px-5 py-4"
         >
           <div class="flex items-center justify-between">
             <div>
@@ -64,7 +64,7 @@
 
         <!-- In Progress -->
         <div
-          class="rounded-2xl border border-[#E8EDE9] bg-white px-5 py-4"
+          class="rounded-lg border border-[#E8EDE9] bg-white px-5 py-4"
         >
           <div class="flex items-center justify-between">
             <div>
@@ -132,13 +132,13 @@
           <article
             v-for="achievement in filteredAchievements"
             :key="achievement.id"
-            class="group flex min-h-[235px] flex-col rounded-2xl border border-[#E8EDE9] bg-white p-5 transition duration-200 hover:-translate-y-0.5 hover:border-[#BBF7D0] hover:shadow-sm"
+            class="group flex min-h-58.75 flex-col rounded-lg border border-[#E8EDE9] bg-white p-5 transition duration-200 hover:-translate-y-0.5 hover:border-[#BBF7D0] hover:shadow-sm"
           >
 
             <!-- Top -->
             <div class="flex items-start justify-between">
               <div
-                class="flex h-14 w-14 items-center justify-center rounded-2xl"
+                class="flex h-14 w-14 items-center justify-center rounded-lg"
                 :class="
                   achievement.unlocked
                     ? 'bg-[#EAF8EE]'
@@ -204,7 +204,7 @@
       <!-- Empty -->
       <section
         v-else
-        class="rounded-2xl border border-dashed border-[#DCEBE0] bg-white px-6 py-16 text-center"
+        class="rounded-lg border border-dashed border-[#DCEBE0] bg-white px-6 py-16 text-center"
       >
         <div
           class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#EAF8EE]"

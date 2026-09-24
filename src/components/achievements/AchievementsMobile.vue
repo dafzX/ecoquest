@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto w-full max-w-[430px] px-4 pb-6 md:hidden">
+  <main class="mx-auto w-full max-w-107.5 px-4 pb-6 md:hidden">
 
     <!-- Header -->
     <header class="relative flex items-center justify-center py-4">
@@ -90,7 +90,7 @@
         <article
           v-for="achievement in filteredAchievements"
           :key="achievement.id"
-          class="rounded-[12px] border border-[#DCEBE0] bg-white p-3.5"
+          class="rounded-xl border border-[#DCEBE0] bg-white p-3.5"
         >
           <div class="flex items-start gap-3">
             <div
@@ -118,7 +118,7 @@
                   {{ achievement.unlocked ? 'Selesai' : 'Berjalan' }}
                 </span>
               </div>
-              <p class="mt-0.5 text-[8px] leading-[13px] text-[#718078]">
+              <p class="mt-0.5 text-[8px] leading-3.25 text-[#718078]">
                 {{ achievement.description }}
               </p>
 
@@ -147,7 +147,7 @@
     <!-- Empty State -->
     <section
       v-else
-      class="rounded-[12px] border border-dashed border-[#DCEBE0] bg-white px-5 py-10 text-center"
+      class="rounded-xl border border-dashed border-[#DCEBE0] bg-white px-5 py-10 text-center"
     >
       <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#EAF8EE]">
         <Award class="h-5 w-5 text-[#22C55E]" />
@@ -155,7 +155,7 @@
       <p class="mt-3 text-[11px] font-bold text-[#17211B]">
         {{ emptyTitle }}
       </p>
-      <p class="mx-auto mt-1 max-w-[230px] text-[10px] leading-4 text-[#718078]">
+      <p class="mx-auto mt-1 max-w-57.5 text-[10px] leading-4 text-[#718078]">
         {{ emptyDescription }}
       </p>
     </section>

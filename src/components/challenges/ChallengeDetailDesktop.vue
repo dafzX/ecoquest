@@ -33,7 +33,7 @@
 
           <!-- Illustration -->
           <div
-            class="relative h-[360px] overflow-hidden rounded-3xl bg-[#DCFCE7]"
+            class="relative h-90 overflow-hidden rounded-lg bg-[#DCFCE7]"
           >
             <div
               class="absolute -right-20 -top-24 h-64 w-64 rounded-full bg-[#BBF7D0]"
@@ -89,7 +89,7 @@
 
           <!-- Personal Progress -->
           <section
-            class="rounded-2xl border border-[#E5EEE8] bg-white p-6"
+            class="rounded-lg border border-[#E5EEE8] bg-white p-6"
           >
             <div class="flex items-center justify-between">
               <div>
@@ -135,7 +135,7 @@
 
           <!-- Community Progress -->
           <section
-            class="rounded-2xl border border-[#E5EEE8] bg-white p-6"
+            class="rounded-lg border border-[#E5EEE8] bg-white p-6"
           >
             <div class="flex items-center justify-between">
               <div>
@@ -181,7 +181,7 @@
 
           <!-- Reward -->
           <section
-            class="rounded-2xl bg-[#17211B] p-5"
+            class="rounded-lg bg-[#17211B] p-5"
           >
             <div class="flex items-center justify-between">
               <div>

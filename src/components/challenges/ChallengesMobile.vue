@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto w-full max-w-[430px] px-4 pb-6 md:hidden">
+  <main class="mx-auto w-full max-w-107.5 px-4 pb-6 md:hidden">
 
     <!-- Header -->
     <header class="relative flex items-center justify-center py-4">
@@ -44,16 +44,16 @@
     <!-- Featured Challenge -->
     <section
       v-if="featuredChallenge"
-      class="mb-5 overflow-hidden rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] shadow-sm transition-all duration-300 active:scale-[0.98]"
+      class="mb-5 overflow-hidden rounded-lg border border-[#DCEBE0] bg-linear-to-b from-white to-[#F8FAF8] shadow-sm transition-all duration-300 active:scale-[0.98]"
     >
       <!-- Banner -->
-      <div class="relative h-[108px] overflow-hidden bg-[#DCFCE7]">
+      <div class="relative h-27 overflow-hidden bg-[#DCFCE7]">
         <div class="absolute -right-8 -top-9 h-28 w-28 rounded-full bg-[#BBF7D0]"></div>
         <div class="absolute -bottom-8 left-10 h-20 w-20 rounded-full bg-[#86EFAC]/50"></div>
         <div class="absolute right-14 top-12 h-10 w-10 rounded-full bg-white/20"></div>
 
         <div class="absolute left-4 top-3">
-          <span class="inline-flex rounded-full bg-white/85 px-2 py-1 text-[7px] font-bold tracking-[0.02em] text-[#15803D]">
+          <span class="inline-flex rounded-full bg-white/85 px-2 py-1 text-[7px] font-bold tracking-wide text-[#15803D]">
             TANTANGAN KOMUNITAS
           </span>
         </div>
@@ -76,7 +76,7 @@
               {{ featuredChallenge.title }}
             </h2>
 
-            <p class="mt-1 text-[8px] leading-[13px] text-[#718078]">
+            <p class="mt-1 text-[8px] leading-3.25 text-[#718078]">
               {{ featuredChallenge.description }}
             </p>
           </div>
@@ -98,7 +98,7 @@
             </span>
           </div>
 
-          <div class="h-[5px] w-full overflow-hidden rounded-full bg-[#E5EFE8]">
+          <div class="h-1.25 w-full overflow-hidden rounded-full bg-[#E5EFE8]">
             <div
               class="h-full rounded-full bg-[#22C55E] transition-all"
               :style="{ width: `${featuredChallenge.progress}%` }"
@@ -147,7 +147,7 @@
         <article
           v-for="challenge in visibleChallenges"
           :key="challenge.id"
-          class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3.5 shadow-sm transition-all duration-300 active:scale-[0.98]"
+          class="rounded-lg border border-[#DCEBE0] bg-linear-to-b from-white to-[#F8FAF8] p-3.5 shadow-sm transition-all duration-300 active:scale-[0.98]"
         >
           <div class="flex items-start gap-3">
             <!-- Icon -->
@@ -179,7 +179,7 @@
                 </span>
               </div>
 
-              <p class="mt-1.5 text-[8px] leading-[13px] text-[#718078]">
+              <p class="mt-1.5 text-[8px] leading-3.25 text-[#718078]">
                 {{ challenge.description }}
               </p>
 
@@ -195,7 +195,7 @@
                   </span>
                 </div>
 
-                <div class="h-[4px] w-full overflow-hidden rounded-full bg-[#E5EFE8]">
+                <div class="h-1 w-full overflow-hidden rounded-full bg-[#E5EFE8]">
                   <div
                     class="h-full rounded-full bg-[#22C55E]"
                     :style="{ width: `${challenge.progress}%` }"

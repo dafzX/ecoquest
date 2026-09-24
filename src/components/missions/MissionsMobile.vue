@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto max-w-[430px] px-4 pb-24 md:hidden">
+  <main class="mx-auto max-w-107.5 px-4 pb-24 md:hidden">
 
     <!-- Mobile Header -->
     <MobileHeader />
@@ -54,7 +54,7 @@
         <article
           v-for="mission in filteredMissions"
           :key="mission.id"
-          class="rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
+          class="rounded-lg border border-[#DCEBE0] bg-linear-to-b from-white to-[#F8FAF8] p-3 shadow-sm transition-all duration-300 active:scale-[0.98]"
         >
 
           <div class="flex gap-3">
@@ -111,7 +111,7 @@
                   </span>
                 </div>
 
-                <div class="mt-1 h-[4px] overflow-hidden rounded-full bg-[#E5EFE8]">
+                <div class="mt-1 h-1 overflow-hidden rounded-full bg-[#E5EFE8]">
                   <div
                     class="h-full rounded-full bg-[#22C55E]"
                     :style="{ width: `${mission.progress}%` }"
@@ -160,7 +160,7 @@
       <!-- Empty -->
       <div
         v-else
-        class="rounded-2xl border border-dashed border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] px-5 py-10 text-center shadow-sm"
+        class="rounded-lg border border-dashed border-[#DCEBE0] bg-linear-to-b from-white to-[#F8FAF8] px-5 py-10 text-center shadow-sm"
       >
 
         <Search class="mx-auto h-6 w-6 text-[#22C55E]" />
@@ -203,7 +203,7 @@
 
       <!-- Challenge Card -->
       <article
-        class="overflow-hidden rounded-2xl border border-[#DCEBE0] bg-gradient-to-b from-white to-[#F8FAF8] shadow-sm transition-all duration-300 active:scale-[0.98]"
+        class="overflow-hidden rounded-lg border border-[#DCEBE0] bg-linear-to-b from-white to-[#F8FAF8] shadow-sm transition-all duration-300 active:scale-[0.98]"
       >
 
         <!-- Challenge Header -->

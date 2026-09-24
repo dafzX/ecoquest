@@ -1,6 +1,6 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto w-full max-w-[1000px] px-6 py-8">
+    <div class="mx-auto w-full max-w-250 px-6 py-8">
       
       <!-- Header -->
       <div class="mb-10 text-center">
@@ -15,7 +15,7 @@
       <!-- Top 3 Podium (Horizontal) -->
       <div v-if="topRanked.length" class="mb-12 grid grid-cols-3 gap-6">
         <!-- Rank 2 -->
-        <div v-if="topRanked[1]" class="relative mt-8 flex flex-col items-center justify-center rounded-[2rem] border border-[#E8EDE9] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+        <div v-if="topRanked[1]" class="relative mt-8 flex flex-col items-center justify-center rounded-lg border border-[#E8EDE9] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
           <div class="absolute -top-5 flex h-10 w-10 items-center justify-center rounded-full bg-[#E5E7EB] border-4 border-white text-sm font-bold text-[#4B5563] shadow-sm">
             #2
           </div>
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Rank 1 -->
-        <div v-if="topRanked[0]" class="relative z-10 flex flex-col items-center justify-center rounded-[2rem] border border-[#FBE3B8] bg-gradient-to-b from-[#FFFDF8] to-white p-8 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+        <div v-if="topRanked[0]" class="relative z-10 flex flex-col items-center justify-center rounded-lg border-2 border-[#ffa600] bg-white p-8 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
           <Crown class="absolute -top-8 h-12 w-12 text-[#F59E0B] drop-shadow-sm" />
           <div class="absolute -top-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#FDE68A] border-4 border-white text-base font-bold text-[#B45309] shadow-sm">
             #1
@@ -40,7 +40,7 @@
         </div>
 
         <!-- Rank 3 -->
-        <div v-if="topRanked[2]" class="relative mt-12 flex flex-col items-center justify-center rounded-[2rem] border border-[#F3E8E0] bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+        <div v-if="topRanked[2]" class="relative mt-12 flex flex-col items-center justify-center rounded-lg border border-[#F3E8E0] bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
           <div class="absolute -top-5 flex h-10 w-10 items-center justify-center rounded-full bg-[#FED7AA] border-4 border-white text-sm font-bold text-[#9A3412] shadow-sm">
             #3
           </div>
@@ -52,12 +52,12 @@
         </div>
       </div>
 
-      <div v-else class="mb-10 flex min-h-[220px] items-center justify-center text-sm text-[#98A39C]">
+      <div v-else class="mb-10 flex min-h-55 items-center justify-center text-sm text-[#98A39C]">
         Belum ada data papan peringkat.
       </div>
 
       <!-- Leaderboard List -->
-      <div class="rounded-[2rem] border border-[#E8EDE9] bg-white p-3 shadow-sm">
+      <div class="rounded-lg border border-[#E8EDE9] bg-white p-3 shadow-sm">
         <div class="grid grid-cols-[80px_1fr_100px_120px] items-center gap-4 px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#A3ADA7]">
           <div class="text-center">Peringkat</div>
           <div>Penjelajah</div>
@@ -69,7 +69,7 @@
           <div
             v-for="user in sortedLeaderboard"
             :key="user.id"
-            class="group grid grid-cols-[80px_1fr_100px_120px] items-center gap-4 rounded-2xl px-4 py-3.5 transition-all duration-300 hover:bg-[#F8FAF8]"
+            class="group grid grid-cols-[80px_1fr_100px_120px] items-center gap-4 rounded-lg px-4 py-3.5 transition-all duration-300 hover:bg-[#F8FAF8]"
             :class="user.isCurrentUser ? 'bg-[#F0FDF4] ring-1 ring-[#BBF7D0] shadow-[0_4px_10px_rgba(34,197,94,0.05)]' : ''"
           >
             <div class="text-center text-base font-bold text-[#718078]" :class="user.isCurrentUser ? 'text-[#15803D]' : ''">

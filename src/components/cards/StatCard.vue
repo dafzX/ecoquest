@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full rounded-2xl border border-[#E8EDE9] bg-white p-3 md:p-5">
+  <div class="h-full rounded-lg border border-[#E8EDE9] bg-white p-3 md:p-5">
 
     <div class="flex items-start justify-between gap-1">
       <div

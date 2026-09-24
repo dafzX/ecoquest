@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-2xl border border-[#E8EDE9] bg-white p-4 transition hover:border-[#CDEBD5] hover:shadow-[0_8px_25px_rgba(23,33,27,0.05)] md:flex md:items-center md:gap-4"
+    class="rounded-lg border border-[#E8EDE9] bg-white p-4 transition hover:border-[#CDEBD5] hover:shadow-[0_8px_25px_rgba(23,33,27,0.05)] md:flex md:items-center md:gap-4"
   >
 
     <!-- Mobile -->
@@ -11,7 +11,7 @@
       >
         <component
           :is="missionIcon"
-          class="h-[18px] w-[18px]"
+          class="h-4.5 w-4.5"
           :class="mission.completed ? 'text-[#15803D]' : 'text-[#66736A]'"
         />
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto max-w-[430px] px-4 pb-24 md:hidden">
+  <main class="mx-auto max-w-107.5 px-4 pb-24 md:hidden">
 
     <!-- Header -->
     <div class="relative flex items-center py-4">
@@ -39,7 +39,7 @@
 
       </div>
 
-      <div class="mt-3 h-[6px] overflow-hidden rounded-full bg-[#E5EEE8]">
+      <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-[#E5EEE8]">
         <div
           class="h-full rounded-full bg-[#22C55E] transition-all duration-500"
           :style="{ width: `${progress}%` }"

@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto w-full max-w-[430px] px-3 pb-24 sm:px-4 md:hidden">
+  <main class="mx-auto w-full max-w-107.5 px-3 pb-24 sm:px-4 md:hidden">
 
     <header class="relative flex h-14 items-center justify-center">
       <button
@@ -16,7 +16,7 @@
     </header>
 
     <section
-      class="mb-5 overflow-hidden rounded-2xl border border-[#DCEBDD] bg-white"
+      class="mb-5 overflow-hidden rounded-lg border border-[#DCEBDD] bg-white"
     >
       <div
         class="border-b border-[#E8EDE9] px-3.5 py-3.5 sm:px-4 sm:py-4"
@@ -53,20 +53,20 @@
           >
             <div class="relative">
               <div
-                class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 text-[11px] font-bold text-slate-600 shadow-md ring-2 ring-white xs:h-11 xs:w-11 sm:h-12 sm:w-12 sm:text-sm"
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-slate-100 via-slate-200 to-slate-300 text-[11px] font-bold text-slate-600 shadow-md ring-2 ring-white xs:h-11 xs:w-11 sm:h-12 sm:w-12 sm:text-sm"
               >
                 {{ topThree[1].avatar }}
               </div>
 
               <div
-                class="absolute -bottom-2 left-1/2 flex h-[18px] w-[18px] -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-b from-slate-400 to-slate-500 text-[8px] font-bold text-white shadow-sm ring-1 ring-white sm:h-5 sm:w-5 sm:text-[10px]"
+                class="absolute -bottom-2 left-1/2 flex h-4.5 w-4.5 -translate-x-1/2 items-center justify-center rounded-full bg-linear-to-b from-slate-400 to-slate-500 text-[8px] font-bold text-white shadow-sm ring-1 ring-white sm:h-5 sm:w-5 sm:text-[10px]"
               >
                 2
               </div>
             </div>
 
             <p
-              class="mt-3 w-full max-w-[80px] truncate px-1 text-center text-[9px] font-bold text-[#17211B] sm:max-w-[100px] sm:text-xs"
+              class="mt-3 w-full max-w-20 truncate px-1 text-center text-[9px] font-bold text-[#17211B] sm:max-w-25 sm:text-xs"
             >
               {{ topThree[1].name }}
             </p>
@@ -84,13 +84,13 @@
           >
             <div class="relative">
               <div
-                class="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-yellow-200 via-yellow-400 to-yellow-500 text-base font-bold text-yellow-900 shadow-[0_0_15px_rgba(250,204,21,0.4)] ring-2 ring-white sm:h-16 sm:w-16 sm:text-lg"
+                class="flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-br from-yellow-200 via-yellow-400 to-yellow-500 text-base font-bold text-yellow-900 shadow-[0_0_15px_rgba(250,204,21,0.4)] ring-2 ring-white sm:h-16 sm:w-16 sm:text-lg"
               >
                 {{ topThree[0].avatar }}
               </div>
 
               <div
-                class="absolute -bottom-2 left-1/2 flex h-5 w-5 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-b from-yellow-400 to-yellow-600 text-[9px] font-bold text-white shadow-sm ring-1 ring-white sm:h-6 sm:w-6 sm:text-[10px]"
+                class="absolute -bottom-2 left-1/2 flex h-5 w-5 -translate-x-1/2 items-center justify-center rounded-full bg-linear-to-b from-yellow-400 to-yellow-600 text-[9px] font-bold text-white shadow-sm ring-1 ring-white sm:h-6 sm:w-6 sm:text-[10px]"
               >
                 1
               </div>
@@ -103,7 +103,7 @@
             </div>
 
             <p
-              class="mt-3 w-full max-w-[90px] truncate px-1 text-center text-[10px] font-bold text-[#17211B] sm:max-w-[110px] sm:text-sm"
+              class="mt-3 w-full max-w-22.5 truncate px-1 text-center text-[10px] font-bold text-[#17211B] sm:max-w-27.5 sm:text-sm"
             >
               {{ topThree[0].name }}
             </p>
@@ -121,20 +121,20 @@
           >
             <div class="relative">
               <div
-                class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-orange-200 via-orange-300 to-orange-400 text-[11px] font-bold text-orange-900 shadow-md ring-2 ring-white sm:h-12 sm:w-12 sm:text-sm"
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-orange-200 via-orange-300 to-orange-400 text-[11px] font-bold text-orange-900 shadow-md ring-2 ring-white sm:h-12 sm:w-12 sm:text-sm"
               >
                 {{ topThree[2].avatar }}
               </div>
 
               <div
-                class="absolute -bottom-2 left-1/2 flex h-[18px] w-[18px] -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-b from-orange-400 to-orange-600 text-[8px] font-bold text-white shadow-sm ring-1 ring-white sm:h-5 sm:w-5 sm:text-[10px]"
+                class="absolute -bottom-2 left-1/2 flex h-4.5 w-4.5 -translate-x-1/2 items-center justify-center rounded-full bg-linear-to-b from-orange-400 to-orange-600 text-[8px] font-bold text-white shadow-sm ring-1 ring-white sm:h-5 sm:w-5 sm:text-[10px]"
               >
                 3
               </div>
             </div>
 
             <p
-              class="mt-3 w-full max-w-[80px] truncate px-1 text-center text-[9px] font-bold text-[#17211B] sm:max-w-[100px] sm:text-xs"
+              class="mt-3 w-full max-w-20 truncate px-1 text-center text-[9px] font-bold text-[#17211B] sm:max-w-25 sm:text-xs"
             >
               {{ topThree[2].name }}
             </p>
@@ -159,7 +159,7 @@
 
       <div
         v-if="currentUser"
-        class="rounded-2xl border border-emerald-100 bg-gradient-to-r from-emerald-50/80 to-green-50/80 px-3 py-3 sm:px-4"
+        class="rounded-lg border border-emerald-100 bg-linear-to-r from-emerald-50/80 to-green-50/80 px-3 py-3 sm:px-4"
       >
         <div class="flex min-w-0 items-center gap-2.5 sm:gap-3">
 
@@ -231,10 +231,10 @@
         <article
           v-for="user in leaderboard"
           :key="user.id"
-          class="w-full rounded-2xl border px-3 py-3 transition-all duration-200 sm:px-4"
+          class="w-full rounded-lg border px-3 py-3 transition-all duration-200 sm:px-4"
           :class="
             user.isCurrentUser
-              ? 'border-emerald-200 bg-gradient-to-r from-emerald-50/80 to-green-50/80'
+              ? 'border-emerald-200 bg-linear-to-r from-emerald-50/80 to-green-50/80'
               : 'border-[#E8EDE9] bg-white'
           "
         >

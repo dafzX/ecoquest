@@ -1,6 +1,6 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto max-w-[1080px] px-6 pb-10 pt-8">
+    <div class="mx-auto max-w-270 px-6 pb-10 pt-8">
       <!-- Header -->
       <section class="mb-8 flex items-end justify-between">
         <div>
@@ -17,13 +17,17 @@
         <!-- Feed Section -->
         <div>
           <!-- Post Input -->
-          <div class="mb-8 rounded-2xl border border-[#E8EDE9] bg-white p-5 shadow-sm">
+          <form
+            class="mb-8 rounded-lg border border-[#E8EDE9] bg-white p-5 shadow-sm"
+            @submit.prevent="submitPost"
+          >
             <div class="flex gap-4">
               <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#22C55E] text-lg font-bold text-white">
                 {{ user?.avatar || 'DA' }}
               </div>
               <div class="flex-1">
-                <textarea 
+                <textarea
+                  v-model="postContent"
                   class="w-full resize-none border-none bg-transparent p-2 text-sm text-[#17211B] outline-none placeholder:text-[#98A39C]"
                   placeholder="Bagikan aksi eco-mu hari ini..."
                   rows="3"
@@ -34,13 +38,17 @@
                     <ImageIcon class="h-5 w-5" />
                     <span class="text-xs font-semibold">Foto/Video</span>
                   </button>
-                  <button class="rounded-xl bg-[#22C55E] px-6 py-2 text-sm font-semibold text-white transition hover:bg-[#15803D]">
+                  <button
+                    type="submit"
+                    class="rounded-xl bg-[#22C55E] px-6 py-2 text-sm font-semibold text-white transition hover:bg-[#15803D] disabled:cursor-not-allowed disabled:opacity-50"
+                    :disabled="!postContent.trim()"
+                  >
                     Kirim
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
 
           <!-- Feed List -->
           <div class="space-y-6">
@@ -48,9 +56,10 @@
               v-for="post in communityPosts"
               :key="post.id"
               :post="post"
+              @like="emit('like', $event)"
             />
             
-            <button class="w-full rounded-2xl border border-[#E8EDE9] bg-white py-4 text-sm font-semibold text-[#15803D] transition hover:bg-[#F8FAF8]">
+            <button class="w-full rounded-lg border border-[#E8EDE9] bg-white py-4 text-sm font-semibold text-[#15803D] transition hover:bg-[#F8FAF8]">
               Muat Lebih Banyak
             </button>
           </div>
@@ -59,7 +68,7 @@
         <!-- Sidebar -->
         <div class="space-y-6">
           <!-- Trending Topics -->
-          <div class="rounded-2xl border border-[#E8EDE9] bg-white p-6 shadow-sm">
+          <div class="rounded-lg border border-[#E8EDE9] bg-white p-6 shadow-sm">
             <h3 class="mb-5 text-base font-bold text-[#17211B]">Topik Populer</h3>
             <div class="space-y-4">
               <div class="flex items-center justify-between">
@@ -84,7 +93,7 @@
           </div>
 
           <!-- Top Contributors -->
-          <div class="rounded-2xl border border-[#E8EDE9] bg-white p-6 shadow-sm">
+          <div class="rounded-lg border border-[#E8EDE9] bg-white p-6 shadow-sm">
             <h3 class="mb-5 text-base font-bold text-[#17211B]">Kontributor Utama</h3>
             <div class="space-y-4">
               <div class="flex items-center gap-3">
@@ -117,8 +126,23 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { Image as ImageIcon } from 'lucide-vue-next'
 import CommunityPost from '@/components/cards/CommunityPost.vue'
+
+const emit = defineEmits(['create-post', 'like'])
+const postContent = ref('')
+
+function submitPost() {
+  const content = postContent.value.trim()
+
+  if (!content) {
+    return
+  }
+
+  emit('create-post', content)
+  postContent.value = ''
+}
 
 defineProps({
   user: Object,

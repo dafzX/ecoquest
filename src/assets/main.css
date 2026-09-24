@@ -46,3 +46,13 @@ body {
   outline: 3px solid #8bd3a0;
   outline-offset: 3px;
 }
+
+/* Cards use elevation for grouping; controls keep their own borders. */
+div.rounded-lg.border.bg-white,
+section.rounded-lg.border.bg-white,
+article.rounded-lg.border.bg-white,
+div.rounded-lg.border[class*="bg-gradient"],
+section.rounded-lg.border[class*="bg-gradient"] {
+  border-color: transparent;
+  box-shadow: 0 1px 3px rgb(23 33 27 / 8%);
+}

@@ -1,6 +1,6 @@
 <template>
   <article
-    class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
+    class="rounded-lg border border-[#E8EDE9] bg-white p-5"
   >
 
     <!-- Header -->
@@ -143,12 +143,8 @@ const categoryStyle = computed(() => {
 })
 
 function toggleLike() {
-  props.post.liked = !props.post.liked
-
-  if (props.post.liked) {
-    props.post.likes += 1
-  } else {
-    props.post.likes -= 1
-  }
+  emit('like', props.post)
 }
+
+const emit = defineEmits(['like'])
 </script>

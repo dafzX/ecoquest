@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center gap-4 rounded-2xl border px-5 py-4 transition"
+    class="flex items-center gap-4 rounded-lg border px-5 py-4 transition"
     :class="
       user.isCurrentUser
         ? 'border-[#BFE8C9] bg-[#F1FBF3]'

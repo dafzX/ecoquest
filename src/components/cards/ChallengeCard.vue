@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-2xl border border-[#E8EDE9] bg-white p-5 transition hover:border-[#CDE8D4] hover:shadow-sm"
+    class="rounded-lg border border-[#E8EDE9] bg-white p-5 transition hover:border-[#CDE8D4] hover:shadow-sm"
   >
     <div class="flex items-start justify-between gap-4">
 
@@ -41,7 +41,7 @@
         </span>
       </div>
 
-      <p class="mt-2 min-h-[42px] text-sm leading-6 text-[#66736A]">
+      <p class="mt-2 min-h-10.5 text-sm leading-6 text-[#66736A]">
         {{ challenge.description }}
       </p>
     </div>

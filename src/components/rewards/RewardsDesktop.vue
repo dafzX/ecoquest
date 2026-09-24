@@ -1,7 +1,7 @@
 <template>
   <main class="hidden md:block">
 
-    <div class="mx-auto w-full max-w-[1180px] px-6 pb-12 pt-8 xl:px-8">
+    <div class="mx-auto w-full max-w-295 px-6 pb-12 pt-8 xl:px-8">
 
       <!-- Header -->
       <section class="mb-7 flex items-end justify-between gap-6">
@@ -17,7 +17,7 @@
         </div>
 
         <div
-          class="flex shrink-0 items-center gap-3 rounded-2xl border border-[#E8EDE9] bg-white px-5 py-3 shadow-sm"
+          class="flex shrink-0 items-center gap-3 rounded-lg border border-[#E8EDE9] bg-white px-5 py-3 shadow-sm"
         >
           <div
             class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#EAF8EE]"
@@ -42,7 +42,7 @@
       <section class="mb-7 grid grid-cols-3 gap-4">
 
         <div
-          class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
+          class="rounded-lg border border-[#E8EDE9] bg-white p-5"
         >
           <div class="flex items-center gap-3">
             <div
@@ -64,7 +64,7 @@
         </div>
 
         <div
-          class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
+          class="rounded-lg border border-[#E8EDE9] bg-white p-5"
         >
           <div class="flex items-center gap-3">
             <div
@@ -86,7 +86,7 @@
         </div>
 
         <div
-          class="rounded-2xl border border-[#E8EDE9] bg-white p-5"
+          class="rounded-lg border border-[#E8EDE9] bg-white p-5"
         >
           <div class="flex items-center gap-3">
             <div
@@ -173,7 +173,7 @@
         <article
           v-for="reward in filteredRewards"
           :key="reward.id"
-          class="group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-[#E8EDE9] bg-white transition duration-200 hover:-translate-y-1 hover:border-[#CDE8D4] hover:shadow-md"
+          class="group flex min-w-0 flex-col overflow-hidden rounded-lg border border-[#E8EDE9] bg-white transition duration-200 hover:-translate-y-1 hover:border-[#CDE8D4] hover:shadow-md"
         >
 
           <!-- Image / Icon -->
@@ -264,7 +264,7 @@
       <!-- Empty -->
       <div
         v-if="filteredRewards.length === 0"
-        class="mt-2 rounded-2xl border border-dashed border-[#DCE5DE] bg-white px-6 py-16 text-center"
+        class="mt-2 rounded-lg border border-dashed border-[#DCE5DE] bg-white px-6 py-16 text-center"
       >
         <Gift class="mx-auto h-12 w-12 text-[#98A39C]" />
 

@@ -40,6 +40,7 @@ import {
 import AppLayout from '@/layouts/AppLayout.vue'
 import ChallengeActionMobile from '@/components/challenges/ChallengeActionMobile.vue'
 import ChallengeActionDesktop from '@/components/challenges/ChallengeActionDesktop.vue'
+import { completeChallengeStep } from '@/services/challenges'
 
 const router = useRouter()
 const route = useRoute()
@@ -228,9 +229,20 @@ function goBack() {
   router.back()
 }
 
-function completeAction() {
+async function completeAction() {
+  if (completedSteps.value >= totalSteps.value) {
+    return
+  }
+
+  const result = await completeChallengeStep(challenge.value.id)
+
+  if (!result.success) {
+    alert(result.message)
+    return
+  }
+
   const nextStep = Math.min(
-    completedSteps.value + 1,
+    Number(result.challenge?.completedSteps ?? completedSteps.value + 1),
     totalSteps.value
   )
 

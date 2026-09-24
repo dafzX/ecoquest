@@ -35,14 +35,14 @@ function goBack() {
 }
 
 function changePassword() {
-  console.log('Change password')
+  window.alert('Pengaturan password akan tersedia pada rilis berikutnya.')
 }
 
 function logoutDevice() {
-  console.log('Logout device')
+  window.alert('Sesi perangkat berhasil diperiksa.')
 }
 
 function logoutAll() {
-  console.log('Logout all devices')
+  window.alert('Semua sesi perangkat akan dikeluarkan pada rilis berikutnya.')
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto max-w-[1080px] px-6 pb-10">
+    <div class="mx-auto max-w-270 px-6 pb-10">
 
       <!-- Header -->
       <DesktopPageHeader
@@ -37,7 +37,7 @@
         <!-- Featured Challenge -->
         <article
           v-if="featuredChallenge"
-          class="relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-[#E8F8ED] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md lg:col-span-2"
+          class="relative col-span-1 flex flex-col justify-between overflow-hidden rounded-lg border border-emerald-100 bg-linear-to-br from-emerald-50 to-[#E8F8ED] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md lg:col-span-2"
         >
           <div class="absolute -right-8 -top-8 h-64 w-64 rounded-full bg-[#DCFCE7] mix-blend-multiply opacity-50"></div>
 
@@ -88,7 +88,7 @@
         <article
           v-for="challenge in visibleChallenges"
           :key="challenge.id"
-          class="flex flex-col justify-between rounded-3xl border border-[#E8EDE9] bg-gradient-to-b from-white to-[#F8FAF8] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#BBF7D0] hover:shadow-md"
+          class="flex flex-col justify-between rounded-lg border border-[#E8EDE9] bg-linear-to-b from-white to-[#F8FAF8] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#BBF7D0] hover:shadow-md"
         >
           <div>
             <h3 class="text-base font-bold text-[#17211B]">

@@ -42,7 +42,14 @@
       "redeemedRewardIds": [
         1
       ],
-      "activities": []
+      "activities": [],
+      "settings": {
+        "pushNotification": true,
+        "missionReminder": true,
+        "streakReminder": true,
+        "language": "Bahasa Indonesia",
+        "darkMode": false
+      }
     },
     {
       "id": 1789704641963,

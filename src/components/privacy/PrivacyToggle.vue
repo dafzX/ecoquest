@@ -28,7 +28,7 @@
     >
       <span
         class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
-        :class="modelValue ? 'left-[18px]' : 'left-0.5'"
+        :class="modelValue ? 'left-4.5' : 'left-0.5'"
       ></span>
     </button>
     

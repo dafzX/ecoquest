@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto max-w-[430px] px-4 pb-28 md:hidden">
+  <main class="mx-auto max-w-107.5 px-4 pb-28 md:hidden">
     <!-- Header -->
     <header class="relative flex items-center justify-center py-4">
       <button
@@ -35,7 +35,7 @@
         <p class="mt-0.5 text-[8px] text-[#8A958E]">Kontrol bagaimana profilmu terlihat di EcoQuest.</p>
       </div>
 
-      <div class="overflow-hidden rounded-2xl border border-[#DCEBE0] bg-white">
+      <div class="overflow-hidden rounded-lg border border-[#DCEBE0] bg-white">
         <!-- Public Profile -->
         <div class="flex items-center gap-3 px-4 py-3.5">
           <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#EAF8EE]">
@@ -53,7 +53,7 @@
           >
             <span
               class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
-              :class="settings.publicProfile ? 'left-[18px]' : 'left-0.5'"
+              :class="settings.publicProfile ? 'left-4.5' : 'left-0.5'"
             ></span>
           </button>
         </div>
@@ -77,7 +77,7 @@
           >
             <span
               class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
-              :class="settings.showActivity ? 'left-[18px]' : 'left-0.5'"
+              :class="settings.showActivity ? 'left-4.5' : 'left-0.5'"
             ></span>
           </button>
         </div>
@@ -101,7 +101,7 @@
           >
             <span
               class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
-              :class="settings.showImpact ? 'left-[18px]' : 'left-0.5'"
+              :class="settings.showImpact ? 'left-4.5' : 'left-0.5'"
             ></span>
           </button>
         </div>
@@ -114,7 +114,7 @@
         <h2 class="text-[12px] font-bold text-[#17211B]">Peringkat</h2>
         <p class="mt-0.5 text-[8px] text-[#8A958E]">Atur bagaimana kamu ditampilkan di leaderboard.</p>
       </div>
-      <div class="rounded-2xl border border-[#DCEBE0] bg-white">
+      <div class="rounded-lg border border-[#DCEBE0] bg-white">
         <div class="flex items-center gap-3 px-4 py-3.5">
           <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#FFF5E8]">
             <Trophy class="h-4 w-4 text-[#F59E0B]" />
@@ -131,7 +131,7 @@
           >
             <span
               class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
-              :class="settings.showLeaderboard ? 'left-[18px]' : 'left-0.5'"
+              :class="settings.showLeaderboard ? 'left-4.5' : 'left-0.5'"
             ></span>
           </button>
         </div>
@@ -139,7 +139,7 @@
     </section>
 
     <!-- Information -->
-    <section class="mt-6 rounded-2xl border border-[#DDEFE2] bg-[#EAF8EE] p-4">
+    <section class="mt-6 rounded-lg border border-[#DDEFE2] bg-[#EAF8EE] p-4">
       <div class="flex items-start gap-3">
         <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white">
           <Info class="h-4 w-4 text-[#15803D]" />

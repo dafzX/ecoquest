@@ -24,7 +24,7 @@
 
       <div class="grid grid-cols-[1fr_320px] gap-6">
 
-        <section class="rounded-3xl border border-[#E5EEE8] bg-white p-7">
+        <section class="rounded-lg border border-[#E5EEE8] bg-white p-7">
 
           <div class="mb-6">
             <span class="inline-flex rounded-full bg-[#EAF8EE] px-3 py-1 text-xs font-semibold text-[#15803D]">
@@ -40,9 +40,9 @@
             </p>
           </div>
 
-          <div class="rounded-2xl bg-[#F4FBF7] p-6">
+          <div class="rounded-lg bg-[#F4FBF7] p-6">
             <div class="flex items-start gap-4">
-              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#DCFCE7]">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#DCFCE7]">
                 <component
                   :is="getCategoryIcon(challenge.category)"
                   class="h-6 w-6 text-[#15803D]"
@@ -73,7 +73,7 @@
 
         <aside class="space-y-5">
 
-          <section class="rounded-2xl border border-[#E5EEE8] bg-white p-5">
+          <section class="rounded-lg border border-[#E5EEE8] bg-white p-5">
             <div class="flex items-center justify-between">
               <div class="flex items-baseline gap-1">
                 <p class="text-sm font-medium text-[#718078]">
@@ -101,7 +101,7 @@
             </div>
           </section>
 
-          <section class="rounded-2xl bg-[#17211B] p-5">
+          <section class="rounded-lg bg-[#17211B] p-5">
             <p class="text-xs text-white/50">
               Hadiah Tantangan
             </p>

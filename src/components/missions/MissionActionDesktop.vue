@@ -30,7 +30,7 @@
 
         <!-- Main Card -->
         <div
-          class="overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white p-8"
+          class="overflow-hidden rounded-lg border border-[#E2E8F0] bg-white p-8"
         >
 
           <div class="mb-6 flex items-center justify-between">
@@ -71,7 +71,7 @@
 
           <!-- Action Hint -->
           <div
-            class="mt-8 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6"
+            class="mt-8 rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] p-6"
           >
 
             <h3 class="font-semibold text-[#0F172A]">
@@ -88,7 +88,7 @@
           <button
             type="button"
             @click="completeStep"
-            class="mt-8 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#22C55E] py-4 text-base font-bold text-white transition hover:bg-[#15803D] active:scale-[0.99]"
+            class="mt-8 flex w-full items-center justify-center gap-2 rounded-lg bg-[#22C55E] py-4 text-base font-bold text-white transition hover:bg-[#15803D] active:scale-[0.99]"
           >
 
             {{

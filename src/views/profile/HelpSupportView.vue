@@ -20,7 +20,7 @@
           </span>
         </header>
 
-        <main class="mx-auto max-w-[430px] px-4 py-5">
+        <main class="mx-auto max-w-107.5 px-4 py-5">
 
           <!-- Hero -->
           <section
@@ -31,7 +31,7 @@
               <div class="min-w-0">
 
                 <div
-                  class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15"
+                  class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-white/15"
                 >
                   <Headphones class="h-6 w-6" />
                 </div>
@@ -40,7 +40,7 @@
                   Ada yang bisa kami bantu?
                 </h2>
 
-                <p class="mt-2 max-w-[300px] text-[12px] leading-5 text-white/80">
+                <p class="mt-2 max-w-75 text-[12px] leading-5 text-white/80">
                   Temukan jawaban, panduan, atau hubungi tim EcoQuest jika kamu
                   membutuhkan bantuan.
                 </p>
@@ -67,7 +67,7 @@
                 v-model="searchQuery"
                 type="text"
                 placeholder="Cari bantuan..."
-                class="h-12 w-full rounded-2xl border border-[#E3E9E5] bg-white pl-11 pr-4 text-[12px] text-[#17211B] outline-none transition placeholder:text-[#A3ADA6] focus:border-[#22C55E] focus:ring-4 focus:ring-[#22C55E]/10"
+                class="h-12 w-full rounded-lg border border-[#E3E9E5] bg-white pl-11 pr-4 text-[12px] text-[#17211B] outline-none transition placeholder:text-[#A3ADA6] focus:border-[#22C55E] focus:ring-4 focus:ring-[#22C55E]/10"
               />
 
             </div>
@@ -302,7 +302,7 @@
       <!-- Desktop -->
       <div class="hidden min-h-screen md:block">
 
-        <main class="mx-auto max-w-[1400px] px-8 py-8">
+        <main class="mx-auto max-w-350 px-8 py-8">
 
           <!-- Header -->
           <section class="mb-7 flex items-center gap-4">
@@ -339,7 +339,7 @@
 
               <!-- Hero -->
               <section
-                class="rounded-3xl bg-[#15803D] p-7 text-white shadow-sm"
+                class="rounded-lg bg-[#15803D] p-7 text-white shadow-sm"
               >
 
                 <div class="flex items-center justify-between gap-8">
@@ -347,7 +347,7 @@
                   <div class="max-w-xl">
 
                     <div
-                      class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15"
+                      class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-white/15"
                     >
                       <Headphones class="h-6 w-6" />
                     </div>
@@ -375,7 +375,7 @@
 
               <!-- Search -->
               <section
-                class="rounded-3xl border border-[#E8EDE9] bg-white p-6"
+                class="rounded-lg border border-[#E8EDE9] bg-white p-6"
               >
 
                 <div class="relative">
@@ -388,7 +388,7 @@
                     v-model="searchQuery"
                     type="text"
                     placeholder="Cari pertanyaan atau topik bantuan..."
-                    class="h-13 w-full rounded-2xl border border-[#E3E9E5] bg-[#FAFCFA] pl-12 pr-4 text-sm text-[#17211B] outline-none transition placeholder:text-[#A3ADA6] focus:border-[#22C55E] focus:ring-4 focus:ring-[#22C55E]/10"
+                    class="h-13 w-full rounded-lg border border-[#E3E9E5] bg-[#FAFCFA] pl-12 pr-4 text-sm text-[#17211B] outline-none transition placeholder:text-[#A3ADA6] focus:border-[#22C55E] focus:ring-4 focus:ring-[#22C55E]/10"
                   />
 
                 </div>
@@ -397,7 +397,7 @@
 
               <!-- FAQ -->
               <section
-                class="rounded-3xl border border-[#E8EDE9] bg-white p-6"
+                class="rounded-lg border border-[#E8EDE9] bg-white p-6"
               >
 
                 <div class="mb-4 flex items-center justify-between">
@@ -494,7 +494,7 @@
 
               <!-- Categories -->
               <section
-                class="rounded-3xl border border-[#E8EDE9] bg-white p-6"
+                class="rounded-lg border border-[#E8EDE9] bg-white p-6"
               >
 
                 <h3 class="text-lg font-bold text-[#17211B]">
@@ -511,7 +511,7 @@
                     v-for="category in categories"
                     :key="category.title"
                     type="button"
-                    class="flex w-full items-center gap-4 rounded-2xl border border-[#EEF2EF] p-4 text-left transition hover:border-[#D9E8DD] hover:bg-[#FAFCFA]"
+                    class="flex w-full items-center gap-4 rounded-lg border border-[#EEF2EF] p-4 text-left transition hover:border-[#D9E8DD] hover:bg-[#FAFCFA]"
                     @click="searchQuery = category.keyword"
                   >
 
@@ -549,7 +549,7 @@
 
               <!-- Contact -->
               <section
-                class="rounded-3xl border border-[#E8EDE9] bg-white p-6"
+                class="rounded-lg border border-[#E8EDE9] bg-white p-6"
               >
 
                 <h3 class="text-lg font-bold text-[#17211B]">
@@ -565,7 +565,7 @@
 
                   <button
                     type="button"
-                    class="flex w-full items-center gap-4 rounded-2xl bg-[#F7FBF8] p-4 text-left transition hover:bg-[#EEF8F1]"
+                    class="flex w-full items-center gap-4 rounded-lg bg-[#F7FBF8] p-4 text-left transition hover:bg-[#EEF8F1]"
                     @click="contactSupport('chat')"
                   >
 
@@ -593,7 +593,7 @@
 
                   <button
                     type="button"
-                    class="flex w-full items-center gap-4 rounded-2xl bg-[#F7FAFF] p-4 text-left transition hover:bg-[#F0F5FF]"
+                    class="flex w-full items-center gap-4 rounded-lg bg-[#F7FAFF] p-4 text-left transition hover:bg-[#F0F5FF]"
                     @click="contactSupport('email')"
                   >
 
@@ -625,11 +625,11 @@
 
               <!-- App Info -->
               <section
-                class="rounded-3xl border border-[#E8EDE9] bg-white p-6 text-center"
+                class="rounded-lg border border-[#E8EDE9] bg-white p-6 text-center"
               >
 
                 <div
-                  class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF8EE]"
+                  class="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-[#EAF8EE]"
                 >
                   <Leaf class="h-6 w-6 text-[#15803D]" />
                 </div>
@@ -834,6 +834,6 @@ const contactSupport = (type) => {
     return
   }
 
-  console.log('Open support chat')
+  window.location.href = 'mailto:support@ecoquest.app?subject=Bantuan%20EcoQuest'
 }
 </script>

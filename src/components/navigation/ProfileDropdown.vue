@@ -26,7 +26,7 @@
     >
       <div
         v-if="isOpen"
-        class="absolute right-0 top-10 z-[100] w-[250px] max-w-[calc(100vw-24px)] overflow-hidden rounded-2xl border border-[#E8EDE9] bg-white shadow-[0_12px_35px_rgba(23,33,27,0.12)]"
+        class="absolute right-0 top-10 z-100 w-62.5 max-w-[calc(100vw-24px)] overflow-hidden rounded-lg border border-[#E8EDE9] bg-white shadow-[0_12px_35px_rgba(23,33,27,0.12)]"
       >
         <!-- Profile Info -->
         <div class="border-b border-[#E8EDE9] p-4">
@@ -74,7 +74,7 @@
             @click="emit('close')"
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
-            <UserCircle class="h-[18px] w-[18px]" />
+            <UserCircle class="h-4.5 w-4.5" />
             <span>Profil</span>
           </RouterLink>
 
@@ -83,7 +83,7 @@
             @click="emit('close')"
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
-            <Trophy class="h-[18px] w-[18px]" />
+            <Trophy class="h-4.5 w-4.5" />
             <span>Pencapaian</span>
           </RouterLink>
 
@@ -92,7 +92,7 @@
             @click="emit('close')"
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
-            <Settings class="h-[18px] w-[18px]" />
+            <Settings class="h-4.5 w-4.5" />
             <span>Pengaturan</span>
           </RouterLink>
 
@@ -101,7 +101,7 @@
             @click="emit('close')"
             class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
           >
-            <CircleHelp class="h-[18px] w-[18px]" />
+            <CircleHelp class="h-4.5 w-4.5" />
             <span>Bantuan & Dukungan</span>
           </RouterLink>
         </div>
@@ -113,7 +113,7 @@
             @click="logout"
             class="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#DC2626] transition hover:bg-[#FEF2F2]"
           >
-            <LogOut class="h-[18px] w-[18px]" />
+            <LogOut class="h-4.5 w-4.5" />
             <span>Keluar</span>
           </button>
         </div>

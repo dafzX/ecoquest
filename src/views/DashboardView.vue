@@ -107,9 +107,11 @@ const getMissionProgress = (mission) => {
     mission.totalSteps ||
     0
 
+  const userId = getCurrentUser()?.id || 'guest'
+
   const saved =
     localStorage.getItem(
-      `mission_progress_${mission.id}`
+      `ecoquest_mission_progress_${userId}_${mission.id}`
     )
 
   let completedSteps =

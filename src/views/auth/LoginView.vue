@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-[#F8FAF8] lg:flex lg:items-center lg:justify-center lg:p-8">
     <div
-      class="relative w-full overflow-hidden bg-white lg:grid lg:min-h-[640px] lg:max-w-[1080px] lg:grid-cols-2 lg:rounded-2xl lg:shadow-[0_16px_50px_rgba(23,33,27,0.08)]"
+      class="relative w-full overflow-hidden bg-white lg:grid lg:min-h-160 lg:max-w-270 lg:grid-cols-2 lg:rounded-lg lg:shadow-[0_16px_50px_rgba(23,33,27,0.08)]"
     >
       <!-- Mobile -->
       <div class="relative min-h-screen overflow-hidden lg:hidden">
@@ -26,7 +26,7 @@
               Welcome Back!
             </h2>
 
-            <p class="mx-auto mt-1.5 max-w-[260px] text-[11px] leading-4 text-[#718078]">
+            <p class="mx-auto mt-1.5 max-w-65 text-[11px] leading-4 text-[#718078]">
               Masuk untuk melanjutkan perjalanan
               <br />
               ramah lingkunganmu.
@@ -36,13 +36,13 @@
           <!-- Form -->
           <form
             @submit.prevent="handleLogin"
-            class="mx-auto mt-7 w-full max-w-[330px] space-y-3"
+            class="mx-auto mt-7 w-full max-w-82.5 space-y-3"
           >
             <!-- Email -->
             <div>
               <div class="relative">
                 <Mail
-                  class="absolute left-3.5 top-1/2 h-[15px] w-[15px] -translate-y-1/2 text-[#7D8B83]"
+                  class="absolute left-3.5 top-1/2 h-3.75 w-3.75 -translate-y-1/2 text-[#7D8B83]"
                 />
 
                 <input
@@ -51,7 +51,7 @@
                   type="email"
                   placeholder="Email atau Username"
                   required
-                  class="h-[40px] w-full rounded-lg border border-[#DDE6E0] bg-white pl-10 pr-3 text-[11px] text-[#17211B] outline-none transition placeholder:text-[#9AA69F] focus:border-[#22C55E] focus:ring-2 focus:ring-[#22C55E]/10"
+                  class="h-10 w-full rounded-lg border border-[#DDE6E0] bg-white pl-10 pr-3 text-[11px] text-[#17211B] outline-none transition placeholder:text-[#9AA69F] focus:border-[#22C55E] focus:ring-2 focus:ring-[#22C55E]/10"
                 />
               </div>
             </div>
@@ -60,7 +60,7 @@
             <div>
               <div class="relative">
                 <Lock
-                  class="absolute left-3.5 top-1/2 h-[15px] w-[15px] -translate-y-1/2 text-[#7D8B83]"
+                  class="absolute left-3.5 top-1/2 h-3.75 w-3.75 -translate-y-1/2 text-[#7D8B83]"
                 />
 
                 <input
@@ -69,7 +69,7 @@
                   :type="showPassword ? 'text' : 'password'"
                   placeholder="Password"
                   required
-                  class="h-[40px] w-full rounded-lg border border-[#DDE6E0] bg-white pl-10 pr-10 text-[11px] text-[#17211B] outline-none transition placeholder:text-[#9AA69F] focus:border-[#22C55E] focus:ring-2 focus:ring-[#22C55E]/10"
+                  class="h-10 w-full rounded-lg border border-[#DDE6E0] bg-white pl-10 pr-10 text-[11px] text-[#17211B] outline-none transition placeholder:text-[#9AA69F] focus:border-[#22C55E] focus:ring-2 focus:ring-[#22C55E]/10"
                 />
 
                 <button
@@ -79,12 +79,12 @@
                 >
                   <Eye
                     v-if="!showPassword"
-                    class="h-[15px] w-[15px]"
+                    class="h-3.75 w-3.75"
                   />
 
                   <EyeOff
                     v-else
-                    class="h-[15px] w-[15px]"
+                    class="h-3.75 w-3.75"
                   />
                 </button>
               </div>
@@ -103,7 +103,7 @@
             <!-- Login button -->
             <button
               type="submit"
-              class="h-[40px] w-full rounded-lg bg-[#22C55E] text-[11px] font-semibold text-white transition hover:bg-[#16A34A] active:bg-[#15803D]"
+              class="h-10 w-full rounded-lg bg-[#22C55E] text-[11px] font-semibold text-white transition hover:bg-[#16A34A] active:bg-[#15803D]"
             >
               Login
             </button>
@@ -125,27 +125,27 @@
         <!-- Bottom decoration -->
         <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-32">
           <div
-            class="absolute -bottom-12 -left-8 h-32 w-24 rotate-[-28deg] rounded-[100%] bg-[#DCFCE7]/80"
+            class="absolute -bottom-12 -left-8 h-32 w-24 -rotate-28 rounded-[100%] bg-[#DCFCE7]/80"
           ></div>
 
           <div
-            class="absolute -bottom-8 left-10 h-24 w-10 rotate-[25deg] rounded-full bg-[#E8F8ED]"
+            class="absolute -bottom-8 left-10 h-24 w-10 rotate-25 rounded-full bg-[#E8F8ED]"
           ></div>
 
           <div
-            class="absolute -bottom-10 right-3 h-32 w-20 rotate-[25deg] rounded-[100%] bg-[#E8F8ED]/80"
+            class="absolute -bottom-10 right-3 h-32 w-20 rotate-25 rounded-[100%] bg-[#E8F8ED]/80"
           ></div>
 
           <div
-            class="absolute bottom-3 right-16 h-20 w-8 rotate-[45deg] rounded-full bg-[#DCFCE7]/70"
+            class="absolute bottom-3 right-16 h-20 w-8 rotate-45 rounded-full bg-[#DCFCE7]/70"
           ></div>
 
           <Leaf
-            class="absolute bottom-4 left-4 h-16 w-16 rotate-[-18deg] text-[#BFE8CC]/50"
+            class="absolute bottom-4 left-4 h-16 w-16 -rotate-18 text-[#BFE8CC]/50"
           />
 
           <Leaf
-            class="absolute bottom-1 right-8 h-14 w-14 rotate-[22deg] text-[#BFE8CC]/40"
+            class="absolute bottom-1 right-8 h-14 w-14 rotate-22 text-[#BFE8CC]/40"
           />
         </div>
       </div>
@@ -229,7 +229,7 @@
 
       <!-- Desktop Form -->
       <div class="hidden items-center px-6 py-8 sm:px-8 sm:py-10 lg:flex lg:p-12">
-        <div class="mx-auto w-full max-w-[390px]">
+        <div class="mx-auto w-full max-w-97.5">
           <div class="mb-8">
             <p class="mb-2 text-sm font-medium text-[#22C55E]">
               Welcome back
@@ -259,7 +259,7 @@
 
               <div class="relative">
                 <Mail
-                  class="absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-[#98A39C]"
+                  class="absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#98A39C]"
                 />
 
                 <input
@@ -293,7 +293,7 @@
 
               <div class="relative">
                 <Lock
-                  class="absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-[#98A39C]"
+                  class="absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#98A39C]"
                 />
 
                 <input
@@ -312,12 +312,12 @@
                 >
                   <Eye
                     v-if="!showPassword"
-                    class="h-[18px] w-[18px]"
+                    class="h-4.5 w-4.5"
                   />
 
                   <EyeOff
                     v-else
-                    class="h-[18px] w-[18px]"
+                    class="h-4.5 w-4.5"
                   />
                 </button>
               </div>

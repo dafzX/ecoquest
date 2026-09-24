@@ -1,6 +1,6 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto max-w-[1000px] px-6 pb-12 pt-8">
+    <div class="mx-auto max-w-250 px-6 pb-12 pt-8">
       
       <!-- Header -->
       <header class="mb-7 flex items-center gap-3">
@@ -20,7 +20,7 @@
 
       <div class="grid grid-cols-2 gap-5">
         <!-- Profile Visibility -->
-        <section class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+        <section class="rounded-lg border border-[#E8EDE9] bg-white p-5">
           <h2 class="text-sm font-bold text-[#17211B]">Visibilitas Profil</h2>
           <p class="mt-1 text-[10px] text-[#8A958E]">Tentukan informasi yang dapat dilihat pengguna lain.</p>
           
@@ -56,7 +56,7 @@
         </section>
 
         <!-- Leaderboard -->
-        <section class="rounded-2xl border border-[#E8EDE9] bg-white p-5">
+        <section class="rounded-lg border border-[#E8EDE9] bg-white p-5">
           <h2 class="text-sm font-bold text-[#17211B]">Peringkat</h2>
           <p class="mt-1 text-[10px] text-[#8A958E]">Kontrol visibilitas profil pada leaderboard.</p>
           

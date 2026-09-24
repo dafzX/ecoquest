@@ -3,7 +3,7 @@
     <div class="min-h-screen bg-[#F4FBF7]">
 
       <!-- Mobile -->
-      <main class="mx-auto max-w-[430px] px-4 pb-24 md:hidden">
+      <main class="mx-auto max-w-107.5 px-4 pb-24 md:hidden">
 
         <!-- Header -->
         <header class="relative flex items-center justify-center py-4">
@@ -104,7 +104,7 @@
       <!-- Desktop -->
       <main class="hidden md:block">
 
-        <div class="mx-auto max-w-[1000px] px-6 pb-10">
+        <div class="mx-auto max-w-250 px-6 pb-10">
 
           <!-- Header -->
           <header class="mb-6 flex items-center gap-3">
@@ -132,7 +132,7 @@
 
             <!-- Profile Preview -->
             <section
-              class="h-fit rounded-2xl border border-[#E8EDE9] bg-white p-6"
+              class="h-fit rounded-lg border border-[#E8EDE9] bg-white p-6"
             >
 
               <div class="flex flex-col items-center text-center">
@@ -178,7 +178,7 @@
 
             <!-- Form -->
             <section
-              class="rounded-2xl border border-[#E8EDE9] bg-white p-6"
+              class="rounded-lg border border-[#E8EDE9] bg-white p-6"
             >
 
               <div class="grid grid-cols-2 gap-5">
@@ -250,7 +250,7 @@
                         Email
                       </p>
 
-                      <p class="mt-1 max-w-[220px] truncate text-xs font-semibold text-[#405047]">
+                      <p class="mt-1 max-w-55 truncate text-xs font-semibold text-[#405047]">
                         {{ form.email }}
                       </p>
                     </div>

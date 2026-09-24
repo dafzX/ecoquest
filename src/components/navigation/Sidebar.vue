@@ -1,6 +1,6 @@
 <template>
-  <aside class="fixed left-0 top-0 z-40 flex h-screen w-[240px] shrink-0 flex-col border-r border-[#E8EDE9] bg-white">
-    <div class="flex h-[76px] items-center px-7">
+  <aside class="fixed left-0 top-0 z-40 flex h-screen w-60 shrink-0 flex-col shadow-md bg-white">
+    <div class="flex h-19 items-center px-7">
       <div class="flex items-center gap-3">
         <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#22C55E]">
           <Leaf class="h-5 w-5 text-white" />
@@ -37,7 +37,7 @@
         >
           <component
             :is="item.icon"
-            class="h-[19px] w-[19px] shrink-0"
+            class="h-4.75 w-4.75 shrink-0"
             :class="
               isActive(item.to)
                 ? 'text-[#22C55E]'
@@ -74,7 +74,7 @@
         >
           <component
             :is="item.icon"
-            class="h-[19px] w-[19px] shrink-0"
+            class="h-4.75 w-4.75 shrink-0"
             :class="
               isActive(item.to)
                 ? 'text-[#22C55E]'
@@ -102,8 +102,7 @@ import {
   Sprout,
   Gift,
   Users,
-  UserCircle,
-  MoreHorizontal
+  UserCircle
 } from 'lucide-vue-next'
 
 const route = useRoute()
@@ -142,7 +141,7 @@ const mainMenu = [
   {
     name: 'Pencapaian',
     to: '/achievements',
-    icon: Medal // Can use Award or similar
+    icon: Medal
   },
   {
     name: 'Komunitas',

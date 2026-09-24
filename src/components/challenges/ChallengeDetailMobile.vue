@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto max-w-[430px] px-4 pb-28 md:hidden">
+  <main class="mx-auto max-w-107.5 px-4 pb-28 md:hidden">
 
     <!-- Header -->
     <header class="relative flex items-center justify-center py-4">
@@ -17,7 +17,7 @@
     </header>
 
     <!-- Challenge Image -->
-    <div class="relative mt-2 h-[180px] overflow-hidden rounded-2xl bg-[#DCFCE7]">
+    <div class="relative mt-2 h-45 overflow-hidden rounded-lg bg-[#DCFCE7]">
       <div class="absolute -right-10 -top-12 h-32 w-32 rounded-full bg-[#BBF7D0]"></div>
       <div class="absolute -bottom-16 -left-8 h-36 w-36 rounded-full bg-[#ECFDF5]"></div>
 
@@ -55,7 +55,7 @@
     </div>
 
     <!-- Progress -->
-    <section class="mt-5 rounded-2xl border border-[#E5EEE8] bg-white p-4">
+    <section class="mt-5 rounded-lg border border-[#E5EEE8] bg-white p-4">
       <div class="flex items-center justify-between">
         <div>
           <p class="text-[11px] font-semibold text-[#17211B]">
@@ -91,7 +91,7 @@
     </section>
 
     <!-- Reward -->
-    <section class="mt-5 rounded-2xl bg-[#17211B] p-4">
+    <section class="mt-5 rounded-lg bg-[#17211B] p-4">
       <div class="flex items-center gap-3">
         <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#22C55E]/15">
           <Trophy class="h-5 w-5 text-[#4ADE80]" />

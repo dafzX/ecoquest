@@ -1,6 +1,6 @@
 <template>
   <main
-    class="mx-auto max-w-[430px] px-4 pb-24 md:hidden"
+    class="mx-auto max-w-107.5 px-4 pb-24 md:hidden"
   >
 
     <!-- Header -->
@@ -23,7 +23,7 @@
 
     <!-- Level Card -->
     <section
-      class="mb-4 rounded-xl border border-[#DCEBE0] bg-white p-4 transition-colors active:border-[#9DD8AD]"
+      class="mb-4 rounded-lg bg-white p-4 shadow-sm transition-shadow active:shadow-md"
     >
       <div class="flex items-center gap-3">
 
@@ -63,7 +63,7 @@
           </div>
 
           <div
-            class="mt-2 h-[5px] overflow-hidden rounded-full bg-[#E5EFE8]"
+            class="mt-2 h-1.25 overflow-hidden rounded-full bg-[#E5EFE8]"
           >
             <div
               class="h-full rounded-full bg-[#22C55E]"
@@ -79,7 +79,7 @@
 
     <!-- Quick Stats -->
     <section
-      class="mb-5 grid grid-cols-3 overflow-hidden rounded-xl border border-[#DCEBE0] bg-white"
+      class="mb-5 grid grid-cols-3 overflow-hidden rounded-lg bg-white shadow-sm"
     >
 
       <!-- Streak -->
@@ -166,12 +166,12 @@
       <!-- Ada Quest -->
       <section
         v-if="nextQuest"
-        class="mb-5 rounded-xl border border-[#DCEBE0] bg-white p-4 transition-colors active:border-[#9DD8AD]"
+        class="mb-5 rounded-lg bg-white p-4 shadow-sm transition-shadow active:shadow-md"
       >
         <div class="flex gap-3">
 
           <div
-            class="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl bg-[#E8F8ED]"
+            class="flex h-13 w-13 shrink-0 items-center justify-center rounded-xl bg-[#E8F8ED]"
           >
             <Recycle class="h-6 w-6 text-[#22C55E]" />
           </div>
@@ -219,7 +219,7 @@
             </div>
 
             <div
-              class="mt-1.5 h-[5px] overflow-hidden rounded-full bg-[#E5EFE8]"
+              class="mt-1.5 h-1.25 overflow-hidden rounded-full bg-[#E5EFE8]"
             >
               <div
                 class="h-full rounded-full bg-[#22C55E]"
@@ -243,7 +243,7 @@
       <!-- Tidak Ada Quest -->
       <section
         v-else
-        class="mb-5 rounded-xl border border-[#DCEBE0] bg-white p-5"
+        class="mb-5 rounded-lg bg-white p-5 shadow-sm"
       >
         <div class="text-center">
 
@@ -272,7 +272,7 @@
 
     <!-- Habit -->
     <section
-      class="mb-5 rounded-xl border border-[#DCEBE0] bg-white p-4 transition-colors active:border-[#9DD8AD]"
+      class="mb-5 rounded-lg bg-white p-4 shadow-sm transition-shadow active:shadow-md"
     >
 
       <div
@@ -326,7 +326,7 @@
       </div>
 
       <div
-        class="mt-2 h-[5px] overflow-hidden rounded-full bg-[#E5EFE8]"
+        class="mt-2 h-1.25 overflow-hidden rounded-full bg-[#E5EFE8]"
       >
         <div
           class="h-full rounded-full bg-[#22C55E]"
@@ -361,7 +361,7 @@
 
       <!-- CO2 -->
       <div
-        class="rounded-xl border border-[#DCEBE0] bg-white p-3 transition-colors active:border-[#9DD8AD]"
+        class="rounded-lg bg-white p-3 shadow-sm transition-shadow active:shadow-md"
       >
         <Cloud
           class="h-4 w-4 text-[#22C55E]"
@@ -382,7 +382,7 @@
 
       <!-- Recycled -->
       <div
-        class="rounded-xl border border-[#DCEBE0] bg-white p-3 transition-colors active:border-[#9DD8AD]"
+        class="rounded-lg bg-white p-3 shadow-sm transition-shadow active:shadow-md"
       >
         <Recycle
           class="h-4 w-4 text-[#22C55E]"
@@ -403,7 +403,7 @@
 
       <!-- Trees -->
       <div
-        class="rounded-xl border border-[#DCEBE0] bg-white p-3 transition-colors active:border-[#9DD8AD]"
+        class="rounded-lg bg-white p-3 shadow-sm transition-shadow active:shadow-md"
       >
         <TreePine
           class="h-4 w-4 text-[#22C55E]"

@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto max-w-[430px] px-4 pb-28 md:hidden">
+  <main class="mx-auto max-w-107.5 px-4 pb-28 md:hidden">
     <!-- Header -->
     <header class="relative flex items-center justify-center py-4">
       <button
@@ -42,7 +42,7 @@
         </p>
       </div>
 
-      <div class="overflow-hidden rounded-2xl border border-[#DCEBE0] bg-white">
+      <div class="overflow-hidden rounded-lg border border-[#DCEBE0] bg-white">
         <button
           type="button"
           @click="$emit('change-password')"
@@ -79,7 +79,7 @@
         </p>
       </div>
 
-      <div class="rounded-2xl border border-[#DCEBE0] bg-white p-4">
+      <div class="rounded-lg border border-[#DCEBE0] bg-white p-4">
         <div class="flex items-center gap-3">
           <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#EAF3FF]">
             <Mail class="h-4 w-4 text-[#3B82F6]" />
@@ -114,7 +114,7 @@
         </p>
       </div>
 
-      <div class="overflow-hidden rounded-2xl border border-[#DCEBE0] bg-white">
+      <div class="overflow-hidden rounded-lg border border-[#DCEBE0] bg-white">
         <!-- Current Device -->
         <div class="flex items-center gap-3 px-4 py-3.5">
           <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#EAF8EE]">
@@ -180,7 +180,7 @@
     </button>
 
     <!-- Security Info -->
-    <section class="mt-6 rounded-2xl border border-[#DDEFE2] bg-[#EAF8EE] p-4">
+    <section class="mt-6 rounded-lg border border-[#DDEFE2] bg-[#EAF8EE] p-4">
       <div class="flex items-start gap-3">
         <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white">
           <ShieldCheck class="h-4 w-4 text-[#15803D]" />

@@ -6,7 +6,7 @@
       <Sidebar />
     </div>
 
-    <div class="min-h-screen md:pl-[240px]">
+    <div class="min-h-screen md:pl-60">
 
       <!-- Desktop -->
       <Topbar />

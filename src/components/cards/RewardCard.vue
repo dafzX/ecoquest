@@ -1,14 +1,14 @@
 <template>
   <div
-    class="overflow-hidden rounded-2xl border border-[#E8EDE9] bg-white transition hover:-translate-y-0.5 hover:border-[#CDE8D4] hover:shadow-sm"
+    class="overflow-hidden rounded-lg border border-[#E8EDE9] bg-white transition hover:-translate-y-0.5 hover:border-[#CDE8D4] hover:shadow-sm"
   >
     <!-- Reward Image -->
     <div
-      class="flex h-[170px] items-center justify-center"
+      class="flex h-42.5 items-center justify-center"
       :class="rewardBackground"
     >
       <div
-        class="flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-sm"
+        class="flex h-20 w-20 items-center justify-center rounded-lg bg-white shadow-sm"
       >
         <component
           :is="rewardIcon"
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <p class="mt-2 min-h-[40px] text-xs leading-5 text-[#66736A]">
+      <p class="mt-2 min-h-10 text-xs leading-5 text-[#66736A]">
         {{ reward.description }}
       </p>
 

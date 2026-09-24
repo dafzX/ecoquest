@@ -7,12 +7,12 @@
         @click="$emit('toggle')"
         class="relative flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white"
       >
-        <Bell class="h-[17px] w-[17px]" />
+        <Bell class="h-4.25 w-4.25" />
 
         <!-- Badge -->
         <span
           v-if="unreadCount > 0"
-          class="absolute right-0 top-0 flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-[#EF4444] px-1 text-[8px] font-bold leading-none text-white ring-2 ring-[#F4FBF7]"
+          class="absolute right-0 top-0 flex h-3.75 min-w-3.75 items-center justify-center rounded-full bg-[#EF4444] px-1 text-[8px] font-bold leading-none text-white ring-2 ring-[#F4FBF7]"
         >
           {{ unreadCount > 9 ? '9+' : unreadCount }}
         </span>
@@ -30,7 +30,7 @@
     >
       <div
         v-if="isOpen"
-        class="absolute right-0 top-11 z-[100] w-[280px] max-w-[calc(100vw-24px)] overflow-hidden rounded-2xl border border-[#E3ECE6] bg-white shadow-xl shadow-[#17211B]/10"
+        class="absolute right-0 top-11 z-100 w-70 max-w-[calc(100vw-24px)] overflow-hidden rounded-lg border border-[#E3ECE6] bg-white shadow-xl shadow-[#17211B]/10"
       >
         <!-- Header -->
         <div
@@ -68,7 +68,7 @@
         </div>
 
         <!-- Notification List -->
-        <div class="max-h-[330px] overflow-y-auto overscroll-contain">
+        <div class="max-h-82.5 overflow-y-auto overscroll-contain">
           <button
             v-for="notification in notifications"
             :key="notification.id"

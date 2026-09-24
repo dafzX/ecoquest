@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto max-w-[1200px] px-4 py-6 md:px-6 md:py-8">
+  <div class="mx-auto max-w-300 px-4 py-6 md:px-6 md:py-8">
     <div v-if="title || description" class="mb-6 md:mb-8">
       <p v-if="tag" class="mb-1 text-sm font-medium text-[#22C55E]">
         {{ tag }}

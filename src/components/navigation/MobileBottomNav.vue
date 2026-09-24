@@ -3,13 +3,13 @@
     class="fixed bottom-0 left-0 right-0 z-50 border-t border-[#E8EDE9] bg-white/95 px-2 pb-[env(safe-area-inset-bottom)] pt-2 shadow-[0_-8px_30px_rgba(23,33,27,0.06)] backdrop-blur-md md:hidden"
   >
     <div
-      class="mx-auto flex h-[62px] max-w-md items-center justify-around"
+      class="mx-auto flex h-15.5 max-w-md items-center justify-around"
     >
       <RouterLink
         v-for="item in menu"
         :key="item.name"
         :to="item.to"
-        class="flex min-w-[58px] flex-col items-center justify-center gap-1 rounded-xl py-1.5 transition"
+        class="flex min-w-14.5 flex-col items-center justify-center gap-1 rounded-xl py-1.5 transition"
         :class="
           isActive(item.to)
             ? 'text-[#15803D]'
@@ -27,7 +27,7 @@
         >
           <component
             :is="item.icon"
-            class="h-[20px] w-[20px]"
+            class="h-5 w-5"
             :stroke-width="isActive(item.to) ? 2.5 : 2"
           />
         </div>

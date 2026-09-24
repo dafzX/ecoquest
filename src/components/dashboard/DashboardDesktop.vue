@@ -1,6 +1,6 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto max-w-[1080px] px-6 pb-8">
+    <div class="mx-auto max-w-270 px-6 pb-8">
 
       <!-- Desktop Header -->
       <DesktopPageHeader
@@ -15,7 +15,7 @@
         <div class="space-y-6 lg:col-span-2">
 
           <div
-            class="flex flex-col gap-6 rounded-2xl border border-[#DCEBE0] bg-white p-6 md:flex-row"
+            class="flex flex-col gap-6 rounded-lg bg-white p-6 shadow-sm md:flex-row"
           >
 
             <!-- Level Info -->
@@ -153,7 +153,7 @@
             <!-- Ada Quest -->
             <div
               v-if="nextQuest"
-              class="rounded-2xl border border-[#DCEBE0] bg-white p-6"
+              class="rounded-lg bg-white p-6 shadow-sm"
             >
               <div class="flex items-start justify-between">
 
@@ -220,7 +220,7 @@
             <!-- Tidak Ada Quest -->
             <div
               v-else
-              class="flex min-h-[150px] items-center justify-center rounded-2xl border border-[#DCEBE0] bg-white p-6"
+              class="flex min-h-37.5 items-center justify-center rounded-lg bg-white p-6 shadow-sm"
             >
               <div class="text-center">
 
@@ -254,7 +254,7 @@
           </h2>
 
           <div
-            class="rounded-2xl border border-[#DCEBE0] bg-white p-6"
+            class="rounded-lg bg-white p-6 shadow-sm"
           >
 
             <div class="flex items-start justify-between">

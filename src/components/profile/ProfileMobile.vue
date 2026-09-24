@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto max-w-[430px] px-4 pb-24 md:hidden">
+  <main class="mx-auto max-w-107.5 px-4 pb-24 md:hidden">
     <MobileHeader />
 
     <!-- Header -->
@@ -65,7 +65,7 @@
             </div>
 
             <div
-              class="h-[5px] overflow-hidden rounded-full bg-[#E5EFE8]"
+              class="h-1.25 overflow-hidden rounded-full bg-[#E5EFE8]"
             >
               <div
                 class="h-full rounded-full bg-[#22C55E] transition-all duration-500"

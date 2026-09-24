@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto w-full max-w-[430px] px-4 pb-28 pt-1 md:hidden">
+  <main class="mx-auto w-full max-w-107.5 px-4 pb-28 pt-1 md:hidden">
 
     <MobileHeader />
 
@@ -9,13 +9,13 @@
         Hadiah
       </h1>
 
-      <p class="mt-1 max-w-[350px] text-xs leading-5 text-[#66736A]">
+      <p class="mt-1 max-w-87.5 text-xs leading-5 text-[#66736A]">
         Gunakan XP-mu untuk mendapatkan hadiah menarik.
       </p>
     </section>
 
     <!-- XP Balance -->
-    <section class="relative mb-5 overflow-hidden rounded-3xl bg-[#15803D]">
+    <section class="relative mb-5 overflow-hidden rounded-lg bg-[#15803D]">
       <div
         class="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-white/10"
       />
@@ -28,7 +28,7 @@
 
         <div class="flex min-w-0 items-center gap-3.5">
           <div
-            class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/15"
+            class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white/15"
           >
             <Gift class="h-6 w-6 text-white" />
           </div>
@@ -50,7 +50,7 @@
           </div>
         </div>
 
-        <div class="mt-5 rounded-2xl bg-white/10 px-4 py-3">
+        <div class="mt-5 rounded-lg bg-white/10 px-4 py-3">
           <p class="text-[10px] text-white/70">
             Hadiah berikutnya
           </p>
@@ -81,7 +81,7 @@
     <section class="mb-6 grid grid-cols-3 gap-2.5">
 
       <div
-        class="min-w-0 rounded-2xl border border-[#E8EDE9] bg-white p-3"
+        class="min-w-0 rounded-lg border border-[#E8EDE9] bg-white p-3"
       >
         <div
           class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#EAF8EE]"
@@ -99,7 +99,7 @@
       </div>
 
       <div
-        class="min-w-0 rounded-2xl border border-[#E8EDE9] bg-white p-3"
+        class="min-w-0 rounded-lg border border-[#E8EDE9] bg-white p-3"
       >
         <div
           class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#F3E8FF]"
@@ -117,7 +117,7 @@
       </div>
 
       <div
-        class="min-w-0 rounded-2xl border border-[#E8EDE9] bg-white p-3"
+        class="min-w-0 rounded-lg border border-[#E8EDE9] bg-white p-3"
       >
         <div
           class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#FEF9C3]"
@@ -199,7 +199,7 @@
       <!-- Empty -->
       <div
         v-if="filteredRewards.length === 0"
-        class="rounded-2xl border border-dashed border-[#DCE5DE] bg-white px-6 py-10 text-center"
+        class="rounded-lg border border-dashed border-[#DCE5DE] bg-white px-6 py-10 text-center"
       >
         <Gift class="mx-auto h-8 w-8 text-[#98A39C]" />
 
@@ -234,7 +234,7 @@
         <div
           v-for="reward in redeemedRewards"
           :key="reward.id"
-          class="flex min-w-0 items-center gap-3 rounded-2xl border border-[#E8EDE9] bg-white p-3.5"
+          class="flex min-w-0 items-center gap-3 rounded-lg border border-[#E8EDE9] bg-white p-3.5"
         >
           <div
             class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#F3E8FF]"
@@ -266,7 +266,7 @@
 
       <div
         v-else
-        class="rounded-2xl border border-dashed border-[#DCE5DE] bg-white px-5 py-8 text-center"
+        class="rounded-lg border border-dashed border-[#DCE5DE] bg-white px-5 py-8 text-center"
       >
         <Award class="mx-auto h-7 w-7 text-[#98A39C]" />
 

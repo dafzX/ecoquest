@@ -29,7 +29,7 @@
       <section class="mt-3">
 
         <div
-          class="rounded-3xl border border-[#E2E8F0] bg-white p-5 shadow-sm"
+          class="rounded-lg border border-[#E2E8F0] bg-white p-5 shadow-sm"
         >
 
           <div class="flex items-start gap-3">
@@ -111,7 +111,7 @@
           <div
             v-for="(step, index) in mission.steps"
             :key="index"
-            class="rounded-2xl border p-4 transition"
+            class="rounded-lg border p-4 transition"
             :class="
               index < completedSteps
                 ? 'border-[#BBF7D0] bg-[#F0FDF4]'
@@ -217,7 +217,7 @@
       <!-- Completed -->
       <section
         v-if="allStepsCompleted"
-        class="mt-5 rounded-2xl bg-[#F0FDF4] p-4"
+        class="mt-5 rounded-lg bg-[#F0FDF4] p-4"
       >
 
         <div class="flex items-center gap-3">

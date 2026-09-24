@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto max-w-[430px] px-4 pb-24 md:hidden">
+  <main class="mx-auto max-w-107.5 px-4 pb-24 md:hidden">
     <!-- Header -->
     <header class="relative flex items-center justify-center py-4">
       <button
@@ -42,7 +42,7 @@
           >
             <span
               class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
-              :class="settings.pushNotification ? 'left-[18px]' : 'left-0.5'"
+              :class="settings.pushNotification ? 'left-4.5' : 'left-0.5'"
             ></span>
           </button>
         </div>
@@ -67,7 +67,7 @@
           >
             <span
               class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
-              :class="settings.missionReminder ? 'left-[18px]' : 'left-0.5'"
+              :class="settings.missionReminder ? 'left-4.5' : 'left-0.5'"
             ></span>
           </button>
         </div>
@@ -92,7 +92,7 @@
           >
             <span
               class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
-              :class="settings.streakReminder ? 'left-[18px]' : 'left-0.5'"
+              :class="settings.streakReminder ? 'left-4.5' : 'left-0.5'"
             ></span>
           </button>
         </div>
@@ -117,7 +117,7 @@
           >
             <span
               class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
-              :class="settings.promoNotification ? 'left-[18px]' : 'left-0.5'"
+              :class="settings.promoNotification ? 'left-4.5' : 'left-0.5'"
             ></span>
           </button>
         </div>
@@ -142,7 +142,7 @@
           >
             <span
               class="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition"
-              :class="settings.communityNotification ? 'left-[18px]' : 'left-0.5'"
+              :class="settings.communityNotification ? 'left-4.5' : 'left-0.5'"
             ></span>
           </button>
         </div>

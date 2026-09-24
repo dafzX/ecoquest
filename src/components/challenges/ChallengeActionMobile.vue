@@ -1,5 +1,5 @@
 <template>
-  <main class="mx-auto max-w-[430px] px-4 pb-24 md:hidden">
+  <main class="mx-auto max-w-107.5 px-4 pb-24 md:hidden">
 
     <div class="flex items-center gap-3 py-4">
       <button
@@ -33,7 +33,7 @@
         </span>
       </div>
 
-      <div class="mt-3 h-[5px] overflow-hidden rounded-full bg-[#E5EEE8]">
+      <div class="mt-3 h-1.25 overflow-hidden rounded-full bg-[#E5EEE8]">
         <div
           class="h-full rounded-full bg-[#22C55E] transition-all duration-500"
           :style="{ width: `${progress}%` }"
@@ -41,7 +41,7 @@
       </div>
 
       <div class="mt-6">
-        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#DCFCE7]">
+        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-[#DCFCE7]">
           <component
             :is="getCategoryIcon(challenge.category)"
             class="h-6 w-6 text-[#15803D]"
