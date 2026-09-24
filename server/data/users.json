@@ -35,11 +35,13 @@
       "name": "Lita",
       "email": "faras@ecoquest.com",
       "password": "faras123",
-      "xp": 9999999,
+      "xp": 9999699,
       "level": 100,
       "streak": 0,
       "completedMissionIds": [],
-      "redeemedRewardIds": [],
+      "redeemedRewardIds": [
+        1
+      ],
       "activities": []
     },
     {

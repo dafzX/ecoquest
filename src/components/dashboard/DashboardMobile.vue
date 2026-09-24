@@ -11,7 +11,7 @@
       <h1
         class="text-[17px] font-bold text-[#17211B]"
       >
-        Selamat pagi, {{ currentUser.name }}! 👋
+        Selamat pagi, {{ currentUser.name }}!
       </h1>
 
       <p

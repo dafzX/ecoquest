@@ -4,7 +4,7 @@
 
       <!-- Desktop Header -->
       <DesktopPageHeader
-        :title="`Selamat pagi, ${currentUser.name}! 👋`"
+        :title="`Selamat pagi, ${currentUser.name}!`"
         description="Saatnya lanjutkan langkah baik hari ini."
       />
 
