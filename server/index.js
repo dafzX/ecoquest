@@ -1016,12 +1016,8 @@ app.use((error, req, res, next) => {
 
 if (process.env.VERCEL !== '1') {
   app.listen(PORT, () => {
-    console.log(
-      `Backend aktif di http://localhost:${PORT}`
-    )
+    console.log(`Backend aktif di http://localhost:${PORT}`)
   })
 }
-
-/* Vercel */
 
 export default app
