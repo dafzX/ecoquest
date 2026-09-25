@@ -37,7 +37,7 @@
                 <ChevronRight class="h-4 w-4 text-[#A3ADA7]" />
               </RouterLink>
 
-              <RouterLink to="/profile/achievements" class="flex items-center gap-3 rounded-xl border border-[#EEF3EF] p-3 transition hover:bg-[#F8FBF9]">
+              <RouterLink to="/achievements" class="flex items-center gap-3 rounded-xl border border-[#EEF3EF] p-3 transition hover:bg-[#F8FBF9]">
                 <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#FFF7D6] text-[#B88900]">
                   <Trophy class="h-5 w-5" />
                 </div>
