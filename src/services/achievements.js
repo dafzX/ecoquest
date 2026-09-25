@@ -1,6 +1,6 @@
 import { getCurrentUser } from '@/services/auth'
 
-const API_URL = 'http://localhost:3000/api'
+const API_URL = '/api'
 
 export async function getAchievements() {
   const currentUser = getCurrentUser()
