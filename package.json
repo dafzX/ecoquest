@@ -1,12 +1,13 @@
 {
-  "name": "frontend",
+  "name": "ecoquest",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "node server/index.js"
   },
   "dependencies": {
     "cors": "^2.8.6",
@@ -21,5 +22,8 @@
     "@vitejs/plugin-vue": "^6.0.8",
     "tailwindcss": "^4.3.3",
     "vite": "^8.3.0"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }
