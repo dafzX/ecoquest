@@ -91,14 +91,14 @@
             </div>
 
             <!-- Forgot password -->
-            <div class="flex justify-end pt-0.5">
+            <!-- <div class="flex justify-end pt-0.5">
               <button
                 type="button"
                 class="text-[9px] font-medium text-[#22C55E] transition hover:text-[#15803D]"
               >
                 Lupa password?
               </button>
-            </div>
+            </div> -->
 
             <!-- Login button -->
             <button
@@ -283,12 +283,12 @@
                   Password
                 </label>
 
-                <button
+                <!-- <button
                   type="button"
                   class="text-sm text-[#22C55E] transition hover:text-[#15803D]"
                 >
                   Forgot password?
-                </button>
+                </button> -->
               </div>
 
               <div class="relative">
@@ -324,7 +324,7 @@
             </div>
 
             <!-- Remember -->
-            <label class="flex cursor-pointer items-center gap-3">
+            <!-- <label class="flex cursor-pointer items-center gap-3">
               <input
                 v-model="form.remember"
                 type="checkbox"
@@ -334,7 +334,7 @@
               <span class="text-sm text-[#66736A]">
                 Remember me
               </span>
-            </label>
+            </label> -->
 
             <!-- Button -->
             <button

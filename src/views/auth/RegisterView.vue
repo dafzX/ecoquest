@@ -141,7 +141,7 @@
             </div>
 
             <!-- Terms -->
-            <label class="flex cursor-pointer items-start gap-2.5 pt-1">
+            <!-- <label class="flex cursor-pointer items-start gap-2.5 pt-1">
               <input
                 v-model="form.terms"
                 type="checkbox"
@@ -165,7 +165,7 @@
                   Privacy Policy
                 </button>
               </span>
-            </label>
+            </label> -->
 
             <!-- Register button -->
             <button
@@ -448,7 +448,7 @@
             </div>
 
             <!-- Terms -->
-            <label class="flex cursor-pointer items-start gap-3 pt-1">
+            <!-- <label class="flex cursor-pointer items-start gap-3 pt-1">
               <input
                 v-model="form.terms"
                 type="checkbox"
@@ -472,7 +472,7 @@
                   Privacy Policy
                 </button>
               </span>
-            </label>
+            </label> -->
 
             <!-- Button -->
             <button
