@@ -40,6 +40,32 @@
         { "title": "Cabut perangkat elektronik", "description": "Cabut charger dan perangkat yang tidak digunakan." },
         { "title": "Pertahankan selama 3 hari", "description": "Ulangi kebiasaan hemat energi selama tiga hari." }
       ]
+    },
+    {
+      "id": 4,
+      "title": "Kurangi Sampah Plastik",
+      "description": "Gunakan tas belanja kain dan hindari produk sekali pakai.",
+      "category": "Sampah",
+      "xp": 60,
+      "icon": "bag",
+      "recommended": false,
+      "steps": [
+        { "title": "Bawa tas belanja kain", "description": "Gunakan tas kain saat berbelanja." },
+        { "title": "Hindari produk sekali pakai", "description": "Pilih produk yang dapat digunakan kembali." }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Tanam Satu Pohon",
+      "description": "Dukung penanaman pohon di lingkunganmu atau secara virtual.",
+      "category": "Lingkungan",
+      "xp": 100,
+      "icon": "tree",
+      "recommended": true,
+      "steps": [
+        { "title": "Cari program penanaman pohon", "description": "Temukan organisasi yang menanam pohon." },
+        { "title": "Ikut serta atau donasi", "description": "Ikut serta dalam kegiatan menanam pohon atau donasi untuk mendukungnya." }
+      ]
     }
   ]
 }
