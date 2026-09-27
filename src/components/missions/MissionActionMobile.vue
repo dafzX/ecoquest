@@ -23,7 +23,7 @@
     </div>
 
     <!-- Progress Card -->
-    <section class="rounded-[16px] border border-[#DCEBE0] bg-white p-4">
+    <section class="rounded-2xl border border-[#DCEBE0] bg-white p-4">
 
       <div class="flex items-center justify-between">
 
@@ -72,6 +72,7 @@
 
       <button
         type="button"
+        data-testid="mission-action-submit-mobile"
         @click="completeStep"
         class="mt-5 flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#22C55E] text-[12px] font-semibold text-white transition hover:bg-[#15803D]"
       >

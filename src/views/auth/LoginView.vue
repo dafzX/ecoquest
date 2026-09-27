@@ -103,10 +103,18 @@
             <!-- Login button -->
             <button
               type="submit"
+              data-testid="login-submit-mobile"
               class="h-10 w-full rounded-lg bg-[#22C55E] text-[11px] font-semibold text-white transition hover:bg-[#16A34A] active:bg-[#15803D]"
             >
               Login
             </button>
+
+            <p
+              v-if="errorMessage"
+              class="text-center text-[10px] font-medium text-[#DC2626]"
+            >
+              {{ errorMessage }}
+            </p>
           </form>
 
           <!-- Register -->
@@ -339,10 +347,18 @@
             <!-- Button -->
             <button
               type="submit"
+              data-testid="login-submit-desktop"
               class="h-12 w-full rounded-xl bg-[#22C55E] text-sm font-semibold text-white transition hover:bg-[#16A34A] active:bg-[#15803D]"
             >
               Sign In
             </button>
+
+            <p
+              v-if="errorMessage"
+              class="text-center text-sm font-medium text-[#DC2626]"
+            >
+              {{ errorMessage }}
+            </p>
           </form>
 
           <p class="mt-7 text-center text-sm text-[#66736A]">
@@ -379,6 +395,7 @@
   const router = useRouter()
   const route = useRoute()
   const showPassword = ref(false)
+  const errorMessage = ref('')
 
   const form = ref({
     email: '',
@@ -387,13 +404,15 @@
   })
 
   async function handleLogin() {
+    errorMessage.value = ''
+
     const result = await login(
       form.value.email,
       form.value.password
     )
 
     if (!result.success) {
-      alert(result.message)
+      errorMessage.value = result.message || 'Login gagal. Coba lagi.'
       return
     }
 

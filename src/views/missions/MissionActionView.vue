@@ -81,11 +81,29 @@ const totalSteps = computed(() => {
   return mission.value?.steps?.length || 0
 })
 
+const normalizedSteps = computed(() => {
+  if (!mission.value?.steps) {
+    return []
+  }
+
+  return mission.value.steps.map((step) => {
+    if (typeof step === 'string') {
+      return {
+        title: step,
+        description: 'Selesaikan aksi nyata ini untuk melanjutkan misi.'
+      }
+    }
+
+    return step
+  })
+})
+
 const currentStep = computed(() => {
   if (!mission.value) {
     return null
   }
-  return mission.value.steps?.[stepNumber.value - 1] || null
+
+  return normalizedSteps.value[stepNumber.value - 1] || null
 })
 
 const getSavedProgress = () => {

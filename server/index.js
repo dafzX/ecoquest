@@ -3,6 +3,7 @@ import cors from 'cors'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { createClient } from '@supabase/supabase-js'
 
 const app = express()
 const PORT = 3000
@@ -11,20 +12,76 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const usersFile = path.join(__dirname, 'data', 'users.json')
-const missionsFile = path.join(__dirname, 'data', 'missions.json')
-const rewardsFile = path.join(__dirname, 'data', 'rewards.json')
-const challengesFile = path.join(__dirname, 'data', 'challenges.json')
 const communityFile = path.join(__dirname, 'data', 'community.json')
+
+const supabaseUrl = process.env.SUPABASE_URL
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY
+const useSupabase = Boolean(supabaseUrl && supabaseServiceKey)
+const supabaseAdmin = useSupabase
+  ? createClient(supabaseUrl, supabaseServiceKey, {
+      auth: { autoRefreshToken: false, persistSession: false }
+    })
+  : null
+const supabaseAuth = supabaseUrl && (supabaseAnonKey || supabaseServiceKey)
+  ? createClient(supabaseUrl, supabaseAnonKey || supabaseServiceKey, {
+      auth: { autoRefreshToken: false, persistSession: false }
+    })
+  : null
 
 app.use(cors())
 app.use(express.json({ limit: '100kb' }))
 
 async function getUsersData() {
+  if (useSupabase) {
+    const { data, error } = await supabaseAdmin
+      .from('app_data')
+      .select('value')
+      .eq('key', 'users')
+      .maybeSingle()
+
+    if (error) throw error
+    return data?.value || { users: [] }
+  }
+
+  if (process.env.VERCEL === '1') {
+    throw new Error('Supabase env vars belum dikonfigurasi di Vercel.')
+  }
+
   const file = await fs.readFile(usersFile, 'utf8')
   return JSON.parse(file)
 }
 
+async function getStoredData(key, filename) {
+  if (useSupabase) {
+    const { data, error } = await supabaseAdmin
+      .from('app_data')
+      .select('value')
+      .eq('key', key)
+      .maybeSingle()
+
+    if (error) throw error
+    if (data?.value) return data.value
+  }
+
+  if (process.env.VERCEL === '1') {
+    throw new Error(`Data ${key} belum dimigrasikan ke Supabase.`)
+  }
+
+  const file = await fs.readFile(path.join(__dirname, 'data', filename), 'utf8')
+  return JSON.parse(file)
+}
+
 async function saveUsersData(data) {
+  if (useSupabase) {
+    const { error } = await supabaseAdmin
+      .from('app_data')
+      .upsert({ key: 'users', value: data }, { onConflict: 'key' })
+
+    if (error) throw error
+    return
+  }
+
   await fs.writeFile(
     usersFile,
     JSON.stringify(data, null, 2)
@@ -32,13 +89,11 @@ async function saveUsersData(data) {
 }
 
 async function getMissionsData() {
-  const file = await fs.readFile(missionsFile, 'utf8')
-  return JSON.parse(file)
+  return getStoredData('missions', 'missions.json')
 }
 
 async function getRewardsData() {
-  const file = await fs.readFile(rewardsFile, 'utf8')
-  return JSON.parse(file)
+  return getStoredData('rewards', 'rewards.json')
 }
 
 function publicUser(user) {
@@ -56,16 +111,39 @@ function publicUser(user) {
 }
 
 async function getChallengesData() {
-  const file = await fs.readFile(challengesFile, 'utf8')
-  return JSON.parse(file)
+  return getStoredData('challenges', 'challenges.json')
 }
 
 async function getCommunityData() {
+  if (useSupabase) {
+    const { data, error } = await supabaseAdmin
+      .from('app_data')
+      .select('value')
+      .eq('key', 'community')
+      .maybeSingle()
+
+    if (error) throw error
+    return data?.value || { posts: [] }
+  }
+
+  if (process.env.VERCEL === '1') {
+    throw new Error('Supabase env vars belum dikonfigurasi di Vercel.')
+  }
+
   const file = await fs.readFile(communityFile, 'utf8')
   return JSON.parse(file)
 }
 
 async function saveCommunityData(data) {
+  if (useSupabase) {
+    const { error } = await supabaseAdmin
+      .from('app_data')
+      .upsert({ key: 'community', value: data }, { onConflict: 'key' })
+
+    if (error) throw error
+    return
+  }
+
   await fs.writeFile(
     communityFile,
     JSON.stringify(data, null, 2)
@@ -139,13 +217,38 @@ app.get('/api/health', (req, res) => {
 app.post('/api/auth/login', async (req, res) => {
   const { email, password } = req.body
 
-  const data = await getUsersData()
+  let user
 
-  const user = data.users.find(
-    (item) =>
-      item.email.toLowerCase() === email.toLowerCase().trim() &&
-      item.password === password
-  )
+  if (useSupabase) {
+    if (!supabaseAuth) {
+      return res.status(500).json({
+        success: false,
+        message: 'Supabase Auth belum dikonfigurasi.'
+      })
+    }
+
+    const { data: authData, error: authError } = await supabaseAuth.auth
+      .signInWithPassword({ email, password })
+
+    if (authError || !authData.user) {
+      return res.status(401).json({
+        success: false,
+        message: 'Email atau password salah.'
+      })
+    }
+
+    const usersData = await getUsersData()
+    user = usersData.users.find(
+      (item) => item.email.toLowerCase() === email.toLowerCase().trim()
+    )
+  } else {
+    const data = await getUsersData()
+    user = data.users.find(
+      (item) =>
+        item.email.toLowerCase() === email.toLowerCase().trim() &&
+        item.password === password
+    )
+  }
 
   if (!user) {
     return res.status(401).json({
@@ -178,11 +281,39 @@ app.post('/api/auth/register', async (req, res) => {
     })
   }
 
+  let authId = null
+
+  if (useSupabase) {
+    if (!supabaseAuth) {
+      return res.status(500).json({
+        success: false,
+        message: 'Supabase Auth belum dikonfigurasi.'
+      })
+    }
+
+    const { data: authData, error: authError } = await supabaseAuth.auth
+      .signUp({
+        email: normalizedEmail,
+        password,
+        options: { data: { name: name.trim() } }
+      })
+
+    if (authError) {
+      return res.status(400).json({
+        success: false,
+        message: authError.message
+      })
+    }
+
+    authId = authData.user?.id || null
+  }
+
   const newUser = {
     id: Date.now(),
+    authId,
     name: name.trim(),
     email: normalizedEmail,
-    password,
+    ...(!useSupabase ? { password } : {}),
     xp: 0,
     level: 1,
     streak: 0,
@@ -205,6 +336,13 @@ app.post('/api/auth/register', async (req, res) => {
   res.status(201).json({
     success: true,
     user: publicUser(newUser)
+  })
+})
+
+app.get('/api/auth/profile', async (req, res) => {
+  return res.status(401).json({
+    success: false,
+    message: 'Silakan login kembali.'
   })
 })
 

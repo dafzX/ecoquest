@@ -97,6 +97,7 @@ const loadMissionsProgress = () => {
     return {
       ...mission,
       completedSteps: currentCompletedSteps,
+      step: `Langkah ${Math.min(currentCompletedSteps + 1, totalSteps)} dari ${totalSteps}`,
       progress: completedFromBackend
         ? 100
         : calculatedProgress,

@@ -9,10 +9,12 @@ lerna-debug.log*
 
 node_modules
 dist
-pnpm-lock.yaml
 package-lock.json
 dist-ssr
 *.local
+.env
+.env.*
+!.env.example
 
 # Editor directories and files
 .vscode/*

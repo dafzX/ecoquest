@@ -87,6 +87,7 @@
           <!-- Button -->
           <button
             type="button"
+            data-testid="mission-action-submit-desktop"
             @click="completeStep"
             class="mt-8 flex w-full items-center justify-center gap-2 rounded-lg bg-[#22C55E] py-4 text-base font-bold text-white transition hover:bg-[#15803D] active:scale-[0.99]"
           >

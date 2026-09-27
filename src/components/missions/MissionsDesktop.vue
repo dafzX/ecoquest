@@ -136,7 +136,7 @@
                 >
 
                   <span class="w-20 shrink-0 text-xs text-[#66736A]">
-                    {{ mission.step || 'Langkah 2 dari 3' }}
+                    {{ mission.step }}
                   </span>
 
                   <div

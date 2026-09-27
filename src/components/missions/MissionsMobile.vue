@@ -81,7 +81,7 @@
                   </h3>
 
                   <p class="mt-0.5 text-[8px] text-[#718078]">
-                    {{ mission.step || 'Langkah 2 dari 3' }}
+                    {{ mission.step }}
                   </p>
                 </div>
 
