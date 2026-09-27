@@ -97,10 +97,6 @@ watch(settings, (newSettings) => {
 
   saveTimeout = setTimeout(() => {
     updateSettings({ ...newSettings })
-    localStorage.setItem('ecoquest_settings', JSON.stringify(newSettings))
-    window.dispatchEvent(
-      new StorageEvent('storage', { key: 'ecoquest_settings' })
-    )
   }, 300)
 }, { deep: true })
 

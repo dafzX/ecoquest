@@ -45,10 +45,6 @@ import {
   getRewards
 } from '@/services/rewards'
 
-import {
-  rewards as mockRewards
-} from '@/data/mockData.js'
-
 const user = ref(
   getCurrentUser() || {
     xp: 0,
@@ -78,14 +74,9 @@ onMounted(async () => {
   const redeemedIds = user.value.redeemedRewardIds || []
 
   rewards.value = result.rewards.map((reward) => {
-    const uiData = mockRewards.find(
-      (item) => item.id === reward.id
-    )
-
     return {
-      ...uiData,
       ...reward,
-      owned: redeemedIds.includes(reward.id)
+      owned: redeemedIds.some((id) => String(id) === String(reward.id))
     }
   })
 })

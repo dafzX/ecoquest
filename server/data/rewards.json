@@ -3,37 +3,56 @@
     {
       "id": 1,
       "title": "Lencana Eco Pemula",
+      "description": "Lencana khusus untuk pencapaian ramah lingkungan pertamamu.",
       "category": "Digital",
       "cost": 300,
+      "icon": "badge",
       "available": true
     },
     {
       "id": 2,
       "title": "Tanam Satu Pohon",
+      "description": "Gunakan XP-mu untuk mendukung penanaman satu pohon nyata.",
       "category": "Impact",
       "cost": 500,
+      "icon": "tree",
       "available": true
     },
     {
       "id": 3,
-      "title": "Botol Minum Reusable",
+      "title": "Botol Minum Guna Ulang",
+      "description": "Tukarkan hadiah ini dengan botol minum guna ulang EcoQuest.",
       "category": "Merchandise",
       "cost": 1000,
+      "icon": "bottle",
       "available": true
     },
     {
       "id": 4,
       "title": "Tas EcoQuest",
+      "description": "Tas guna ulang untuk menemani aktivitas sehari-harimu.",
       "category": "Merchandise",
       "cost": 1500,
+      "icon": "bag",
       "available": true
     },
     {
       "id": 5,
       "title": "Lencana Penjelajah Hijau",
+      "description": "Lencana eksklusif untuk para penjelajah lingkungan yang aktif.",
       "category": "Digital",
       "cost": 800,
+      "icon": "leaf",
       "available": true
+    },
+    {
+      "id": 6,
+      "title": "Eco Champion",
+      "description": "Hadiah khusus untuk pengguna yang mencapai pencapaian tingkat lanjut.",
+      "category": "Digital",
+      "cost": 2000,
+      "icon": "trophy",
+      "available": false
     }
   ]
 }

@@ -271,7 +271,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import { getCurrentUser } from '@/services/auth'
 
 import {
   ArrowLeft,
@@ -298,34 +297,8 @@ const props = defineProps({
   }
 })
 
-const progressKey = computed(() => {
-  const userId = getCurrentUser()?.id || 'guest'
-
-  return `ecoquest_mission_progress_${userId}_${props.mission.id}`
-})
-
-const savedProgress = computed(() => {
-  const saved = localStorage.getItem(progressKey.value)
-
-  if (!saved) {
-    return null
-  }
-
-  try {
-    return JSON.parse(saved)
-  } catch {
-    return null
-  }
-})
-
 const completedSteps = computed(() => {
-  if (savedProgress.value) {
-    return Number(
-      savedProgress.value.completedSteps || 0
-    )
-  }
-
-  return 0
+  return Number(props.mission.completedSteps || 0)
 })
 
 const totalSteps = computed(() => {

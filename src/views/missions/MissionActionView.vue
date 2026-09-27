@@ -47,30 +47,35 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { completeMission } from '@/services/missions'
+import {
+  completeMission,
+  completeMissionStep,
+  getMissions
+} from '@/services/missions'
 import AppLayout from '@/layouts/AppLayout.vue'
-import { getCurrentUser } from '@/services/auth'
 
 import MissionActionMobile from '@/components/missions/MissionActionMobile.vue'
 import MissionActionDesktop from '@/components/missions/MissionActionDesktop.vue'
 
-import { missions } from '@/data/mockData'
 
 const route = useRoute()
 const router = useRouter()
 
-const getProgressKey = (missionId) => {
-  const userId = getCurrentUser()?.id || 'guest'
+const mission = ref(null)
 
-  return `ecoquest_mission_progress_${userId}_${missionId}`
-}
+onMounted(async () => {
+  const result = await getMissions()
 
-const mission = computed(() => {
-  return missions.find(
+  if (!result.success) {
+    alert(result.message)
+    return
+  }
+
+  mission.value = result.missions.find(
     (item) => String(item.id) === String(route.params.id)
-  )
+  ) || null
 })
 
 const stepNumber = computed(() => {
@@ -79,6 +84,10 @@ const stepNumber = computed(() => {
 
 const totalSteps = computed(() => {
   return mission.value?.steps?.length || 0
+})
+
+const completedSteps = computed(() => {
+  return Number(mission.value?.completedSteps || 0)
 })
 
 const normalizedSteps = computed(() => {
@@ -106,53 +115,32 @@ const currentStep = computed(() => {
   return normalizedSteps.value[stepNumber.value - 1] || null
 })
 
-const getSavedProgress = () => {
-  if (!mission.value) {
-    return null
-  }
-
-  const saved = localStorage.getItem(
-    getProgressKey(mission.value.id)
-  )
-
-  if (!saved) {
-    return null
-  }
-
-  try {
-    return JSON.parse(saved)
-  } catch {
-    return null
-  }
-}
-
-const getCompletedSteps = () => {
-  const saved = getSavedProgress()
-
-  if (saved) {
-    return Number(saved.completedSteps || 0)
-  }
-
-  return 0
-}
-
 const completeStep = async () => {
-  if (!mission.value || !currentStep.value) {
+  if (!mission.value || !currentStep.value || mission.value.completed) {
     return
   }
 
-  const completedSteps = getCompletedSteps()
-
-  if (stepNumber.value !== completedSteps + 1) {
+  if (stepNumber.value !== completedSteps.value + 1) {
     return
   }
 
-  const nextCompletedSteps = Math.min(
-    completedSteps + 1,
-    totalSteps.value
+  const stepResult = await completeMissionStep(
+    mission.value.id,
+    stepNumber.value
   )
 
-  if (nextCompletedSteps === totalSteps.value) {
+  if (!stepResult.success) {
+    alert(stepResult.message)
+    return
+  }
+
+  mission.value = {
+    ...mission.value,
+    completedSteps: stepResult.completedSteps,
+    progress: Math.round((stepResult.completedSteps / totalSteps.value) * 100)
+  }
+
+  if (stepResult.completedSteps >= totalSteps.value) {
     const result = await completeMission(mission.value.id)
 
     if (!result.success) {
@@ -160,18 +148,7 @@ const completeStep = async () => {
       return
     }
 
-    localStorage.removeItem(
-      getProgressKey(mission.value.id)
-    )
-
     alert(result.message)
-  } else {
-    localStorage.setItem(
-      getProgressKey(mission.value.id),
-      JSON.stringify({
-        completedSteps: nextCompletedSteps
-      })
-    )
   }
 
   router.push({

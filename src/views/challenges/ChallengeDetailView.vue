@@ -3,6 +3,7 @@
     <div class="min-h-screen bg-[#F4FBF7]">
 
       <ChallengeDetailMobile
+        v-if="challenge"
         :challenge="challenge"
         :get-category-icon="getCategoryIcon"
         :go-back="goBack"
@@ -10,18 +11,23 @@
       />
 
       <ChallengeDetailDesktop
+        v-if="challenge"
         :challenge="challenge"
         :get-category-icon="getCategoryIcon"
         :go-back="goBack"
         @join="joinChallenge"
       />
 
+      <div v-if="!challenge" class="py-16 text-center text-sm text-[#66736A]">
+        Memuat tantangan...
+      </div>
+
     </div>
   </AppLayout>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
   Globe2,
@@ -34,172 +40,42 @@ import {
 import AppLayout from '@/layouts/AppLayout.vue'
 import ChallengeDetailMobile from '@/components/challenges/ChallengeDetailMobile.vue'
 import ChallengeDetailDesktop from '@/components/challenges/ChallengeDetailDesktop.vue'
-import { getCurrentUser } from '@/services/auth'
+import {
+  getChallenges,
+  joinChallenge as joinChallengeApi
+} from '@/services/challenges'
 
 const router = useRouter()
 const route = useRoute()
 
-const challenges = [
-  {
-    id: 1,
-    title: 'Pekan Pengurangan Plastik',
-    description:
-      'Kurangi penggunaan plastik sekali pakai dan ajak komunitasmu melakukan aksi nyata.',
-    category: 'Plastic',
-    participants: 320,
-    progress: 68,
-    daysLeft: 7,
-    joined: true,
-    steps: [
-      {
-        title: 'Gunakan botol minum sendiri',
-        description: 'Hindari membeli minuman dengan botol plastik sekali pakai.'
-      },
-      {
-        title: 'Kurangi kantong plastik',
-        description: 'Gunakan tas belanja yang dapat digunakan kembali.'
-      },
-      {
-        title: 'Ajak satu orang',
-        description: 'Ajak teman atau keluarga untuk mengurangi plastik.'
-      }
-    ]
-  },
+const challenge = ref(null)
 
-  {
-    id: 2,
-    title: 'Tantangan Transportasi Hijau',
-    description:
-      'Gunakan transportasi ramah lingkungan untuk perjalanan sehari-hari.',
-    category: 'Transport',
-    participants: 154,
-    progress: 45,
-    daysLeft: 12,
-    joined: true,
-    steps: [
-      {
-        title: 'Gunakan transportasi umum',
-        description: 'Gunakan bus atau transportasi umum untuk perjalananmu.'
-      },
-      {
-        title: 'Berjalan atau bersepeda',
-        description: 'Pilih berjalan kaki atau bersepeda untuk perjalanan dekat.'
-      },
-      {
-        title: 'Kurangi perjalanan dengan kendaraan pribadi',
-        description: 'Pilih alternatif transportasi yang lebih ramah lingkungan.'
-      }
-    ]
-  },
-
-  {
-    id: 3,
-    title: 'Tantangan Energi Bersih',
-    description:
-      'Kurangi konsumsi energi dan gunakan energi secara lebih bijak.',
-    category: 'Energy',
-    participants: 89,
-    progress: 32,
-    daysLeft: 10,
-    joined: false,
-    steps: [
-      {
-        title: 'Matikan lampu yang tidak digunakan',
-        description: 'Pastikan lampu dimatikan ketika tidak diperlukan.'
-      },
-      {
-        title: 'Cabut perangkat elektronik',
-        description: 'Cabut charger dan perangkat yang tidak digunakan.'
-      },
-      {
-        title: 'Gunakan energi seperlunya',
-        description: 'Kurangi penggunaan perangkat listrik yang tidak diperlukan.'
-      }
-    ]
-  },
-
-  {
-    id: 4,
-    title: 'Tanam untuk Masa Depan',
-    description:
-      'Ajak lebih banyak orang menanam dan merawat pohon di lingkungan sekitar.',
-    category: 'Tree',
-    participants: 210,
-    progress: 54,
-    daysLeft: 9,
-    joined: false,
-    steps: [
-      {
-        title: 'Tanam satu tanaman',
-        description: 'Tanam pohon atau tanaman di lingkungan sekitar.'
-      },
-      {
-        title: 'Rawat tanaman',
-        description: 'Siram dan rawat tanaman secara rutin.'
-      },
-      {
-        title: 'Ajak orang lain menanam',
-        description: 'Ajak teman atau keluarga untuk ikut menanam.'
-      }
-    ]
-  }
-]
-
-const updateTrigger = ref(0)
-
-const getProgressKey = (challengeId) => {
-  const userId = getCurrentUser()?.id || 'guest'
-
-  return `ecoquest_challenge_progress_${userId}_${challengeId}`
-}
-
-const challenge = computed(() => {
-  updateTrigger.value
-
-  const id = Number(route.params.id)
-
-  const found = challenges.find(
-    item => item.id === id
-  )
-
-  if (!found) {
-    return challenges[0]
-  }
-
-  const saved = localStorage.getItem(
-    getProgressKey(found.id)
-  )
-
-  let completedSteps = 0
-  let joined = found.joined || false
-
-  if (saved) {
-    try {
-      const data = JSON.parse(saved)
-
-      completedSteps = data.completedSteps || 0
-
-      if (data.joined !== undefined) {
-        joined = data.joined
-      }
-    } catch {
-      completedSteps = 0
-    }
-  }
-
-  const totalSteps = found.steps?.length || 0
-
-  const actionProgress = totalSteps
-    ? Math.round((completedSteps / totalSteps) * 100)
-    : 0
+function withProgress(item) {
+  const totalSteps = item.steps?.length || 0
+  const completedSteps = Number(item.completedSteps || 0)
 
   return {
-    ...found,
-    joined,
-    completedSteps,
+    ...item,
     totalSteps,
-    actionProgress
+    completedSteps,
+    actionProgress: totalSteps
+      ? Math.round((completedSteps / totalSteps) * 100)
+      : 0
   }
+}
+
+onMounted(async () => {
+  const result = await getChallenges()
+
+  if (!result.success) {
+    alert(result.message)
+    return
+  }
+
+  const item = result.challenges.find(
+    (entry) => String(entry.id) === String(route.params.id)
+  )
+  challenge.value = item ? withProgress(item) : null
 })
 
 function getCategoryIcon(category) {
@@ -228,26 +104,29 @@ function goBack() {
   router.back()
 }
 
-function joinChallenge() {
-  const current = challenge.value
+async function joinChallenge() {
+  if (!challenge.value) return
 
-  if (!current.joined) {
-    localStorage.setItem(
-      getProgressKey(current.id),
-      JSON.stringify({
-        joined: true,
-        completedSteps: current.completedSteps
-      })
-    )
+  if (!challenge.value.joined) {
+    const result = await joinChallengeApi(challenge.value.id)
 
-    updateTrigger.value++
+    if (!result.success) {
+      alert(result.message)
+      return
+    }
+
+    challenge.value = withProgress({
+      ...challenge.value,
+      ...result.challenge,
+      joined: true
+    })
     return
   }
 
   router.push({
     name: 'ChallengeAction',
     params: {
-      id: current.id
+      id: challenge.value.id
     }
   })
 }

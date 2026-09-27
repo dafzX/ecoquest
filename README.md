@@ -47,6 +47,12 @@ Migrasi memindahkan akun dari `server/data/users.json` ke Supabase Auth dan
 menyimpan profile, community, missions, rewards, serta challenges ke tabel
 `app_data`. Password akun lama tidak disimpan di tabel tersebut.
 
+Untuk memperbarui katalog tanpa menimpa progress pengguna, jalankan:
+
+```sh
+pnpm sync:catalogs
+```
+
 Untuk menjalankan backend lokal dengan Supabase setelah `.env` terisi, gunakan
 `pnpm dev:api` sebagai pengganti `node server/index.js`.
 

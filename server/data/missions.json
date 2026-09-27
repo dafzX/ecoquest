@@ -1,56 +1,45 @@
 {
   "missions": [
-
     {
       "id": 1,
-      "title": "Reduce Plastic",
-      "xp": 75
+      "title": "Daur Ulang 5 Botol Plastik",
+      "description": "Kumpulkan dan daur ulang setidaknya 5 botol plastik hari ini.",
+      "category": "Daur Ulang",
+      "xp": 50,
+      "icon": "recycle",
+      "recommended": true,
+      "steps": [
+        { "title": "Siapkan botol plastik bekas", "description": "Kumpulkan botol plastik yang sudah tidak digunakan." },
+        { "title": "Bersihkan botol", "description": "Bilas botol agar siap dipilah untuk didaur ulang." },
+        { "title": "Buang ke tempat daur ulang", "description": "Setorkan botol ke tempat daur ulang terdekat." }
+      ]
     },
     {
       "id": 2,
-      "title": "Green Transport",
-      "xp": 50
+      "title": "Jalan Kaki atau Bersepeda Hari Ini",
+      "description": "Pilih berjalan kaki atau bersepeda daripada menggunakan kendaraan.",
+      "category": "Transportasi",
+      "xp": 75,
+      "icon": "bike",
+      "recommended": true,
+      "steps": [
+        { "title": "Gunakan sepeda atau jalan kaki", "description": "Pilih perjalanan tanpa kendaraan bermotor untuk tujuan dekat." },
+        { "title": "Catat jarak tempuhmu", "description": "Masukkan jarak perjalanan ramah lingkungan yang kamu tempuh." }
+      ]
     },
     {
       "id": 3,
-      "title": "Hemat Energi",
-      "xp": 40
-    },
-    {
-      "id": 4,
-      "title": "Recycle",
-      "xp": 60
-    },
-    {
-      "id": 5,
-      "title": "Save Water",
-      "xp": 30
-    },
-    {
-      "id": 6,
-      "title": "Plant Trees",
-      "xp": 100
-    },
-    {
-      "id": 7,
-      "title": "Eco-friendly Shopping",
-      "xp": 80
-    },
-    {
-      "id": 8,
-      "title": "Sustainable Eating",
-      "xp": 90
-    },
-    {
-      "id": 9,
-      "title": "Community Clean-up",
-      "xp": 70
-    },
-    {
-      "id": 10,
-      "title": "Energy Conservation",
-      "xp": 60
+      "title": "Hemat Energi di Rumah",
+      "description": "Matikan lampu dan perangkat elektronik yang sedang tidak digunakan.",
+      "category": "Energi",
+      "xp": 40,
+      "icon": "energy",
+      "recommended": false,
+      "steps": [
+        { "title": "Cek lampu yang tidak digunakan", "description": "Matikan lampu di ruangan kosong." },
+        { "title": "Cabut perangkat elektronik", "description": "Cabut charger dan perangkat yang tidak digunakan." },
+        { "title": "Pertahankan selama 3 hari", "description": "Ulangi kebiasaan hemat energi selama tiga hari." }
+      ]
     }
-
   ]
 }

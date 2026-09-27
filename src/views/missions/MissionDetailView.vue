@@ -2,53 +2,51 @@
   <AppLayout>
     <div class="min-h-screen bg-[#F4FBF7]">
       <MissionDetailMobile
+        v-if="mission"
         :mission="mission"
         :get-category-icon="getCategoryIcon"
         :go-back="goBack"
       />
       <MissionDetailDesktop
+        v-if="mission"
         :mission="mission"
         :get-category-icon="getCategoryIcon"
         :go-back="goBack"
       />
+
+      <div v-if="!mission" class="py-16 text-center text-sm text-[#66736A]">
+        Misi tidak ditemukan.
+      </div>
     </div>
   </AppLayout>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { Leaf, Recycle, Zap, Bike } from 'lucide-vue-next'
-import { getCurrentUser } from '@/services/auth'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 import MissionDetailMobile from '@/components/missions/MissionDetailMobile.vue'
 import MissionDetailDesktop from '@/components/missions/MissionDetailDesktop.vue'
-
-import { missions } from '@/data/mockData.js'
+import { getMissions } from '@/services/missions'
 
 const router = useRouter()
 const route = useRoute()
 
-const mission = computed(() => {
-  const id = Number(route.params.id)
+const mission = ref(null)
 
-  const missionData =
-    missions.find((item) => item.id === id) || missions[0]
+onMounted(async () => {
+  const result = await getMissions()
 
-  const currentUser = getCurrentUser()
-  const completedIds =
-    currentUser?.completedMissionIds || []
-
-  const isCompleted = completedIds.includes(missionData.id)
-
-  return {
-    ...missionData,
-    completed: isCompleted,
-    completedSteps: isCompleted
-      ? missionData.steps.length
-      : 0
+  if (!result.success) {
+    alert(result.message)
+    return
   }
+
+  mission.value = result.missions.find(
+    (item) => String(item.id) === String(route.params.id)
+  ) || null
 })
 
 function getCategoryIcon(category) {

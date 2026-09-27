@@ -28,7 +28,6 @@
 import {
   computed,
   onMounted,
-  onUnmounted,
   ref
 } from 'vue'
 
@@ -36,10 +35,8 @@ import {
   getCurrentUser
 } from '@/services/auth'
 
-import {
-  missions,
-  impact as mockImpact
-} from '@/data/mockData'
+import { getMissions } from '@/services/missions'
+import { getImpact } from '@/services/impact'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 
@@ -62,8 +59,11 @@ const currentUser = ref({
 })
 
 const impact = ref({
-  ...mockImpact
+  co2Saved: 0,
+  wasteRecycled: 0,
+  treesEquivalent: 0
 })
+const missionList = ref([])
 
 const loadCurrentUser = () => {
   const loggedInUser = getCurrentUser()
@@ -100,109 +100,6 @@ const loadCurrentUser = () => {
         : []
   }
 }
-
-const getMissionProgress = (mission) => {
-  const totalSteps =
-    mission.steps?.length ||
-    mission.totalSteps ||
-    0
-
-  const userId = getCurrentUser()?.id || 'guest'
-
-  const saved =
-    localStorage.getItem(
-      `ecoquest_mission_progress_${userId}_${mission.id}`
-    )
-
-  let completedSteps =
-    Number(mission.completedSteps || 0)
-
-  let savedProgress = 0
-
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved)
-
-      completedSteps =
-        Number(
-          parsed.completedSteps ??
-          completedSteps
-        )
-
-      savedProgress =
-        Number(
-          parsed.progress ?? 0
-        )
-    } catch {
-      completedSteps =
-        Number(
-          mission.completedSteps || 0
-        )
-    }
-  }
-
-  if (totalSteps > 0) {
-    return Math.min(
-      Math.round(
-        (completedSteps / totalSteps) * 100
-      ),
-      100
-    )
-  }
-
-  if (savedProgress > 0) {
-    return Math.min(
-      savedProgress,
-      100
-    )
-  }
-
-  if (typeof mission.progress === 'number') {
-    return Math.min(
-      Math.max(
-        mission.progress,
-        0
-      ),
-      100
-    )
-  }
-
-  return 0
-}
-
-const isMissionCompleted = (mission) => {
-  const progress =
-    getMissionProgress(mission)
-
-  const completedFromUser =
-    currentUser.value.completedMissionIds.some(
-      (id) =>
-        String(id) ===
-        String(mission.id)
-    )
-
-  return (
-    progress >= 100 ||
-    completedFromUser ||
-    mission.completed === true
-  )
-}
-
-const missionList = computed(() => {
-  return missions.map((mission) => {
-    const progress =
-      getMissionProgress(mission)
-
-    const completed =
-      isMissionCompleted(mission)
-
-    return {
-      ...mission,
-      progress,
-      completed
-    }
-  })
-})
 
 const nextQuest = computed(() => {
   return (
@@ -273,42 +170,23 @@ const lowCarbonDistance = computed(() => {
   )
 })
 
-const refreshDashboard = () => {
+onMounted(async () => {
   loadCurrentUser()
 
-  currentUser.value = {
-    ...currentUser.value
+  const [missionsResult, impactResult] = await Promise.all([
+    getMissions(),
+    getImpact()
+  ])
+
+  if (missionsResult.success) {
+    missionList.value = missionsResult.missions
   }
-}
 
-const handleStorageChange = (event) => {
-  if (
-    event.key === 'ecoquest_session' ||
-    event.key === null ||
-    (
-      event.key &&
-      event.key.startsWith(
-        'mission_progress_'
-      )
-    )
-  ) {
-    refreshDashboard()
+  if (impactResult.success) {
+    impact.value = {
+      ...impactResult.impact,
+      wasteRecycled: impactResult.impact.wasteReduced
+    }
   }
-}
-
-onMounted(() => {
-  loadCurrentUser()
-
-  window.addEventListener(
-    'storage',
-    handleStorageChange
-  )
-})
-
-onUnmounted(() => {
-  window.removeEventListener(
-    'storage',
-    handleStorageChange
-  )
 })
 </script>

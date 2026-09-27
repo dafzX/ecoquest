@@ -324,6 +324,8 @@ app.post('/api/auth/register', async (req, res) => {
       pushNotification: true,
       missionReminder: true,
       streakReminder: true,
+      promoNotification: false,
+      communityNotification: false,
       darkMode: false,
       language: 'Bahasa Indonesia'
     }
@@ -510,10 +512,97 @@ app.put('/api/users/:id', async (req, res) => {
 
 app.get('/api/missions', async (req, res) => {
   const data = await getMissionsData()
+  const userId = Number(req.query.userId)
+
+  if (!userId) {
+    return res.json({ success: true, missions: data.missions })
+  }
+
+  const usersData = await getUsersData()
+  const user = usersData.users.find((item) => item.id === userId)
+
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: 'User tidak ditemukan.'
+    })
+  }
+
+  const progress = user.missionProgress || {}
 
   res.json({
     success: true,
-    missions: data.missions
+    missions: data.missions.map((mission) => {
+      const completed = (user.completedMissionIds || []).some(
+        (id) => String(id) === String(mission.id)
+      )
+      const completedSteps = completed
+        ? mission.steps.length
+        : Number(progress[mission.id]?.completedSteps || 0)
+
+      return {
+        ...mission,
+        completed,
+        completedSteps,
+        progress: mission.steps.length
+          ? Math.round((completedSteps / mission.steps.length) * 100)
+          : 0
+      }
+    })
+  })
+})
+
+app.post('/api/missions/:missionId/steps/complete', async (req, res) => {
+  const userId = Number(req.body.userId)
+  const missionId = Number(req.params.missionId)
+  const stepNumber = Number(req.body.stepNumber)
+  const usersData = await getUsersData()
+  const missionsData = await getMissionsData()
+  const user = usersData.users.find((item) => item.id === userId)
+  const mission = missionsData.missions.find((item) => item.id === missionId)
+
+  if (!user || !mission) {
+    return res.status(404).json({
+      success: false,
+      message: 'User atau misi tidak ditemukan.'
+    })
+  }
+
+  if ((user.completedMissionIds || []).some((id) => String(id) === String(missionId))) {
+    return res.status(409).json({
+      success: false,
+      message: 'Misi ini sudah selesai.'
+    })
+  }
+
+  const totalSteps = mission.steps?.length || 0
+  const currentSteps = Number(user.missionProgress?.[missionId]?.completedSteps || 0)
+
+  if (!Number.isInteger(stepNumber) || stepNumber < 1 || stepNumber > totalSteps) {
+    return res.status(400).json({
+      success: false,
+      message: 'Langkah misi tidak valid.'
+    })
+  }
+
+  if (stepNumber > currentSteps + 1) {
+    return res.status(409).json({
+      success: false,
+      message: 'Selesaikan langkah secara berurutan.'
+    })
+  }
+
+  user.missionProgress = user.missionProgress || {}
+  user.missionProgress[missionId] = {
+    completedSteps: Math.max(currentSteps, stepNumber)
+  }
+
+  await saveUsersData(usersData)
+
+  res.json({
+    success: true,
+    completedSteps: user.missionProgress[missionId].completedSteps,
+    totalSteps
   })
 })
 
@@ -804,6 +893,8 @@ app.get(
         pushNotification: true,
         missionReminder: true,
         streakReminder: true,
+        promoNotification: false,
+        communityNotification: false,
         darkMode: false,
         language: 'Bahasa Indonesia',
         ...(user.settings || {})
@@ -834,6 +925,8 @@ app.put(
       'pushNotification',
       'missionReminder',
       'streakReminder',
+      'promoNotification',
+      'communityNotification',
       'darkMode',
       'language'
     ]
