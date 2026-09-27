@@ -15,6 +15,41 @@
       "id": 3,
       "title": "Hemat Energi",
       "xp": 40
+    },
+    {
+      "id": 4,
+      "title": "Recycle",
+      "xp": 60
+    },
+    {
+      "id": 5,
+      "title": "Save Water",
+      "xp": 30
+    },
+    {
+      "id": 6,
+      "title": "Plant Trees",
+      "xp": 100
+    },
+    {
+      "id": 7,
+      "title": "Eco-friendly Shopping",
+      "xp": 80
+    },
+    {
+      "id": 8,
+      "title": "Sustainable Eating",
+      "xp": 90
+    },
+    {
+      "id": 9,
+      "title": "Community Clean-up",
+      "xp": 70
+    },
+    {
+      "id": 10,
+      "title": "Energy Conservation",
+      "xp": 60
     }
 
   ]
