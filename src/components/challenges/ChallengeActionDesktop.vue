@@ -6,7 +6,7 @@
         <button
           type="button"
           @click="goBack"
-          class="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E2EAE5] bg-white text-[#405047] transition hover:bg-[#F4FBF7]"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-[#E2EAE5] bg-white text-[#405047] shadow-sm transition hover:bg-[#F4FBF7]"
         >
           <ArrowLeft class="h-4 w-4" />
         </button>

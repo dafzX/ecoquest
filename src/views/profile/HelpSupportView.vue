@@ -309,9 +309,9 @@
 
             <RouterLink
               to="/profile"
-              class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#E3E9E5] bg-white text-[#536158] transition hover:bg-[#F1F5F2]"
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#E2EAE5] bg-white text-[#405047] shadow-sm transition hover:bg-[#F4FBF7]"
             >
-              <ArrowLeft class="h-5 w-5" />
+              <ArrowLeft class="h-4 w-4" />
             </RouterLink>
 
             <div>

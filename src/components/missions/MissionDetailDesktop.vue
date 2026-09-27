@@ -3,15 +3,30 @@
     <div class="min-h-screen bg-[#F4FBF7] px-8 py-8">
       <div class="mx-auto max-w-6xl">
 
+        <!-- Header -->
         <div class="mb-8 flex items-center justify-between">
 
-          <button
-            type="button"
-            @click="goBack"
-            class="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#475569] shadow-sm"
-          >
-            <ArrowLeft class="h-5 w-5" />
-          </button>
+          <div class="flex items-center gap-3">
+
+            <button
+              type="button"
+              @click="goBack"
+              class="flex h-9 w-9 items-center justify-center rounded-full border border-[#E2EAE5] bg-white text-[#405047] shadow-sm transition hover:bg-[#F4FBF7]"
+            >
+              <ArrowLeft class="h-4 w-4" />
+            </button>
+
+            <div>
+              <p class="text-xs text-[#98A39C]">
+                {{ mission.title }}
+              </p>
+
+              <h1 class="text-xl font-bold text-[#17211B]">
+                Detail Misi
+              </h1>
+            </div>
+
+          </div>
 
           <div
             class="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm"
@@ -24,7 +39,7 @@
           </div>
 
         </div>
-
+        
         <div
           class="mb-8 overflow-hidden rounded-lg border border-[#E2E8F0] bg-white"
         >

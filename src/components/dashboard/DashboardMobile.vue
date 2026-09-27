@@ -234,7 +234,7 @@
 
         <RouterLink
           :to="nextQuest.link || `/missions/${nextQuest.id}`"
-          class="mt-4 flex h-9 items-center justify-center rounded-lg bg-[#16834B] text-[11px] font-semibold text-white transition active:scale-[0.98]"
+          class="mt-4 flex h-9 items-center justify-center rounded-lg bg-[#22C55E] text-[11px] font-semibold text-white transition active:scale-[0.98]"
         >
           Lanjutkan
         </RouterLink>

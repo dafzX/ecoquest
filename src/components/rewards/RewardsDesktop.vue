@@ -1,54 +1,47 @@
 <template>
   <main class="hidden md:block">
-
     <div class="mx-auto w-full max-w-295 px-6 pb-12 pt-8 xl:px-8">
 
       <!-- Header -->
       <section class="mb-7 flex items-end justify-between gap-6">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#22C55E]">
+            EcoQuest Hadiah
+          </p>
 
-        <div class="min-w-0">
-          <h1 class="text-[28px] font-bold tracking-tight text-[#17211B]">
+          <h1 class="mt-2 text-3xl font-bold tracking-tight text-[#17211B]">
             Hadiah
           </h1>
 
-          <p class="mt-1 text-sm text-[#66736A]">
-            Tukar XP yang kamu kumpulkan dengan hadiah menarik.
+          <p class="mt-2 max-w-2xl text-sm leading-6 text-[#66736A]">
+            Tukarkan XP yang kamu kumpulkan dengan berbagai hadiah dan apresiasi.
           </p>
         </div>
 
-        <div
-          class="flex shrink-0 items-center gap-3 rounded-lg border border-[#E8EDE9] bg-white px-5 py-3 shadow-sm"
-        >
-          <div
-            class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#EAF8EE]"
-          >
-            <Gift class="h-5 w-5 text-[#22C55E]" />
-          </div>
+        <div class="shrink-0 text-right">
+          <p class="text-xs text-[#98A39C]">
+            Saldo XP
+          </p>
 
-          <div>
-            <p class="text-[11px] font-medium text-[#98A39C]">
-              XP Saat Ini
-            </p>
-
-            <p class="text-base font-bold text-[#22C55E]">
-              {{ user.xp.toLocaleString() }} XP
-            </p>
-          </div>
+          <p class="mt-1 text-base font-bold text-[#22C55E]">
+            {{ Number(user?.xp ?? 0).toLocaleString() }} XP
+          </p>
         </div>
-
       </section>
 
       <!-- XP Overview -->
       <section class="mb-7 grid grid-cols-3 gap-4">
 
+        <!-- Hadiah Tersedia -->
         <div
-          class="rounded-lg border border-[#E8EDE9] bg-white p-5"
+          class="rounded-2xl border border-[#DCEBE0] bg-white p-5"
         >
           <div class="flex items-center gap-3">
+
             <div
               class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EAF8EE]"
             >
-              <Gift class="h-5 w-5 text-[#22C55E]" />
+              <Gift class="h-5 w-5 text-[#15803D]" />
             </div>
 
             <div>
@@ -56,17 +49,20 @@
                 Hadiah tersedia
               </p>
 
-              <p class="mt-0.5 text-xl font-bold text-[#17211B]">
-                {{ filteredRewards.length }}
+              <p class="mt-1 text-xl font-bold text-[#17211B]">
+                {{ filteredRewards.filter(reward => reward.available && !reward.owned).length }}
               </p>
             </div>
+
           </div>
         </div>
 
+        <!-- Sudah Ditukar -->
         <div
-          class="rounded-lg border border-[#E8EDE9] bg-white p-5"
+          class="rounded-2xl border border-[#DCEBE0] bg-white p-5"
         >
           <div class="flex items-center gap-3">
+
             <div
               class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F3E8FF]"
             >
@@ -78,19 +74,22 @@
                 Sudah ditukar
               </p>
 
-              <p class="mt-0.5 text-xl font-bold text-[#17211B]">
+              <p class="mt-1 text-xl font-bold text-[#17211B]">
                 {{ redeemedCount }}
               </p>
             </div>
+
           </div>
         </div>
 
+        <!-- XP Digunakan -->
         <div
-          class="rounded-lg border border-[#E8EDE9] bg-white p-5"
+          class="rounded-2xl border border-[#DCEBE0] bg-white p-5"
         >
           <div class="flex items-center gap-3">
+
             <div
-              class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FEF9C3]"
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF7E6]"
             >
               <Zap class="h-5 w-5 text-[#CA8A04]" />
             </div>
@@ -100,159 +99,165 @@
                 XP yang digunakan
               </p>
 
-              <p class="mt-0.5 text-xl font-bold text-[#17211B]">
-                {{ xpSpent.toLocaleString() }}
+              <p class="mt-1 text-xl font-bold text-[#17211B]">
+                {{ Number(xpSpent ?? 0).toLocaleString() }}
               </p>
             </div>
+
           </div>
         </div>
 
       </section>
 
       <!-- Categories -->
-      <section
-        class="mb-7 border-b border-[#E8EDE9]"
-      >
-        <div class="flex items-center gap-7">
+      <section class="mb-6">
+        <div class="flex items-center gap-2 overflow-x-auto pb-1">
 
           <button
             v-for="category in categories"
             :key="category"
             type="button"
-            class="relative pb-3 text-sm font-semibold transition"
+            @click="$emit('update:selected-category', category)"
+            class="shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition"
             :class="
               selectedCategory === category
-                ? 'text-[#15803D]'
-                : 'text-[#98A39C] hover:text-[#17211B]'
+                ? 'bg-[#22C55E] text-white hover:bg-[#22C55E]'
+                : 'border border-[#DCEBE0] bg-white text-[#66736A] hover:bg-[#F4FBF7]'
             "
-            @click="$emit('update:selected-category', category)"
           >
-            {{
-              category === 'All'
-                ? 'Semua'
-                : category === 'Impact'
-                ? 'Donasi'
-                : category === 'Digital'
-                ? 'Voucher'
-                : 'Merchandise'
-            }}
-
-            <span
-              v-if="selectedCategory === category"
-              class="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-[#22C55E]"
-            />
+            {{ getCategoryLabel(category) }}
           </button>
 
         </div>
       </section>
 
       <!-- Store Header -->
-      <section class="mb-5 flex items-end justify-between gap-6">
+      <section class="mb-4 flex items-center justify-between">
 
         <div>
           <h2 class="text-lg font-bold text-[#17211B]">
-            Katalog Hadiah
+            Pilih Hadiah
           </h2>
 
           <p class="mt-1 text-xs text-[#98A39C]">
-            Pilih hadiah yang ingin kamu tukarkan dengan XP.
+            Gunakan XP kamu untuk menukarkan hadiah.
           </p>
         </div>
 
-        <span class="shrink-0 text-xs text-[#98A39C]">
+        <p class="text-xs font-medium text-[#66736A]">
           {{ filteredRewards.length }} hadiah
-        </span>
+        </p>
 
       </section>
 
       <!-- Reward Grid -->
       <section
+        v-if="filteredRewards.length"
         class="grid grid-cols-3 gap-5 xl:grid-cols-4"
       >
 
         <article
           v-for="reward in filteredRewards"
           :key="reward.id"
-          class="group flex min-w-0 flex-col overflow-hidden rounded-lg border border-[#E8EDE9] bg-white transition duration-200 hover:-translate-y-1 hover:border-[#CDE8D4] hover:shadow-md"
+          class="overflow-hidden rounded-lg border border-[#E8EDE9] bg-white transition hover:-translate-y-0.5 hover:border-[#CDE8D4] hover:shadow-sm"
         >
 
-          <!-- Image / Icon -->
+          <!-- Reward Image -->
           <div
-            class="flex h-36 w-full items-center justify-center bg-[#EAF8EE]"
+            class="flex h-42.5 items-center justify-center"
+            :class="getRewardBackground(reward)"
           >
-            <Gift
-              v-if="reward.category === 'Digital'"
-              class="h-14 w-14 text-[#22C55E]"
-            />
 
-            <Award
-              v-else-if="reward.category === 'Impact'"
-              class="h-14 w-14 text-[#059669]"
-            />
+            <div
+              class="flex h-20 w-20 items-center justify-center rounded-lg bg-white shadow-sm"
+            >
 
-            <Leaf
-              v-else
-              class="h-14 w-14 text-[#15803D]"
-            />
+              <component
+                :is="getRewardIcon(reward)"
+                class="h-10 w-10"
+                :class="getRewardColor(reward)"
+              />
+
+            </div>
+
           </div>
 
           <!-- Content -->
-          <div class="flex flex-1 flex-col p-5">
+          <div class="p-5">
 
-            <span
-              class="mb-3 w-fit rounded-full bg-[#F1F5F2] px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-[#66736A]"
-            >
-              {{
-                reward.category === 'Impact'
-                  ? 'Donasi'
-                  : reward.category === 'Digital'
-                  ? 'Voucher'
-                  : reward.category === 'Merchandise'
-                  ? 'Merchandise'
-                  : reward.category
-              }}
-            </span>
+            <!-- Category + Status -->
+            <div class="flex items-start justify-between gap-3">
 
-            <h3
-              class="line-clamp-2 text-sm font-bold leading-5 text-[#17211B]"
-            >
-              {{ reward.title }}
-            </h3>
-
-            <div
-              class="mt-auto flex items-center justify-between gap-3 pt-6"
-            >
               <div class="min-w-0">
-                <p class="text-[10px] text-[#98A39C]">
-                  Harga
-                </p>
 
-                <p class="mt-0.5 truncate text-sm font-bold text-[#22C55E]">
-                  {{ reward.cost.toLocaleString() }} XP
-                </p>
+                <span
+                  class="rounded-full bg-[#F3F7F4] px-2.5 py-1 text-[10px] font-semibold text-[#66736A]"
+                >
+                  {{ getCategoryLabel(reward.category) }}
+                </span>
+
+                <h3 class="mt-3 text-base font-bold text-[#17211B]">
+                  {{ reward.title }}
+                </h3>
+
               </div>
 
+              <!-- Owned -->
+              <div
+                v-if="reward.owned"
+                class="shrink-0 rounded-full bg-[#DCFCE7] px-2 py-1 text-[10px] font-semibold text-[#15803D]"
+              >
+                Sudah Ditukar
+              </div>
+
+            </div>
+
+            <!-- Description -->
+            <p class="mt-2 min-h-10 text-xs leading-5 text-[#66736A]">
+              {{ reward.description }}
+            </p>
+
+            <!-- Footer -->
+            <div class="mt-5 flex items-center justify-between gap-3">
+
+              <!-- XP -->
+              <div class="flex items-center gap-1.5">
+
+                <Zap class="h-4 w-4 text-[#CA8A04]" />
+
+                <span class="text-sm font-bold text-[#17211B]">
+                  {{ Number(reward?.cost ?? 0).toLocaleString() }}
+                </span>
+
+                <span class="text-xs text-[#98A39C]">
+                  XP
+                </span>
+
+              </div>
+
+              <!-- Claim -->
               <button
                 type="button"
-                :disabled="reward.owned || !reward.available"
-                class="shrink-0 rounded-xl px-4 py-2 text-xs font-semibold transition"
+                @click="$emit('claim', reward)"
+                :disabled="!reward.available || reward.owned"
+                class="rounded-xl px-4 py-2.5 text-xs font-semibold transition"
                 :class="
                   reward.owned
                     ? 'cursor-default bg-[#EAF8EE] text-[#15803D]'
-                    : !reward.available
-                      ? 'cursor-not-allowed bg-[#F1F5F2] text-[#98A39C]'
-                      : 'bg-[#22C55E] text-white hover:bg-[#15803D]'
+                    : reward.available
+                      ? 'bg-[#22C55E] text-white hover:bg-[#16A34A]'
+                      : 'cursor-not-allowed bg-[#F1F3F1] text-[#98A39C]'
                 "
-                @click="$emit('claim', reward)"
               >
                 {{
                   reward.owned
                     ? 'Sudah Ditukar'
-                    : !reward.available
-                      ? 'Tidak Tersedia'
-                      : 'Tukar'
+                    : reward.available
+                      ? 'Tukar'
+                      : 'Terkunci'
                 }}
               </button>
+
             </div>
 
           </div>
@@ -261,34 +266,41 @@
 
       </section>
 
-      <!-- Empty -->
-      <div
-        v-if="filteredRewards.length === 0"
-        class="mt-2 rounded-lg border border-dashed border-[#DCE5DE] bg-white px-6 py-16 text-center"
+      <!-- Empty State -->
+      <section
+        v-else
+        class="rounded-2xl border border-dashed border-[#DCEBE0] bg-white px-6 py-14 text-center"
       >
-        <Gift class="mx-auto h-12 w-12 text-[#98A39C]" />
 
-        <p class="mt-4 text-base font-semibold text-[#17211B]">
-          Hadiah tidak ditemukan
+        <div
+          class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EAF8EE]"
+        >
+          <Gift class="h-6 w-6 text-[#15803D]" />
+        </div>
+
+        <h3 class="mt-4 text-base font-bold text-[#17211B]">
+          Belum ada hadiah
+        </h3>
+
+        <p class="mx-auto mt-2 max-w-md text-xs leading-5 text-[#66736A]">
+          Belum ada hadiah yang tersedia pada kategori ini.
         </p>
 
-        <p class="mt-1 text-sm text-[#98A39C]">
-          Coba pilih kategori hadiah lainnya.
-        </p>
-      </div>
+      </section>
 
     </div>
-
   </main>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-
 import {
   Award,
+  BriefcaseBusiness,
   Gift,
   Leaf,
+  Recycle,
+  TreePine,
+  Trophy,
   Zap
 } from 'lucide-vue-next'
 
@@ -328,4 +340,72 @@ defineEmits([
   'update:selected-category',
   'claim'
 ])
+
+const getCategoryLabel = category => {
+  if (category === 'All') {
+    return 'Semua'
+  }
+
+  if (category === 'Digital') {
+    return 'Digital'
+  }
+
+  if (category === 'Impact') {
+    return 'Dampak'
+  }
+
+  if (category === 'Merchandise') {
+    return 'Merchandise'
+  }
+
+  return category
+}
+
+const getRewardIcon = reward => {
+  if (reward?.icon === 'tree') {
+    return TreePine
+  }
+
+  if (reward?.icon === 'bottle') {
+    return Recycle
+  }
+
+  if (reward?.icon === 'bag') {
+    return BriefcaseBusiness
+  }
+
+  if (reward?.icon === 'leaf') {
+    return Leaf
+  }
+
+  if (reward?.icon === 'trophy') {
+    return Trophy
+  }
+
+  return Award
+}
+
+const getRewardBackground = reward => {
+  if (reward?.category === 'Impact') {
+    return 'bg-[#EAF8EE]'
+  }
+
+  if (reward?.category === 'Merchandise') {
+    return 'bg-[#EEF5FF]'
+  }
+
+  return 'bg-[#F3E8FF]'
+}
+
+const getRewardColor = reward => {
+  if (reward?.category === 'Impact') {
+    return 'text-[#15803D]'
+  }
+
+  if (reward?.category === 'Merchandise') {
+    return 'text-[#3B82F6]'
+  }
+
+  return 'text-[#9333EA]'
+}
 </script>

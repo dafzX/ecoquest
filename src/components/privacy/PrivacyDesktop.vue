@@ -7,10 +7,11 @@
         <button
           type="button"
           @click="$emit('back')"
-          class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#DCEBE0] bg-white text-[#405047] transition hover:bg-[#EAF8EE] hover:text-[#15803D]"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-[#E2EAE5] bg-white text-[#405047] shadow-sm transition hover:bg-[#F4FBF7]"
         >
-          <ArrowLeft class="h-5 w-5" />
+          <ArrowLeft class="h-4 w-4" />
         </button>
+        
         <div>
           <p class="text-xs font-medium text-[#8A958E]">Pengaturan</p>
           <h1 class="mt-1 text-2xl font-bold text-[#17211B]">Privacy</h1>

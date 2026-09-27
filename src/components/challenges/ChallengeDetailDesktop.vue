@@ -2,26 +2,23 @@
   <main class="hidden md:block">
     <div class="mx-auto max-w-6xl px-6 py-8">
 
-      <!-- Header -->
-      <div class="mb-7 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <button
-            type="button"
-            @click="goBack"
-            class="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E2EAE5] bg-white text-[#405047] transition hover:bg-[#F4FBF7]"
-          >
-            <ArrowLeft class="h-4 w-4" />
-          </button>
+      <div class="mb-7 flex items-center gap-3">
+        <button
+          type="button"
+          @click="goBack"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-[#E2EAE5] bg-white text-[#405047] shadow-sm transition hover:bg-[#F4FBF7]"
+        >
+          <ArrowLeft class="h-4 w-4" />
+        </button>
 
-          <div>
-            <p class="text-xs text-[#98A39C]">
-              Tantangan
-            </p>
+        <div>
+          <p class="text-xs text-[#98A39C]">
+            {{ challenge.title }}
+          </p>
 
-            <h1 class="text-xl font-bold text-[#17211B]">
-              Detail Tantangan
-            </h1>
-          </div>
+          <h1 class="text-xl font-bold text-[#17211B]">
+            Aksi Tantangan
+          </h1>
         </div>
       </div>
 

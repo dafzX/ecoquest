@@ -6,12 +6,16 @@
       <header class="mb-6 flex items-center gap-3">
         <RouterLink
           to="/profile"
-          class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#DCEBE0] bg-white text-[#405047] transition hover:bg-[#EAF8EE] hover:text-[#15803D]"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-[#E2EAE5] bg-white text-[#405047] shadow-sm transition hover:bg-[#F4FBF7]"
         >
-          <ArrowLeft class="h-5 w-5" />
+          <ArrowLeft class="h-4 w-4" />
         </RouterLink>
+
         <div>
-          <h1 class="text-[24px] font-bold text-[#17211B]">Pengaturan</h1>
+          <h1 class="text-[24px] font-bold text-[#17211B]">
+            Pengaturan
+          </h1>
+
           <p class="mt-1 text-sm text-[#718078]">
             Kelola preferensi dan pengaturan akun EcoQuest.
           </p>

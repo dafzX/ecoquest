@@ -1,133 +1,135 @@
-const API_URL = '/api'
-const SESSION_KEY = 'ecoquest_session'
-
-async function parseResponse(response) {
-  try {
-    return await response.json()
-  } catch {
-    return {
-      success: false,
-      message: 'Response dari server tidak valid.'
-    }
-  }
-}
+import { supabase } from '@/lib/supabase'
 
 export async function login(email, password) {
   try {
-    const response = await fetch(`${API_URL}/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email,
-        password
-      })
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
     })
 
-    const result = await parseResponse(response)
-
-    if (!response.ok) {
-      return result
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        user: null
+      }
     }
 
-    if (result.user) {
-      localStorage.setItem(
-        SESSION_KEY,
-        JSON.stringify(result.user)
-      )
+    return {
+      success: true,
+      message: 'Login berhasil.',
+      user: data.user
     }
-
-    return result
   } catch (error) {
     return {
       success: false,
-      message: 'Backend tidak terhubung. Jalankan server terlebih dahulu.'
+      message: 'Terjadi kesalahan saat login.',
+      user: null
     }
   }
 }
 
 export async function register({ name, email, password }) {
   try {
-    const response = await fetch(`${API_URL}/auth/register`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password
-      })
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name
+        }
+      }
     })
 
-    const result = await parseResponse(response)
-
-    if (!response.ok) {
-      return result
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        user: null
+      }
     }
 
-    if (result.user) {
-      localStorage.setItem(
-        SESSION_KEY,
-        JSON.stringify(result.user)
-      )
+    if (!data.user) {
+      return {
+        success: false,
+        message: 'Pendaftaran gagal.',
+        user: null
+      }
     }
 
-    return result
+    return {
+      success: true,
+      message: 'Akun berhasil dibuat.',
+      user: data.user
+    }
   } catch (error) {
     return {
       success: false,
-      message: 'Backend tidak terhubung. Jalankan server terlebih dahulu.'
+      message: 'Terjadi kesalahan saat membuat akun.',
+      user: null
     }
   }
 }
 
 export async function getProfile() {
   try {
-    const response = await fetch(`${API_URL}/auth/profile`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
+    const {
+      data: { user },
+      error
+    } = await supabase.auth.getUser()
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        user: null
       }
-    })
-
-    const result = await parseResponse(response)
-
-    if (!response.ok) {
-      return result
     }
 
-    if (result.user) {
-      localStorage.setItem(
-        SESSION_KEY,
-        JSON.stringify(result.user)
-      )
+    if (!user) {
+      return {
+        success: false,
+        message: 'Pengguna belum login.',
+        user: null
+      }
     }
 
-    return result
+    return {
+      success: true,
+      user
+    }
   } catch (error) {
     return {
       success: false,
-      message: 'Backend tidak terhubung.'
+      message: 'Gagal mengambil profil.',
+      user: null
     }
   }
 }
 
-export function getCurrentUser() {
+export async function getCurrentUser() {
   try {
-    return JSON.parse(
-      localStorage.getItem(SESSION_KEY) || 'null'
-    )
+    const {
+      data: { user }
+    } = await supabase.auth.getUser()
+
+    return user
   } catch {
     return null
   }
 }
 
-export function isLoggedIn() {
-  return getCurrentUser() !== null
+export async function isLoggedIn() {
+  const user = await getCurrentUser()
+
+  return user !== null
 }
 
-export function logout() {
-  localStorage.removeItem(SESSION_KEY)
+export async function logout() {
+  const { error } = await supabase.auth.signOut()
+
+  return {
+    success: !error,
+    message: error?.message || 'Logout berhasil.'
+  }
 }
