@@ -9,13 +9,13 @@
     <!-- Greeting -->
     <section class="mb-3">
       <h1
-        class="text-[17px] font-bold text-[#17211B]"
+        class="text-[17px] font-bold text-gray-900"
       >
         Selamat pagi, {{ currentUser.name }}!
       </h1>
 
       <p
-        class="mt-0.5 text-[10px] text-[#718078]"
+        class="mt-0.5 text-[10px] text-gray-500"
       >
         Saatnya lanjutkan langkah baik hari ini.
       </p>
@@ -30,7 +30,7 @@
         <div
           class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#E8F8ED]"
         >
-          <Leaf class="h-5 w-5 text-[#22C55E]" />
+          <Leaf class="h-5 w-5 text-green-500" />
         </div>
 
         <div class="min-w-0 flex-1">
@@ -41,20 +41,20 @@
 
             <div>
               <p
-                class="text-[12px] font-bold text-[#17211B]"
+                class="text-[12px] font-bold text-gray-900"
               >
                 Level {{ currentUser.level }}
               </p>
 
               <p
-                class="text-[11px] text-[#718078]"
+                class="text-[11px] text-gray-500"
               >
                 {{ currentUser.levelName || 'Eco Explorer' }}
               </p>
             </div>
 
             <span
-              class="text-[11px] font-medium text-[#718078]"
+              class="text-[11px] font-medium text-gray-500"
             >
               {{ currentUser.xp }} /
               {{ currentUser.nextLevelXp }} XP
@@ -91,13 +91,13 @@
         />
 
         <p
-          class="mt-1 text-[12px] font-bold text-[#17211B]"
+          class="mt-1 text-[12px] font-bold text-gray-900"
         >
           {{ currentUser.streak }}
         </p>
 
         <p
-          class="text-[10px] text-[#718078]"
+          class="text-[10px] text-gray-500"
         >
           Streak
         </p>
@@ -108,17 +108,17 @@
         class="border-x border-[#E8EFEA] px-2 py-3 text-center"
       >
         <Leaf
-          class="mx-auto h-4 w-4 text-[#22C55E]"
+          class="mx-auto h-4 w-4 text-green-500"
         />
 
         <p
-          class="mt-1 text-[12px] font-bold text-[#17211B]"
+          class="mt-1 text-[12px] font-bold text-gray-900"
         >
           {{ ecoActions }}
         </p>
 
         <p
-          class="text-[10px] text-[#718078]"
+          class="text-[10px] text-gray-500"
         >
           Aksi Eco
         </p>
@@ -129,17 +129,17 @@
         class="px-2 py-3 text-center"
       >
         <Bike
-          class="mx-auto h-4 w-4 text-[#22C55E]"
+          class="mx-auto h-4 w-4 text-green-500"
         />
 
         <p
-          class="mt-1 text-[12px] font-bold text-[#17211B]"
+          class="mt-1 text-[12px] font-bold text-gray-900"
         >
           {{ lowCarbonDistance }}
         </p>
 
         <p
-          class="text-[10px] text-[#718078]"
+          class="text-[10px] text-gray-500"
         >
           Rendah Karbon
         </p>
@@ -151,13 +151,13 @@
     <div>
 
       <div class="mb-2 flex items-center justify-between">
-        <h2 class="text-[12px] font-bold text-[#17211B]">
+        <h2 class="text-[12px] font-bold text-gray-900">
           Quest Berikutnya
         </h2>
 
         <RouterLink
           to="/missions"
-          class="text-[9px] font-medium text-[#22C55E]"
+          class="text-[9px] font-medium text-green-500"
         >
           Lihat Semua
         </RouterLink>
@@ -173,7 +173,7 @@
           <div
             class="flex h-13 w-13 shrink-0 items-center justify-center rounded-xl bg-[#E8F8ED]"
           >
-            <Recycle class="h-6 w-6 text-[#22C55E]" />
+            <Recycle class="h-6 w-6 text-green-500" />
           </div>
 
           <div class="min-w-0 flex-1">
@@ -184,13 +184,13 @@
               <div class="min-w-0">
 
                 <h3
-                  class="truncate text-[11px] font-bold text-[#17211B]"
+                  class="truncate text-[11px] font-bold text-gray-900"
                 >
                   {{ nextQuest.title }}
                 </h3>
 
                 <p
-                  class="mt-1 text-[10px] leading-4 text-[#718078]"
+                  class="mt-1 text-[10px] leading-4 text-gray-500"
                 >
                   {{ nextQuest.description }}
                 </p>
@@ -198,7 +198,7 @@
               </div>
 
               <span
-                class="shrink-0 text-[11px] font-semibold text-[#16834B]"
+                class="shrink-0 text-[11px] font-semibold text-green-700"
               >
                 +{{ nextQuest.xp }} XP
               </span>
@@ -207,12 +207,12 @@
             <div
               class="mt-2 flex items-center justify-between"
             >
-              <span class="text-[10px] text-[#718078]">
+              <span class="text-[10px] text-gray-500">
                 {{ nextQuest.step || 'Belum dimulai' }}
               </span>
 
               <span
-                class="text-[10px] font-semibold text-[#16834B]"
+                class="text-[10px] font-semibold text-green-700"
               >
                 {{ questProgress }}%
               </span>
@@ -250,17 +250,17 @@
           <div
             class="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#E8F8ED]"
           >
-            <Leaf class="h-5 w-5 text-[#22C55E]" />
+            <Leaf class="h-5 w-5 text-green-500" />
           </div>
 
           <h3
-            class="mt-2 text-[11px] font-bold text-[#17211B]"
+            class="mt-2 text-[11px] font-bold text-gray-900"
           >
             Tidak ada misi berikutnya
           </h3>
 
           <p
-            class="mt-1 text-[8px] text-[#718078]"
+            class="mt-1 text-[8px] text-gray-500"
           >
             Semua misi sudah kamu selesaikan.
           </p>
@@ -281,20 +281,20 @@
 
         <div>
           <h2
-            class="text-[12px] font-bold text-[#17211B]"
+            class="text-[12px] font-bold text-gray-900"
           >
             Progress Kebiasaan
           </h2>
 
           <p
-            class="mt-1 text-[10px] text-[#718078]"
+            class="mt-1 text-[10px] text-gray-500"
           >
             Konsistensi eco-mu minggu ini
           </p>
         </div>
 
         <span
-          class="text-[13px] font-bold text-[#16834B]"
+          class="text-[13px] font-bold text-green-700"
         >
           {{ questProgress }}%
         </span>
@@ -307,20 +307,20 @@
 
         <div>
           <p
-            class="text-[12px] font-semibold text-[#17211B]"
+            class="text-[12px] font-semibold text-gray-900"
           >
             Kurangi Plastik
           </p>
 
           <p
-            class="mt-1 text-[10px] text-[#718078]"
+            class="mt-1 text-[10px] text-gray-500"
           >
             Terus pertahankan kebiasaan baikmu.
           </p>
         </div>
 
         <TrendingUp
-          class="h-4 w-4 text-[#22C55E]"
+          class="h-4 w-4 text-green-500"
         />
 
       </div>
@@ -343,14 +343,14 @@
       class="mb-2 flex items-center justify-between"
     >
       <h2
-        class="text-[12px] font-bold text-[#17211B]"
+        class="text-[12px] font-bold text-gray-900"
       >
         Dampakmu
       </h2>
 
       <RouterLink
         to="/impact"
-        class="text-[10px] font-semibold text-[#16834B]"
+        class="text-[10px] font-semibold text-green-700"
       >
         Lihat Semua
       </RouterLink>
@@ -364,17 +364,17 @@
         class="rounded-lg bg-white p-3 shadow-sm transition-shadow active:shadow-md"
       >
         <Cloud
-          class="h-4 w-4 text-[#22C55E]"
+          class="h-4 w-4 text-green-500"
         />
 
         <p
-          class="mt-2 text-[13px] font-bold text-[#17211B]"
+          class="mt-2 text-[13px] font-bold text-gray-900"
         >
           {{ impact.co2Saved }}
         </p>
 
         <p
-          class="text-[10px] text-[#718078]"
+          class="text-[10px] text-gray-500"
         >
           CO₂ Dihemat
         </p>
@@ -385,17 +385,17 @@
         class="rounded-lg bg-white p-3 shadow-sm transition-shadow active:shadow-md"
       >
         <Recycle
-          class="h-4 w-4 text-[#22C55E]"
+          class="h-4 w-4 text-green-500"
         />
 
         <p
-          class="mt-2 text-[13px] font-bold text-[#17211B]"
+          class="mt-2 text-[13px] font-bold text-gray-900"
         >
           {{ impact.wasteRecycled }}
         </p>
 
         <p
-          class="text-[10px] text-[#718078]"
+          class="text-[10px] text-gray-500"
         >
           Item Didaur Ulang
         </p>
@@ -406,17 +406,17 @@
         class="rounded-lg bg-white p-3 shadow-sm transition-shadow active:shadow-md"
       >
         <TreePine
-          class="h-4 w-4 text-[#22C55E]"
+          class="h-4 w-4 text-green-500"
         />
 
         <p
-          class="mt-2 text-[13px] font-bold text-[#17211B]"
+          class="mt-2 text-[13px] font-bold text-gray-900"
         >
           {{ impact.treesEquivalent }}
         </p>
 
         <p
-          class="text-[10px] text-[#718078]"
+          class="text-[10px] text-gray-500"
         >
           Setara Pohon
         </p>

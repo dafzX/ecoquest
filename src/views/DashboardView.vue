@@ -65,8 +65,8 @@ const impact = ref({
 })
 const missionList = ref([])
 
-const loadCurrentUser = () => {
-  const loggedInUser = getCurrentUser()
+const loadCurrentUser = async () => {
+  const loggedInUser = await getCurrentUser()
 
   if (!loggedInUser) {
     return
@@ -171,7 +171,7 @@ const lowCarbonDistance = computed(() => {
 })
 
 onMounted(async () => {
-  loadCurrentUser()
+  await loadCurrentUser()
 
   const [missionsResult, impactResult] = await Promise.all([
     getMissions(),

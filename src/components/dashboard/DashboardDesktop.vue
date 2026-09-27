@@ -25,15 +25,15 @@
                 <div
                   class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#E8F8ED]"
                 >
-                  <Leaf class="h-6 w-6 text-[#22C55E]" />
+                  <Leaf class="h-6 w-6 text-green-500" />
                 </div>
 
                 <div>
-                  <p class="text-sm font-bold text-[#17211B]">
+                  <p class="text-sm font-bold text-gray-900">
                     Level {{ currentUser.level }}
                   </p>
 
-                  <p class="text-xs text-[#66736A]">
+                  <p class="text-xs text-gray-500">
                     {{ currentUser.levelName || 'Eco Explorer' }}
                   </p>
                 </div>
@@ -41,7 +41,7 @@
               </div>
 
               <div class="mt-6 flex items-center justify-between">
-                <span class="text-xs font-medium text-[#66736A]">
+                <span class="text-xs font-medium text-gray-500">
                   {{ currentUser.xp }} /
                   {{ currentUser.nextLevelXp }} XP
                 </span>
@@ -60,7 +60,7 @@
             <!-- Impact -->
             <div class="flex-1 pl-2">
 
-              <p class="mb-4 text-xs font-semibold text-[#17211B]">
+              <p class="mb-4 text-xs font-semibold text-gray-900">
                 Dampakmu
               </p>
 
@@ -77,7 +77,7 @@
                   </div>
 
                   <p
-                    class="mt-2 text-[10px] font-bold text-[#17211B]"
+                    class="mt-2 text-[10px] font-bold text-gray-900"
                   >
                     {{ currentUser.streak }} Hari
                   </p>
@@ -88,16 +88,16 @@
                   <div
                     class="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-[#E8EDE9] bg-[#F8FAF8]"
                   >
-                    <Cloud class="h-4 w-4 text-[#22C55E]" />
+                    <Cloud class="h-4 w-4 text-green-500" />
                   </div>
 
                   <p
-                    class="mt-2 text-[10px] font-bold text-[#17211B]"
+                    class="mt-2 text-[10px] font-bold text-gray-900"
                   >
                     {{ impact.co2Saved }} kg
                   </p>
 
-                  <p class="text-[9px] text-[#66736A]">
+                  <p class="text-[9px] text-gray-500">
                     CO₂ Dihemat
                   </p>
                 </div>
@@ -107,16 +107,16 @@
                   <div
                     class="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-[#E8EDE9] bg-[#F8FAF8]"
                   >
-                    <Leaf class="h-4 w-4 text-[#22C55E]" />
+                    <Leaf class="h-4 w-4 text-green-500" />
                   </div>
 
                   <p
-                    class="mt-2 text-[10px] font-bold text-[#17211B]"
+                    class="mt-2 text-[10px] font-bold text-gray-900"
                   >
                     {{ ecoActions }}
                   </p>
 
-                  <p class="text-[9px] text-[#66736A]">
+                  <p class="text-[9px] text-gray-500">
                     Aksi Eco
                   </p>
                 </div>
@@ -126,16 +126,16 @@
                   <div
                     class="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-[#E8EDE9] bg-[#F8FAF8]"
                   >
-                    <Bike class="h-4 w-4 text-[#22C55E]" />
+                    <Bike class="h-4 w-4 text-green-500" />
                   </div>
 
                   <p
-                    class="mt-2 text-[10px] font-bold text-[#17211B]"
+                    class="mt-2 text-[10px] font-bold text-gray-900"
                   >
                     {{ lowCarbonDistance }} km
                   </p>
 
-                  <p class="text-[9px] text-[#66736A]">
+                  <p class="text-[9px] text-gray-500">
                     Rendah Karbon
                   </p>
                 </div>
@@ -146,7 +146,7 @@
 
           <!-- Next Quest -->
           <div>
-            <h2 class="mb-4 text-base font-bold text-[#17211B]">
+            <h2 class="mb-4 text-base font-bold text-gray-900">
               Quest Berikutnya
             </h2>
 
@@ -162,26 +162,26 @@
                   <div
                     class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#E8F8ED]"
                   >
-                    <Recycle class="h-6 w-6 text-[#22C55E]" />
+                    <Recycle class="h-6 w-6 text-green-500" />
                   </div>
 
                   <div>
-                    <h3 class="text-sm font-bold text-[#17211B]">
+                    <h3 class="text-sm font-bold text-gray-900">
                       {{ nextQuest.title }}
                     </h3>
 
-                    <p class="mt-1 text-xs text-[#66736A]">
+                    <p class="mt-1 text-xs text-gray-500">
                       {{ nextQuest.description }}
                     </p>
 
                     <div
                       class="mt-4 flex w-64 items-center justify-between"
                     >
-                      <span class="text-[10px] font-medium text-[#66736A]">
+                      <span class="text-[10px] font-medium text-gray-500">
                         {{ nextQuest.step || 'Belum dimulai' }}
                       </span>
 
-                      <span class="text-[10px] font-bold text-[#22C55E]">
+                      <span class="text-[10px] font-bold text-green-500">
                         {{ questProgress }}%
                       </span>
                     </div>
@@ -200,7 +200,7 @@
                 <div class="text-right">
 
                   <span
-                    class="inline-block rounded-full bg-[#EAF8EE] px-3 py-1 text-xs font-bold text-[#15803D]"
+                    class="inline-block rounded-full bg-[#EAF8EE] px-3 py-1 text-xs font-bold text-green-700"
                   >
                     +{{ nextQuest.xp }} XP
                   </span>
@@ -227,14 +227,14 @@
                 <div
                   class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#E8F8ED]"
                 >
-                  <Leaf class="h-6 w-6 text-[#22C55E]" />
+                  <Leaf class="h-6 w-6 text-green-500" />
                 </div>
 
-                <h3 class="mt-3 text-sm font-bold text-[#17211B]">
+                <h3 class="mt-3 text-sm font-bold text-gray-900">
                   Tidak ada misi berikutnya
                 </h3>
 
-                <p class="mt-1 text-xs text-[#66736A]">
+                <p class="mt-1 text-xs text-gray-500">
                   Semua misi sudah kamu selesaikan.
                 </p>
 
@@ -248,7 +248,7 @@
         <div>
 
           <h2
-            class="mb-4 text-base font-bold text-[#17211B]"
+            class="mb-4 text-base font-bold text-gray-900"
           >
             Progress Kebiasaan
           </h2>
@@ -261,20 +261,20 @@
 
               <div>
                 <h3
-                  class="text-sm font-bold text-[#17211B]"
+                  class="text-sm font-bold text-gray-900"
                 >
                   Kurangi Plastik
                 </h3>
 
                 <p
-                  class="mt-1 text-xs text-[#66736A]"
+                  class="mt-1 text-xs text-gray-500"
                 >
                   Terus pertahankan kebiasaan baikmu.
                 </p>
               </div>
 
               <span
-                class="text-lg font-bold text-[#22C55E]"
+                class="text-lg font-bold text-green-500"
               >
                 {{ questProgress }}%
               </span>
@@ -309,13 +309,13 @@
 
                 <div>
                   <p
-                    class="text-xs font-bold text-[#17211B]"
+                    class="text-xs font-bold text-gray-900"
                   >
                     {{ currentUser.streak }} hari streak
                   </p>
 
                   <p
-                    class="text-[10px] text-[#66736A]"
+                    class="text-[10px] text-gray-500"
                   >
                     Streak aktif
                   </p>
@@ -336,13 +336,13 @@
 
                 <div>
                   <p
-                    class="text-xs font-bold text-[#17211B]"
+                    class="text-xs font-bold text-gray-900"
                   >
                     Pencapaian berikutnya
                   </p>
 
                   <p
-                    class="text-[10px] text-[#66736A]"
+                    class="text-[10px] text-gray-500"
                   >
                     Gunakan botol minum reusable selama 14 hari
                   </p>

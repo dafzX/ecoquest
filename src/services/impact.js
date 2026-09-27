@@ -14,7 +14,7 @@ async function parseResponse(response) {
 }
 
 export async function getImpact() {
-  const currentUser = getCurrentUser()
+  const currentUser = await getCurrentUser()
 
   if (!currentUser) {
     return {
