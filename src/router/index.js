@@ -173,7 +173,7 @@ const router = createRouter({
       name: 'EditProfile',
       component: () => import('@/views/profile/EditProfileView.vue'),
       meta: {
-        title: 'Edit Profil - EcoQuest',
+        title: 'Edit Profile - EcoQuest',
         hideBottomNav: true,
         requireAuth: true
       }
@@ -241,10 +241,12 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to) => {
+router.beforeEach(async (to) => {
   document.title = to.meta.title || 'EcoQuest'
 
-  if (to.meta.requireAuth && !isLoggedIn()) {
+  const loggedIn = await isLoggedIn()
+
+  if (to.meta.requireAuth && !loggedIn) {
     return {
       name: 'Login',
       query: {
@@ -255,7 +257,7 @@ router.beforeEach((to) => {
 
   if (
     (to.name === 'Login' || to.name === 'Register') &&
-    isLoggedIn()
+    loggedIn
   ) {
     return {
       name: 'Dashboard'
