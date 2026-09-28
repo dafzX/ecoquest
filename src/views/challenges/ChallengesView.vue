@@ -49,7 +49,7 @@ import {
 
 const router = useRouter()
 
-const activeTab = ref('saya')
+const activeTab = ref('komunitas')
 const challenges = ref([])
 
 const translateChallenge = (challenge) => {

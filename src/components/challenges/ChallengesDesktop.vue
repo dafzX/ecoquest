@@ -12,20 +12,20 @@
       <div class="mb-6 flex gap-4 border-b border-[#E8EDE9]">
         <button
           class="border-b-2 pb-3 text-sm font-semibold transition"
-          :class="activeTab === 'community'
+          :class="activeTab === 'komunitas'
             ? 'border-[#22C55E] text-[#17211B]'
             : 'border-transparent text-[#98A39C] hover:text-[#17211B]'"
-          @click="$emit('update:activeTab', 'community')"
+          @click="$emit('update:active-tab', 'komunitas')"
         >
           Tantangan Komunitas
         </button>
 
         <button
           class="border-b-2 pb-3 text-sm font-semibold transition"
-          :class="activeTab === 'mine'
+          :class="activeTab === 'saya'
             ? 'border-[#22C55E] text-[#17211B]'
             : 'border-transparent text-[#98A39C] hover:text-[#17211B]'"
-          @click="$emit('update:activeTab', 'mine')"
+          @click="$emit('update:active-tab', 'saya')"
         >
           Tantangan Saya
         </button>
