@@ -5,7 +5,7 @@
       <button
         type="button"
         @click="$emit('toggle')"
-        class="relative flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-white"
+        class="relative flex h-8 w-8 items-center justify-center rounded-full text-[#405047] transition hover:bg-[#EAF3EC] hover:text-[#15803D] active:bg-[#DCFCE7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
       >
         <Bell class="h-4.25 w-4.25" />
 
@@ -30,7 +30,7 @@
     >
       <div
         v-if="isOpen"
-        class="absolute right-0 top-11 z-100 w-70 max-w-[calc(100vw-24px)] overflow-hidden rounded-lg border border-[#E3ECE6] bg-white shadow-xl shadow-[#17211B]/10"
+        class="absolute right-0 top-11 z-100 w-70 max-w-[calc(100vw-24px)] overflow-hidden rounded-xl border border-[#E5EAE7] bg-white shadow-[0_8px_24px_rgba(23,33,27,0.10)]"
       >
         <!-- Header -->
         <div
@@ -51,7 +51,7 @@
               v-if="unreadCount > 0"
               type="button"
               @click="markAllAsRead"
-              class="flex items-center gap-1 rounded-lg px-2 py-1.5 text-[9px] font-semibold text-[#22C55E] transition hover:bg-[#E8F8ED]"
+              class="flex items-center gap-1 rounded-lg px-2 py-1.5 text-[9px] font-semibold text-[#16A34A] transition hover:bg-[#E8F8ED] active:bg-[#DCFCE7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-1"
             >
               <CheckCheck class="h-3.5 w-3.5" />
               Tandai semua
@@ -60,7 +60,7 @@
             <button
               type="button"
               @click="$emit('close')"
-              class="flex h-7 w-7 items-center justify-center rounded-lg text-[#9AA59E] transition hover:bg-[#F4F7F5]"
+              class="flex h-7 w-7 items-center justify-center rounded-lg text-[#9AA59E] transition hover:bg-[#F4F7F5] hover:text-[#455149] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-1"
             >
               <X class="h-3.5 w-3.5" />
             </button>
@@ -74,7 +74,7 @@
             :key="notification.id"
             type="button"
             @click="markAsRead(notification)"
-            class="flex w-full gap-2.5 border-b border-[#F0F4F1] px-4 py-3 text-left transition hover:bg-[#F8FBF9]"
+            class="flex w-full gap-2.5 border-b border-[#F0F4F1] px-4 py-3 text-left transition hover:bg-[#F3F8F4] active:bg-[#EAF3EC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#16A34A]"
             :class="{
               'bg-[#F3FBF6]': !notification.read
             }"
@@ -83,7 +83,7 @@
             <div
               class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
               :class="{
-                'bg-[#E8F8ED] text-[#22C55E]':
+                'bg-[#E8F8ED] text-[#16A34A]':
                   notification.type === 'mission',
 
                 'bg-[#F3E8FF] text-[#9333EA]':
@@ -121,7 +121,7 @@
 
                 <span
                   v-if="!notification.read"
-                  class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#22C55E]"
+                  class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#16A34A]"
                 ></span>
               </div>
 
@@ -162,7 +162,7 @@
         <div class="border-t border-[#EEF3EF] px-4 py-2.5">
           <button
             type="button"
-            class="w-full rounded-lg py-1.5 text-[9px] font-semibold text-[#22C55E] transition hover:bg-[#E8F8ED]"
+            class="w-full rounded-lg py-1.5 text-[9px] font-semibold text-[#16A34A] transition hover:bg-[#E8F8ED] active:bg-[#DCFCE7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A]"
           >
             Lihat semua notifikasi
           </button>

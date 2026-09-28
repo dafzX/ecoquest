@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-lg border border-[#E8EDE9] bg-white p-5 transition hover:border-[#CDE8D4] hover:shadow-sm"
+    class="rounded-xl border border-[#E5EAE7] bg-white p-5 shadow-[0_1px_2px_rgba(23,33,27,0.04)] transition duration-200 hover:border-[#BFE8C9] hover:shadow-[0_5px_16px_rgba(23,33,27,0.07)]"
   >
     <div class="flex items-start justify-between gap-4">
 
@@ -60,7 +60,7 @@
 
       <div class="h-2 overflow-hidden rounded-full bg-[#EAF0EB]">
         <div
-          class="h-full rounded-full bg-[#22C55E] transition-all"
+          class="h-full rounded-full bg-[#16A34A] transition-all"
           :style="{ width: `${progressPercentage}%` }"
         ></div>
       </div>
@@ -79,7 +79,7 @@
       <button
         type="button"
         @click="viewChallenge"
-        class="rounded-xl border border-[#DDE5DF] px-4 py-2 text-xs font-semibold text-[#15803D] transition hover:border-[#22C55E] hover:bg-[#EAF8EE]"
+        class="rounded-xl border border-[#DDE5DF] px-4 py-2 text-xs font-semibold text-[#15803D] transition hover:border-[#16A34A] hover:bg-[#EAF8EE] active:bg-[#DCFCE7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
       >
         View Challenge
       </button>
@@ -154,7 +154,7 @@ const iconColor = computed(() => {
     return 'text-[#EA580C]'
   }
 
-  return 'text-[#22C55E]'
+  return 'text-[#16A34A]'
 })
 
 const progressPercentage = computed(() => {

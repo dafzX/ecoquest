@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-[#F8FAF8] lg:flex lg:items-center lg:justify-center lg:p-8">
+  <div class="ecoquest-auth-background min-h-screen lg:flex lg:items-center lg:justify-center lg:p-8">
     <div
       class="relative w-full overflow-hidden bg-white lg:grid lg:min-h-160 lg:max-w-270 lg:grid-cols-2 lg:rounded-lg lg:shadow-[0_16px_50px_rgba(23,33,27,0.08)]"
     >

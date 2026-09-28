@@ -5,7 +5,7 @@
       <!-- Header -->
       <section class="mb-7 flex items-end justify-between gap-6">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#22C55E]">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#16A34A]">
             EcoQuest Rewards
           </p>
 
@@ -23,7 +23,7 @@
             Saldo XP
           </p>
 
-          <p class="mt-1 text-base font-bold text-[#22C55E]">
+          <p class="mt-1 text-base font-bold text-[#16A34A]">
             {{ Number(user?.xp ?? 0).toLocaleString() }} XP
           </p>
         </div>
@@ -34,7 +34,7 @@
 
         <!-- Available -->
         <div
-          class="rounded-2xl border border-[#DCEBE0] bg-white p-5"
+          class="rounded-2xl border border-[#E5EAE7] bg-white p-5 shadow-[0_1px_2px_rgba(23,33,27,0.04)]"
         >
           <div class="flex items-center gap-3">
             <div
@@ -57,7 +57,7 @@
 
         <!-- Redeemed -->
         <div
-          class="rounded-2xl border border-[#DCEBE0] bg-white p-5"
+          class="rounded-2xl border border-[#E5EAE7] bg-white p-5 shadow-[0_1px_2px_rgba(23,33,27,0.04)]"
         >
           <div class="flex items-center gap-3">
             <div
@@ -80,7 +80,7 @@
 
         <!-- XP Spent -->
         <div
-          class="rounded-2xl border border-[#DCEBE0] bg-white p-5"
+          class="rounded-2xl border border-[#E5EAE7] bg-white p-5 shadow-[0_1px_2px_rgba(23,33,27,0.04)]"
         >
           <div class="flex items-center gap-3">
             <div
@@ -112,11 +112,11 @@
             :key="category"
             type="button"
             @click="$emit('update:selected-category', category)"
-            class="shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition"
+            class="shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
             :class="
               selectedCategory === category
                 ? 'bg-[#15803D] text-white'
-                : 'border border-[#DCEBE0] bg-white text-[#66736A] hover:bg-[#F4FBF7]'
+                : 'border border-[#E5EAE7] bg-white text-[#66736A] hover:border-[#BFE8C9] hover:bg-[#F3F8F4]'
             "
           >
             {{ category }}
@@ -150,7 +150,7 @@
         <article
           v-for="reward in filteredRewards"
           :key="reward.id"
-          class="overflow-hidden rounded-lg border border-[#E8EDE9] bg-white transition hover:-translate-y-0.5 hover:border-[#CDE8D4] hover:shadow-sm"
+          class="overflow-hidden rounded-xl border border-[#E5EAE7] bg-white shadow-[0_1px_2px_rgba(23,33,27,0.04)] transition duration-200 hover:-translate-y-0.5 hover:border-[#BFE8C9] hover:shadow-[0_5px_16px_rgba(23,33,27,0.07)]"
         >
 
           <!-- Reward Image -->
@@ -159,7 +159,7 @@
             :class="getRewardBackground(reward)"
           >
             <div
-              class="flex h-20 w-20 items-center justify-center rounded-lg bg-white shadow-sm"
+              class="flex h-20 w-20 items-center justify-center rounded-lg bg-white shadow-[0_2px_8px_rgba(23,33,27,0.08)]"
             >
               <component
                 :is="getRewardIcon(reward)"
@@ -222,12 +222,12 @@
                 type="button"
                 @click="$emit('claim', reward)"
                 :disabled="!reward.available || reward.owned"
-                class="rounded-xl px-4 py-2.5 text-xs font-semibold transition"
+                class="rounded-xl px-4 py-2.5 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2 disabled:cursor-not-allowed"
                 :class="
                   reward.owned
                     ? 'cursor-default bg-[#EAF8EE] text-[#15803D]'
                     : reward.available
-                      ? 'bg-[#22C55E] text-white hover:bg-[#16A34A]'
+                      ? 'bg-[#16A34A] text-white hover:bg-[#15803D] active:scale-[0.98]'
                       : 'cursor-not-allowed bg-[#F1F3F1] text-[#98A39C]'
                 "
               >
@@ -250,7 +250,7 @@
       <!-- Empty -->
       <section
         v-else
-        class="rounded-2xl border border-dashed border-[#DCEBE0] bg-white px-6 py-14 text-center"
+        class="rounded-2xl border border-dashed border-[#E5EAE7] bg-white px-6 py-14 text-center"
       >
         <div
           class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EAF8EE]"

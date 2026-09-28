@@ -26,6 +26,7 @@
 </template>
 
 <script setup>
+import { showAlert } from '@/services/notifications'
 import { computed, ref, onMounted } from 'vue'
 import {
   Leaf,
@@ -50,7 +51,7 @@ onMounted(async () => {
   const result = await getMissions()
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 

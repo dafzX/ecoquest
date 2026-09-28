@@ -1,29 +1,34 @@
 <template>
   <main
-    class="mx-auto max-w-107.5 px-4 pb-24 md:hidden"
+    class="mx-auto min-h-screen max-w-107.5 bg-[#F8FAF8] px-4 pb-24 md:hidden"
   >
 
     <!-- Header -->
     <MobileHeader />
 
     <!-- Greeting -->
-    <section class="mb-3">
-      <h1
-        class="text-[17px] font-bold text-gray-900"
-      >
-        Selamat pagi, {{ currentUser.name }}!
-      </h1>
+    <section class="relative mb-5 flex items-center gap-3 overflow-hidden rounded-3xl bg-gradient-to-br from-[#EAF7ED] via-[#F4FAF5] to-[#F0F7F8] px-5 py-5">
+      <div class="min-w-0 flex-1">
+        <h1 class="text-xl font-bold tracking-tight text-gray-900">
+          Selamat pagi, {{ currentUser.name }}!
+        </h1>
 
-      <p
-        class="mt-0.5 text-[10px] text-gray-500"
+        <p class="mt-1 text-sm leading-5 text-gray-600">
+          Saatnya lanjutkan langkah baik hari ini.
+        </p>
+      </div>
+
+      <div
+        aria-hidden="true"
+        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/70 bg-white/65 text-[#16834B] shadow-sm"
       >
-        Saatnya lanjutkan langkah baik hari ini.
-      </p>
+        <Sprout class="h-7 w-7" />
+      </div>
     </section>
 
     <!-- Level Card -->
     <section
-      class="mb-4 rounded-lg bg-white p-4 shadow-sm transition-shadow active:shadow-md"
+      class="mb-5 rounded-2xl border border-[#E6EEE8] bg-white p-4 shadow-[0_4px_16px_rgba(25,60,38,0.05)] transition-shadow hover:shadow-md active:shadow-md"
     >
       <div class="flex items-center gap-3">
 
@@ -41,20 +46,20 @@
 
             <div>
               <p
-                class="text-[12px] font-bold text-gray-900"
+                class="text-sm font-bold text-gray-900"
               >
                 Level {{ currentUser.level }}
               </p>
 
               <p
-                class="text-[11px] text-gray-500"
+                class="mt-0.5 text-xs text-gray-500"
               >
                 {{ currentUser.levelName || 'Eco Explorer' }}
               </p>
             </div>
 
             <span
-              class="text-[11px] font-medium text-gray-500"
+              class="text-xs font-semibold text-gray-600"
             >
               {{ currentUser.xp }} /
               {{ currentUser.nextLevelXp }} XP
@@ -63,10 +68,10 @@
           </div>
 
           <div
-            class="mt-2 h-1.25 overflow-hidden rounded-full bg-[#E5EFE8]"
+            class="mt-3 h-2 overflow-hidden rounded-full bg-[#E5EFE8]"
           >
             <div
-              class="h-full rounded-full bg-[#22C55E]"
+              class="h-full rounded-full bg-gradient-to-r from-[#34C759] to-[#16A34A] transition-[width] duration-500"
               :style="{
                 width: `${levelProgress}%`
               }"
@@ -79,25 +84,25 @@
 
     <!-- Quick Stats -->
     <section
-      class="mb-5 grid grid-cols-3 overflow-hidden rounded-lg bg-white shadow-sm"
+      class="mb-6 grid grid-cols-3 gap-2"
     >
 
       <!-- Streak -->
       <div
-        class="px-2 py-3 text-center"
+        class="rounded-2xl border border-[#F5E6D7] bg-white px-2 py-3 text-center shadow-[0_4px_16px_rgba(25,60,38,0.04)] transition-transform active:scale-[0.98]"
       >
         <Flame
-          class="mx-auto h-4 w-4 text-[#F97316]"
+          class="mx-auto h-5 w-5 text-[#F97316]"
         />
 
         <p
-          class="mt-1 text-[12px] font-bold text-gray-900"
+          class="mt-1.5 text-base font-bold text-gray-900"
         >
           {{ currentUser.streak }}
         </p>
 
         <p
-          class="text-[10px] text-gray-500"
+          class="text-xs text-gray-600"
         >
           Streak
         </p>
@@ -105,20 +110,20 @@
 
       <!-- Eco Actions -->
       <div
-        class="border-x border-[#E8EFEA] px-2 py-3 text-center"
+        class="rounded-2xl border border-[#DCEFE1] bg-white px-2 py-3 text-center shadow-[0_4px_16px_rgba(25,60,38,0.04)] transition-transform active:scale-[0.98]"
       >
         <Leaf
-          class="mx-auto h-4 w-4 text-green-500"
+          class="mx-auto h-5 w-5 text-green-600"
         />
 
         <p
-          class="mt-1 text-[12px] font-bold text-gray-900"
+          class="mt-1.5 text-base font-bold text-gray-900"
         >
           {{ ecoActions }}
         </p>
 
         <p
-          class="text-[10px] text-gray-500"
+          class="text-xs text-gray-600"
         >
           Aksi Eco
         </p>
@@ -126,20 +131,20 @@
 
       <!-- Low Carbon -->
       <div
-        class="px-2 py-3 text-center"
+        class="rounded-2xl border border-[#DCEAF4] bg-white px-2 py-3 text-center shadow-[0_4px_16px_rgba(25,60,38,0.04)] transition-transform active:scale-[0.98]"
       >
         <Bike
-          class="mx-auto h-4 w-4 text-green-500"
+          class="mx-auto h-5 w-5 text-[#168BC2]"
         />
 
         <p
-          class="mt-1 text-[12px] font-bold text-gray-900"
+          class="mt-1.5 text-base font-bold text-gray-900"
         >
           {{ lowCarbonDistance }}
         </p>
 
         <p
-          class="text-[10px] text-gray-500"
+          class="text-xs text-gray-600"
         >
           Rendah Karbon
         </p>
@@ -151,13 +156,13 @@
     <div>
 
       <div class="mb-2 flex items-center justify-between">
-        <h2 class="text-[12px] font-bold text-gray-900">
+        <h2 class="text-base font-bold text-gray-900">
           Quest Berikutnya
         </h2>
 
         <RouterLink
           to="/missions"
-          class="text-[9px] font-medium text-green-500"
+          class="rounded-lg px-2 py-1 text-xs font-semibold text-green-700 transition-colors hover:bg-green-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
         >
           Lihat Semua
         </RouterLink>
@@ -166,7 +171,7 @@
       <!-- Ada Quest -->
       <section
         v-if="nextQuest"
-        class="mb-5 rounded-lg bg-white p-4 shadow-sm transition-shadow active:shadow-md"
+        class="mb-5 rounded-2xl border border-[#E6EEE8] bg-white p-4 shadow-[0_4px_16px_rgba(25,60,38,0.05)] transition-shadow hover:shadow-md active:shadow-md"
       >
         <div class="flex gap-3">
 
@@ -184,13 +189,13 @@
               <div class="min-w-0">
 
                 <h3
-                  class="truncate text-[11px] font-bold text-gray-900"
+                  class="truncate text-sm font-bold text-gray-900"
                 >
                   {{ nextQuest.title }}
                 </h3>
 
                 <p
-                  class="mt-1 text-[10px] leading-4 text-gray-500"
+                  class="mt-1 text-xs leading-5 text-gray-600"
                 >
                   {{ nextQuest.description }}
                 </p>
@@ -198,7 +203,7 @@
               </div>
 
               <span
-                class="shrink-0 text-[11px] font-semibold text-green-700"
+                class="shrink-0 rounded-full bg-green-50 px-2.5 py-1 text-xs font-bold text-green-700"
               >
                 +{{ nextQuest.xp }} XP
               </span>
@@ -207,22 +212,22 @@
             <div
               class="mt-2 flex items-center justify-between"
             >
-              <span class="text-[10px] text-gray-500">
+              <span class="text-xs text-gray-500">
                 {{ nextQuest.step || 'Belum dimulai' }}
               </span>
 
               <span
-                class="text-[10px] font-semibold text-green-700"
+                class="text-xs font-semibold text-green-700"
               >
                 {{ questProgress }}%
               </span>
             </div>
 
             <div
-              class="mt-1.5 h-1.25 overflow-hidden rounded-full bg-[#E5EFE8]"
+              class="mt-2 h-2 overflow-hidden rounded-full bg-[#E5EFE8]"
             >
               <div
-                class="h-full rounded-full bg-[#22C55E]"
+                class="h-full rounded-full bg-gradient-to-r from-[#34C759] to-[#16A34A] transition-[width] duration-500"
                 :style="{
                   width: `${questProgress}%`
                 }"
@@ -234,7 +239,7 @@
 
         <RouterLink
           :to="nextQuest.link || `/missions/${nextQuest.id}`"
-          class="mt-4 flex h-9 items-center justify-center rounded-lg bg-[#22C55E] text-[11px] font-semibold text-white transition active:scale-[0.98]"
+          class="mt-4 flex h-11 items-center justify-center rounded-xl bg-[#20A94B] text-sm font-semibold text-white shadow-sm transition hover:bg-[#168A3A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 active:scale-[0.98]"
         >
           Lanjutkan
         </RouterLink>
@@ -243,7 +248,7 @@
       <!-- Tidak Ada Quest -->
       <section
         v-else
-        class="mb-5 rounded-lg bg-white p-5 shadow-sm"
+        class="mb-5 rounded-2xl border border-[#E6EEE8] bg-white p-5 shadow-[0_4px_16px_rgba(25,60,38,0.05)]"
       >
         <div class="text-center">
 
@@ -254,13 +259,13 @@
           </div>
 
           <h3
-            class="mt-2 text-[11px] font-bold text-gray-900"
+            class="mt-3 text-sm font-bold text-gray-900"
           >
             Tidak ada misi berikutnya
           </h3>
 
           <p
-            class="mt-1 text-[8px] text-gray-500"
+            class="mt-1 text-xs text-gray-600"
           >
             Semua misi sudah kamu selesaikan.
           </p>
@@ -272,7 +277,7 @@
 
     <!-- Habit -->
     <section
-      class="mb-5 rounded-lg bg-white p-4 shadow-sm transition-shadow active:shadow-md"
+      class="mb-6 rounded-2xl border border-[#E6EEE8] bg-white p-4 shadow-[0_4px_16px_rgba(25,60,38,0.05)] transition-shadow hover:shadow-md active:shadow-md"
     >
 
       <div
@@ -281,20 +286,20 @@
 
         <div>
           <h2
-            class="text-[12px] font-bold text-gray-900"
+            class="text-base font-bold text-gray-900"
           >
             Progress Kebiasaan
           </h2>
 
           <p
-            class="mt-1 text-[10px] text-gray-500"
+            class="mt-1 text-xs text-gray-600"
           >
             Konsistensi eco-mu minggu ini
           </p>
         </div>
 
         <span
-          class="text-[13px] font-bold text-green-700"
+          class="text-lg font-bold text-green-700"
         >
           {{ questProgress }}%
         </span>
@@ -307,13 +312,13 @@
 
         <div>
           <p
-            class="text-[12px] font-semibold text-gray-900"
+            class="text-sm font-semibold text-gray-900"
           >
             Kurangi Plastik
           </p>
 
           <p
-            class="mt-1 text-[10px] text-gray-500"
+            class="mt-1 text-xs text-gray-600"
           >
             Terus pertahankan kebiasaan baikmu.
           </p>
@@ -326,10 +331,10 @@
       </div>
 
       <div
-        class="mt-2 h-1.25 overflow-hidden rounded-full bg-[#E5EFE8]"
+        class="mt-3 h-2 overflow-hidden rounded-full bg-[#E5EFE8]"
       >
         <div
-          class="h-full rounded-full bg-[#22C55E]"
+          class="h-full rounded-full bg-gradient-to-r from-[#34C759] to-[#16A34A] transition-[width] duration-500"
           :style="{
             width: `${questProgress}%`
           }"
@@ -343,14 +348,14 @@
       class="mb-2 flex items-center justify-between"
     >
       <h2
-        class="text-[12px] font-bold text-gray-900"
+        class="text-base font-bold text-gray-900"
       >
         Dampakmu
       </h2>
 
       <RouterLink
         to="/impact"
-        class="text-[10px] font-semibold text-green-700"
+        class="rounded-lg px-2 py-1 text-xs font-semibold text-green-700 transition-colors hover:bg-green-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
       >
         Lihat Semua
       </RouterLink>
@@ -361,20 +366,20 @@
 
       <!-- CO2 -->
       <div
-        class="rounded-lg bg-white p-3 shadow-sm transition-shadow active:shadow-md"
+        class="rounded-2xl border border-[#DCEAF4] bg-white p-3.5 shadow-[0_4px_16px_rgba(25,60,38,0.04)] transition-shadow hover:shadow-md active:shadow-md"
       >
         <Cloud
-          class="h-4 w-4 text-green-500"
+          class="h-5 w-5 text-[#168BC2]"
         />
 
         <p
-          class="mt-2 text-[13px] font-bold text-gray-900"
+          class="mt-2 text-base font-bold text-gray-900"
         >
           {{ impact.co2Saved }}
         </p>
 
         <p
-          class="text-[10px] text-gray-500"
+          class="text-xs leading-4 text-gray-600"
         >
           CO₂ Dihemat
         </p>
@@ -382,20 +387,20 @@
 
       <!-- Recycled -->
       <div
-        class="rounded-lg bg-white p-3 shadow-sm transition-shadow active:shadow-md"
+        class="rounded-2xl border border-[#DCEFE1] bg-white p-3.5 shadow-[0_4px_16px_rgba(25,60,38,0.04)] transition-shadow hover:shadow-md active:shadow-md"
       >
         <Recycle
-          class="h-4 w-4 text-green-500"
+          class="h-5 w-5 text-green-600"
         />
 
         <p
-          class="mt-2 text-[13px] font-bold text-gray-900"
+          class="mt-2 text-base font-bold text-gray-900"
         >
           {{ impact.wasteRecycled }}
         </p>
 
         <p
-          class="text-[10px] text-gray-500"
+          class="text-xs leading-4 text-gray-600"
         >
           Item Didaur Ulang
         </p>
@@ -403,20 +408,20 @@
 
       <!-- Trees -->
       <div
-        class="rounded-lg bg-white p-3 shadow-sm transition-shadow active:shadow-md"
+        class="rounded-2xl border border-[#E6EEE8] bg-white p-3.5 shadow-[0_4px_16px_rgba(25,60,38,0.04)] transition-shadow hover:shadow-md active:shadow-md"
       >
         <TreePine
-          class="h-4 w-4 text-green-500"
+          class="h-5 w-5 text-green-600"
         />
 
         <p
-          class="mt-2 text-[13px] font-bold text-gray-900"
+          class="mt-2 text-base font-bold text-gray-900"
         >
           {{ impact.treesEquivalent }}
         </p>
 
         <p
-          class="text-[10px] text-gray-500"
+          class="text-xs leading-4 text-gray-600"
         >
           Setara Pohon
         </p>
@@ -434,6 +439,7 @@ import {
   Flame,
   Leaf,
   Recycle,
+  Sprout,
   TreePine,
   TrendingUp
 } from 'lucide-vue-next'

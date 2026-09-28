@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-lg border border-[#E8EDE9] bg-white p-4 transition hover:border-[#CDEBD5] hover:shadow-[0_8px_25px_rgba(23,33,27,0.05)] md:flex md:items-center md:gap-4"
+    class="rounded-xl border border-[#E5EAE7] bg-white p-4 shadow-[0_1px_2px_rgba(23,33,27,0.04)] transition duration-200 hover:border-[#BFE8C9] hover:shadow-[0_5px_16px_rgba(23,33,27,0.07)] md:flex md:items-center md:gap-4"
   >
 
     <!-- Mobile -->
@@ -40,7 +40,7 @@
       class="mt-3 flex items-center justify-between md:hidden"
     >
       <div>
-        <p class="text-sm font-bold text-[#22C55E]">
+        <p class="text-sm font-bold text-[#16A34A]">
           +{{ mission.xp }} XP
         </p>
 
@@ -56,7 +56,7 @@
         v-if="!mission.completed"
         type="button"
         @click="$emit('complete', mission.id)"
-        class="rounded-lg bg-[#22C55E] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#16A34A]"
+        class="rounded-lg bg-[#16A34A] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#15803D] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
       >
         Complete
       </button>
@@ -107,7 +107,7 @@
 
       <div class="flex shrink-0 items-center gap-4">
         <div class="text-right">
-          <p class="text-sm font-bold text-[#22C55E]">
+          <p class="text-sm font-bold text-[#16A34A]">
             +{{ mission.xp }} XP
           </p>
 
@@ -123,7 +123,7 @@
           v-if="!mission.completed"
           type="button"
           @click="$emit('complete', mission.id)"
-          class="rounded-lg bg-[#22C55E] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#16A34A]"
+          class="rounded-lg bg-[#16A34A] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#15803D] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
         >
           Complete
         </button>

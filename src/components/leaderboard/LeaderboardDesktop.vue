@@ -1,10 +1,10 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto w-full max-w-250 px-6 py-8">
+    <div class="mx-auto w-full max-w-250 px-2 py-6 lg:px-6 lg:py-8">
       
       <!-- Header -->
-      <div class="mb-10 text-center">
-        <h1 class="text-3xl font-bold tracking-tight text-[#17211B] lg:text-4xl">
+      <div class="mb-8 text-center lg:mb-10">
+        <h1 class="text-2xl font-bold tracking-tight text-[#17211B] lg:text-4xl">
           Papan Peringkat
         </h1>
         <p class="mt-3 text-sm text-[#718078] lg:text-base">
@@ -13,13 +13,13 @@
       </div>
 
       <!-- Top 3 Podium (Horizontal) -->
-      <div v-if="topRanked.length" class="mb-12 grid grid-cols-3 gap-6">
+      <div v-if="topRanked.length" class="mb-10 grid grid-cols-3 items-end gap-3 lg:mb-12 lg:gap-6">
         <!-- Rank 2 -->
-        <div v-if="topRanked[1]" class="relative mt-8 flex flex-col items-center justify-center rounded-lg border border-[#E8EDE9] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+        <div v-if="topRanked[1]" class="relative mt-6 flex min-w-0 flex-col items-center justify-center rounded-lg border border-[#E8EDE9] bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg lg:mt-8 lg:p-6">
           <div class="absolute -top-5 flex h-10 w-10 items-center justify-center rounded-full bg-[#E5E7EB] border-4 border-white text-sm font-bold text-[#4B5563] shadow-sm">
             #2
           </div>
-          <div class="mt-4 flex h-20 w-20 items-center justify-center rounded-full bg-[#F3F4F6] text-2xl font-bold text-[#4B5563]">
+          <div class="mt-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#F3F4F6] text-xl font-bold text-[#4B5563] lg:h-20 lg:w-20 lg:text-2xl">
             {{ topRanked[1].avatar }}
           </div>
           <h3 class="mt-4 w-full truncate text-center text-lg font-bold text-[#17211B]">{{ topRanked[1].name }}</h3>
@@ -27,12 +27,12 @@
         </div>
 
         <!-- Rank 1 -->
-        <div v-if="topRanked[0]" class="relative z-10 flex flex-col items-center justify-center rounded-lg border-2 border-[#ffa600] bg-white p-8 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+        <div v-if="topRanked[0]" class="relative z-10 flex min-w-0 flex-col items-center justify-center rounded-lg border-2 border-[#ffa600] bg-white p-4 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl lg:p-8">
           <Crown class="absolute -top-8 h-12 w-12 text-[#F59E0B] drop-shadow-sm" />
           <div class="absolute -top-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#FDE68A] border-4 border-white text-base font-bold text-[#B45309] shadow-sm">
             #1
           </div>
-          <div class="mt-6 flex h-28 w-28 items-center justify-center rounded-full bg-[#FEF3C7] text-3xl font-bold text-[#B45309]">
+          <div class="mt-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#FEF3C7] text-2xl font-bold text-[#B45309] lg:h-28 lg:w-28 lg:text-3xl">
             {{ topRanked[0].avatar }}
           </div>
           <h3 class="mt-5 w-full truncate text-center text-xl font-bold text-[#17211B]">{{ topRanked[0].name }}</h3>
@@ -40,11 +40,11 @@
         </div>
 
         <!-- Rank 3 -->
-        <div v-if="topRanked[2]" class="relative mt-12 flex flex-col items-center justify-center rounded-lg border border-[#F3E8E0] bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+        <div v-if="topRanked[2]" class="relative mt-8 flex min-w-0 flex-col items-center justify-center rounded-lg border border-[#F3E8E0] bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg lg:mt-12 lg:p-5">
           <div class="absolute -top-5 flex h-10 w-10 items-center justify-center rounded-full bg-[#FED7AA] border-4 border-white text-sm font-bold text-[#9A3412] shadow-sm">
             #3
           </div>
-          <div class="mt-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#FFEDD5] text-xl font-bold text-[#9A3412]">
+          <div class="mt-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#FFEDD5] text-lg font-bold text-[#9A3412] lg:h-16 lg:w-16 lg:text-xl">
             {{ topRanked[2].avatar }}
           </div>
           <h3 class="mt-3 w-full truncate text-center text-base font-bold text-[#17211B]">{{ topRanked[2].name }}</h3>
@@ -58,7 +58,7 @@
 
       <!-- Leaderboard List -->
       <div class="rounded-lg border border-[#E8EDE9] bg-white p-3 shadow-sm">
-        <div class="grid grid-cols-[80px_1fr_100px_120px] items-center gap-4 px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#A3ADA7]">
+        <div class="grid grid-cols-[52px_minmax(0,1fr)_56px_88px] items-center gap-2 px-3 py-4 text-[10px] font-semibold uppercase tracking-wider text-[#A3ADA7] lg:grid-cols-[80px_minmax(0,1fr)_100px_120px] lg:gap-4 lg:px-6 lg:text-xs">
           <div class="text-center">Peringkat</div>
           <div>Penjelajah</div>
           <div class="text-center">Level</div>
@@ -69,7 +69,7 @@
           <div
             v-for="user in sortedLeaderboard"
             :key="user.id"
-            class="group grid grid-cols-[80px_1fr_100px_120px] items-center gap-4 rounded-lg px-4 py-3.5 transition-all duration-300 hover:bg-[#F8FAF8]"
+            class="group grid grid-cols-[52px_minmax(0,1fr)_56px_88px] items-center gap-2 rounded-lg px-3 py-3.5 transition-all duration-300 hover:bg-[#F8FAF8] lg:grid-cols-[80px_minmax(0,1fr)_100px_120px] lg:gap-4 lg:px-4"
             :class="user.isCurrentUser ? 'bg-[#F0FDF4] ring-1 ring-[#BBF7D0] shadow-[0_4px_10px_rgba(34,197,94,0.05)]' : ''"
           >
             <div class="text-center text-base font-bold text-[#718078]" :class="user.isCurrentUser ? 'text-[#15803D]' : ''">
@@ -91,7 +91,7 @@
               {{ user.level }}
             </div>
 
-            <div class="text-right font-bold text-[#405047] lg:text-base" :class="user.isCurrentUser ? 'text-[#15803D]' : ''">
+            <div class="whitespace-nowrap text-right text-xs font-bold text-[#405047] lg:text-base" :class="user.isCurrentUser ? 'text-[#15803D]' : ''">
               {{ formatXp(user.xp) }} XP
             </div>
           </div>

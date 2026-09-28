@@ -1144,9 +1144,8 @@ app.post(
 )
 
 /* Impact */
-
 app.get('/api/impact', async (req, res) => {
-  const userId = Number(req.query.userId)
+  const userId = String(req.query.userId || '').trim()
 
   if (!userId) {
     return res.status(400).json({
@@ -1155,23 +1154,34 @@ app.get('/api/impact', async (req, res) => {
     })
   }
 
-  const data = await getUsersData()
+  try {
+    const data = await getUsersData()
 
-  const user = data.users.find(
-    (item) => item.id === userId
-  )
+    const user = data.users.find(
+      (item) =>
+        String(item.id) === userId ||
+        String(item.authId) === userId
+    )
 
-  if (!user) {
-    return res.status(404).json({
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User tidak ditemukan.'
+      })
+    }
+
+    res.json({
+      success: true,
+      impact: getImpactForUser(user)
+    })
+  } catch (error) {
+    console.error('GET /api/impact:', error)
+
+    res.status(500).json({
       success: false,
-      message: 'User tidak ditemukan.'
+      message: 'Gagal mengambil data impact.'
     })
   }
-
-  res.json({
-    success: true,
-    impact: getImpactForUser(user)
-  })
 })
 
 /* Achievements */

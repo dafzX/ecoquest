@@ -2,7 +2,7 @@
   <AppLayout>
     <div class="min-h-screen bg-[#F4FBF7]">
       <main
-        class="mx-auto max-w-350 px-4 pb-28 pt-1 sm:px-5 md:px-8 md:pb-10 md:pt-8"
+        class="mx-auto max-w-350 pb-28 pt-1 md:pb-10 md:pt-8"
       >
         <CommunityMobile
           :community-stats="communityStats"
@@ -22,6 +22,7 @@
 </template>
 
 <script setup>
+import { showAlert } from '@/services/notifications'
 import { onMounted, ref } from 'vue'
 
 import AppLayout from '@/layouts/AppLayout.vue'
@@ -65,7 +66,7 @@ async function createPost(content) {
   const result = await createCommunityPost(value)
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 
@@ -76,7 +77,7 @@ async function toggleLike(post) {
   const result = await toggleCommunityLike(post.id)
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 

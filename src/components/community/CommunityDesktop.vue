@@ -1,6 +1,6 @@
 <template>
   <main class="hidden md:block">
-    <div class="mx-auto max-w-270 px-6 pb-10 pt-8">
+    <div class="mx-auto max-w-270 pb-10 pt-8">
       <!-- Header -->
       <section class="mb-8 flex items-end justify-between">
         <div>
@@ -13,7 +13,7 @@
         </div>
       </section>
 
-      <div class="grid grid-cols-[1.5fr_1fr] gap-8">
+      <div class="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1.5fr)_minmax(18rem,1fr)] xl:gap-8">
         <!-- Feed Section -->
         <div>
           <!-- Post Input -->
@@ -51,7 +51,7 @@
           </form>
 
           <!-- Feed List -->
-          <div class="space-y-6">
+          <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-1">
             <CommunityPost
               v-for="post in communityPosts"
               :key="post.id"

@@ -2,25 +2,27 @@
   <main class="mx-auto max-w-107.5 px-4 pb-24 md:hidden">
 
     <!-- Header -->
-    <div class="relative flex items-center py-4">
+    <header class="relative flex items-center justify-between py-4">
+
       <button
         type="button"
         @click="goBack"
-        class="absolute left-0 flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#475569] shadow-sm transition active:scale-95"
+        class="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#475569] shadow-sm"
       >
         <ArrowLeft class="h-5 w-5" />
       </button>
 
-      <div class="min-w-0 pl-12">
-        <p class="truncate text-[10px] text-[#98A39C]">
-          {{ mission.title }}
-        </p>
+      <div
+        class="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 shadow-sm"
+      >
+        <Zap class="h-3.5 w-3.5 text-[#F59E0B]" />
 
-        <h1 class="text-[15px] font-bold text-[#17211B]">
-          Aksi Misi
-        </h1>
+        <span class="text-xs font-bold text-[#334155]">
+          +{{ mission.xp }} XP
+        </span>
       </div>
-    </div>
+
+    </header>
 
     <!-- Progress Card -->
     <section class="rounded-2xl border border-[#DCEBE0] bg-white p-4">

@@ -47,6 +47,7 @@
 </template>
 
 <script setup>
+import { showAlert } from '@/services/notifications'
 import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
@@ -69,7 +70,7 @@ onMounted(async () => {
   const result = await getMissions()
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 
@@ -130,7 +131,7 @@ const completeStep = async () => {
   )
 
   if (!stepResult.success) {
-    alert(stepResult.message)
+    await showAlert(stepResult.message)
     return
   }
 
@@ -144,14 +145,14 @@ const completeStep = async () => {
     const result = await completeMission(mission.value.id)
 
     if (!result.success) {
-      alert(result.message)
+      await showAlert(result.message)
       return
     }
 
-    alert(result.message)
+    await showAlert(result.message, { type: 'success' })
   }
 
-  router.push({
+  router.replace({
     name: 'MissionDetail',
     params: {
       id: mission.value.id
@@ -160,7 +161,12 @@ const completeStep = async () => {
 }
 
 function goBack() {
-  router.back()
+  router.replace({
+    name: 'MissionDetail',
+    params: {
+      id: route.params.id
+    }
+  })
 }
 
 </script>

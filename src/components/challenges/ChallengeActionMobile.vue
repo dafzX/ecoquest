@@ -1,7 +1,7 @@
 <template>
   <main class="mx-auto max-w-107.5 px-4 pb-24 md:hidden">
 
-    <div class="flex items-center gap-3 py-4">
+    <header class="relative flex items-center justify-center py-4">
       <button
         type="button"
         @click="goBack"
@@ -10,16 +10,12 @@
         <ArrowLeft class="h-5 w-5" />
       </button>
 
-      <div class="min-w-0">
-        <p class="truncate text-[8px] text-[#98A39C]">
-          {{ challenge.title }}
-        </p>
-
-        <h1 class="text-[15px] font-bold text-[#17211B]">
+      <div class="min-w-0 px-12 text-center">
+        <h1 class="text-[13px] font-semibold text-[#17211B]">
           Aksi Tantangan
         </h1>
       </div>
-    </div>
+    </header>
 
     <section class="rounded-[16px] border border-[#DCEBE0] bg-white p-4">
 

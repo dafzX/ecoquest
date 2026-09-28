@@ -9,7 +9,7 @@
       <button
         type="button"
         @click="emit('toggle')"
-        class="flex h-7 w-7 items-center justify-center rounded-full bg-[#DCFCE7] text-[10px] font-bold text-[#15803D] transition hover:bg-[#BBF7D0]"
+        class="flex h-7 w-7 items-center justify-center rounded-full bg-[#DCFCE7] text-[10px] font-bold text-[#15803D] transition hover:bg-[#BBF7D0] active:bg-[#A7F3D0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
       >
         {{ currentUser.avatar }}
       </button>
@@ -26,10 +26,10 @@
     >
       <div
         v-if="isOpen"
-        class="absolute right-0 top-10 z-100 w-62.5 max-w-[calc(100vw-24px)] overflow-hidden rounded-lg border border-[#E8EDE9] bg-white shadow-[0_12px_35px_rgba(23,33,27,0.12)]"
+        class="absolute right-0 top-10 z-100 w-62.5 max-w-[calc(100vw-24px)] overflow-hidden rounded-xl border border-[#E5EAE7] bg-white shadow-[0_8px_24px_rgba(23,33,27,0.10)]"
       >
         <!-- Profile Info -->
-        <div class="border-b border-[#E8EDE9] p-4">
+        <div class="border-b border-[#E5EAE7] p-4">
           <div class="flex items-center gap-3">
             <div
               class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#DCFCE7] text-sm font-bold text-[#15803D]"
@@ -72,7 +72,7 @@
           <RouterLink
             to="/profile"
             @click="emit('close')"
-            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
+            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-inset"
           >
             <UserCircle class="h-4.5 w-4.5" />
             <span>Profil</span>
@@ -81,7 +81,7 @@
           <RouterLink
             to="/achievements"
             @click="emit('close')"
-            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
+            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-inset"
           >
             <Trophy class="h-4.5 w-4.5" />
             <span>Pencapaian</span>
@@ -90,7 +90,7 @@
           <RouterLink
             to="/profile/settings"
             @click="emit('close')"
-            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
+            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-inset"
           >
             <Settings class="h-4.5 w-4.5" />
             <span>Pengaturan</span>
@@ -99,7 +99,7 @@
           <RouterLink
             to="/profile/help-support"
             @click="emit('close')"
-            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D]"
+            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#455149] transition hover:bg-[#F3F8F4] hover:text-[#15803D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-inset"
           >
             <CircleHelp class="h-4.5 w-4.5" />
             <span>Bantuan & Dukungan</span>
@@ -107,11 +107,11 @@
         </div>
 
         <!-- Logout -->
-        <div class="border-t border-[#E8EDE9] p-2">
+        <div class="border-t border-[#E5EAE7] p-2">
           <button
             type="button"
             @click="logout"
-            class="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#DC2626] transition hover:bg-[#FEF2F2]"
+            class="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#DC2626] transition hover:bg-[#FEF2F2] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DC2626] focus-visible:ring-inset"
           >
             <LogOut class="h-4.5 w-4.5" />
             <span>Keluar</span>
@@ -138,6 +138,7 @@ import {
   getCurrentUser,
   logout as logoutUser
 } from '@/services/auth'
+import { showConfirm } from '@/services/notifications'
 
 const props = defineProps({
   isOpen: {
@@ -208,13 +209,21 @@ onMounted(() => {
   loadCurrentUser()
 })
 
-const logout = () => {
+const logout = async () => {
+  emit('close')
+
+  const confirmed = await showConfirm('Yakin ingin keluar dari akun?', {
+    title: 'Keluar dari akun?'
+  })
+
+  if (!confirmed) {
+    return
+  }
+
   logoutUser()
 
   userData.value = null
 
-  emit('close')
-
-  router.push('/login')
+  router.replace('/login')
 }
 </script>

@@ -27,6 +27,7 @@
 </template>
 
 <script setup>
+import { showAlert } from '@/services/notifications'
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
@@ -68,7 +69,7 @@ onMounted(async () => {
   const result = await getChallenges()
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 
@@ -101,7 +102,7 @@ function getCategoryIcon(category) {
 }
 
 function goBack() {
-  router.back()
+  router.replace({ name: 'Challenges' })
 }
 
 async function joinChallenge() {
@@ -111,7 +112,7 @@ async function joinChallenge() {
     const result = await joinChallengeApi(challenge.value.id)
 
     if (!result.success) {
-      alert(result.message)
+      await showAlert(result.message)
       return
     }
 

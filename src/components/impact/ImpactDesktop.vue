@@ -14,7 +14,7 @@
         </div>
       </header>
 
-      <div class="grid grid-cols-[1.35fr_0.65fr] gap-5">
+      <div class="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1.35fr)_minmax(16rem,0.65fr)]">
 
         <div class="space-y-5">
 
@@ -111,7 +111,7 @@
 
             </div>
 
-            <div class="grid grid-cols-4 gap-3">
+            <div class="grid grid-cols-2 gap-3 xl:grid-cols-4">
 
               <div
                 v-for="stat in impactStats"
@@ -158,7 +158,7 @@
 
             </div>
 
-            <div class="grid grid-cols-2 gap-x-6 gap-y-5">
+            <div class="grid grid-cols-1 gap-x-6 gap-y-5 xl:grid-cols-2">
 
               <div
                 v-for="item in breakdown"

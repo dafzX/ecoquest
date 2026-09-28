@@ -1,29 +1,37 @@
-import { supabase } from '@/lib/supabase'
+const API_URL = '/api'
+const SESSION_KEY = 'ecoquest_session'
+
+async function authRequest(path, body) {
+  const response = await fetch(`${API_URL}${path}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  })
+
+  const result = await response.json()
+
+  if (!response.ok) {
+    return {
+      ...result,
+      success: false,
+      user: null
+    }
+  }
+
+  if (result.user) {
+    localStorage.setItem(SESSION_KEY, JSON.stringify(result.user))
+  }
+
+  return result
+}
 
 export async function login(email, password) {
   try {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    })
-
-    if (error) {
-      return {
-        success: false,
-        message: error.message,
-        user: null
-      }
-    }
-
-    return {
-      success: true,
-      message: 'Login berhasil.',
-      user: data.user
-    }
+    return await authRequest('/auth/login', { email, password })
   } catch (error) {
     return {
       success: false,
-      message: 'Terjadi kesalahan saat login.',
+      message: 'Backend tidak terhubung.',
       user: null
     }
   }
@@ -31,41 +39,11 @@ export async function login(email, password) {
 
 export async function register({ name, email, password }) {
   try {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          name
-        }
-      }
-    })
-
-    if (error) {
-      return {
-        success: false,
-        message: error.message,
-        user: null
-      }
-    }
-
-    if (!data.user) {
-      return {
-        success: false,
-        message: 'Pendaftaran gagal.',
-        user: null
-      }
-    }
-
-    return {
-      success: true,
-      message: 'Akun berhasil dibuat.',
-      user: data.user
-    }
+    return await authRequest('/auth/register', { name, email, password })
   } catch (error) {
     return {
       success: false,
-      message: 'Terjadi kesalahan saat membuat akun.',
+      message: 'Backend tidak terhubung.',
       user: null
     }
   }
@@ -73,20 +51,9 @@ export async function register({ name, email, password }) {
 
 export async function getProfile() {
   try {
-    const {
-      data: { user },
-      error
-    } = await supabase.auth.getUser()
+    const currentUser = getCurrentUser()
 
-    if (error) {
-      return {
-        success: false,
-        message: error.message,
-        user: null
-      }
-    }
-
-    if (!user) {
+    if (!currentUser) {
       return {
         success: false,
         message: 'Pengguna belum login.',
@@ -94,42 +61,41 @@ export async function getProfile() {
       }
     }
 
-    return {
-      success: true,
-      user
+    const response = await fetch(`${API_URL}/users/${currentUser.id}`)
+    const result = await response.json()
+
+    if (!response.ok) {
+      return { ...result, user: null }
     }
+
+    localStorage.setItem(SESSION_KEY, JSON.stringify(result.user))
+    return result
   } catch (error) {
     return {
       success: false,
-      message: 'Gagal mengambil profil.',
+      message: 'Gagal mengambil profil dari backend.',
       user: null
     }
   }
 }
 
-export async function getCurrentUser() {
+export function getCurrentUser() {
   try {
-    const {
-      data: { user }
-    } = await supabase.auth.getUser()
-
-    return user
+    const session = localStorage.getItem(SESSION_KEY)
+    return session ? JSON.parse(session) : null
   } catch {
     return null
   }
 }
 
-export async function isLoggedIn() {
-  const user = await getCurrentUser()
-
-  return user !== null
+export function isLoggedIn() {
+  return getCurrentUser() !== null
 }
 
-export async function logout() {
-  const { error } = await supabase.auth.signOut()
-
+export function logout() {
+  localStorage.removeItem(SESSION_KEY)
   return {
-    success: !error,
-    message: error?.message || 'Logout berhasil.'
+    success: true,
+    message: 'Logout berhasil.'
   }
 }

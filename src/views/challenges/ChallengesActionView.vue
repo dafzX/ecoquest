@@ -33,6 +33,7 @@
 </template>
 
 <script setup>
+import { showAlert } from '@/services/notifications'
 import { computed, ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
@@ -60,7 +61,7 @@ onMounted(async () => {
   const result = await getChallenges()
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 
@@ -113,7 +114,12 @@ function getCategoryIcon(category) {
 }
 
 function goBack() {
-  router.back()
+  router.replace({
+    name: 'ChallengeDetail',
+    params: {
+      id: route.params.id
+    }
+  })
 }
 
 async function completeAction() {
@@ -124,7 +130,7 @@ async function completeAction() {
   const result = await completeChallengeStep(challenge.value.id)
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 
@@ -135,7 +141,7 @@ async function completeAction() {
   challenge.value = { ...challenge.value, ...result.challenge }
 
   if (nextStep >= totalSteps.value) {
-    router.push({
+    router.replace({
       name: 'ChallengeDetail',
       params: {
         id: challenge.value.id

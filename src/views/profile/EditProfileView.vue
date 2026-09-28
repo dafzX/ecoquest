@@ -294,6 +294,7 @@
 </template>
 
 <script setup>
+import { showAlert } from '@/services/notifications'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import {
@@ -336,7 +337,7 @@ async function saveProfile() {
   const email = form.email.trim().toLowerCase()
 
   if (!name || !email) {
-    alert('Nama dan email wajib diisi.')
+    await showAlert('Nama dan email wajib diisi.', { type: 'warning' })
     return
   }
 
@@ -350,13 +351,13 @@ async function saveProfile() {
   isSaving.value = false
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 
   form.avatar = getAvatar(result.user.name)
 
-  alert(result.message)
+  await showAlert(result.message, { type: 'success' })
   router.push('/profile')
 }
 </script>

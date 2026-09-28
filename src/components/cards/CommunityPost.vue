@@ -1,6 +1,6 @@
 <template>
   <article
-    class="rounded-lg border border-[#E8EDE9] bg-white p-5"
+    class="rounded-xl border border-[#E5EAE7] bg-white p-5 shadow-[0_1px_2px_rgba(23,33,27,0.04)]"
   >
 
     <!-- Header -->
@@ -43,7 +43,7 @@
 
       <button
         type="button"
-        class="flex h-8 w-8 items-center justify-center rounded-lg text-[#98A39C] hover:bg-[#F5F8F5] hover:text-[#66736A]"
+        class="flex h-8 w-8 items-center justify-center rounded-lg text-[#98A39C] transition hover:bg-[#F3F8F4] hover:text-[#66736A] active:bg-[#EAF3EC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
       >
         <MoreHorizontal class="h-4 w-4" />
       </button>
@@ -62,14 +62,14 @@
     </div>
 
     <!-- Actions -->
-    <div class="mt-5 flex items-center justify-between border-t border-[#E8EDE9] pt-4">
+    <div class="mt-5 flex items-center justify-between border-t border-[#E5EAE7] pt-4">
 
       <div class="flex items-center gap-5">
 
         <button
           type="button"
           @click="toggleLike"
-          class="flex items-center gap-2 text-xs font-medium transition"
+          class="flex items-center gap-2 rounded-md text-xs font-medium transition active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
           :class="
             post.liked
               ? 'text-[#E11D48]'
@@ -86,7 +86,7 @@
 
         <button
           type="button"
-          class="flex items-center gap-2 text-xs font-medium text-[#66736A] hover:text-[#15803D]"
+          class="flex items-center gap-2 rounded-md text-xs font-medium text-[#66736A] transition hover:text-[#15803D] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
         >
           <MessageCircle class="h-4 w-4" />
 
@@ -97,7 +97,7 @@
 
       <button
         type="button"
-        class="flex items-center gap-2 text-xs font-medium text-[#66736A] hover:text-[#15803D]"
+        class="flex items-center gap-2 rounded-md text-xs font-medium text-[#66736A] transition hover:text-[#15803D] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
       >
         <Share2 class="h-4 w-4" />
 

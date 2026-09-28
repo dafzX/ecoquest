@@ -1,5 +1,5 @@
 <template>
-  <header class="hidden h-19 items-center justify-between shadow-md bg-white px-8 md:flex">
+  <header class="hidden h-19 items-center justify-between border-b border-[#E5EAE7] bg-white px-8 shadow-[0_1px_3px_rgba(23,33,27,0.04)] md:flex">
     <div class="ml-auto flex items-center gap-5">
       <NotificationDropdown
         :is-open="activeDropdown === 'notification'"
@@ -10,7 +10,7 @@
           <button
             type="button"
             @click="toggle"
-            class="relative flex h-10 w-10 items-center justify-center rounded-xl text-[#66736A] transition hover:bg-[#F5F8F5]"
+            class="relative flex h-10 w-10 items-center justify-center rounded-xl text-[#66736A] transition hover:bg-[#F3F8F4] hover:text-[#15803D] active:bg-[#EAF3EC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
           >
             <Bell class="h-4.75 w-4.75" />
 
@@ -24,7 +24,7 @@
         </template>
       </NotificationDropdown>
 
-      <div class="h-7 w-px bg-[#E8EDE9]"></div>
+      <div class="h-7 w-px bg-[#E5EAE7]"></div>
 
       <ProfileDropdown
         :is-open="activeDropdown === 'profile'"
@@ -35,7 +35,7 @@
           <button
             type="button"
             @click="toggle"
-            class="flex items-center gap-3 rounded-xl px-2 py-1.5 transition hover:bg-[#F8FAF8]"
+            class="flex items-center gap-3 rounded-xl px-2 py-1.5 transition hover:bg-[#F3F8F4] active:bg-[#EAF3EC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-offset-2"
           >
             <div class="flex h-9 w-9 items-center justify-center rounded-full bg-[#DCFCE7] text-sm font-semibold text-[#15803D]">
               {{ user.avatar }}

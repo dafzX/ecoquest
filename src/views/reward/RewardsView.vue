@@ -31,6 +31,7 @@
 </template>
 
 <script setup>
+import { showAlert, showConfirm } from '@/services/notifications'
 import { computed, onMounted, ref } from 'vue'
 
 import AppLayout from '@/layouts/AppLayout.vue'
@@ -67,7 +68,7 @@ onMounted(async () => {
   const result = await getRewards()
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 
@@ -125,8 +126,9 @@ const nextReward = computed(() => {
 })
 
 async function handleClaim(reward) {
-  const confirmed = window.confirm(
-    `Tukar ${reward.cost} XP untuk ${reward.title}?`
+  const confirmed = await showConfirm(
+    `Tukar ${reward.cost} XP untuk ${reward.title}?`,
+    { title: 'Konfirmasi penukaran' }
   )
 
   if (!confirmed) return
@@ -134,7 +136,7 @@ async function handleClaim(reward) {
   const result = await claimReward(reward.id)
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 
@@ -145,6 +147,6 @@ async function handleClaim(reward) {
     owned: user.value.redeemedRewardIds.includes(item.id)
   }))
 
-  alert(result.message)
+  await showAlert(result.message, { type: 'success' })
 }
 </script>

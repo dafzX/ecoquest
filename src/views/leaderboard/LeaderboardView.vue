@@ -22,6 +22,7 @@
 </template>
 
 <script setup>
+import { showAlert } from '@/services/notifications'
 import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -55,7 +56,7 @@ onMounted(async () => {
       isCurrentUser: user.id === currentUserId.value
     }))
   } else {
-    alert(result.message)
+    await showAlert(result.message)
   }
 
   isLoading.value = false

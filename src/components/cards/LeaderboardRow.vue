@@ -1,10 +1,10 @@
 <template>
   <div
-    class="flex items-center gap-4 rounded-lg border px-5 py-4 transition"
+    class="flex items-center gap-4 rounded-xl border px-5 py-4 shadow-[0_1px_2px_rgba(23,33,27,0.03)] transition duration-200"
     :class="
       user.isCurrentUser
         ? 'border-[#BFE8C9] bg-[#F1FBF3]'
-        : 'border-[#E8EDE9] bg-white hover:border-[#D6E6DA]'
+        : 'border-[#E5EAE7] bg-white hover:border-[#CDE8D4] hover:shadow-[0_4px_12px_rgba(23,33,27,0.05)]'
     "
   >
 
@@ -27,7 +27,7 @@
       class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold"
       :class="
         user.isCurrentUser
-          ? 'bg-[#22C55E] text-white'
+          ? 'bg-[#16A34A] text-white'
           : 'bg-[#EAF8EE] text-[#15803D]'
       "
     >

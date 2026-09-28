@@ -2,7 +2,7 @@
   <header class="flex items-center justify-between py-3 md:hidden">
     <div class="flex items-center gap-2">
       <div
-        class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#22C55E]"
+        class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#16A34A]"
       >
         <Leaf class="h-4 w-4 text-white" />
       </div>

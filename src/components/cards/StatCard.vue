@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full rounded-lg border border-[#E8EDE9] bg-white p-3 md:p-5">
+  <div class="h-full rounded-xl border border-[#E5EAE7] bg-white p-3 shadow-[0_1px_2px_rgba(23,33,27,0.04)] md:p-5">
 
     <div class="flex items-start justify-between gap-1">
       <div
@@ -53,7 +53,7 @@
 
       <div class="h-1.5 overflow-hidden rounded-full bg-[#EAF0EB]">
         <div
-          class="h-full rounded-full bg-[#22C55E] transition-all"
+          class="h-full rounded-full bg-[#16A34A] transition-all"
           :style="{ width: `${progress}%` }"
         ></div>
       </div>
@@ -96,7 +96,7 @@ defineProps({
 
   iconColor: {
     type: String,
-    default: 'text-[#22C55E]'
+    default: 'text-[#16A34A]'
   },
 
   progress: {

@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="fixed bottom-0 left-0 right-0 z-50 border-t border-[#E8EDE9] bg-white/95 px-2 pb-[env(safe-area-inset-bottom)] pt-2 shadow-[0_-8px_30px_rgba(23,33,27,0.06)] backdrop-blur-md md:hidden"
+    class="fixed bottom-0 left-0 right-0 z-50 border-t border-[#E5EAE7] bg-white/95 px-2 pb-[env(safe-area-inset-bottom)] pt-2 shadow-[0_-3px_12px_rgba(23,33,27,0.05)] backdrop-blur-md md:hidden"
   >
     <div
       class="mx-auto flex h-15.5 max-w-md items-center justify-around"
@@ -9,11 +9,11 @@
         v-for="item in menu"
         :key="item.name"
         :to="item.to"
-        class="flex min-w-14.5 flex-col items-center justify-center gap-1 rounded-xl py-1.5 transition"
+        class="flex min-w-14.5 flex-col items-center justify-center gap-1 rounded-xl py-1.5 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A] focus-visible:ring-inset"
         :class="
           isActive(item.to)
             ? 'text-[#15803D]'
-            : 'text-[#66736A]'
+            : 'text-[#66736A] hover:text-[#455149] active:text-[#15803D]'
         "
       >
         <!-- Icon -->

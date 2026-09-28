@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-[#F8FAF8] lg:flex lg:items-center lg:justify-center lg:p-8">
+  <div class="ecoquest-auth-background min-h-screen lg:flex lg:items-center lg:justify-center lg:p-8">
     <div
       class="relative w-full overflow-hidden bg-white lg:grid lg:min-h-[680px] lg:max-w-270 lg:grid-cols-2 lg:rounded-lg lg:shadow-[0_16px_50px_rgba(23,33,27,0.08)]"
     >
@@ -500,6 +500,7 @@
 </template>
 
 <script setup>
+import { showAlert } from '@/services/notifications'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { register } from '@/services/auth'
@@ -529,12 +530,12 @@ const form = ref({
 
 async function handleRegister() {
   if (form.value.password !== form.value.confirmPassword) {
-    alert('Email atau Password Salah.')
+    await showAlert('Email atau Password Salah.', { type: 'warning' })
     return
   }
 
   if (form.value.password.length < 6) {
-    alert('Password minimal 6 karakter.')
+    await showAlert('Password minimal 6 karakter.', { type: 'warning' })
     return
   }
 
@@ -545,11 +546,11 @@ async function handleRegister() {
   })
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 
-  alert('Akun berhasil didaftarkan. Selamat datang di EcoQuest!')
+  await showAlert('Akun berhasil didaftarkan. Selamat datang di EcoQuest!', { type: 'success' })
   router.push('/dashboard')
 }
 </script>

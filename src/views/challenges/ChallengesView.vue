@@ -1,6 +1,6 @@
 <template>
   <AppLayout>
-    <div class="min-h-screen bg-[#F4FBF7]">
+    <div class="min-h-screen bg-[#F8FAF8]">
 
       <ChallengesMobile
         :active-tab="activeTab"
@@ -9,7 +9,7 @@
         :get-challenge-icon="getChallengeIcon"
         :get-challenge-style="getChallengeStyle"
         :go-back="goBack"
-        @update:activeTab="activeTab = $event"
+        @update:active-tab="activeTab = $event"
       />
 
       <ChallengesDesktop
@@ -17,7 +17,7 @@
         :featured-challenge="featuredChallenge"
         :visible-challenges="visibleChallenges"
         :toggle-join="toggleJoin"
-        @update:activeTab="activeTab = $event"
+        @update:active-tab="activeTab = $event"
       />
 
     </div>
@@ -27,6 +27,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+
 import {
   Recycle,
   Bike,
@@ -34,6 +35,8 @@ import {
   TreePine,
   Globe2
 } from 'lucide-vue-next'
+
+import { showAlert } from '@/services/notifications'
 
 import AppLayout from '@/layouts/AppLayout.vue'
 import ChallengesMobile from '@/components/challenges/ChallengesMobile.vue'
@@ -46,27 +49,25 @@ import {
 
 const router = useRouter()
 
-const activeTab = ref('komunitas')
+const activeTab = ref('saya')
 const challenges = ref([])
 
 const translateChallenge = (challenge) => {
-  if (!challenge) return challenge
+  if (!challenge) {
+    return challenge
+  }
 
   const titleMap = {
     'Plastic Reduction Week': 'Minggu Pengurangan Plastik',
     'Plastic Reduction Week Challenge': 'Tantangan Pengurangan Plastik',
     'Plastic Free Week': 'Minggu Bebas Plastik',
     'Plastic Free Week Challenge': 'Tantangan Minggu Bebas Plastik',
-
     'Green Transport': 'Transportasi Ramah Lingkungan',
     'Green Transport Challenge': 'Tantangan Transportasi Ramah Lingkungan',
-
     'Clean Energy': 'Energi Bersih',
     'Clean Energy Challenge': 'Tantangan Energi Bersih',
-
     'Plant for Tomorrow': 'Tanam untuk Masa Depan',
     'Plant for Tomorrow Challenge': 'Tantangan Tanam untuk Masa Depan',
-
     'Minggu Bebas Plastik': 'Minggu Bebas Plastik',
     'Minggu Pengurangan Plastik': 'Minggu Pengurangan Plastik',
     'Transportasi Hijau': 'Transportasi Ramah Lingkungan',
@@ -79,23 +80,18 @@ const translateChallenge = (challenge) => {
     Plastic: 'Plastik',
     plastic: 'Plastik',
     plastik: 'Plastik',
-
     Transport: 'Transportasi',
     transport: 'Transportasi',
     transportasi: 'Transportasi',
-
     Energy: 'Energi',
     energy: 'Energi',
     energi: 'Energi',
-
     Tree: 'Pohon',
     tree: 'Pohon',
     pohon: 'Pohon',
-
     Plant: 'Menanam',
     plant: 'Menanam',
     menanam: 'Menanam',
-
     Environment: 'Lingkungan',
     environment: 'Lingkungan',
     lingkungan: 'Lingkungan'
@@ -104,58 +100,37 @@ const translateChallenge = (challenge) => {
   const descriptionMap = {
     'Reduce your plastic use for 7 days.':
       'Kurangi penggunaan plastik selama 7 hari.',
-
     'Use green transportation and reduce carbon emissions.':
       'Gunakan transportasi ramah lingkungan dan kurangi emisi karbon.',
-
     'Save energy and use clean energy in your daily activities.':
       'Hemat energi dan gunakan energi bersih dalam aktivitas sehari-hari.',
-
     'Plant trees and help create a greener future.':
       'Tanam pohon dan bantu menciptakan masa depan yang lebih hijau.',
-
     'Reduce plastic waste and make a positive impact on the environment.':
       'Kurangi sampah plastik dan berikan dampak positif bagi lingkungan.',
-
     'Choose environmentally friendly transportation for your daily activities.':
       'Gunakan transportasi ramah lingkungan dalam aktivitas sehari-hari.',
-
     'Save energy and reduce your daily energy consumption.':
       'Hemat energi dan kurangi penggunaan energi dalam aktivitas sehari-hari.',
-
     'Plant trees and help protect the environment.':
       'Tanam pohon dan bantu menjaga kelestarian lingkungan.'
   }
 
-  const translatedTitle =
-    titleMap[challenge.title] ||
-    challenge.title
-
-  const translatedCategory =
-    categoryMap[challenge.category] ||
-    challenge.category
-
-  const translatedDescription =
-    descriptionMap[challenge.description] ||
-    challenge.description
-
   return {
     ...challenge,
-    title: translatedTitle,
-    category: translatedCategory,
-    description: translatedDescription
+    title: titleMap[challenge.title] || challenge.title,
+    category: categoryMap[challenge.category] || challenge.category,
+    description:
+      descriptionMap[challenge.description] || challenge.description
   }
 }
 
 const syncedChallenges = computed(() => {
-  return challenges.value.map(challenge => {
+  return challenges.value.map((challenge) => {
     const translated = translateChallenge(challenge)
 
-    const totalSteps =
-      translated.steps?.length || 3
-
-    const completedSteps =
-      Number(translated.completedSteps || 0)
+    const totalSteps = translated.steps?.length || 3
+    const completedSteps = Number(translated.completedSteps || 0)
 
     const isCompleted =
       totalSteps > 0 &&
@@ -171,13 +146,13 @@ const syncedChallenges = computed(() => {
 })
 
 const featuredChallenge = computed(() => {
-  return syncedChallenges.value[0]
+  return syncedChallenges.value[0] || null
 })
 
 const visibleChallenges = computed(() => {
   if (activeTab.value === 'saya') {
     return syncedChallenges.value.filter(
-      challenge => challenge.joined
+      (challenge) => challenge.joined
     )
   }
 
@@ -185,24 +160,17 @@ const visibleChallenges = computed(() => {
 })
 
 const getChallengeIcon = (category) => {
-  const value =
-    category?.toLowerCase() || ''
+  const value = category?.toLowerCase() || ''
 
-  if (
-    value.includes('plastik')
-  ) {
+  if (value.includes('plastik')) {
     return Recycle
   }
 
-  if (
-    value.includes('transportasi')
-  ) {
+  if (value.includes('transportasi')) {
     return Bike
   }
 
-  if (
-    value.includes('energi')
-  ) {
+  if (value.includes('energi')) {
     return Droplets
   }
 
@@ -217,24 +185,17 @@ const getChallengeIcon = (category) => {
 }
 
 const getChallengeStyle = (category) => {
-  const value =
-    category?.toLowerCase() || ''
+  const value = category?.toLowerCase() || ''
 
-  if (
-    value.includes('plastik')
-  ) {
+  if (value.includes('plastik')) {
     return 'bg-[#E8F8ED] text-[#22C55E]'
   }
 
-  if (
-    value.includes('transportasi')
-  ) {
+  if (value.includes('transportasi')) {
     return 'bg-[#EAF4FF] text-[#3B82F6]'
   }
 
-  if (
-    value.includes('energi')
-  ) {
+  if (value.includes('energi')) {
     return 'bg-[#FFF8D8] text-[#CA8A04]'
   }
 
@@ -254,7 +215,7 @@ onMounted(async () => {
   if (result.success) {
     challenges.value = result.challenges
   } else {
-    alert(result.message)
+    await showAlert(result.message)
   }
 })
 
@@ -267,7 +228,7 @@ const toggleJoin = async (challenge) => {
   const result = await joinChallenge(challenge.id)
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 
@@ -275,6 +236,8 @@ const toggleJoin = async (challenge) => {
 }
 
 const goBack = () => {
-  router.back()
+  router.replace({
+    name: 'Dashboard'
+  })
 }
 </script>

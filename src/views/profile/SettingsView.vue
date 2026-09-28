@@ -41,6 +41,7 @@
 </template>
 
 <script setup>
+import { showConfirm } from '@/services/notifications'
 import { reactive, ref, watch, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { logout as clearSession } from '@/services/auth'
@@ -138,8 +139,10 @@ const updateLanguage = (language) => {
   showToast(`Bahasa berhasil diubah ke ${language}.`)
 }
 
-const handleLogout = () => {
-  const confirmed = window.confirm('Yakin ingin keluar dari akun?')
+const handleLogout = async () => {
+  const confirmed = await showConfirm('Yakin ingin keluar dari akun?', {
+    title: 'Keluar dari akun?'
+  })
 
   if (!confirmed) return
 

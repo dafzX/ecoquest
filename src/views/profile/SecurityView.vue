@@ -23,6 +23,7 @@
 </template>
 
 <script setup>
+import { showAlert } from '@/services/notifications'
 import { useRouter } from 'vue-router'
 import AppLayout from '@/layouts/AppLayout.vue'
 import SecurityMobile from '@/components/security/SecurityMobile.vue'
@@ -35,14 +36,14 @@ function goBack() {
 }
 
 function changePassword() {
-  window.alert('Pengaturan password akan tersedia pada rilis berikutnya.')
+  showAlert('Pengaturan password akan tersedia pada rilis berikutnya.', { type: 'info' })
 }
 
 function logoutDevice() {
-  window.alert('Sesi perangkat berhasil diperiksa.')
+  showAlert('Sesi perangkat berhasil diperiksa.', { type: 'success' })
 }
 
 function logoutAll() {
-  window.alert('Semua sesi perangkat akan dikeluarkan pada rilis berikutnya.')
+  showAlert('Semua sesi perangkat akan dikeluarkan pada rilis berikutnya.', { type: 'info' })
 }
 </script>

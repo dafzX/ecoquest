@@ -22,6 +22,7 @@
 </template>
 
 <script setup>
+import { showAlert } from '@/services/notifications'
 import { onMounted, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { Leaf, Recycle, Zap, Bike } from 'lucide-vue-next'
@@ -40,7 +41,7 @@ onMounted(async () => {
   const result = await getMissions()
 
   if (!result.success) {
-    alert(result.message)
+    await showAlert(result.message)
     return
   }
 
@@ -58,6 +59,6 @@ function getCategoryIcon(category) {
 }
 
 function goBack() {
-  router.back()
+  router.push({ name: 'Missions' })
 }
 </script>
