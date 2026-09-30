@@ -28,14 +28,6 @@
           >
             {{ form.avatar }}
           </div>
-
-          <button
-            type="button"
-            class="mt-2 text-[10px] font-semibold text-[#22C55E] transition hover:text-[#15803D]"
-          >
-            Ubah Foto
-          </button>
-
         </section>
 
         <!-- Form -->
@@ -107,26 +99,31 @@
         <div class="mx-auto max-w-250 px-6 pb-10">
 
           <!-- Header -->
-          <header class="mb-6 flex items-center gap-3">
+          <div class="mb-8 flex items-center justify-between">
 
-            <RouterLink
-              to="/profile"
-              class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#DCEBE0] bg-white text-[#405047] transition hover:bg-[#EAF8EE] hover:text-[#15803D]"
-            >
-              <ArrowLeft class="h-5 w-5" />
-            </RouterLink>
+            <div class="flex items-center gap-3">
 
-            <div>
-              <h1 class="text-[24px] font-bold text-[#17211B]">
-                Edit Profil
-              </h1>
+              <button
+                type="button"
+                @click="goBack"
+                class="flex h-9 w-9 items-center justify-center rounded-full border border-[#E2EAE5] bg-white text-[#405047] shadow-sm transition hover:bg-[#F4FBF7]"
+              >
+                <ArrowLeft class="h-4 w-4" />
+              </button>
 
-              <p class="mt-1 text-sm text-[#718078]">
-                Perbarui informasi profil akunmu.
-              </p>
+              <div>
+                <p class="text-xs text-[#98A39C]">
+                  Edit Profil
+                </p>
+
+                <h1 class="text-xl font-bold text-[#17211B]">
+                  Perbarui informasi profil akunmu.
+                </h1>
+              </div>
+
             </div>
 
-          </header>
+        </div>
 
           <div class="grid grid-cols-[280px_1fr] gap-5">
 
@@ -142,13 +139,6 @@
                 >
                   {{ form.avatar }}
                 </div>
-
-                <button
-                  type="button"
-                  class="mt-3 text-xs font-semibold text-[#22C55E] hover:text-[#15803D]"
-                >
-                  Ubah Foto
-                </button>
 
                 <h2 class="mt-5 text-base font-bold text-[#17211B]">
                   {{ form.name }}
