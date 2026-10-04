@@ -1,168 +1,75 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Eco Admin",
-      "email": "admin@ecoquest.com",
-      "password": "ecoquest123",
-      "xp": 0,
-      "level": 1,
-      "streak": 0,
-      "completedMissionIds": []
-    },
-    {
       "id": 2,
+      "authId": "ea66e325-a892-49d8-b155-3207233b2d1d",
       "name": "Dafa",
       "email": "dafa@ecoquest.com",
       "password": "dafa123",
-      "xp": 225,
-      "level": 1,
-      "streak": 1,
-      "completedMissionIds": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "settings": {
-        "pushNotification": true,
-        "missionReminder": true,
-        "streakReminder": true,
-        "language": "Bahasa Indonesia",
-        "darkMode": false,
-        "promoNotification": true,
-        "communityNotification": true
-      },
-      "missionProgress": {
-        "1": {
-          "completedSteps": 3
-        },
-        "2": {
-          "completedSteps": 2
-        },
-        "3": {
-          "completedSteps": 3
-        },
-        "4": {
-          "completedSteps": 2
-        }
-      },
-      "lastCompletedDate": "2026-09-28",
-      "activities": [
-        {
-          "id": 1790601240228,
-          "type": "mission",
-          "missionId": 4,
-          "title": "Kurangi Sampah Plastik",
-          "xp": 60,
-          "completedAt": "2026-09-28T13:14:00.228Z"
-        },
-        {
-          "id": 1790599289023,
-          "type": "mission",
-          "missionId": 3,
-          "title": "Hemat Energi di Rumah",
-          "xp": 40,
-          "completedAt": "2026-09-28T12:41:29.023Z"
-        },
-        {
-          "id": 1790586346933,
-          "type": "mission",
-          "missionId": 2,
-          "title": "Jalan Kaki atau Bersepeda Hari Ini",
-          "xp": 75,
-          "completedAt": "2026-09-28T09:05:46.933Z"
-        },
-        {
-          "id": 1790564211381,
-          "type": "mission",
-          "missionId": 1,
-          "title": "Daur Ulang 5 Botol Plastik",
-          "xp": 50,
-          "completedAt": "2026-09-28T02:56:51.381Z"
-        }
-      ],
-      "challengeProgress": {
-        "1": {
-          "joined": true,
-          "completedSteps": 3,
-          "completed": true
-        },
-        "2": {
-          "joined": true,
-          "completedSteps": 3,
-          "completed": true
-        },
-        "3": {
-          "joined": true,
-          "completedSteps": 3,
-          "completed": true
-        },
-        "4": {
-          "joined": true,
-          "completedSteps": 3,
-          "completed": true
-        }
-      }
-    },
-    {
-      "id": 3,
-      "name": "Denis",
-      "email": "denis@ecoquest.com",
-      "password": "denis123",
-      "xp": 0,
-      "level": 1,
-      "streak": 0,
-      "completedMissionIds": [],
-      "challengeProgress": {
-        "2": {
-          "joined": true,
-          "completedSteps": 0
-        },
-        "4": {
-          "joined": true,
-          "completedSteps": 0
-        }
-      }
-    },
-    {
-      "id": 4,
-      "name": "Lita",
-      "email": "faras@ecoquest.com",
-      "password": "faras123",
-      "xp": 9999699,
-      "level": 100,
-      "streak": 0,
-      "completedMissionIds": [],
-      "redeemedRewardIds": [
-        1
-      ],
-      "activities": [],
-      "settings": {
-        "pushNotification": true,
-        "missionReminder": true,
-        "streakReminder": true,
-        "language": "Bahasa Indonesia",
-        "darkMode": false
-      },
-      "challengeProgress": {
-        "2": {
-          "joined": true,
-          "completedSteps": 0
-        }
-      }
-    },
-    {
-      "id": 1789704641963,
-      "name": "hello world",
-      "email": "helloworld@ecoquest.com",
-      "password": "fufufafa123",
       "xp": 0,
       "level": 1,
       "streak": 0,
       "completedMissionIds": [],
       "redeemedRewardIds": [],
-      "activities": []
+      "activities": [],
+      "settings": {
+        "pushNotification": true,
+        "missionReminder": true,
+        "streakReminder": true,
+        "promoNotification": false,
+        "communityNotification": false,
+        "darkMode": false,
+        "language": "Bahasa Indonesia"
+      },
+      "missionProgress": {},
+      "challengeProgress": {}
+    },
+    {
+      "id": 1791117157085,
+      "authId": "229d30e5-97bf-4ce4-a84a-8044eb69f597",
+      "name": "Denis Firdaus",
+      "email": "denisfirdaus2008@gmail.com",
+      "xp": 0,
+      "level": 1,
+      "streak": 0,
+      "completedMissionIds": [],
+      "redeemedRewardIds": [],
+      "activities": [],
+      "settings": {
+        "pushNotification": true,
+        "missionReminder": true,
+        "streakReminder": true,
+        "promoNotification": false,
+        "communityNotification": false,
+        "darkMode": false,
+        "language": "Bahasa Indonesia"
+      },
+      "missionProgress": {},
+      "challengeProgress": {}
+    },
+    {
+      "id": 4,
+      "authId": "cf41105d-43de-4062-8b3f-9cd657237777",
+      "name": "Faras",
+      "email": "faras@ecoquest.com",
+      "password": "faras123",
+      "xp": 0,
+      "level": 1,
+      "streak": 0,
+      "completedMissionIds": [],
+      "redeemedRewardIds": [],
+      "activities": [],
+      "settings": {
+        "pushNotification": true,
+        "missionReminder": true,
+        "streakReminder": true,
+        "promoNotification": false,
+        "communityNotification": false,
+        "darkMode": false,
+        "language": "Bahasa Indonesia"
+      },
+      "missionProgress": {},
+      "challengeProgress": {}
     }
   ]
 }
