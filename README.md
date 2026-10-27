@@ -4,6 +4,9 @@ EcoQuest adalah web app gamifikasi aksi ramah lingkungan. Pengguna dapat
 menyelesaikan misi, mengikuti challenge, mengumpulkan XP, melihat dampak,
 menukar reward, dan berbagi aksi bersama komunitas.
 
+Landing page publik tersedia di `/`. Dashboard dan fitur akun tetap berada di
+route masing-masing dan memerlukan login, termasuk `/dashboard`.
+
 ## Menjalankan Project
 
 Install dependency:

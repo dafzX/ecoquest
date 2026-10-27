@@ -12,7 +12,11 @@ const router = createRouter({
     // Auth
     {
       path: '/',
-      redirect: '/dashboard'
+      name: 'Landing',
+      component: () => import('@/views/LandingView.vue'),
+      meta: {
+        title: 'EcoQuest — Small Actions, Greener Future'
+      }
     },
 
     {

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./landing.css";
 
 :root {
   --ink: #17211b;
