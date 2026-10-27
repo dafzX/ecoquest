@@ -1,13 +1,13 @@
 <template>
   <header class="landing-nav" :class="{ 'landing-nav--scrolled': scrolled }">
     <nav class="landing-nav__inner" aria-label="Navigasi utama">
-      <a class="landing-brand" href="#top" aria-label="EcoQuest, kembali ke beranda" @click="closeMenu">
+      <a class="landing-brand" href="#top" aria-label="EcoQuest, kembali ke beranda" @click="handleSectionNavigation">
         <span class="landing-brand__icon"><Leaf :size="19" aria-hidden="true" /></span>
         <span class="landing-brand__name">EcoQuest</span>
       </a>
 
       <div id="landing-nav-links" class="landing-nav__links" :class="{ 'landing-nav__links--open': menuOpen }">
-        <a v-for="item in links" :key="item.href" :href="item.href" @click="closeMenu">{{ item.label }}</a>
+        <a v-for="item in links" :key="item.href" :href="item.href" @click="handleSectionNavigation">{{ item.label }}</a>
         <RouterLink class="landing-mobile-login" to="/login" @click="closeMenu">Masuk</RouterLink>
         <RouterLink class="landing-mobile-cta" to="/register" @click="closeMenu">Mulai Sekarang</RouterLink>
       </div>
@@ -56,6 +56,32 @@ function updateScrollState() {
 
 function closeMenu() {
   menuOpen.value = false
+}
+
+function handleSectionNavigation(event) {
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey
+  ) return
+
+  const targetId = event.currentTarget.getAttribute('href')?.slice(1)
+  const target = targetId ? document.getElementById(decodeURIComponent(targetId)) : null
+  if (!target) return
+
+  event.preventDefault()
+  closeMenu()
+  target.scrollIntoView({
+    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    block: 'start'
+  })
+
+  if (window.location.hash !== `#${targetId}`) {
+    window.history.pushState(null, '', `#${targetId}`)
+  }
 }
 
 onMounted(() => {

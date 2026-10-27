@@ -13,7 +13,7 @@ html:has(.landing-page) {
   overflow: clip;
   color: var(--landing-ink);
   background: #fff;
-  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
 }
 
 .landing-page *,
@@ -42,6 +42,28 @@ html:has(.landing-page) {
 
 .landing-page section[id] {
   scroll-margin-top: 96px;
+}
+
+.landing-section-reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.landing-page[data-motion-ready] .landing-section-reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.landing-page[data-motion-pending] .landing-section-reveal {
+  transition: none;
+}
+
+.landing-section-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .landing-nav {
@@ -139,7 +161,10 @@ html:has(.landing-page) {
   box-shadow: 0 7px 16px rgb(22 131 75 / 15%);
   font-size: 14px;
   font-weight: 650;
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 240ms ease,
+    background 240ms ease;
 }
 
 .landing-button:hover {
@@ -149,7 +174,20 @@ html:has(.landing-page) {
 }
 
 .landing-button:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.985);
+}
+
+.landing-button svg {
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.landing-button:hover svg {
+  transform: translateX(3px);
+}
+
+.landing-button:focus-visible {
+  outline: 3px solid rgb(34 166 83 / 36%);
+  outline-offset: 3px;
 }
 
 .landing-button--small {
@@ -202,6 +240,7 @@ html:has(.landing-page) {
   border-radius: 50%;
   background: radial-gradient(circle, rgb(225 243 228 / 76%) 0%, rgb(239 248 240 / 48%) 49%, transparent 72%);
   pointer-events: none;
+  animation: landing-hero-glow 10s ease-in-out infinite alternate;
 }
 
 .landing-hero__copy,
@@ -241,6 +280,7 @@ html:has(.landing-page) {
   border-radius: 50%;
   background: #43ad63;
   box-shadow: 0 0 0 4px #e4f5e8;
+  animation: landing-status-pulse 2.4s ease-in-out infinite;
 }
 
 .landing-kicker b {
@@ -570,6 +610,11 @@ html:has(.landing-page) {
   align-items: center;
   gap: 10px;
   border-left: 1px solid #e7eee8;
+  transition: transform 220ms ease;
+}
+
+.landing-pillar:hover {
+  transform: translateY(-4px);
 }
 
 .landing-pillar > span {
@@ -581,6 +626,12 @@ html:has(.landing-page) {
   color: #16834b;
   border-radius: 11px;
   background: #eaf6ed;
+  transition: transform 220ms ease, background 220ms ease;
+}
+
+.landing-pillar:hover > span {
+  transform: translateY(-3px) rotate(-5deg);
+  background: #dff1e3;
 }
 
 .landing-pillar strong {
@@ -799,12 +850,22 @@ html:has(.landing-page) {
   border: 1px solid #e6ede7;
   border-radius: 18px;
   background: #fff;
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
 }
 
 .landing-step:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 25px rgb(37 83 48 / 7%);
+  transform: translateY(-8px);
+  border-color: #c9e2ce;
+  box-shadow: 0 18px 34px rgb(37 83 48 / 12%);
+}
+
+.landing-step__visual {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.landing-step:hover .landing-step__visual {
+  transform: translateY(-3px) rotate(-4deg);
+  box-shadow: 0 7px 14px rgb(37 83 48 / 9%);
 }
 
 .landing-step__number {
@@ -1283,6 +1344,12 @@ html:has(.landing-page) {
   color: var(--landing-green);
   border-radius: 11px;
   background: #eaf6ed;
+  transition: transform 220ms ease, background 220ms ease;
+}
+
+.landing-feature:hover > span {
+  transform: translateY(-3px) rotate(-5deg);
+  background: #dff1e3;
 }
 
 .landing-feature h3 {
@@ -1341,9 +1408,9 @@ html:has(.landing-page) {
 }
 
 .landing-mission-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px) scale(1.015);
   border-color: #c9e2ce;
-  box-shadow: 0 12px 25px rgb(37 83 48 / 8%);
+  box-shadow: 0 18px 34px rgb(37 83 48 / 12%);
 }
 
 .landing-mission-card__icon {
@@ -1536,6 +1603,13 @@ html:has(.landing-page) {
   border: 1px solid #edf1ed;
   border-radius: 11px;
   background: #fbfdfb;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.landing-impact__metrics > div:hover {
+  transform: translateY(-5px);
+  border-color: #cfe4d2;
+  box-shadow: 0 10px 20px rgb(37 83 48 / 8%);
 }
 
 .landing-impact__metric-icon {
@@ -1606,6 +1680,13 @@ html:has(.landing-page) {
   border: 1px solid #e5ece6;
   border-radius: 16px;
   background: #fff;
+  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+
+.landing-rewards__layout > :hover {
+  transform: translateY(-6px);
+  border-color: #cfe4d2;
+  box-shadow: 0 14px 28px rgb(37 83 48 / 9%);
 }
 
 .landing-xp-card {
@@ -1912,6 +1993,12 @@ html:has(.landing-page) {
   align-items: flex-start;
   gap: 10px;
   border-bottom: 1px solid #edf1ed;
+  transition: transform 220ms ease, background 220ms ease;
+}
+
+.landing-post:hover {
+  transform: translateX(5px);
+  background: #f5faf5;
 }
 
 .landing-post:last-of-type {
@@ -2001,6 +2088,7 @@ html:has(.landing-page) {
   border: 1px solid rgb(70 151 87 / 10%);
   border-radius: 50%;
   box-shadow: 0 0 0 45px rgb(70 151 87 / 3%), 0 0 0 90px rgb(70 151 87 / 2%);
+  animation: landing-orb-drift 12s ease-in-out infinite alternate;
 }
 
 .landing-cta__inner {
@@ -2174,6 +2262,24 @@ html:has(.landing-page) {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes landing-status-pulse {
+  50% {
+    box-shadow: 0 0 0 7px rgb(228 245 232 / 38%);
+  }
+}
+
+@keyframes landing-orb-drift {
+  to {
+    transform: translate3d(-18px, 12px, 0) scale(1.05);
+  }
+}
+
+@keyframes landing-hero-glow {
+  to {
+    transform: translate3d(-22px, 15px, 0) scale(1.08);
   }
 }
 
@@ -2993,6 +3099,15 @@ html:has(.landing-page) {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html:has(.landing-page) {
+    scroll-behavior: auto !important;
+  }
+
+  .landing-section-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   .landing-page *,
   .landing-page *::before,
   .landing-page *::after {

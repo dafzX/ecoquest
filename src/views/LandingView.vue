@@ -49,7 +49,7 @@
       </section>
 
       <section class="landing-section landing-problem landing-container">
-        <div class="landing-problem__copy landing-reveal">
+        <div class="landing-problem__copy">
           <span class="landing-eyebrow">THE IDEA BEHIND ECOQUEST</span>
           <h2>Menjaga bumi seharusnya menjadi kebiasaan, bukan sekadar niat.</h2>
           <p>
@@ -63,7 +63,7 @@
             <li><span><Check :size="14" aria-hidden="true" /></span><div><strong>Rayakan tiap langkah</strong><small>Apresiasi perjalananmu lewat pencapaian dan reward.</small></div></li>
           </ul>
         </div>
-        <div class="landing-growth landing-reveal" aria-label="Ilustrasi pertumbuhan dari benih menjadi tanaman">
+        <div class="landing-growth" aria-label="Ilustrasi pertumbuhan dari benih menjadi tanaman">
           <div class="landing-growth__sun"></div>
           <div class="landing-growth__stage landing-growth__stage--seed"><span>01</span><Sprout :size="24" aria-hidden="true" /><small>Mulai</small></div>
           <div class="landing-growth__stage landing-growth__stage--sprout"><span>02</span><Sprout :size="38" aria-hidden="true" /><small>Rawat</small></div>
@@ -75,7 +75,7 @@
 
       <section id="cara-kerja" class="landing-section landing-how">
         <div class="landing-container">
-          <div class="landing-section-heading landing-reveal">
+          <div class="landing-section-heading">
             <span class="landing-eyebrow">HOW IT WORKS</span>
             <h2>Mulai dari satu aksi.<br /><span>Bangun kebiasaan yang lebih baik.</span></h2>
             <p>Perjalananmu terdiri dari langkah-langkah kecil yang mudah diikuti.</p>
@@ -98,12 +98,12 @@
       </section>
 
       <section id="produk" class="landing-section landing-showcase landing-container">
-        <div class="landing-section-heading landing-reveal">
+        <div class="landing-section-heading">
           <span class="landing-eyebrow">YOUR GREEN JOURNEY</span>
           <h2>Semua progres baikmu,<br /><span>dalam satu dashboard.</span></h2>
           <p>Pantau misi, kumpulkan pengalaman, dan lihat perkembangan aksimu dalam satu tempat.</p>
         </div>
-        <DashboardPreview class="landing-reveal" />
+        <DashboardPreview />
         <div class="landing-showcase__features">
           <article v-for="feature in dashboardFeatures" :key="feature.title" class="landing-feature">
             <span><component :is="feature.icon" :size="19" aria-hidden="true" /></span>
@@ -114,7 +114,7 @@
 
       <section id="misi" class="landing-section landing-missions">
         <div class="landing-container">
-          <div class="landing-section-heading landing-section-heading--split landing-reveal">
+          <div class="landing-section-heading landing-section-heading--split">
             <div>
               <span class="landing-eyebrow">YOUR NEXT QUEST</span>
               <h2>Jadikan aksi sehari-hari<br /><span>sebagai pencapaian.</span></h2>
@@ -125,7 +125,7 @@
             <RouterLink
               v-for="(mission, index) in missions"
               :key="mission.title"
-              class="landing-mission-card landing-reveal"
+              class="landing-mission-card"
               :class="`landing-mission-card--${index + 1}`"
               to="/missions"
             >
@@ -142,7 +142,7 @@
       </section>
 
       <section id="dampak" class="landing-section landing-impact landing-container">
-        <div class="landing-impact__copy landing-reveal">
+        <div class="landing-impact__copy">
           <span class="landing-eyebrow">MEASURE WHAT MATTERS</span>
           <h2>Setiap aksi punya cerita.<br /><span>Lihat dampaknya.</span></h2>
           <p>
@@ -152,7 +152,7 @@
           </p>
           <RouterLink class="landing-text-link" to="/impact">Lihat pelacakan dampak <ArrowRight :size="16" aria-hidden="true" /></RouterLink>
         </div>
-        <div class="landing-impact__visual landing-reveal">
+        <div class="landing-impact__visual">
           <div class="landing-impact__topline"><span><ChartNoAxesCombined :size="16" aria-hidden="true" /> Ringkasan dampak</span><span class="landing-preview-tag">PRATINJAU</span></div>
           <div class="landing-impact__number"><strong>0</strong><span>aktivitas dicatat</span></div>
           <div class="landing-impact__chart" aria-label="Grafik ilustratif tanpa data aktivitas">
@@ -175,32 +175,32 @@
 
       <section class="landing-section landing-rewards">
         <div class="landing-container">
-          <div class="landing-section-heading landing-reveal">
+          <div class="landing-section-heading">
             <span class="landing-eyebrow">MAKE GOOD HABITS REWARDING</span>
             <h2>Progres kecil.<br /><span>Pencapaian baru.</span></h2>
             <p>XP dan reward terhubung dengan misi yang kamu selesaikan di EcoQuest.</p>
           </div>
           <div class="landing-rewards__layout">
-            <div class="landing-xp-card landing-reveal">
+            <div class="landing-xp-card">
               <div class="landing-xp-card__header"><span><Zap :size="17" aria-hidden="true" /> PROGRES LEVEL</span><span>PREVIEW</span></div>
               <div class="landing-xp-card__level"><div class="landing-xp-card__badge"><Sprout :size="27" aria-hidden="true" /></div><div><small>LEVEL 1</small><strong>Eco Explorer</strong></div><div class="landing-xp-card__xp"><strong>0 <small>XP</small></strong><span>/ 500 XP</span></div></div>
               <div class="landing-progress landing-progress--large"><span style="width: 8%"></span></div>
               <div class="landing-xp-card__foot"><span>Level berikutnya</span><span>500 XP</span></div>
             </div>
-            <div class="landing-streak-card landing-reveal">
+            <div class="landing-streak-card">
               <span class="landing-streak-card__icon"><Flame :size="22" aria-hidden="true" /></span>
               <span class="landing-eyebrow">STREAK HARIAN</span>
               <strong>0 <small>hari</small></strong>
               <p>Catat satu aksi hari ini untuk memulai streak.</p>
               <div class="landing-streak-days"><span v-for="day in streakDays" :key="day">{{ day }}</span></div>
             </div>
-            <div class="landing-achievement-card landing-reveal">
+            <div class="landing-achievement-card">
               <div class="landing-achievement-card__badge"><Trophy :size="25" aria-hidden="true" /></div>
               <div><span class="landing-eyebrow">PENCAPAIAN</span><h3>Langkah Pertama</h3><p>Selesaikan misi pertamamu untuk membuka pencapaian.</p></div>
               <div class="landing-achievement-card__progress"><span></span></div>
               <small>0 / 1 misi</small>
             </div>
-            <div class="landing-rewards__note landing-reveal">
+            <div class="landing-rewards__note">
               <span><Gift :size="17" aria-hidden="true" /></span>
               <div><strong>Hadiah untuk setiap usaha</strong><p>Jelajahi katalog reward dan raih posisi di leaderboard komunitas.</p></div>
               <ArrowUpRight :size="16" aria-hidden="true" />
@@ -211,7 +211,7 @@
       </section>
 
       <section id="komunitas" class="landing-section landing-community landing-container">
-        <div class="landing-community__copy landing-reveal">
+        <div class="landing-community__copy">
           <span class="landing-eyebrow">GROW TOGETHER</span>
           <h2>Aksi baik lebih berarti<br /><span>saat dilakukan bersama.</span></h2>
           <p>
@@ -220,7 +220,7 @@
           </p>
           <RouterLink class="landing-text-link" to="/community">Jelajahi komunitas <ArrowRight :size="16" aria-hidden="true" /></RouterLink>
         </div>
-        <div class="landing-community__feed landing-reveal">
+        <div class="landing-community__feed">
           <div class="landing-community__feed-head"><strong><Users :size="17" aria-hidden="true" /> Aktivitas komunitas</strong><span>CONTOH</span></div>
           <article v-for="post in communityExamples" :key="post.action" class="landing-post">
             <span class="landing-post__avatar"><component :is="post.icon" :size="17" aria-hidden="true" /></span>
@@ -233,7 +233,7 @@
 
       <section class="landing-cta">
         <div class="landing-cta__orb"></div>
-        <div class="landing-container landing-cta__inner landing-reveal">
+        <div class="landing-container landing-cta__inner">
           <div class="landing-cta__sprout"><Sprout :size="37" aria-hidden="true" /></div>
           <span class="landing-eyebrow">MULAI DARI LANGKAH KECIL</span>
           <h2>Perubahan besar dimulai<br />dari langkah kecil.</h2>
@@ -266,8 +266,6 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
   ArrowRight,
   ArrowUpRight,
@@ -297,7 +295,7 @@ import EcoSystemScene from '@/components/landing/EcoSystemScene.vue'
 import LandingNavbar from '@/components/landing/LandingNavbar.vue'
 
 const page = ref(null)
-let motion
+let revealObserver
 
 const pillars = [
   { label: 'Misi & Tantangan', icon: Recycle },
@@ -335,46 +333,43 @@ const communityExamples = [
 ]
 
 onMounted(() => {
-  gsap.registerPlugin(ScrollTrigger)
-  motion = gsap.matchMedia()
-  motion.add('(prefers-reduced-motion: no-preference)', () => {
-    gsap.from(gsap.utils.toArray('.landing-hero__copy > *', page.value), {
-      y: 18,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.1,
-      ease: 'power2.out',
-      delay: 0.15
+  const sections = [...(page.value?.querySelectorAll('main > section:not(.landing-hero)') ?? [])]
+  if (!sections.length) return
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    sections.forEach((section) => section.classList.add('is-visible'))
+    return
+  }
+
+  const viewportHeight = window.innerHeight
+  sections.forEach((section) => {
+    section.classList.add('landing-section-reveal')
+    const bounds = section.getBoundingClientRect()
+    if (bounds.top < viewportHeight && bounds.bottom > 0) section.classList.add('is-visible')
+  })
+
+  page.value.setAttribute('data-motion-pending', '')
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return
+      entry.target.classList.add('is-visible')
+      revealObserver.unobserve(entry.target)
     })
-    gsap.from('.landing-hero__visual', {
-      y: 18,
-      scale: 0.98,
-      opacity: 0,
-      duration: 0.9,
-      ease: 'power2.out',
-      delay: 0.2
-    })
-    gsap.utils.toArray('.landing-reveal', page.value).forEach((element) => {
-      gsap.fromTo(element, { y: 18, opacity: 0 }, {
-        y: 0,
-        opacity: 1,
-        duration: 0.65,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: element, start: 'top 88%', once: true }
-      })
-    })
-    gsap.from(gsap.utils.toArray('.landing-step', page.value), {
-      y: 20,
-      opacity: 0,
-      duration: 0.55,
-      stagger: 0.13,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: '#cara-kerja', start: 'top 76%', once: true }
-    })
+  }, {
+    rootMargin: '0px',
+    threshold: 0
+  })
+
+  page.value.setAttribute('data-motion-ready', '')
+  sections
+    .filter((section) => !section.classList.contains('is-visible'))
+    .forEach((section) => revealObserver.observe(section))
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => page.value?.removeAttribute('data-motion-pending'))
   })
 })
 
 onUnmounted(() => {
-  motion?.revert()
+  revealObserver?.disconnect()
 })
 </script>
