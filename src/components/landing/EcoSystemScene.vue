@@ -393,7 +393,7 @@ function resizeScene() {
 function animate(time) {
   animationFrame = 0
   if (isDisposed || !renderer || !scene || !camera || !isVisible || document.hidden) return
-  const delta = previousTime ? Math.min((time - previousTime) / 1000, 0.05) : 0
+  const delta = previousTime ? Math.min((time - previousTime) / 1000, 0.5) : 0
   previousTime = time
   elapsed += delta
 

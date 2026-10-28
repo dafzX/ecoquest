@@ -63,13 +63,77 @@
             <li><span><Check :size="14" aria-hidden="true" /></span><div><strong>Rayakan tiap langkah</strong><small>Apresiasi perjalananmu lewat pencapaian dan reward.</small></div></li>
           </ul>
         </div>
-        <div class="landing-growth" aria-label="Ilustrasi pertumbuhan dari benih menjadi tanaman">
-          <div class="landing-growth__sun"></div>
-          <div class="landing-growth__stage landing-growth__stage--seed"><span>01</span><Sprout :size="24" aria-hidden="true" /><small>Mulai</small></div>
-          <div class="landing-growth__stage landing-growth__stage--sprout"><span>02</span><Sprout :size="38" aria-hidden="true" /><small>Rawat</small></div>
-          <div class="landing-growth__stage landing-growth__stage--tree"><span>03</span><TreePine :size="54" aria-hidden="true" /><small>Tumbuh</small></div>
-          <div class="landing-growth__ground"></div>
-          <p>Setiap kebiasaan baik tumbuh dari satu langkah kecil.</p>
+        <div class="landing-growth" role="img" aria-label="Ilustrasi pertumbuhan benih menjadi pohon dalam tiga tahap">
+          <svg class="landing-growth__landscape" viewBox="0 0 640 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+            <circle cx="526" cy="82" r="34" fill="#FFE447" />
+            <circle cx="526" cy="82" r="47" fill="#FFE447" opacity=".22" />
+            <path d="M0 235C89 179 158 196 235 239s137 36 208-4 127-47 197-9v174H0Z" fill="#C9EECA" />
+            <path d="M0 276c93-42 170-35 254 9 86 45 172 35 244-1 48-24 94-29 142-18v134H0Z" fill="#A5E4A7" />
+            <path d="M0 325c107-39 210-22 299 15s204 35 341-9v69H0Z" fill="#81D984" />
+            <path d="M0 357c117-27 188-3 282 19s233 13 358-20v44H0Z" fill="#5FCF63" />
+            <path d="M94 111c13-12 33-12 44 0 12-10 34-7 39 9h-94c1-5 5-8 11-9Zm372 56c10-9 24-9 33 0 9-7 25-5 29 7h-72c1-4 4-6 10-7Z" fill="#FFF" opacity=".8" />
+            <path d="M80 312c80-46 126-44 193-10 76 39 154 42 264-3" fill="none" stroke="#EAF3DF" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 12" />
+          </svg>
+          <svg class="landing-growth__path" viewBox="0 0 600 160" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M20 120C112 95 132 62 224 80s124 43 198 7 110-55 158-42" fill="none" stroke="#83B98B" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 8" />
+            <circle cx="20" cy="120" r="4" fill="#fff" stroke="#63A674" stroke-width="2" />
+            <circle cx="224" cy="80" r="4" fill="#fff" stroke="#63A674" stroke-width="2" />
+            <circle cx="580" cy="45" r="4" fill="#fff" stroke="#63A674" stroke-width="2" />
+          </svg>
+
+          <div class="landing-growth__stages">
+            <div class="landing-growth__stage landing-growth__stage--seed">
+              <span class="landing-growth__step">01 <i></i> MULAI</span>
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <ellipse cx="60" cy="103" rx="33" ry="7" fill="#67966B" opacity=".16" />
+                <path d="M27 88c8-13 22-18 33-18s25 5 33 18l-7 10H34Z" fill="#8A6545" />
+                <path d="M35 88c9-7 17-9 25-9s17 2 25 9" fill="none" stroke="#B28B60" stroke-width="3" stroke-linecap="round" />
+                <ellipse cx="60" cy="85" rx="7" ry="4.5" transform="rotate(-28 60 85)" fill="#D8AD67" />
+                <path d="M60 81c-2-9 0-15 5-20" fill="none" stroke="#4F9A60" stroke-width="3" stroke-linecap="round" />
+                <path d="M64 65c-9-9-18-8-20-2 5 8 12 10 20 2Z" fill="#75B974" />
+                <path d="M64 65c2-9 10-13 16-9-1 8-7 13-16 9Z" fill="#4F9A60" />
+                <path d="M44 76c-8-4-12-2-13 3 5 4 9 3 13-3Zm37-3c7-5 12-3 13 2-4 5-9 4-13-2Z" fill="#96CB85" />
+              </svg>
+              <strong>Mulai</strong>
+              <small>Satu aksi kecil</small>
+            </div>
+
+            <div class="landing-growth__stage landing-growth__stage--sprout">
+              <span class="landing-growth__step">02 <i></i> RAWAT</span>
+              <svg viewBox="0 0 140 150" aria-hidden="true">
+                <ellipse cx="70" cy="132" rx="38" ry="8" fill="#67966B" opacity=".16" />
+                <path d="M35 112c9-15 22-22 35-22s26 7 35 22l-9 13H44Z" fill="#8A6545" />
+                <path d="M44 112c8-8 17-11 26-11s18 3 26 11" fill="none" stroke="#B28B60" stroke-width="3" stroke-linecap="round" />
+                <path d="M70 105c-2-17 1-30 6-43 4-10 4-17 2-26" fill="none" stroke="#438E55" stroke-width="5" stroke-linecap="round" />
+                <path d="M75 68C51 46 35 49 34 63c11 16 24 19 41 5Z" fill="#77B96E" />
+                <path d="M76 58c3-23 20-31 31-23-1 19-12 29-31 23Z" fill="#4E9A5B" />
+                <path d="M74 83c-20-14-33-10-32 2 10 12 21 13 32-2Z" fill="#9ACB7D" />
+                <path d="M70 91c12-17 26-18 31-8-6 14-17 18-31 8Z" fill="#5FA965" />
+                <path d="M45 37c-5-7-3-13 3-16 7 5 7 11-3 16Zm47-14c1-9 7-12 13-9 1 8-4 12-13 9Z" fill="#B5D58B" />
+              </svg>
+              <strong>Rawat</strong>
+              <small>Konsisten tiap hari</small>
+            </div>
+
+            <div class="landing-growth__stage landing-growth__stage--tree">
+              <span class="landing-growth__step">03 <i></i> TUMBUH</span>
+              <svg viewBox="0 0 170 190" aria-hidden="true">
+                <ellipse cx="85" cy="172" rx="47" ry="9" fill="#67966B" opacity=".18" />
+                <path d="M76 166c5-24 7-45 5-72h16c-1 29 1 50 7 72Z" fill="#886140" />
+                <path d="M84 119 59 91M94 112l24-27" fill="none" stroke="#886140" stroke-width="8" stroke-linecap="round" />
+                <path d="M85 62c-6-21 7-40 24-38 15-24 48-12 45 11 22 8 19 37 2 44 4 23-22 38-41 26-20 19-48 5-45-17-20-4-22-25-6-34 4-2 11-1 21 8Z" fill="#4D955A" />
+                <path d="M63 74c-2-19 14-31 30-24 8-21 36-19 41-1 20-5 31 16 19 30-4 13-22 18-35 8-13 14-36 11-42-4-13 6-29 1-31-9Z" fill="#72B66A" />
+                <path d="M77 46c1-11 12-17 21-12 4-13 21-16 29-6 13-2 20 10 14 20" fill="none" stroke="#9BCB7B" stroke-width="5" stroke-linecap="round" />
+                <circle cx="58" cy="84" r="5" fill="#D8E9A2" />
+                <circle cx="126" cy="54" r="5" fill="#D8E9A2" />
+                <circle cx="106" cy="97" r="4" fill="#D8E9A2" />
+                <path d="M49 105c-8-8-16-7-18 0 5 8 12 9 18 0Zm75-30c7-8 15-7 17 0-5 8-11 9-17 0Z" fill="#9BCB7B" />
+              </svg>
+              <strong>Tumbuh</strong>
+              <small>Dampak yang berarti</small>
+            </div>
+          </div>
+          <p><span></span> Setiap kebiasaan baik tumbuh dari satu langkah kecil.</p>
         </div>
       </section>
 
@@ -285,7 +349,6 @@ import {
   Lightbulb,
   Recycle,
   Sprout,
-  TreePine,
   Trophy,
   Users,
   Zap
@@ -336,7 +399,7 @@ onMounted(() => {
   const sections = [...(page.value?.querySelectorAll('main > section:not(.landing-hero)') ?? [])]
   if (!sections.length) return
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+  if (!('IntersectionObserver' in window)) {
     sections.forEach((section) => section.classList.add('is-visible'))
     return
   }
@@ -351,9 +414,7 @@ onMounted(() => {
   page.value.setAttribute('data-motion-pending', '')
   revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (!entry.isIntersecting) return
-      entry.target.classList.add('is-visible')
-      revealObserver.unobserve(entry.target)
+      entry.target.classList.toggle('is-visible', entry.isIntersecting)
     })
   }, {
     rootMargin: '0px',

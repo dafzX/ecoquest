@@ -442,6 +442,7 @@ html:has(.landing-page) {
   background: rgb(255 255 255 / 95%);
   box-shadow: 0 10px 30px rgb(30 69 44 / 9%);
   animation: landing-card-float 5.5s ease-in-out infinite;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
 }
 
 .landing-float-card strong {
@@ -720,83 +721,117 @@ html:has(.landing-page) {
 
 .landing-growth {
   position: relative;
-  min-height: 365px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 28px;
-  padding-bottom: 95px;
+  min-height: 390px;
   border-radius: 26px;
-  background: radial-gradient(ellipse at 50% 95%, #d7edda 0, #f3f8f2 54%, #fbfdfb 78%);
+  background: linear-gradient(180deg, #6dd8ff 0%, #e9f3f6 57%, #dcecef 100%);
   overflow: hidden;
 }
 
-.landing-growth__sun {
+.landing-growth__landscape {
   position: absolute;
-  top: 35px;
-  right: 66px;
-  width: 77px;
-  height: 77px;
-  border-radius: 50%;
-  background: #ecf4c8;
-  box-shadow: 0 0 0 18px rgb(237 246 210 / 44%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.landing-growth__ground {
+.landing-growth__path {
   position: absolute;
-  right: -10%;
-  bottom: 49px;
-  left: -10%;
-  height: 56px;
-  border-radius: 50% 50% 0 0 / 55% 55% 0 0;
-  background: linear-gradient(180deg, #9ecb9e, #79b282);
+  z-index: 1;
+  top: 43%;
+  left: 7%;
+  width: 86%;
+  height: 112px;
+  overflow: visible;
+}
+
+.landing-growth__stages {
+  position: absolute;
+  z-index: 2;
+  inset: 34px 5% 61px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  justify-items: center;
 }
 
 .landing-growth__stage {
   position: relative;
-  z-index: 2;
-  width: 82px;
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 8px;
-  color: #39834f;
-  animation: landing-grow-in 650ms both;
+  gap: 2px;
+  color: #315a3d;
 }
 
-.landing-growth__stage--sprout {
-  animation-delay: 150ms;
+.landing-growth__stage > svg {
+  width: 112px;
+  height: 112px;
+  overflow: visible;
+  filter: drop-shadow(0 8px 8px rgb(52 94 55 / 9%));
+  animation: landing-canopy-sway 5s ease-in-out infinite;
+  transition: transform 220ms ease, filter 220ms ease;
 }
 
-.landing-growth__stage--tree {
-  animation-delay: 300ms;
+.landing-growth__stage--seed > svg {
+  width: 82px;
+  height: 82px;
+  margin-bottom: 15px;
 }
 
-.landing-growth__stage > span {
-  position: absolute;
-  top: -25px;
-  color: #9bab9e;
-  font-size: 9px;
+.landing-growth__stage--sprout > svg {
+  width: 112px;
+  height: 112px;
+  margin-bottom: 2px;
+}
+
+.landing-growth__stage--tree > svg {
+  width: 154px;
+  height: 154px;
+  margin-bottom: -20px;
+  animation-delay: -1.6s;
+}
+
+.landing-growth__stage--seed > svg {
+  animation-delay: -0.8s;
+}
+
+.landing-growth__stage--sprout > svg {
+  animation-delay: -2.4s;
+}
+
+.landing-growth__step {
+  min-height: 23px;
+  padding: 5px 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #62846a;
+  border: 1px solid rgb(217 234 214 / 90%);
+  border-radius: 99px;
+  background: rgb(255 255 255 / 84%);
+  box-shadow: 0 4px 12px rgb(47 86 53 / 5%);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.landing-growth__step i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #8dbb83;
+}
+
+.landing-growth__stage > strong {
+  color: #315a3d;
+  font-size: 11px;
   font-weight: 750;
-  letter-spacing: 0.12em;
 }
 
-.landing-growth__stage--seed svg {
-  color: #7b6040;
-}
-
-.landing-growth__stage--sprout svg {
-  color: #4a9a60;
-}
-
-.landing-growth__stage--tree svg {
-  color: #277647;
-}
-
-.landing-growth__stage small {
-  color: #42644c;
-  font-size: 10px;
-  font-weight: 650;
+.landing-growth__stage > small {
+  color: #718b73;
+  font-size: 8px;
 }
 
 .landing-growth > p {
@@ -804,11 +839,20 @@ html:has(.landing-page) {
   right: 15px;
   bottom: 17px;
   left: 15px;
-  z-index: 2;
+  z-index: 3;
   margin: 0;
   color: #52705b;
   text-align: center;
   font-size: 11px;
+}
+
+.landing-growth > p > span {
+  width: 5px;
+  height: 5px;
+  margin: 0 5px 1px 0;
+  display: inline-block;
+  border-radius: 50%;
+  background: #64a66d;
 }
 
 .landing-how {
@@ -2253,15 +2297,14 @@ html:has(.landing-page) {
   }
 }
 
-@keyframes landing-grow-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.9);
+@keyframes landing-canopy-sway {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  50% {
+    transform: translateY(-4px) rotate(1deg);
   }
 }
 
@@ -2751,24 +2794,38 @@ html:has(.landing-page) {
   }
 
   .landing-growth {
-    min-height: 277px;
-    gap: 12px;
-    padding-bottom: 85px;
+    min-height: 320px;
   }
 
-  .landing-growth__stage {
-    width: 67px;
+  .landing-growth__stages {
+    inset: 30px 3% 57px;
   }
 
-  .landing-growth__stage--tree svg {
-    width: 45px;
-    height: 45px;
+  .landing-growth__stage > svg {
+    width: 86px;
+    height: 86px;
   }
 
-  .landing-growth__sun {
-    right: 43px;
-    width: 55px;
-    height: 55px;
+  .landing-growth__stage--seed > svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 11px;
+  }
+
+  .landing-growth__stage--sprout > svg {
+    width: 86px;
+    height: 86px;
+  }
+
+  .landing-growth__stage--tree > svg {
+    width: 119px;
+    height: 119px;
+    margin-bottom: -16px;
+  }
+
+  .landing-growth__path {
+    top: 43%;
+    height: 92px;
   }
 
   .landing-growth > p {
@@ -3103,11 +3160,6 @@ html:has(.landing-page) {
     scroll-behavior: auto !important;
   }
 
-  .landing-section-reveal {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
   .landing-page *,
   .landing-page *::before,
   .landing-page *::after {
@@ -3115,5 +3167,15 @@ html:has(.landing-page) {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .landing-page[data-motion-ready] .landing-section-reveal:not(.is-visible) {
+    transform: translateY(0);
+  }
+
+  .landing-section-reveal {
+    transform: none !important;
+    transition-duration: 260ms !important;
+    transition-property: opacity !important;
   }
 }

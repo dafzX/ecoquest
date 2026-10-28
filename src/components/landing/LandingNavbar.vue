@@ -8,12 +8,10 @@
 
       <div id="landing-nav-links" class="landing-nav__links" :class="{ 'landing-nav__links--open': menuOpen }">
         <a v-for="item in links" :key="item.href" :href="item.href" @click="handleSectionNavigation">{{ item.label }}</a>
-        <RouterLink class="landing-mobile-login" to="/login" @click="closeMenu">Masuk</RouterLink>
         <RouterLink class="landing-mobile-cta" to="/register" @click="closeMenu">Mulai Sekarang</RouterLink>
       </div>
 
       <div class="landing-nav__actions">
-        <RouterLink class="landing-nav__login" to="/login">Masuk</RouterLink>
         <RouterLink class="landing-button landing-button--small" to="/register">
           Mulai Sekarang <ArrowUpRight :size="15" aria-hidden="true" />
         </RouterLink>
